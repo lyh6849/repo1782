@@ -2,8 +2,9 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path ('',views.home, name='home')''',
-    
+    path ('',views.home, name='home')
+    ]
+'''    
     path ('agenda',views.agenda, name="agenda"),
     path ('test',views.home2, name="home2"),
     path ('train',views.home3, name="home3"),
@@ -69,5 +70,5 @@ urlpatterns = [
 
     path ('cc_value_update',views.cc_value_update,name='cc_value_update')
     '''
-]
+
 
