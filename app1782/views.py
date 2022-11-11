@@ -1,5 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from app1782.models import train_test_data, test_data
+
+test=train_test_data.objects.all()
+print(test)
 '''
 from django.shortcuts import redirect, get_object_or_404
 
@@ -53,5 +57,5 @@ from sklearn.model_selection import train_test_split
 
 # Create your views here.
 def home (request):  
-    return HttpResponse("Hello World")
-    #return render(request,'index.html')
+    #return HttpResponse("Hello World")
+    return render(request,'index.html')

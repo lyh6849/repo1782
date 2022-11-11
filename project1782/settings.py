@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'app1782.apps.App1782Config',
 ]
 
 MIDDLEWARE = [
@@ -50,11 +51,12 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'project1782.urls'
+import os
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR,'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
