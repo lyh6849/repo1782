@@ -2,10 +2,16 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path ('',views.home, name='home')
+    path ('',views.home, name='home'),
+    
+    path ('agenda',views.agenda, name="agenda"),
+    path('initial_open', views.initial_open, name='initial_open'),
+
+    path ('getQuestions',views.getQuestions,name='getQuestions')
+
     ]
 '''    
-    path ('agenda',views.agenda, name="agenda"),
+
     path ('test',views.home2, name="home2"),
     path ('train',views.home3, name="home3"),
     path ('questionnaire',views.home4, name="home4"),
@@ -51,7 +57,6 @@ urlpatterns = [
     path('predict_3', views.predict_3, name='predict_3'),
     path('delete_a_from_data_2', views.delete_a_from_data_2, name='delete_a_from_data_2'),
     path('collapse_cc', views.collapse_cc, name='collapse_cc'),
-    path('initial_open', views.initial_open, name='initial_open'),
     path('auto_ajax', views.auto_ajax, name='auto_ajax'),
     path('next_questionnaire', views.next_questionnaire, name='next_questionnaire'),
     path('select_2', views.select_2, name='select_2'),
@@ -64,7 +69,6 @@ urlpatterns = [
     path('residual_delete', views.residual_delete, name='residual_delete'),
     path('residual_delete2', views.residual_delete2, name='residual_delete2'),
 
-    path ('getQuestions',views.getQuestions,name='getQuestions'),
     path ('classifier',views.classifier,name='classifier'),
     path ('ajax_updator',views.ajax_updator,name='ajax_updator'),
 
