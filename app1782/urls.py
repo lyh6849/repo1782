@@ -3,19 +3,12 @@ from . import views
 
 urlpatterns = [
     path ('',views.home, name='home'),
-    
+    path ('questionnaire',views.home4, name="home4"),
+
     path ('agenda',views.agenda, name="agenda"),
     path('initial_open', views.initial_open, name='initial_open'),
 
-    path ('getQuestions',views.getQuestions,name='getQuestions')
-
-    ]
-'''    
-
-    path ('test',views.home2, name="home2"),
-    path ('train',views.home3, name="home3"),
-    path ('questionnaire',views.home4, name="home4"),
-    path ('cc_db',views.home5, name="home5"),
+    path ('getQuestions',views.getQuestions,name='getQuestions'),
 
     path ('q_insert',views.q_insert,name='q_insert'),
     path ('a_insert',views.a_insert,name='a_insert'),
@@ -73,6 +66,13 @@ urlpatterns = [
     path ('ajax_updator',views.ajax_updator,name='ajax_updator'),
 
     path ('cc_value_update',views.cc_value_update,name='cc_value_update')
+    ]
+'''    
+
+    path ('test',views.home2, name="home2"),
+    path ('train',views.home3, name="home3"),
+    path ('cc_db',views.home5, name="home5"),
+
     '''
 
 

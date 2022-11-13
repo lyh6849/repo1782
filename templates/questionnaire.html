@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+    <script src="https://kit.fontawesome.com/257d2aa939.js" crossorigin="anonymous"></script>
+    <meta charset='utf-8'name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <style>
+        .answer{margin-left:5px;font-weight:lighter;}
+        .answer:hover{color:white;cursor: pointer;font-weight: bold;}
+        .answer_note{margin-left:5px;font-weight:lighter;}
+        .question{padding:10px;margin-left:10px;font-weight:bold;position:relative;}
+        .question:hover{
+            background-color: #638fb886;
+        }
+        .focus{width:100vw;}
+    
+        .question_note{margin-left:15px;font-weight:bold;}
+        .note{position:fixed;top:5vh;right:5vw;height:30vh;width:60vw;
+            background-color:rgba(0, 0, 0, 0.24);color:white;
+            display:none;
+        overflow-y: scroll;padding:10px;}
+        .inline{margin-left:0px;display:inline-block;}
+        .input_bar{    border: none;
+            background-color: rgb(205 231 236);
+            border-radius: 3px;
+            text-align: center;
+            display: block;
+            margin: auto;
+            width: 70vw;
+            margin-top: 2vh;
+            height: 5vh;
+            font-size: 35px;
+            color:#5e5353;
+            font-family: cursive;
+            padding:5px;
+            justify-content: center;
+        }
+        .input_bar::placeholder{
+            font-size:35px;
+            color:rgb(206, 206, 206);
+            margin-bottom:100px;
+            justify-content: center;
+            vertical-align: middle;
+
+        }
+        .next{position:absolute;right:5vw;top:18vh;cursor:pointer;}
+        .next:hover{color:#1C6EA4;}
+        .hide{display:none;}
+        .hide_answers .answer{display:none;}
+        .hide_answers .answer .question{display:block;}
+        .close_button{    margin-top: 5px;
+            margin-bottom: 5px;
+            margin-left: 60%;
+            border: none;
+            background-color: #ececff;
+            border-radius: 5px;
+            color: #30423b;}
+        .close_button:hover{background-color: #1C6EA4;color:white;}
+    </style>
+</head>
+
+<body>
+    
+    {%block body%}
+    <form action="" method="POST">
+        <div class="form" id="form">
+           {%csrf_token%}
+
+       </div>
+   </form>
+<div id="note_7593" class="note">
+    <div class="question_note" id="q000_note" value="Type of visit"></div>
+</div>
+<datalist id="cc_list"></datalist>
+
+    {%endblock%}
+</body>
+<script>
+    function some_function(){
+
+        if(RegExp(input).test(test)){
+            $("body").append("test")
+        } else{
+            $("body").append("test2")
+        }
+    }
+    a_list=[]
+    pair_array=[]
+    q_id_array=[]
+    printed_q_list=[]
+
+
+    function a_generate(q_id_1521,a_id_1521,a_value_1521){
+        $(q_id_1521).append("<div class=\"answer hide\" id=\""+a_id_1521+"\" onclick=\"select_copy(\'"+a_id_1521+"\');\" value=\""+a_value_1521+"\"><i class=\"fa-regular fa-square\"></i> "+first_letter_upper(a_value_1521)+"</div>")
+        $("#"+a_id_1521).fadeIn()
+        $("#"+a_id_1521).removeClass("hide")
+        $("#"+a_id_1521).css("display","")
+        
+    }
+    function q_generate_2(a,b,c,q_type){
+
+        if(q_type=="on"){
+            if(b=="q001"){
+                $(a).append("<div class=\"question hide\" id=\""+b+"\" onclick=\"\" value=\""+c+"\"><span onclick=\'remove_hide();\'>"+first_letter_upper(c)+"?</span></div>")
+            } else {
+                $(a).append("<div class=\"question hide\" id=\""+b+"\" onclick=\"\" value=\""+c+"\"><span onclick=\'remove_hide();\'>"+first_letter_upper(c)+" (Select all that applies and click [Next Question])?</span></div>")
+            }
+        } else {
+            $(a).append("<div class=\"question hide\" id=\""+b+"\" onclick=\"\"value=\""+c+"\"><span onclick=\'remove_hide();\'>"+first_letter_upper(c)+"?</span></div>")
+        }
+        $("#"+b).fadeIn()
+    }
+    function a_replace_to_unselected(a_id_6115,a_value_6115){
+        $("#"+a_id_6115).replaceWith("<div class=\"answer\" id=\""+a_id_6115+"\" onclick=\"select_copy(\'"+a_id_6115+"\');\" value=\""+a_value_6115+"\"><i class=\"fa-regular fa-square\"></i> "+first_letter_upper(a_value_6115)+"</div>")
+    }
+    function a_replace_to_selected(a_id_6115,a_value_6115){
+        $("#"+a_id_6115).replaceWith("<div class=\"answer selected\" id=\""+a_id_6115+"\" onclick=\"unselect_2(\'"+a_id_6115+"\');\" value=\""+a_value_6115+"\"><i class=\"fa-regular fa-square-check\"></i> "+first_letter_upper(a_value_6115)+"</div>")
+    }
+
+    function select_copy(a_id_6192){
+        a_id_7619=a_id_6192
+        q_id=$("#"+a_id_7619).parent().attr("id")
+        q_value=$("#"+q_id).attr("value")
+        a_value=$("#"+a_id_7619).attr("value")
+        selected_siblings_id=[]
+        for (i_367=0;i_367<$("#"+a_id_7619).siblings(".selected").length;i_367++){
+            //unselect_2($("#"+a_id_7619).siblings(".selected").eq(i_367).attr("id"))
+            selected_siblings_id.push($("#"+a_id_7619).siblings(".selected").eq(i_367).attr("id"))
+        }
+        $.ajax({
+            type:'post',
+            url:'next_questionnaire',
+            data:{
+                a_id:a_id_7619,
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+            },
+            success:function(response){
+                if(response.q_type=="off"){
+                    for(i_175=0;i_175<selected_siblings_id.length;i_175++){
+                        unselect_2(selected_siblings_id[i_175])
+                    }
+                    $("<span class=\"answer_to_q\" id=\'"+a_id_7619+"_span\'> "+a_value+"</span>").insertBefore($("#"+a_id_7619).parent().children(".answer").first())
+                }
+                a_replace_to_selected(a_id_7619,a_value)
+                //$("#"+a_id_7619).replaceWith("<div class=\"answer selected\" id=\""+a_id_7619+"\" onclick=\"unselect();\" value=\""+a_value+"\">"+a_value+"</div>")
+                if(response.q_type=="on" && q_id!="q001"){
+                    count_1521=$("#"+a_id_7619).siblings(".selected").length+1
+                    if(count_1521==1){
+                        $("#"+q_id+"_note").append("<div class=\"answer_note inline\" id=\""+a_id_7619+"_note\"  value=\""+a_value+"\">"+q_value+": "+a_value+"</div>")
+                        $("<span class=\"answer_to_q\" id=\""+a_id_7619+"_span\"> "+a_value+";</span>").insertBefore($("#"+q_id).children(".answer").first())
+                    } else{
+                        $("<div class=\"answer_note inline\" id=\""+a_id_7619+"_note\"  value=\""+a_value+"\">, "+a_value+"</div>").insertAfter($("#"+q_id+"_note").children(".answer_note").last())
+                        $("<span class=\"answer_to_q\" id=\""+a_id_7619+"_span\"> "+a_value+";</span>").insertAfter($("#"+q_id).children(".answer_to_q").last())
+                    }
+                } else if(response.q_type=="on" && q_id=="q001"){
+                    count_1521=$("#"+a_id_7619).siblings(".selected").length+1
+                    $("#"+q_id+"_note").append("<div class=\"answer_note inline\" id=\""+a_id_7619+"_note\"  value=\""+a_value+"\">Problem #"+count_1521+": "+a_value+"</div>")
+                } else {
+                    $("#"+q_id+"_note").append("<div class=\"answer_note\" id=\""+a_id_7619+"_note\"  value=\""+a_value+"\">"+q_value+": "+a_value+"</div>")
+                }
+                for (i_7124=0;i_7124<response.q_details.length;i_7124++){
+                    q_id_618=response.q_details[i_7124][0]
+                    q_value_618=response.q_details[i_7124][1]
+                    printed_q_list.push(q_id_618)
+                    if (array_element_counter(printed_q_list,response.q_details[i_7124][0])==1){
+                        //$("#"+q_id).append("<div class=\"question\" id=\""+q_id_618+"\" value=\""+q_value_618+"\">"+q_value_618+"</div>")
+                        if(q_id_618.length>4){
+                            q_generate_2("#"+remove_last_n(q_id_618,8),q_id_618,q_value_618,response.q_details[i_7124][2])
+                            //$("#"+remove_last_n(q_id_618,8)+"_note").append("<div class=\"question_note\" id=\""+q_id_618+"_note\" value=\""+q_value_618+"\"></div>")
+                        } else {
+                            q_generate_2("body",q_id_618,q_value_618,response.q_details[i_7124][2])
+                            //$("#note_7593").append("<div class=\"question_note\" id=\""+q_id_618+"_note\" value=\""+q_value_618+"\"></div>")
+                        }
+                        if (q_id_618=="q001"){
+                            search_bar(q_id_618)
+                        } else {
+                            for (j=0;j<response.a_details.length;j++){
+                                if (response.a_details[j][0]==q_id_618){
+                                    a_generate("#"+q_id_618,response.a_details[j][1],response.a_details[j][2])
+                                    //$("#"+q_id_618).append("<div class=\"answer\" id=\""+response.a_details[j][1]+"\" onclick=\"select();\" value=\""+response.a_details[j][2]+"\">"+response.a_details[j][2]+"</div>")
+                                }
+                            }
+                        }
+                        if(response.q_details[i_7124][2]=="on"&&q_id_618!="q001"){
+                            $("#"+q_id_618).append("<button class=\'close_button\'type\'button\' onclick=\'close_above_a();\'>Next Question</button>")
+                            //$("<button class=\'close_button\'type\'button\' onclick=\'close_above_a();\'>Next Question</button>").insertAfter($("#"+q_id_618).children().last())
+
+                        } 
+                    } 
+                }
+                if(response.q_type=="off"){
+                    //$("#"+q_id).children(".answer").slideUp(1000)
+                    $("#"+q_id).children(".answer").addClass("hide")
+                } 
+            }
+        })
+    }
+    function select(){
+        select_copy($(event.target).attr("id"))
+        /*
+        a_id_7619=$(event.target).attr("id")
+        q_id=$("#"+a_id_7619).parent().attr("id")
+        q_value=$("#"+q_id).attr("value")
+        a_value=$("#"+a_id_7619).attr("value")
+        selected_siblings_id=[]
+        for (i_367=0;i_367<$("#"+a_id_7619).siblings(".selected").length;i_367++){
+            //unselect_2($("#"+a_id_7619).siblings(".selected").eq(i_367).attr("id"))
+            selected_siblings_id.push($("#"+a_id_7619).siblings(".selected").eq(i_367).attr("id"))
+        }
+        $.ajax({
+            type:'post',
+            url:'next_questionnaire',
+            data:{
+                a_id:a_id_7619,
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+            },
+            success:function(response){
+                if(response.q_type=="off"){
+                    for(i_175=0;i_175<selected_siblings_id.length;i_175++){
+                        unselect_2(selected_siblings_id[i_175])
+                    }
+                }
+                $("#"+a_id_7619).replaceWith("<div class=\"answer selected\" id=\""+a_id_7619+"\" onclick=\"unselect();\" value=\""+a_value+"\">"+a_value+"</div>")
+                if(response.q_type=="on" && q_id!="q001"){
+                    count_1521=$("#"+a_id_7619).siblings(".selected").length+1
+                    if(count_1521==1){
+                        $("#"+q_id+"_note").append("<div class=\"answer_note inline\" id=\""+a_id_7619+"_note\"  value=\""+a_value+"\">"+q_value+": "+a_value+"</div>")
+                    } else{
+                        $("<div class=\"answer_note inline\" id=\""+a_id_7619+"_note\"  value=\""+a_value+"\">, "+a_value+"</div>").insertAfter($("#"+q_id+"_note").children(".answer_note").last())
+                        //$("#"+q_id+"_note").append("<div class=\"answer_note inline\" id=\""+a_id_7619+"_note\"  value=\""+a_value+"\">, "+a_value+"</div>")
+                    }
+                } else if(response.q_type=="on" && q_id=="q001"){
+                    count_1521=$("#"+a_id_7619).siblings(".selected").length+1
+                    $("#"+q_id+"_note").append("<div class=\"answer_note inline\" id=\""+a_id_7619+"_note\"  value=\""+a_value+"\">Problem #"+count_1521+": "+a_value+"</div>")
+                } else {
+                    $("#"+q_id+"_note").append("<div class=\"answer_note\" id=\""+a_id_7619+"_note\"  value=\""+a_value+"\">"+q_value+": "+a_value+"</div>")
+                }
+                for (i_7124=0;i_7124<response.q_details.length;i_7124++){
+ 
+                    q_id_618=response.q_details[i_7124][0]
+                    q_value_618=response.q_details[i_7124][1]
+                    printed_q_list.push(q_id_618)
+                    if (array_element_counter(printed_q_list,response.q_details[i_7124][0])==1){
+                        //$("#"+q_id).append("<div class=\"question\" id=\""+q_id_618+"\" value=\""+q_value_618+"\">"+q_value_618+"</div>")
+                        if(q_id_618.length>4){
+                            $("#"+remove_last_n(q_id_618,8)).append("<div class=\"question\" id=\""+q_id_618+"\" value=\""+q_value_618+"\">"+q_value_618+"</div>")
+                            $("#"+remove_last_n(q_id_618,8)+"_note").append("<div class=\"question_note\" id=\""+q_id_618+"_note\" value=\""+q_value_618+"\"></div>")
+                        } else {
+                            $("body").append("<div class=\"question\" id=\""+q_id_618+"\" value=\""+q_value_618+"\">"+q_value_618+"</div>")
+                            $("#note_7593").append("<div class=\"question_note\" id=\""+q_id_618+"_note\" value=\""+q_value_618+"\"></div>")
+                        }
+                        if (q_id_618=="q001"){
+                            search_bar(q_id_618)
+                        } else {
+                            for (j=0;j<response.a_details.length;j++){
+                                if (response.a_details[j][0]==q_id_618){
+                                    $("#"+q_id_618).append("<div class=\"answer\" id=\""+response.a_details[j][1]+"\" onclick=\"select();\" value=\""+response.a_details[j][2]+"\">"+response.a_details[j][2]+"</div>")
+                                }
+                            }
+                        }
+                    } else{
+                        $("body").append("nothing printed because of printed_q_list number is not 1")
+                    }
+                }
+            }
+        })
+        */
+    }
+
+
+    function remove_hide(){
+        $(event.target).siblings(".answer").toggleClass("hide")
+        $(event.target).siblings(".close_button").toggleClass("hide")
+        //$(event.target).children(".answer_to_q").remove()
+    }
+    function next(){
+        alert($(event.target).parent().attr("id"))
+        target=$(event.target).parent().position().top
+        $("html,body").animate({scrollTop: target},{duration:0})     
+    }
+
+    function search_bar(q_id){
+        $.ajax({
+            type:'post',
+            url:'cc_list_maker',
+            data:{
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+            },
+            success:function(response){
+                $("#"+q_id).append("<input type=\"text\" id=\"cc_input\"class=\"input_bar\" placeholder=\'+\'   onkeyup=\"cc_search()\" name=\"cc_search\" ></input><div id=\"matching_cc\"></div>")
+                //$("<button type=\"button\" onclick=\"cc_select();\"class=\"btn\"> + </button>").insertAfter($("#cc_input"))
+            }
+        })
+    }
+    function close_above_a(){
+        $(event.target).siblings(".answer").addClass("hide")
+        $(event.target).addClass("hide")
+    }
+    function cc_select(){
+        for (i_1583=0;i_1583<cc_list.length;i_1583++){
+            if(cc_list[i_1583][1]==$("#cc_input").val()){
+                select_copy(cc_list[i_1583][0])
+            }
+        }
+    }
+
+    function cc_select_from_list(){
+        //alert($(event.target).attr("id"))
+        select_copy($(event.target).attr("id"))
+        $(event.target).siblings(".interim_answer").remove()
+    }
+
+    function cc_search(){
+        $(".interim_answer").remove()
+        search_value=$(event.target).val()
+        for (i_9174=0;i_9174<cc_list.length;i_9174++){
+            if(search_value.length>0 &&RegExp(search_value.toLowerCase()).test(cc_list[i_9174][1].toLowerCase())){
+                //$("#matching_cc").append("<div class=\"answer\" id=\""+cc_list[i_9174][0]+"\" onclick=\"select();\" value=\""+cc_list[i_9174][1]+"\">"+cc_list[i_9174][1]+"</div>")
+                $(event.target).parent().append("<div class=\"answer interim_answer\" id=\""+cc_list[i_9174][0]+"\" onclick=\"to_the_input(\'"+cc_list[i_9174][1]+"\');cc_select_from_list();\" value=\""+cc_list[i_9174][1]+"\">"+cc_list[i_9174][1]+"</div>")
+            }
+        }
+    }
+    function disppear(){
+        $(event.target).remove()
+    }
+    function to_the_input(tt){
+        $("#cc_input").replaceWith("<input type=\"text\" id=\"cc_input\"class=\"input_bar\" onkeyup=\"cc_search()\" name=\"cc_search\" value=\""+tt+"\"></input>")
+    }
+
+    function unselect(){
+        unselect_2($(event.target).attr("id"))
+        /*
+        id_528=$(event.target).attr("id")
+        $("#"+id_528+"_note").remove()
+        value_528=$(event.target).attr("value")
+        if(id_528.length==8 && remove_last_n(id_528,4)){
+            $(event.target).remove()
+        } else {
+            $(event.target).replaceWith("<div class=\"answer\" id=\""+id_528+"\" onclick=\"select();\" value=\""+value_528+"\">"+value_528+"</div>")
+        }
+        q_id=$(event.target).parent().attr("id")
+        $.ajax({
+            type:'post',
+            url:'next_questionnaire',
+            data:{
+                a_id:id_528,
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+            },
+            success:function(response){
+                for (i=0;i<response.q_details.length;i++){
+                    q_id_487=response.q_details[i][0]
+                    printed_q_list=array_element_remover(printed_q_list,q_id_487)
+                    if (array_element_counter(printed_q_list,q_id_487)==0){
+                        $("#"+q_id_487).remove()
+                        $("#"+q_id_487+"_note").remove()
+                    }
+                }
+            }
+        })
+        */
+    }
+    function select_first_n(text_2719,n){
+        result=""
+        for (i_2719=0;i_2719<n;i_2719++){
+            result=result+text_2719[i_2719]
+        }
+        return result
+    }
+
+    function unselect_2(id_471){
+        $("#"+id_471+"_note").remove()
+        $("#"+id_471+"_span").remove()
+        value_471=$("#"+id_471).attr("value")
+        $("#"+id_471).children(".question").length
+        if(id_471.length==8 && remove_last_n(id_471,4)=="q001"){
+            $(event.target).remove()
+        } else {
+            a_replace_to_unselected(id_471,value_471)
+            //$("#"+id_471).replaceWith("<div class=\"answer\" id=\""+id_471+"\" onclick=\"select();\" value=\""+value_471+"\">"+value_471+"</div>")
+        }
+        q_id=$("#"+id_471).parent().attr("id")
+        $.ajax({
+            type:'post',
+            url:'next_questionnaire',
+            data:{
+                a_id:id_471,
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+            },
+            success:function(response){
+                if (response.q_type="off"){
+                    //$("#"+id_471).siblings(".answer").removeClass("hide")
+                }
+                remove_candidate=[]
+                for (i=0;i<response.q_details.length;i++){
+                    q_id_471=response.q_details[i][0]
+                    printed_q_list=array_element_remover(printed_q_list,q_id_471)
+                    if (array_element_counter(printed_q_list,q_id_471)==0){
+                        $("#"+q_id_471).remove()
+                        $("#"+q_id_471+"_note").remove()
+                        for (j_2486=0;j_2486<printed_q_list.length;j_2486++){
+                            if(select_first_n(printed_q_list[j_2486],q_id_471.length)==q_id_471){
+                                remove_candidate.push(printed_q_list[j_2486])
+                            }
+                        }
+                    }
+                }
+                for (i_5194=0;i_5194<remove_candidate.length;i_5194++){
+                    printed_q_list=array_element_remover(printed_q_list,remove_candidate[i_5194])
+                }
+            }
+        })
+    }
+
+    function array_element_exst_check(array,element){
+        result=0
+        for (i=0;i<array.length;i++){
+            if (array[i]==element){
+                result=1
+            }
+        }
+        return result
+    }
+    function remove_first_n(element,n){
+        result=""
+        for (i=0;i<element.length;i++){
+            if (i>=n){
+                result=result+element[i]
+            }
+        }
+        return result
+    }
+
+    function remove_last_n(element,n){
+        result=""
+        for (i=0;i<element.length-n;i++){
+            result=result+element[i]
+        }
+        return result
+    }
+
+    function remove_last_1(element){
+        result=""
+        for(i=0;i<element.length-1;i++){
+            result=result+element[i]
+        }
+        return result
+    }
+
+    function array_element_counter(array,element){
+        result=0
+        for (i_619=0;i_619<array.length;i_619++){
+            if (array[i_619]==element){
+                result++
+            }
+        }
+        return result
+    }
+
+    function array_element_remover(array_451,element_451){
+        j_451=0
+        b_451=1
+        new_array_451=[]
+        while(j_451<array_451.length){
+            if (array_451[j_451]==element_451 && b_451==1){
+                b_451=0
+            } else {
+                new_array_451.push(array_451[j_451])
+            }
+            j_451++
+        }
+        return new_array_451
+    }
+
+    function first_letter_upper(x){
+        result=""
+        result=result+x[0].toUpperCase()
+        result=result+x.slice(1)
+        return result
+    }
+
+    $(document).ready(function(){
+        cc_list=[]
+        $.ajax({
+            type:'post',
+            url:'cc_list_maker',
+            data:{
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+            },
+            success:function(response){
+                for (i=0;i<response.cc_list.length;i++){
+                    cc_list.push(response.cc_list[i])
+                }
+            }
+        })
+
+        $.ajax({
+            type:"post",
+            url:"letstart",
+            data:{
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+            },
+            success:function(response){
+                for (i=0;i<response.q_details.length;i++){
+                    q_generate_2("body",response.q_details[i][0],response.q_details[i][1],response.q_details[i][2])
+                    $("#"+response.q_details[i][0]).addClass("focus")
+                    //$("body").append("<div class=\"question\" id=\""+response.q_details[i][0]+"\" value=\""+response.q_details[i][1]+"\">"+response.q_details[i][1]+"</div>")
+                }
+                for (i=0;i<response.a_details.length;i++){
+                    a_generate("#"+response.a_details[i][0],response.a_details[i][1],response.a_details[i][2])
+                    //$("#"+response.a_details[i][0]).append("<div class=\"answer\" id=\""+response.a_details[i][1]+"\" onclick=\"select();\" value=\""+response.a_details[i][2]+"\">"+response.a_details[i][2]+"</div>")
+                }
+                $("#q000").append("<button class=\'close_button\'type\'button\' onclick=\'close_above_a();\'>Next Question</button>")
+
+            }
+        })
+        $("#next").click(function(){
+            alert("working")
+        })
+    })
+</script>
+</html>
