@@ -1,0 +1,5 @@
+id,qid,qa,type
+,q000,Type of visit,on
+,q001,Chief complaint,on
+nan,q001a001q001,test,off
+,qqq,,

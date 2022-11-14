@@ -1,0 +1,1 @@
+web:gunicorn app1782.wsgi:application --log-file -
