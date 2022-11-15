@@ -701,16 +701,17 @@ def mass_classifier(request):
     for i in mass_text:
       k=k+1
       if len(i)>3:
-        text.append(i)
-        output.append(text_to_predict(i))
-        print(str(k)+"/"+str(length)+" "+str(datetime.now())+"  "+str(text_to_predict(i))+": "+i)
+        print(str(text_to_predict(i))+str(datetime.now()))
+        #text.append(i)
+        #output.append(text_to_predict(i))
+        #print(str(k)+"/"+str(length)+" "+str(datetime.now())+"  "+str(text_to_predict(i))+": "+i)
     pcp=[]
     alarm=[]
     etc=[]
-    for i in output:
-      pcp.append(i[0])
-      alarm.append(i[1])
-      etc.append(i[2])
+    #for i in output:
+      #pcp.append(i[0])
+      #alarm.append(i[1])
+      #etc.append(i[2])
     return JsonResponse({"text":text,"pcp":pcp,"alarm":alarm,"etc":etc})
 
 def exst_q_select(request):
