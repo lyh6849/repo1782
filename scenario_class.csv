@@ -1,0 +1,879 @@
+q000a001,qc000a001,RPE,qc094,Past due for PSA,q000a001q001
+q000a001 q000a001q001a001,qc000a001 qc094a001,RPE y,qc095,suggest PSA to patient,q000a001q001a001q001
+q000a001 q000a001q001a001 q000a001q001a001q001a001,qc000a001 qc094a001 qc095a001,RPE y patient accepted,qc096,order PSA,q000a001q001a001q001a001q001
+q000a001 q000a001q001a001,qc000a001 qc094a001,RPE y,qc101,Unsatisfied health maintenance,q000a001q002
+q000a001 q000a001q001a001 q000a001q001a001q001a002,qc000a001 qc094a001 qc095a002,RPE y declined,qc097,Document decline,q000a001q001a001q001a002q001
+q000a001 q000a001q001a001,qc000a001 qc094a001,RPE y,qc101,Unsatisfied health maintenance,q000a001q002
+q000a001 q000a001q001a002,qc000a001 qc094a002,RPE n,qc101,Unsatisfied health maintenance,q000a001q002
+q000a001 q000a001q001a003,qc000a001 qc094a003,RPE not sure,qc098,gender,q000a001q001a003q001
+q000a001 q000a001q001a003 q000a001q001a003q001a001,qc000a001 qc094a003 qc098a001,RPE not sure m,qc100,age,q000a001q001a003q001a001q001
+q000a001 q000a001q001a003 q000a001q001a003q001a001 q000a001q001a003q001a001q001a001,qc000a001 qc094a003 qc098a001 qc100a001,RPE not sure m 49 or younger,qc099,not indicated,q000a001q001a003q001a001q001a001q001
+q000a001 q000a001q001a003,qc000a001 qc094a003,RPE not sure,qc101,Unsatisfied health maintenance,q000a001q002
+q000a001 q000a001q001a003 q000a001q001a003q001a001 q000a001q001a003q001a001q001a002,qc000a001 qc094a003 qc098a001 qc100a002,RPE not sure m 50 - 75,qc085,PSA within past 12 months,q000a001q001a003q001a001q001a002q001
+q000a001 q000a001q001a003 q000a001q001a003q001a001 q000a001q001a003q001a001q001a002 q000a001q001a003q001a001q001a002q001a001,qc000a001 qc094a003 qc098a001 qc100a002 qc085a001,RPE not sure m 50 - 75 y,qc099,not indicated,q000a001q001a003q001a001q001a002q001a001q001
+q000a001 q000a001q001a003,qc000a001 qc094a003,RPE not sure,qc101,Unsatisfied health maintenance,q000a001q002
+q000a001 q000a001q001a003 q000a001q001a003q001a001 q000a001q001a003q001a001q001a002 q000a001q001a003q001a001q001a002q001a002,qc000a001 qc094a003 qc098a001 qc100a002 qc085a002,RPE not sure m 50 - 75 n,qc095,suggest PSA to patient,q000a001q001a003q001a001q001a002q001a002q001
+q000a001 q000a001q001a003 q000a001q001a003q001a001 q000a001q001a003q001a001q001a002 q000a001q001a003q001a001q001a002q001a002 q000a001q001a003q001a001q001a002q001a002q001a001,qc000a001 qc094a003 qc098a001 qc100a002 qc085a002 qc095a001,RPE not sure m 50 - 75 n patient accepted,qc096,order PSA,q000a001q001a003q001a001q001a002q001a002q001a001q001
+q000a001 q000a001q001a003,qc000a001 qc094a003,RPE not sure,qc101,Unsatisfied health maintenance,q000a001q002
+q000a001 q000a001q001a003 q000a001q001a003q001a001 q000a001q001a003q001a001q001a002 q000a001q001a003q001a001q001a002q001a002 q000a001q001a003q001a001q001a002q001a002q001a002,qc000a001 qc094a003 qc098a001 qc100a002 qc085a002 qc095a002,RPE not sure m 50 - 75 n declined,qc097,Document decline,q000a001q001a003q001a001q001a002q001a002q001a002q001
+q000a001 q000a001q001a003,qc000a001 qc094a003,RPE not sure,qc101,Unsatisfied health maintenance,q000a001q002
+q000a001 q000a001q001a003 q000a001q001a003q001a001 q000a001q001a003q001a001q001a003,qc000a001 qc094a003 qc098a001 qc100a003,RPE not sure m 76 or older,qc099,not indicated,q000a001q001a003q001a001q001a003q001
+q000a001 q000a001q001a003,qc000a001 qc094a003,RPE not sure,qc101,Unsatisfied health maintenance,q000a001q002
+q000a001 q000a001q001a003 q000a001q001a003q001a002,qc000a001 qc094a003 qc098a002,RPE not sure f,qc099,not indicated,q000a001q001a003q001a002q001
+q000a001 q000a001q001a003,qc000a001 qc094a003,RPE not sure,qc101,Unsatisfied health maintenance,q000a001q002
+q000a001,qc000a001,RPE,qc999,NA,NA
+q000a001,qc000a001,RPE,qc999,NA,NA
+q000a001 q000a001q002a003,qc000a001 qc101a003,RPE pap smear,qc102,pap smear within past 5 years,q000a001q002a003q001
+q000a001 q000a001q002a003 q000a001q002a003q001a001,qc000a001 qc101a003 qc102a001,RPE pap smear y,qc103,request patient to obtain the record,q000a001q002a003q001a001q001
+q000a001,qc000a001,RPE,qc999,NA,NA
+q000a001 q000a001q002a003 q000a001q002a003q001a002,qc000a001 qc101a003 qc102a002,RPE pap smear n,qc104,offer an appointment for pap smear,q000a001q002a003q001a002q001
+q000a001 q000a001q002a003 q000a001q002a003q001a002 q000a001q002a003q001a002q001a001,qc000a001 qc101a003 qc102a002 qc104a001,RPE pap smear n patient opted to get it with OBGYN,qc105,Patient need referral,q000a001q002a003q001a002q001a001q001
+q000a001 q000a001q002a003 q000a001q002a003q001a002 q000a001q002a003q001a002q001a001 q000a001q002a003q001a002q001a001q001a001,qc000a001 qc101a003 qc102a002 qc104a001 qc105a001,RPE pap smear n patient opted to get it with OBGYN y,qc107,refer to OBGYN,q000a001q002a003q001a002q001a001q001a001q001
+q000a001,qc000a001,RPE,qc999,NA,NA
+q000a001 q000a001q002a003 q000a001q002a003q001a002 q000a001q002a003q001a002q001a001 q000a001q002a003q001a002q001a001q001a002,qc000a001 qc101a003 qc102a002 qc104a001 qc105a002,RPE pap smear n patient opted to get it with OBGYN n,qc106,"instruct patient to call OBGYN, document the instruction",q000a001q002a003q001a002q001a001q001a002q001
+q000a001,qc000a001,RPE,qc999,NA,NA
+q000a001,qc000a001,RPE,qc999,NA,NA
+q000a001,qc000a001,RPE,qc999,NA,NA
+q000a001,qc000a001,RPE,qc999,NA,NA
+q000a001,qc000a001,RPE,qc999,NA,NA
+q000a001,qc000a001,RPE,qc999,NA,NA
+q000a001,qc000a001,RPE,qc999,NA,NA
+q000a001,qc000a001,RPE,qc999,NA,NA
+q000a001,qc000a001,RPE,qc999,NA,NA
+q000a002,qc000a002,Regular Check Up,qc999,NA,NA
+q000a002,qc000a002,Regular Check Up,qc999,NA,NA
+q000a002,qc000a002,Regular Check Up,qc999,NA,NA
+q000a002,qc000a002,Regular Check Up,qc999,NA,NA
+q000a002,qc000a002,Regular Check Up,qc999,NA,NA
+q000a002,qc000a002,Regular Check Up,qc999,NA,NA
+q000a002,qc000a002,Regular Check Up,qc999,NA,NA
+q000a003,qc000a003,Sick Visit,qc999,NA,NA
+q000a004,qc000a004,Hospital or ER follow up,qc999,NA,NA
+q001a002,qc001a002,COVID,qc008,Initial vs Reval,q001a002q001
+q001a002 q001a002q001a001,qc001a002 qc008a001,COVID Initial Evaluation,qc009,Onset,q001a002q001a001q001
+q001a002 q001a002q001a001 q001a002q001a001q001a001,qc001a002 qc008a001 qc009a001,COVID Initial Evaluation 0-1 days ago,qc012,Course since last evaluation,q001a002q001a001q004
+q001a002 q001a002q001a001 q001a002q001a001q001a002,qc001a002 qc008a001 qc009a002,COVID Initial Evaluation 2-7 days ago,qc010,Onset details,q001a002q001a001q001a002q001
+q001a002 q001a002q001a001 q001a002q001a001q001a002,qc001a002 qc008a001 qc009a002,COVID Initial Evaluation 2-7 days ago,qc012,Course since last evaluation,q001a002q001a001q004
+q001a002 q001a002q001a001 q001a002q001a001q001a002,qc001a002 qc008a001 qc009a002,COVID Initial Evaluation 2-7 days ago,qc012,Course since last evaluation,q001a002q001a001q004
+q001a002 q001a002q001a001 q001a002q001a001q001a002,qc001a002 qc008a001 qc009a002,COVID Initial Evaluation 2-7 days ago,qc012,Course since last evaluation,q001a002q001a001q004
+q001a002 q001a002q001a001 q001a002q001a001q001a002,qc001a002 qc008a001 qc009a002,COVID Initial Evaluation 2-7 days ago,qc012,Course since last evaluation,q001a002q001a001q004
+q001a002 q001a002q001a001 q001a002q001a001q001a002,qc001a002 qc008a001 qc009a002,COVID Initial Evaluation 2-7 days ago,qc012,Course since last evaluation,q001a002q001a001q004
+q001a002 q001a002q001a001 q001a002q001a001q001a002,qc001a002 qc008a001 qc009a002,COVID Initial Evaluation 2-7 days ago,qc012,Course since last evaluation,q001a002q001a001q004
+q001a002 q001a002q001a001 q001a002q001a001q001a003,qc001a002 qc008a001 qc009a003,COVID Initial Evaluation 1-2 weeks ago,qc012,Course since last evaluation,q001a002q001a001q004
+q001a002 q001a002q001a001 q001a002q001a001q001a004,qc001a002 qc008a001 qc009a004,COVID Initial Evaluation More than 2 weeks ago,qc011,Onset details,q001a002q001a001q001a004q001
+q001a002 q001a002q001a001 q001a002q001a001q001a004,qc001a002 qc008a001 qc009a004,COVID Initial Evaluation More than 2 weeks ago,qc012,Course since last evaluation,q001a002q001a001q004
+q001a002 q001a002q001a001 q001a002q001a001q001a004,qc001a002 qc008a001 qc009a004,COVID Initial Evaluation More than 2 weeks ago,qc012,Course since last evaluation,q001a002q001a001q004
+q001a002 q001a002q001a001 q001a002q001a001q001a004,qc001a002 qc008a001 qc009a004,COVID Initial Evaluation More than 2 weeks ago,qc012,Course since last evaluation,q001a002q001a001q004
+q001a002 q001a002q001a001 q001a002q001a001q002a001,qc001a002 qc008a001 qc013a001,COVID Initial Evaluation Tested positive for COVID-19,qc014,Test timing,q001a002q001a001q002a001q001
+q001a002 q001a002q001a001 q001a002q001a001q002a001,qc001a002 qc008a001 qc013a001,COVID Initial Evaluation Tested positive for COVID-19,qc012,Course since last evaluation,q001a002q001a001q004
+q001a002 q001a002q001a001 q001a002q001a001q002a001,qc001a002 qc008a001 qc013a001,COVID Initial Evaluation Tested positive for COVID-19,qc012,Course since last evaluation,q001a002q001a001q004
+q001a002 q001a002q001a001 q001a002q001a001q002a002,qc001a002 qc008a001 qc013a002,COVID Initial Evaluation Tested negative for COVID-19,qc014,Test timing,q001a002q001a001q002a002q001
+q001a002 q001a002q001a001 q001a002q001a001q002a002,qc001a002 qc008a001 qc013a002,COVID Initial Evaluation Tested negative for COVID-19,qc012,Course since last evaluation,q001a002q001a001q004
+q001a002 q001a002q001a001 q001a002q001a001q002a002,qc001a002 qc008a001 qc013a002,COVID Initial Evaluation Tested negative for COVID-19,qc012,Course since last evaluation,q001a002q001a001q004
+q001a002 q001a002q001a001 q001a002q001a001q002a003,qc001a002 qc008a001 qc013a003,COVID Initial Evaluation Test not performed,qc012,Course since last evaluation,q001a002q001a001q004
+q001a002 q001a002q001a001 q001a002q001a001q003a001,qc001a002 qc008a001 qc015a001,COVID Initial Evaluation Fatigue,qc012,Course since last evaluation,q001a002q001a001q004
+q001a002 q001a002q001a001 q001a002q001a001q003a002,qc001a002 qc008a001 qc015a002,COVID Initial Evaluation Headache,qc012,Course since last evaluation,q001a002q001a001q004
+q001a002 q001a002q001a001 q001a002q001a001q003a003,qc001a002 qc008a001 qc015a003,COVID Initial Evaluation Sore throat,qc012,Course since last evaluation,q001a002q001a001q004
+q001a002 q001a002q001a001 q001a002q001a001q003a004,qc001a002 qc008a001 qc015a004,COVID Initial Evaluation Cough,qc017,Sputum,q001a002q001a001q003a004q001
+q001a002 q001a002q001a001 q001a002q001a001q003a004 q001a002q001a001q003a004q001a001,qc001a002 qc008a001 qc015a004 qc017a001,COVID Initial Evaluation Cough Yes,qc018,Sputum color,q001a002q001a001q003a004q001a001q001
+q001a002 q001a002q001a001 q001a002q001a001q003a004,qc001a002 qc008a001 qc015a004,COVID Initial Evaluation Cough,qc012,Course since last evaluation,q001a002q001a001q004
+q001a002 q001a002q001a001 q001a002q001a001q003a004,qc001a002 qc008a001 qc015a004,COVID Initial Evaluation Cough,qc012,Course since last evaluation,q001a002q001a001q004
+q001a002 q001a002q001a001 q001a002q001a001q003a004,qc001a002 qc008a001 qc015a004,COVID Initial Evaluation Cough,qc012,Course since last evaluation,q001a002q001a001q004
+q001a002 q001a002q001a001 q001a002q001a001q003a004,qc001a002 qc008a001 qc015a004,COVID Initial Evaluation Cough,qc012,Course since last evaluation,q001a002q001a001q004
+q001a002 q001a002q001a001 q001a002q001a001q003a005,qc001a002 qc008a001 qc015a005,COVID Initial Evaluation Sinus congestion,qc012,Course since last evaluation,q001a002q001a001q004
+q001a002 q001a002q001a001 q001a002q001a001q003a006,qc001a002 qc008a001 qc015a006,COVID Initial Evaluation Loss of taste,qc012,Course since last evaluation,q001a002q001a001q004
+q001a002 q001a002q001a001 q001a002q001a001q003a007,qc001a002 qc008a001 qc015a007,COVID Initial Evaluation Shortness of breath,qc012,Course since last evaluation,q001a002q001a001q004
+q001a002 q001a002q001a001 q001a002q001a001q003a008,qc001a002 qc008a001 qc015a008,COVID Initial Evaluation Chest congestion,qc012,Course since last evaluation,q001a002q001a001q004
+q001a002 q001a002q001a001 q001a002q001a001q003a009,qc001a002 qc008a001 qc015a009,COVID Initial Evaluation Fever ,qc016,Measured Temperature,q001a002q001a001q003a009q001
+q001a002 q001a002q001a001 q001a002q001a001q003a009,qc001a002 qc008a001 qc015a009,COVID Initial Evaluation Fever ,qc012,Course since last evaluation,q001a002q001a001q004
+q001a002 q001a002q001a001 q001a002q001a001q003a009,qc001a002 qc008a001 qc015a009,COVID Initial Evaluation Fever ,qc012,Course since last evaluation,q001a002q001a001q004
+q001a002 q001a002q001a001 q001a002q001a001q003a009,qc001a002 qc008a001 qc015a009,COVID Initial Evaluation Fever ,qc012,Course since last evaluation,q001a002q001a001q004
+q001a002 q001a002q001a001 q001a002q001a001q003a009,qc001a002 qc008a001 qc015a009,COVID Initial Evaluation Fever ,qc012,Course since last evaluation,q001a002q001a001q004
+q001a002 q001a002q001a001 q001a002q001a001q003a010,qc001a002 qc008a001 qc015a010,COVID Initial Evaluation Chills ,qc012,Course since last evaluation,q001a002q001a001q004
+q001a002 q001a002q001a001 q001a002q001a001q003a011,qc001a002 qc008a001 qc015a011,COVID Initial Evaluation Muscle pain,qc012,Course since last evaluation,q001a002q001a001q004
+q001a002 q001a002q001a001 q001a002q001a001q003a012,qc001a002 qc008a001 qc015a012,COVID Initial Evaluation Wheezing,qc012,Course since last evaluation,q001a002q001a001q004
+q001a002,qc001a002,COVID,qc999,NA,NA
+q001a002,qc001a002,COVID,qc999,NA,NA
+q001a002,qc001a002,COVID,qc999,NA,NA
+q001a002 q001a002q001a002,qc001a002 qc008a002,COVID Follow up evaluation,qc012,Course since last evaluation,q001a002q001a002q001
+q001a002,qc001a002,COVID,qc999,NA,NA
+q001a002,qc001a002,COVID,qc999,NA,NA
+q001a002,qc001a002,COVID,qc999,NA,NA
+q001a003,qc001a003,UTI,qc008,Initial vs Reval,q001a003q004
+q001a003 q001a003q004a001,qc001a003 qc008a001,UTI Initial Evaluation,qc009,Onset,q001a003q004a001q001
+q001a003 q001a003q004a001 q001a003q004a001q001a001,qc001a003 qc008a001 qc009a001,UTI Initial Evaluation 0-1 days ago,qc021,Associated symptoms,q001a003q004a001q003
+q001a003 q001a003q004a001 q001a003q004a001q001a002,qc001a003 qc008a001 qc009a002,UTI Initial Evaluation 2-6 days ago,qc010,Onset details,q001a003q004a001q001a002q001
+q001a003 q001a003q004a001 q001a003q004a001q001a002,qc001a003 qc008a001 qc009a002,UTI Initial Evaluation 2-6 days ago,qc021,Associated symptoms,q001a003q004a001q003
+q001a003 q001a003q004a001 q001a003q004a001q001a002,qc001a003 qc008a001 qc009a002,UTI Initial Evaluation 2-6 days ago,qc021,Associated symptoms,q001a003q004a001q003
+q001a003 q001a003q004a001 q001a003q004a001q001a002,qc001a003 qc008a001 qc009a002,UTI Initial Evaluation 2-6 days ago,qc021,Associated symptoms,q001a003q004a001q003
+q001a003 q001a003q004a001 q001a003q004a001q001a002,qc001a003 qc008a001 qc009a002,UTI Initial Evaluation 2-6 days ago,qc021,Associated symptoms,q001a003q004a001q003
+q001a003 q001a003q004a001 q001a003q004a001q001a002,qc001a003 qc008a001 qc009a002,UTI Initial Evaluation 2-6 days ago,qc021,Associated symptoms,q001a003q004a001q003
+q001a003 q001a003q004a001 q001a003q004a001q001a002,qc001a003 qc008a001 qc009a002,UTI Initial Evaluation 2-6 days ago,qc021,Associated symptoms,q001a003q004a001q003
+q001a003 q001a003q004a001 q001a003q004a001q001a003,qc001a003 qc008a001 qc009a003,UTI Initial Evaluation 1-2 weeks ago,qc021,Associated symptoms,q001a003q004a001q003
+q001a003 q001a003q004a001 q001a003q004a001q001a004,qc001a003 qc008a001 qc009a004,UTI Initial Evaluation More than 2 weeks ago,qc011,Onset details,q001a003q004a001q001a004q001
+q001a003 q001a003q004a001 q001a003q004a001q001a004,qc001a003 qc008a001 qc009a004,UTI Initial Evaluation More than 2 weeks ago,qc021,Associated symptoms,q001a003q004a001q003
+q001a003 q001a003q004a001 q001a003q004a001q001a004,qc001a003 qc008a001 qc009a004,UTI Initial Evaluation More than 2 weeks ago,qc021,Associated symptoms,q001a003q004a001q003
+q001a003 q001a003q004a001 q001a003q004a001q001a004,qc001a003 qc008a001 qc009a004,UTI Initial Evaluation More than 2 weeks ago,qc021,Associated symptoms,q001a003q004a001q003
+q001a003 q001a003q004a001 q001a003q004a001q002a001,qc001a003 qc008a001 qc020a001,UTI Initial Evaluation Progressing,qc021,Associated symptoms,q001a003q004a001q003
+q001a003 q001a003q004a001 q001a003q004a001q002a002,qc001a003 qc008a001 qc020a002,"UTI Initial Evaluation Stable, persistent",qc021,Associated symptoms,q001a003q004a001q003
+q001a003 q001a003q004a001 q001a003q004a001q002a003,qc001a003 qc008a001 qc020a003,UTI Initial Evaluation Improving,qc021,Associated symptoms,q001a003q004a001q003
+q001a003,qc001a003,UTI,qc999,NA,NA
+q001a003,qc001a003,UTI,qc999,NA,NA
+q001a003,qc001a003,UTI,qc999,NA,NA
+q001a003,qc001a003,UTI,qc999,NA,NA
+q001a003,qc001a003,UTI,qc999,NA,NA
+q001a003,qc001a003,UTI,qc999,NA,NA
+q001a003,qc001a003,UTI,qc999,NA,NA
+q001a003,qc001a003,UTI,qc999,NA,NA
+q001a003,qc001a003,UTI,qc999,NA,NA
+q001a003 q001a003q004a001 q001a003q004a001q003a010,qc001a003 qc008a001 qc021a010,UTI Initial Evaluation Fever,qc016,Measured Temperature,q001a003q004a001q003a010q001
+q001a003,qc001a003,UTI,qc999,NA,NA
+q001a003,qc001a003,UTI,qc999,NA,NA
+q001a003,qc001a003,UTI,qc999,NA,NA
+q001a003,qc001a003,UTI,qc999,NA,NA
+q001a003 q001a003q004a002,qc001a003 qc008a002,UTI Follow up evaluation,qc012,Course since last evaluation,q001a003q004a002q001
+q001a003,qc001a003,UTI,qc999,NA,NA
+q001a003,qc001a003,UTI,qc999,NA,NA
+q001a003,qc001a003,UTI,qc999,NA,NA
+q001a004,qc001a004,Knee pain,qc008,Initial vs Reval,q001a004q003
+q001a004 q001a004q001a003,qc001a004 ,Knee pain ,qc008,Initial vs Reval,q001a004q003
+q001a004 q001a004q001a003,qc001a004 ,Knee pain ,qc008,Initial vs Reval,q001a004q003
+q001a004 q001a004q001a003,qc001a004 ,Knee pain ,qc008,Initial vs Reval,q001a004q003
+q001a004 q001a004q002a002,qc001a004 ,Knee pain ,qc008,Initial vs Reval,q001a004q003
+q001a004 q001a004q002a002,qc001a004 ,Knee pain ,qc008,Initial vs Reval,q001a004q003
+q001a004 q001a004q002a002,qc001a004 ,Knee pain ,qc008,Initial vs Reval,q001a004q003
+q001a004 q001a004q002a002,qc001a004 ,Knee pain ,qc008,Initial vs Reval,q001a004q003
+q001a004 q001a004q002a002,qc001a004 ,Knee pain ,qc008,Initial vs Reval,q001a004q003
+q001a004 q001a004q002a002,qc001a004 ,Knee pain ,qc008,Initial vs Reval,q001a004q003
+q001a004 q001a004q002a004,qc001a004 ,Knee pain ,qc008,Initial vs Reval,q001a004q003
+q001a004 q001a004q002a004,qc001a004 ,Knee pain ,qc008,Initial vs Reval,q001a004q003
+q001a004 q001a004q002a004,qc001a004 ,Knee pain ,qc008,Initial vs Reval,q001a004q003
+q001a004 q001a004q003a001,qc001a004 qc008a001,Knee pain Initial Evaluation,qc022,Laterality,q001a004q003a001q001
+q001a004 q001a004q003a001 q001a004q003a001q001a001,qc001a004 qc008a001 qc022a001,Knee pain Initial Evaluation Right,qc024,Associated symptoms,q001a004q003a001q003
+q001a004 q001a004q003a001 q001a004q003a001q001a002,qc001a004 qc008a001 qc022a002,Knee pain Initial Evaluation Left,qc024,Associated symptoms,q001a004q003a001q003
+q001a004 q001a004q003a001 q001a004q003a001q001a003,qc001a004 qc008a001 qc022a003,Knee pain Initial Evaluation Both,qc023,Severity laterality,q001a004q003a001q001a003q001
+q001a004 q001a004q003a001 q001a004q003a001q001a003,qc001a004 qc008a001 qc022a003,Knee pain Initial Evaluation Both,qc024,Associated symptoms,q001a004q003a001q003
+q001a004 q001a004q003a001 q001a004q003a001q001a003,qc001a004 qc008a001 qc022a003,Knee pain Initial Evaluation Both,qc024,Associated symptoms,q001a004q003a001q003
+q001a004 q001a004q003a001 q001a004q003a001q001a003,qc001a004 qc008a001 qc022a003,Knee pain Initial Evaluation Both,qc024,Associated symptoms,q001a004q003a001q003
+q001a004 q001a004q003a001 q001a004q003a001q002a001,qc001a004 qc008a001 qc009a001,Knee pain Initial Evaluation 0-1 days ago,qc024,Associated symptoms,q001a004q003a001q003
+q001a004 q001a004q003a001 q001a004q003a001q002a002,qc001a004 qc008a001 qc009a002,Knee pain Initial Evaluation 2-6 days ago,qc010,Onset details,q001a004q003a001q002a002q001
+q001a004 q001a004q003a001 q001a004q003a001q002a002,qc001a004 qc008a001 qc009a002,Knee pain Initial Evaluation 2-6 days ago,qc024,Associated symptoms,q001a004q003a001q003
+q001a004 q001a004q003a001 q001a004q003a001q002a002,qc001a004 qc008a001 qc009a002,Knee pain Initial Evaluation 2-6 days ago,qc024,Associated symptoms,q001a004q003a001q003
+q001a004 q001a004q003a001 q001a004q003a001q002a002,qc001a004 qc008a001 qc009a002,Knee pain Initial Evaluation 2-6 days ago,qc024,Associated symptoms,q001a004q003a001q003
+q001a004 q001a004q003a001 q001a004q003a001q002a002,qc001a004 qc008a001 qc009a002,Knee pain Initial Evaluation 2-6 days ago,qc024,Associated symptoms,q001a004q003a001q003
+q001a004 q001a004q003a001 q001a004q003a001q002a002,qc001a004 qc008a001 qc009a002,Knee pain Initial Evaluation 2-6 days ago,qc024,Associated symptoms,q001a004q003a001q003
+q001a004 q001a004q003a001 q001a004q003a001q002a002,qc001a004 qc008a001 qc009a002,Knee pain Initial Evaluation 2-6 days ago,qc024,Associated symptoms,q001a004q003a001q003
+q001a004 q001a004q003a001 q001a004q003a001q002a003,qc001a004 qc008a001 qc009a003,Knee pain Initial Evaluation 1-2 weeks ago,qc024,Associated symptoms,q001a004q003a001q003
+q001a004 q001a004q003a001 q001a004q003a001q002a004,qc001a004 qc008a001 qc009a004,Knee pain Initial Evaluation More than 2 weeks ago,qc011,Onset details,q001a004q003a001q002a004q001
+q001a004 q001a004q003a001 q001a004q003a001q002a004,qc001a004 qc008a001 qc009a004,Knee pain Initial Evaluation More than 2 weeks ago,qc024,Associated symptoms,q001a004q003a001q003
+q001a004 q001a004q003a001 q001a004q003a001q002a004,qc001a004 qc008a001 qc009a004,Knee pain Initial Evaluation More than 2 weeks ago,qc024,Associated symptoms,q001a004q003a001q003
+q001a004 q001a004q003a001 q001a004q003a001q002a004,qc001a004 qc008a001 qc009a004,Knee pain Initial Evaluation More than 2 weeks ago,qc024,Associated symptoms,q001a004q003a001q003
+q001a004 q001a004q003a001 q001a004q003a001q003a001,qc001a004 qc008a001 qc024a001,Knee pain Initial Evaluation Fever,qc016,Measured Temperature,q001a004q003a001q003a001q001
+q001a004,qc001a004,Knee pain,qc999,NA,NA
+q001a004,qc001a004,Knee pain,qc999,NA,NA
+q001a004,qc001a004,Knee pain,qc999,NA,NA
+q001a004,qc001a004,Knee pain,qc999,NA,NA
+q001a004,qc001a004,Knee pain,qc999,NA,NA
+q001a004,qc001a004,Knee pain,qc999,NA,NA
+q001a004 q001a004q003a001 q001a004q003a001q003a004,qc001a004 qc008a001 qc024a004,Knee pain Initial Evaluation Hip pain,qc022,Laterality,q001a004q003a001q003a004q001
+q001a004,qc001a004,Knee pain,qc999,NA,NA
+q001a004,qc001a004,Knee pain,qc999,NA,NA
+q001a004 q001a004q003a001 q001a004q003a001q003a004 q001a004q003a001q003a004q001a003,qc001a004 qc008a001 qc024a004 qc022a003,Knee pain Initial Evaluation Hip pain Both,qc023,Severity laterality,q001a004q003a001q003a004q001a003q001
+q001a004,qc001a004,Knee pain,qc999,NA,NA
+q001a004,qc001a004,Knee pain,qc999,NA,NA
+q001a004,qc001a004,Knee pain,qc999,NA,NA
+q001a004 q001a004q003a001 q001a004q003a001q003a005,qc001a004 qc008a001 qc024a005,Knee pain Initial Evaluation Shoulder pain,qc022,Laterality,q001a004q003a001q003a005q001
+q001a004,qc001a004,Knee pain,qc999,NA,NA
+q001a004,qc001a004,Knee pain,qc999,NA,NA
+q001a004 q001a004q003a001 q001a004q003a001q003a005 q001a004q003a001q003a005q001a003,qc001a004 qc008a001 qc024a005 qc022a003,Knee pain Initial Evaluation Shoulder pain Both,qc023,Severity laterality,q001a004q003a001q003a005q001a003q001
+q001a004,qc001a004,Knee pain,qc999,NA,NA
+q001a004,qc001a004,Knee pain,qc999,NA,NA
+q001a004,qc001a004,Knee pain,qc999,NA,NA
+q001a004 q001a004q003a001 q001a004q003a001q003a006,qc001a004 qc008a001 qc024a006,Knee pain Initial Evaluation Elbow or hand pain ,qc025,Elbow or hand,q001a004q003a001q003a006q001
+q001a004,qc001a004,Knee pain,qc999,NA,NA
+q001a004,qc001a004,Knee pain,qc999,NA,NA
+q001a004,qc001a004,Knee pain,qc999,NA,NA
+q001a004 q001a004q003a002,qc001a004 qc008a002,Knee pain Follow up evaluation,qc012,Course since last evaluation,q001a004q003a002q001
+q001a004,qc001a004,Knee pain,qc999,NA,NA
+q001a004,qc001a004,Knee pain,qc999,NA,NA
+q001a004,qc001a004,Knee pain,qc999,NA,NA
+q001a005,qc001a005,Chest pain,qc008,Initial vs Reval,q001a005q001
+q001a005 q001a005q001a001,qc001a005 qc008a001,Chest pain Initial Evaluation,qc009,Onset,q001a005q001a001q001
+q001a005 q001a005q001a001 q001a005q001a001q001a001,qc001a005 qc008a001 qc009a001,Chest pain Initial Evaluation 0-1 days ago,qc034,associated symptom,q001a005q001a001q007
+q001a005 q001a005q001a001 q001a005q001a001q001a002,qc001a005 qc008a001 qc009a002,Chest pain Initial Evaluation 2-6 days ago,qc010,Onset details,q001a005q001a001q001a002q001
+q001a005 q001a005q001a001 q001a005q001a001q001a002,qc001a005 qc008a001 qc009a002,Chest pain Initial Evaluation 2-6 days ago,qc034,associated symptom,q001a005q001a001q007
+q001a005 q001a005q001a001 q001a005q001a001q001a002,qc001a005 qc008a001 qc009a002,Chest pain Initial Evaluation 2-6 days ago,qc034,associated symptom,q001a005q001a001q007
+q001a005 q001a005q001a001 q001a005q001a001q001a002,qc001a005 qc008a001 qc009a002,Chest pain Initial Evaluation 2-6 days ago,qc034,associated symptom,q001a005q001a001q007
+q001a005 q001a005q001a001 q001a005q001a001q001a002,qc001a005 qc008a001 qc009a002,Chest pain Initial Evaluation 2-6 days ago,qc034,associated symptom,q001a005q001a001q007
+q001a005 q001a005q001a001 q001a005q001a001q001a002,qc001a005 qc008a001 qc009a002,Chest pain Initial Evaluation 2-6 days ago,qc034,associated symptom,q001a005q001a001q007
+q001a005 q001a005q001a001 q001a005q001a001q001a002,qc001a005 qc008a001 qc009a002,Chest pain Initial Evaluation 2-6 days ago,qc034,associated symptom,q001a005q001a001q007
+q001a005 q001a005q001a001 q001a005q001a001q001a003,qc001a005 qc008a001 qc009a003,Chest pain Initial Evaluation 1-2 weeks ago,qc034,associated symptom,q001a005q001a001q007
+q001a005 q001a005q001a001 q001a005q001a001q001a004,qc001a005 qc008a001 qc009a004,Chest pain Initial Evaluation More than 2 weeks ago,qc011,Onset details,q001a005q001a001q001a004q001
+q001a005 q001a005q001a001 q001a005q001a001q001a004,qc001a005 qc008a001 qc009a004,Chest pain Initial Evaluation More than 2 weeks ago,qc034,associated symptom,q001a005q001a001q007
+q001a005 q001a005q001a001 q001a005q001a001q001a004,qc001a005 qc008a001 qc009a004,Chest pain Initial Evaluation More than 2 weeks ago,qc034,associated symptom,q001a005q001a001q007
+q001a005 q001a005q001a001 q001a005q001a001q001a004,qc001a005 qc008a001 qc009a004,Chest pain Initial Evaluation More than 2 weeks ago,qc034,associated symptom,q001a005q001a001q007
+q001a005 q001a005q001a001 q001a005q001a001q002a001,qc001a005 qc008a001 qc026a001,Chest pain Initial Evaluation constant,qc034,associated symptom,q001a005q001a001q007
+q001a005 q001a005q001a001 q001a005q001a001q002a002,qc001a005 qc008a001 qc026a002,Chest pain Initial Evaluation intermittent,qc027,frequency,q001a005q001a001q002a002q001
+q001a005 q001a005q001a001 q001a005q001a001q002a002 q001a005q001a001q002a002q001a001,qc001a005 qc008a001 qc026a002 qc027a001,Chest pain Initial Evaluation intermittent more than 5 times a day,qc029,Duration,q001a005q001a001q002a002q002
+q001a005 q001a005q001a001 q001a005q001a001q002a002 q001a005q001a001q002a002q001a002,qc001a005 qc008a001 qc026a002 qc027a002,Chest pain Initial Evaluation intermittent 2-5 times a day,qc029,Duration,q001a005q001a001q002a002q002
+q001a005 q001a005q001a001 q001a005q001a001q002a002 q001a005q001a001q002a002q001a003,qc001a005 qc008a001 qc026a002 qc027a003,Chest pain Initial Evaluation intermittent once a day,qc029,Duration,q001a005q001a001q002a002q002
+q001a005 q001a005q001a001 q001a005q001a001q002a002 q001a005q001a001q002a002q001a004,qc001a005 qc008a001 qc026a002 qc027a004,Chest pain Initial Evaluation intermittent less than once a day,qc028,frequcny detail,q001a005q001a001q002a002q001a004q001
+q001a005 q001a005q001a001 q001a005q001a001q002a002 q001a005q001a001q002a002q001a004,qc001a005 qc008a001 qc026a002 qc027a004,Chest pain Initial Evaluation intermittent less than once a day,qc029,Duration,q001a005q001a001q002a002q002
+q001a005 q001a005q001a001 q001a005q001a001q002a002 q001a005q001a001q002a002q001a004,qc001a005 qc008a001 qc026a002 qc027a004,Chest pain Initial Evaluation intermittent less than once a day,qc029,Duration,q001a005q001a001q002a002q002
+q001a005 q001a005q001a001 q001a005q001a001q002a002 q001a005q001a001q002a002q001a004,qc001a005 qc008a001 qc026a002 qc027a004,Chest pain Initial Evaluation intermittent less than once a day,qc029,Duration,q001a005q001a001q002a002q002
+q001a005 q001a005q001a001 q001a005q001a001q002a002 q001a005q001a001q002a002q001a005,qc001a005 qc008a001 qc026a002 qc027a005,Chest pain Initial Evaluation intermittent Constant,qc029,Duration,q001a005q001a001q002a002q002
+q001a005 q001a005q001a001 q001a005q001a001q002a002,qc001a005 qc008a001 qc026a002,Chest pain Initial Evaluation intermittent,qc034,associated symptom,q001a005q001a001q007
+q001a005 q001a005q001a001 q001a005q001a001q002a002,qc001a005 qc008a001 qc026a002,Chest pain Initial Evaluation intermittent,qc034,associated symptom,q001a005q001a001q007
+q001a005 q001a005q001a001 q001a005q001a001q002a002,qc001a005 qc008a001 qc026a002,Chest pain Initial Evaluation intermittent,qc034,associated symptom,q001a005q001a001q007
+q001a005 q001a005q001a001 q001a005q001a001q002a002,qc001a005 qc008a001 qc026a002,Chest pain Initial Evaluation intermittent,qc034,associated symptom,q001a005q001a001q007
+q001a005 q001a005q001a001 q001a005q001a001q003a001,qc001a005 qc008a001 qc030a001,Chest pain Initial Evaluation right chest,qc034,associated symptom,q001a005q001a001q007
+q001a005 q001a005q001a001 q001a005q001a001q003a002,qc001a005 qc008a001 qc030a002,Chest pain Initial Evaluation mid chest,qc034,associated symptom,q001a005q001a001q007
+q001a005 q001a005q001a001 q001a005q001a001q003a003,qc001a005 qc008a001 qc030a003,Chest pain Initial Evaluation left chest,qc034,associated symptom,q001a005q001a001q007
+q001a005 q001a005q001a001 q001a005q001a001q004a001,qc001a005 qc008a001 qc031a001,Chest pain Initial Evaluation none,qc034,associated symptom,q001a005q001a001q007
+q001a005 q001a005q001a001 q001a005q001a001q004a002,qc001a005 qc008a001 qc031a002,Chest pain Initial Evaluation jaw,qc034,associated symptom,q001a005q001a001q007
+q001a005 q001a005q001a001 q001a005q001a001q004a003,qc001a005 qc008a001 qc031a003,Chest pain Initial Evaluation left shoulder,qc034,associated symptom,q001a005q001a001q007
+q001a005 q001a005q001a001 q001a005q001a001q004a004,qc001a005 qc008a001 qc031a004,Chest pain Initial Evaluation right shoulder,qc034,associated symptom,q001a005q001a001q007
+q001a005 q001a005q001a001 q001a005q001a001q004a005,qc001a005 qc008a001 qc031a005,Chest pain Initial Evaluation back,qc034,associated symptom,q001a005q001a001q007
+q001a005 q001a005q001a001 q001a005q001a001q005a001,qc001a005 qc008a001 qc032a001,Chest pain Initial Evaluation 1,qc034,associated symptom,q001a005q001a001q007
+q001a005 q001a005q001a001 q001a005q001a001q005a002,qc001a005 qc008a001 qc032a002,Chest pain Initial Evaluation 2,qc034,associated symptom,q001a005q001a001q007
+q001a005 q001a005q001a001 q001a005q001a001q005a003,qc001a005 qc008a001 qc032a003,Chest pain Initial Evaluation 3,qc034,associated symptom,q001a005q001a001q007
+q001a005 q001a005q001a001 q001a005q001a001q005a004,qc001a005 qc008a001 qc032a004,Chest pain Initial Evaluation 4,qc034,associated symptom,q001a005q001a001q007
+q001a005 q001a005q001a001 q001a005q001a001q005a005,qc001a005 qc008a001 qc032a005,Chest pain Initial Evaluation 5,qc034,associated symptom,q001a005q001a001q007
+q001a005 q001a005q001a001 q001a005q001a001q005a006,qc001a005 qc008a001 qc032a006,Chest pain Initial Evaluation 6,qc034,associated symptom,q001a005q001a001q007
+q001a005 q001a005q001a001 q001a005q001a001q005a007,qc001a005 qc008a001 qc032a007,Chest pain Initial Evaluation 7,qc034,associated symptom,q001a005q001a001q007
+q001a005 q001a005q001a001 q001a005q001a001q005a008,qc001a005 qc008a001 qc032a008,Chest pain Initial Evaluation 8,qc034,associated symptom,q001a005q001a001q007
+q001a005 q001a005q001a001 q001a005q001a001q005a009,qc001a005 qc008a001 qc032a009,Chest pain Initial Evaluation 9,qc034,associated symptom,q001a005q001a001q007
+q001a005 q001a005q001a001 q001a005q001a001q005a010,qc001a005 qc008a001 qc032a010,Chest pain Initial Evaluation 10,qc034,associated symptom,q001a005q001a001q007
+q001a005 q001a005q001a001 q001a005q001a001q006a001,qc001a005 qc008a001 qc033a001,Chest pain Initial Evaluation dull,qc034,associated symptom,q001a005q001a001q007
+q001a005 q001a005q001a001 q001a005q001a001q006a002,qc001a005 qc008a001 qc033a002,Chest pain Initial Evaluation sharp,qc034,associated symptom,q001a005q001a001q007
+q001a005 q001a005q001a001 q001a005q001a001q006a003,qc001a005 qc008a001 qc033a003,Chest pain Initial Evaluation pressure,qc034,associated symptom,q001a005q001a001q007
+q001a005,qc001a005,Chest pain,qc999,NA,NA
+q001a005,qc001a005,Chest pain,qc999,NA,NA
+q001a005,qc001a005,Chest pain,qc999,NA,NA
+q001a005,qc001a005,Chest pain,qc999,NA,NA
+q001a005,qc001a005,Chest pain,qc999,NA,NA
+q001a005 q001a005q001a002,qc001a005 qc008a002,Chest pain Follow up evaluation,qc012,Course since last evaluation,q001a005q001a002q001
+q001a005,qc001a005,Chest pain,qc999,NA,NA
+q001a005,qc001a005,Chest pain,qc999,NA,NA
+q001a005,qc001a005,Chest pain,qc999,NA,NA
+q001a006,qc001a006,Hernia,qc008,Initial vs Reval,q001a006q001
+q001a006 q001a006q001a001,qc001a006 qc008a001,Hernia Initial Evaluation,qc009,Onset,q001a006q001a001q001
+q001a006 q001a006q001a001 q001a006q001a001q001a001,qc001a006 qc008a001 qc009a001,Hernia Initial Evaluation 0-1 days ago,qc037,pain,q001a006q001a001q005
+q001a006 q001a006q001a001 q001a006q001a001q001a002,qc001a006 qc008a001 qc009a002,Hernia Initial Evaluation 2-6 days ago,qc010,Onset details,q001a006q001a001q001a002q001
+q001a006 q001a006q001a001 q001a006q001a001q001a002,qc001a006 qc008a001 qc009a002,Hernia Initial Evaluation 2-6 days ago,qc037,pain,q001a006q001a001q005
+q001a006 q001a006q001a001 q001a006q001a001q001a002,qc001a006 qc008a001 qc009a002,Hernia Initial Evaluation 2-6 days ago,qc037,pain,q001a006q001a001q005
+q001a006 q001a006q001a001 q001a006q001a001q001a002,qc001a006 qc008a001 qc009a002,Hernia Initial Evaluation 2-6 days ago,qc037,pain,q001a006q001a001q005
+q001a006 q001a006q001a001 q001a006q001a001q001a002,qc001a006 qc008a001 qc009a002,Hernia Initial Evaluation 2-6 days ago,qc037,pain,q001a006q001a001q005
+q001a006 q001a006q001a001 q001a006q001a001q001a002,qc001a006 qc008a001 qc009a002,Hernia Initial Evaluation 2-6 days ago,qc037,pain,q001a006q001a001q005
+q001a006 q001a006q001a001 q001a006q001a001q001a002,qc001a006 qc008a001 qc009a002,Hernia Initial Evaluation 2-6 days ago,qc037,pain,q001a006q001a001q005
+q001a006 q001a006q001a001 q001a006q001a001q001a003,qc001a006 qc008a001 qc009a003,Hernia Initial Evaluation 1-2 weeks ago,qc037,pain,q001a006q001a001q005
+q001a006 q001a006q001a001 q001a006q001a001q001a004,qc001a006 qc008a001 qc009a004,Hernia Initial Evaluation More than 2 weeks ago,qc011,Onset details,q001a006q001a001q001a004q001
+q001a006 q001a006q001a001 q001a006q001a001q001a004,qc001a006 qc008a001 qc009a004,Hernia Initial Evaluation More than 2 weeks ago,qc037,pain,q001a006q001a001q005
+q001a006 q001a006q001a001 q001a006q001a001q001a004,qc001a006 qc008a001 qc009a004,Hernia Initial Evaluation More than 2 weeks ago,qc037,pain,q001a006q001a001q005
+q001a006 q001a006q001a001 q001a006q001a001q001a004,qc001a006 qc008a001 qc009a004,Hernia Initial Evaluation More than 2 weeks ago,qc037,pain,q001a006q001a001q005
+q001a006 q001a006q001a001 q001a006q001a001q002a001,qc001a006 qc008a001 qc020a001,Hernia Initial Evaluation Progressing,qc037,pain,q001a006q001a001q005
+q001a006 q001a006q001a001 q001a006q001a001q002a002,qc001a006 qc008a001 qc020a002,"Hernia Initial Evaluation Stable, persistent",qc037,pain,q001a006q001a001q005
+q001a006 q001a006q001a001 q001a006q001a001q002a003,qc001a006 qc008a001 qc020a003,Hernia Initial Evaluation Improving,qc037,pain,q001a006q001a001q005
+q001a006 q001a006q001a001 q001a006q001a001q003a001,qc001a006 qc008a001 qc035a001,Hernia Initial Evaluation umbilical,qc037,pain,q001a006q001a001q005
+q001a006 q001a006q001a001 q001a006q001a001q003a002,qc001a006 qc008a001 qc035a002,Hernia Initial Evaluation right inguinal,qc037,pain,q001a006q001a001q005
+q001a006 q001a006q001a001 q001a006q001a001q003a003,qc001a006 qc008a001 qc035a003,Hernia Initial Evaluation left inguinal,qc037,pain,q001a006q001a001q005
+q001a006 q001a006q001a001 q001a006q001a001q003a004,qc001a006 qc008a001 qc035a004,Hernia Initial Evaluation right scrotal,qc037,pain,q001a006q001a001q005
+q001a006 q001a006q001a001 q001a006q001a001q003a005,qc001a006 qc008a001 qc035a005,Hernia Initial Evaluation left scrotal,qc037,pain,q001a006q001a001q005
+q001a006 q001a006q001a001 q001a006q001a001q004a001,qc001a006 qc008a001 qc036a001,Hernia Initial Evaluation yes,qc037,pain,q001a006q001a001q005
+q001a006 q001a006q001a001 q001a006q001a001q004a002,qc001a006 qc008a001 qc036a002,Hernia Initial Evaluation no,qc037,pain,q001a006q001a001q005
+q001a006 q001a006q001a001 q001a006q001a001q005a001,qc001a006 qc008a001 qc037a001,Hernia Initial Evaluation yes,qc032,severity,q001a006q001a001q005a001q001
+q001a006,qc001a006,Hernia,qc999,NA,NA
+q001a006,qc001a006,Hernia,qc999,NA,NA
+q001a006,qc001a006,Hernia,qc999,NA,NA
+q001a006,qc001a006,Hernia,qc999,NA,NA
+q001a006,qc001a006,Hernia,qc999,NA,NA
+q001a006,qc001a006,Hernia,qc999,NA,NA
+q001a006,qc001a006,Hernia,qc999,NA,NA
+q001a006,qc001a006,Hernia,qc999,NA,NA
+q001a006,qc001a006,Hernia,qc999,NA,NA
+q001a006,qc001a006,Hernia,qc999,NA,NA
+q001a006,qc001a006,Hernia,qc999,NA,NA
+q001a006 q001a006q001a002,qc001a006 qc008a002,Hernia Follow up evaluation,qc012,Course since last evaluation,q001a006q001a002q001
+q001a006,qc001a006,Hernia,qc999,NA,NA
+q001a006,qc001a006,Hernia,qc999,NA,NA
+q001a006,qc001a006,Hernia,qc999,NA,NA
+q001a007,qc001a007,skin fold rash,qc008,Initial vs Reval,q001a007q001
+q001a007 q001a007q001a001,qc001a007 qc008a001,skin fold rash Initial Evaluation,qc009,Onset,q001a007q001a001q001
+q001a007 q001a007q001a001 q001a007q001a001q001a001,qc001a007 qc008a001 qc009a001,skin fold rash Initial Evaluation 0-1 days ago,qc020,Course since onset,q001a007q001a001q003
+q001a007 q001a007q001a001 q001a007q001a001q001a002,qc001a007 qc008a001 qc009a002,skin fold rash Initial Evaluation 2-6 days ago,qc010,Onset details,q001a007q001a001q001a002q001
+q001a007 q001a007q001a001 q001a007q001a001q001a002,qc001a007 qc008a001 qc009a002,skin fold rash Initial Evaluation 2-6 days ago,qc020,Course since onset,q001a007q001a001q003
+q001a007 q001a007q001a001 q001a007q001a001q001a002,qc001a007 qc008a001 qc009a002,skin fold rash Initial Evaluation 2-6 days ago,qc020,Course since onset,q001a007q001a001q003
+q001a007 q001a007q001a001 q001a007q001a001q001a002,qc001a007 qc008a001 qc009a002,skin fold rash Initial Evaluation 2-6 days ago,qc020,Course since onset,q001a007q001a001q003
+q001a007 q001a007q001a001 q001a007q001a001q001a002,qc001a007 qc008a001 qc009a002,skin fold rash Initial Evaluation 2-6 days ago,qc020,Course since onset,q001a007q001a001q003
+q001a007 q001a007q001a001 q001a007q001a001q001a002,qc001a007 qc008a001 qc009a002,skin fold rash Initial Evaluation 2-6 days ago,qc020,Course since onset,q001a007q001a001q003
+q001a007 q001a007q001a001 q001a007q001a001q001a002,qc001a007 qc008a001 qc009a002,skin fold rash Initial Evaluation 2-6 days ago,qc020,Course since onset,q001a007q001a001q003
+q001a007 q001a007q001a001 q001a007q001a001q001a003,qc001a007 qc008a001 qc009a003,skin fold rash Initial Evaluation 1-2 weeks ago,qc020,Course since onset,q001a007q001a001q003
+q001a007 q001a007q001a001 q001a007q001a001q001a004,qc001a007 qc008a001 qc009a004,skin fold rash Initial Evaluation More than 2 weeks ago,qc011,Onset details,q001a007q001a001q001a004q001
+q001a007 q001a007q001a001 q001a007q001a001q001a004,qc001a007 qc008a001 qc009a004,skin fold rash Initial Evaluation More than 2 weeks ago,qc020,Course since onset,q001a007q001a001q003
+q001a007 q001a007q001a001 q001a007q001a001q001a004,qc001a007 qc008a001 qc009a004,skin fold rash Initial Evaluation More than 2 weeks ago,qc020,Course since onset,q001a007q001a001q003
+q001a007 q001a007q001a001 q001a007q001a001q001a004,qc001a007 qc008a001 qc009a004,skin fold rash Initial Evaluation More than 2 weeks ago,qc020,Course since onset,q001a007q001a001q003
+q001a007 q001a007q001a001 q001a007q001a001q002a001,qc001a007 qc008a001 qc038a001,skin fold rash Initial Evaluation axillary,qc020,Course since onset,q001a007q001a001q003
+q001a007 q001a007q001a001 q001a007q001a001q002a002,qc001a007 qc008a001 qc038a002,skin fold rash Initial Evaluation under breasts,qc020,Course since onset,q001a007q001a001q003
+q001a007 q001a007q001a001 q001a007q001a001q002a003,qc001a007 qc008a001 qc038a003,skin fold rash Initial Evaluation inguinal,qc020,Course since onset,q001a007q001a001q003
+q001a007 q001a007q001a001 q001a007q001a001q002a004,qc001a007 qc008a001 qc038a004,skin fold rash Initial Evaluation other,qc020,Course since onset,q001a007q001a001q003
+q001a007,qc001a007,skin fold rash,qc999,NA,NA
+q001a007,qc001a007,skin fold rash,qc999,NA,NA
+q001a007,qc001a007,skin fold rash,qc999,NA,NA
+q001a007 q001a007q001a002,qc001a007 qc008a002,skin fold rash Follow up evaluation,qc012,Course since last evaluation,q001a007q001a002q001
+q001a007,qc001a007,skin fold rash,qc999,NA,NA
+q001a007,qc001a007,skin fold rash,qc999,NA,NA
+q001a007,qc001a007,skin fold rash,qc999,NA,NA
+q001a008,qc001a008,Double vision,qc008,Initial vs Reval,q001a008q001
+q001a008 q001a008q001a001,qc001a008 qc008a001,Double vision Initial Evaluation,qc009,Onset,q001a008q001a001q001
+q001a008 q001a008q001a001 q001a008q001a001q001a001,qc001a008 qc008a001 qc009a001,Double vision Initial Evaluation 0-1 days ago,qc039,onset details,q001a008q001a001q001a001q001
+q001a008 q001a008q001a001 q001a008q001a001q001a001,qc001a008 qc008a001 qc009a001,Double vision Initial Evaluation 0-1 days ago,qc042,eye pain,q001a008q001a001q004
+q001a008 q001a008q001a001 q001a008q001a001q001a001,qc001a008 qc008a001 qc009a001,Double vision Initial Evaluation 0-1 days ago,qc042,eye pain,q001a008q001a001q004
+q001a008 q001a008q001a001 q001a008q001a001q001a002,qc001a008 qc008a001 qc009a002,Double vision Initial Evaluation 2-6 days ago,qc010,Onset details,q001a008q001a001q001a002q001
+q001a008 q001a008q001a001 q001a008q001a001q001a002,qc001a008 qc008a001 qc009a002,Double vision Initial Evaluation 2-6 days ago,qc042,eye pain,q001a008q001a001q004
+q001a008 q001a008q001a001 q001a008q001a001q001a002,qc001a008 qc008a001 qc009a002,Double vision Initial Evaluation 2-6 days ago,qc042,eye pain,q001a008q001a001q004
+q001a008 q001a008q001a001 q001a008q001a001q001a002,qc001a008 qc008a001 qc009a002,Double vision Initial Evaluation 2-6 days ago,qc042,eye pain,q001a008q001a001q004
+q001a008 q001a008q001a001 q001a008q001a001q001a002,qc001a008 qc008a001 qc009a002,Double vision Initial Evaluation 2-6 days ago,qc042,eye pain,q001a008q001a001q004
+q001a008 q001a008q001a001 q001a008q001a001q001a002,qc001a008 qc008a001 qc009a002,Double vision Initial Evaluation 2-6 days ago,qc042,eye pain,q001a008q001a001q004
+q001a008 q001a008q001a001 q001a008q001a001q001a002,qc001a008 qc008a001 qc009a002,Double vision Initial Evaluation 2-6 days ago,qc042,eye pain,q001a008q001a001q004
+q001a008 q001a008q001a001 q001a008q001a001q001a003,qc001a008 qc008a001 qc009a003,Double vision Initial Evaluation 1-2 weeks ago,qc042,eye pain,q001a008q001a001q004
+q001a008 q001a008q001a001 q001a008q001a001q001a004,qc001a008 qc008a001 qc009a004,Double vision Initial Evaluation More than 2 weeks ago,qc011,Onset details,q001a008q001a001q001a004q001
+q001a008 q001a008q001a001 q001a008q001a001q001a004,qc001a008 qc008a001 qc009a004,Double vision Initial Evaluation More than 2 weeks ago,qc042,eye pain,q001a008q001a001q004
+q001a008 q001a008q001a001 q001a008q001a001q001a004,qc001a008 qc008a001 qc009a004,Double vision Initial Evaluation More than 2 weeks ago,qc042,eye pain,q001a008q001a001q004
+q001a008 q001a008q001a001 q001a008q001a001q001a004,qc001a008 qc008a001 qc009a004,Double vision Initial Evaluation More than 2 weeks ago,qc042,eye pain,q001a008q001a001q004
+q001a008 q001a008q001a001 q001a008q001a001q002a001,qc001a008 qc008a001 qc020a001,Double vision Initial Evaluation Progressing,qc042,eye pain,q001a008q001a001q004
+q001a008 q001a008q001a001 q001a008q001a001q002a002,qc001a008 qc008a001 qc020a002,"Double vision Initial Evaluation Stable, persistent",qc042,eye pain,q001a008q001a001q004
+q001a008 q001a008q001a001 q001a008q001a001q002a003,qc001a008 qc008a001 qc020a003,Double vision Initial Evaluation Improving,qc042,eye pain,q001a008q001a001q004
+q001a008 q001a008q001a001 q001a008q001a001q003a001,qc001a008 qc008a001 qc040a001,Double vision Initial Evaluation none,qc042,eye pain,q001a008q001a001q004
+q001a008 q001a008q001a001 q001a008q001a001q003a002,qc001a008 qc008a001 qc040a002,Double vision Initial Evaluation weakness,qc041,location,q001a008q001a001q003a002q001
+q001a008 q001a008q001a001 q001a008q001a001q003a002,qc001a008 qc008a001 qc040a002,Double vision Initial Evaluation weakness,qc042,eye pain,q001a008q001a001q004
+q001a008 q001a008q001a001 q001a008q001a001q003a002,qc001a008 qc008a001 qc040a002,Double vision Initial Evaluation weakness,qc042,eye pain,q001a008q001a001q004
+q001a008 q001a008q001a001 q001a008q001a001q003a003,qc001a008 qc008a001 qc040a003,Double vision Initial Evaluation sensory loss,qc041,location,q001a008q001a001q003a003q001
+q001a008 q001a008q001a001 q001a008q001a001q003a003,qc001a008 qc008a001 qc040a003,Double vision Initial Evaluation sensory loss,qc042,eye pain,q001a008q001a001q004
+q001a008 q001a008q001a001 q001a008q001a001q003a003,qc001a008 qc008a001 qc040a003,Double vision Initial Evaluation sensory loss,qc042,eye pain,q001a008q001a001q004
+q001a008 q001a008q001a001 q001a008q001a001q003a004,qc001a008 qc008a001 qc040a004,Double vision Initial Evaluation facial asymmetry,qc042,eye pain,q001a008q001a001q004
+q001a008 q001a008q001a001 q001a008q001a001q003a005,qc001a008 qc008a001 qc040a005,Double vision Initial Evaluation other,qc042,eye pain,q001a008q001a001q004
+q001a008,qc001a008,Double vision,qc999,NA,NA
+q001a008,qc001a008,Double vision,qc999,NA,NA
+q001a008 q001a008q001a002,qc001a008 qc008a002,Double vision Follow up evaluation,qc012,Course since last evaluation,q001a008q001a002q001
+q001a008,qc001a008,Double vision,qc999,NA,NA
+q001a008,qc001a008,Double vision,qc999,NA,NA
+q001a008,qc001a008,Double vision,qc999,NA,NA
+q001a009,qc001a009,Tick bite,qc043,tick bite onset,q001a009q001
+q001a009 q001a009q001a001,qc001a009 qc043a001,Tick bite less than 72 hours ago,qc044,tick bite duration,q001a009q002
+q001a009 q001a009q001a002,qc001a009 qc043a002,Tick bite greater than 72 hours ago,qc044,tick bite duration,q001a009q002
+q001a009,qc001a009,Tick bite,qc999,NA,NA
+q001a009,qc001a009,Tick bite,qc999,NA,NA
+q001a010,qc001a010,hip pain,qc008,Initial vs Reval,q001a010q001
+q001a010 q001a010q001a001,qc001a010 qc008a001,hip pain Initial Evaluation,qc009,Onset,q001a010q001a001q001
+q001a010 q001a010q001a001 q001a010q001a001q001a001,qc001a010 qc008a001 qc009a001,hip pain Initial Evaluation 0-1 days ago,qc026,constant vs intermittent,q001a010q001a001q006
+q001a010 q001a010q001a001 q001a010q001a001q001a002,qc001a010 qc008a001 qc009a002,hip pain Initial Evaluation 2-6 days ago,qc010,Onset details,q001a010q001a001q001a002q001
+q001a010 q001a010q001a001 q001a010q001a001q001a002,qc001a010 qc008a001 qc009a002,hip pain Initial Evaluation 2-6 days ago,qc026,constant vs intermittent,q001a010q001a001q006
+q001a010 q001a010q001a001 q001a010q001a001q001a002,qc001a010 qc008a001 qc009a002,hip pain Initial Evaluation 2-6 days ago,qc026,constant vs intermittent,q001a010q001a001q006
+q001a010 q001a010q001a001 q001a010q001a001q001a002,qc001a010 qc008a001 qc009a002,hip pain Initial Evaluation 2-6 days ago,qc026,constant vs intermittent,q001a010q001a001q006
+q001a010 q001a010q001a001 q001a010q001a001q001a002,qc001a010 qc008a001 qc009a002,hip pain Initial Evaluation 2-6 days ago,qc026,constant vs intermittent,q001a010q001a001q006
+q001a010 q001a010q001a001 q001a010q001a001q001a002,qc001a010 qc008a001 qc009a002,hip pain Initial Evaluation 2-6 days ago,qc026,constant vs intermittent,q001a010q001a001q006
+q001a010 q001a010q001a001 q001a010q001a001q001a002,qc001a010 qc008a001 qc009a002,hip pain Initial Evaluation 2-6 days ago,qc026,constant vs intermittent,q001a010q001a001q006
+q001a010 q001a010q001a001 q001a010q001a001q001a003,qc001a010 qc008a001 qc009a003,hip pain Initial Evaluation 1-2 weeks ago,qc026,constant vs intermittent,q001a010q001a001q006
+q001a010 q001a010q001a001 q001a010q001a001q001a004,qc001a010 qc008a001 qc009a004,hip pain Initial Evaluation More than 2 weeks ago,qc011,Onset details,q001a010q001a001q001a004q001
+q001a010 q001a010q001a001 q001a010q001a001q001a004,qc001a010 qc008a001 qc009a004,hip pain Initial Evaluation More than 2 weeks ago,qc026,constant vs intermittent,q001a010q001a001q006
+q001a010 q001a010q001a001 q001a010q001a001q001a004,qc001a010 qc008a001 qc009a004,hip pain Initial Evaluation More than 2 weeks ago,qc026,constant vs intermittent,q001a010q001a001q006
+q001a010 q001a010q001a001 q001a010q001a001q001a004,qc001a010 qc008a001 qc009a004,hip pain Initial Evaluation More than 2 weeks ago,qc026,constant vs intermittent,q001a010q001a001q006
+q001a010 q001a010q001a001 q001a010q001a001q002a001,qc001a010 qc008a001 qc032a001,hip pain Initial Evaluation 1,qc026,constant vs intermittent,q001a010q001a001q006
+q001a010 q001a010q001a001 q001a010q001a001q002a002,qc001a010 qc008a001 qc032a002,hip pain Initial Evaluation 2,qc026,constant vs intermittent,q001a010q001a001q006
+q001a010 q001a010q001a001 q001a010q001a001q002a003,qc001a010 qc008a001 qc032a003,hip pain Initial Evaluation 3,qc026,constant vs intermittent,q001a010q001a001q006
+q001a010 q001a010q001a001 q001a010q001a001q002a004,qc001a010 qc008a001 qc032a004,hip pain Initial Evaluation 4,qc026,constant vs intermittent,q001a010q001a001q006
+q001a010 q001a010q001a001 q001a010q001a001q002a005,qc001a010 qc008a001 qc032a005,hip pain Initial Evaluation 5,qc026,constant vs intermittent,q001a010q001a001q006
+q001a010 q001a010q001a001 q001a010q001a001q002a006,qc001a010 qc008a001 qc032a006,hip pain Initial Evaluation 6,qc026,constant vs intermittent,q001a010q001a001q006
+q001a010 q001a010q001a001 q001a010q001a001q002a007,qc001a010 qc008a001 qc032a007,hip pain Initial Evaluation 7,qc026,constant vs intermittent,q001a010q001a001q006
+q001a010 q001a010q001a001 q001a010q001a001q002a008,qc001a010 qc008a001 qc032a008,hip pain Initial Evaluation 8,qc026,constant vs intermittent,q001a010q001a001q006
+q001a010 q001a010q001a001 q001a010q001a001q002a009,qc001a010 qc008a001 qc032a009,hip pain Initial Evaluation 9,qc026,constant vs intermittent,q001a010q001a001q006
+q001a010 q001a010q001a001 q001a010q001a001q002a010,qc001a010 qc008a001 qc032a010,hip pain Initial Evaluation 10,qc026,constant vs intermittent,q001a010q001a001q006
+q001a010 q001a010q001a001 q001a010q001a001q003a001,qc001a010 qc008a001 qc022a001,hip pain Initial Evaluation Right,qc026,constant vs intermittent,q001a010q001a001q006
+q001a010 q001a010q001a001 q001a010q001a001q003a002,qc001a010 qc008a001 qc022a002,hip pain Initial Evaluation Left,qc026,constant vs intermittent,q001a010q001a001q006
+q001a010 q001a010q001a001 q001a010q001a001q003a003,qc001a010 qc008a001 qc022a003,hip pain Initial Evaluation Both,qc026,constant vs intermittent,q001a010q001a001q006
+q001a010 q001a010q001a001 q001a010q001a001q004a001,qc001a010 qc008a001 qc020a001,hip pain Initial Evaluation Progressing,qc026,constant vs intermittent,q001a010q001a001q006
+q001a010 q001a010q001a001 q001a010q001a001q004a002,qc001a010 qc008a001 qc020a002,"hip pain Initial Evaluation Stable, persistent",qc026,constant vs intermittent,q001a010q001a001q006
+q001a010 q001a010q001a001 q001a010q001a001q004a003,qc001a010 qc008a001 qc020a003,hip pain Initial Evaluation Improving,qc026,constant vs intermittent,q001a010q001a001q006
+q001a010 q001a010q001a001 q001a010q001a001q005a001,qc001a010 qc008a001 qc045a001,hip pain Initial Evaluation NSAIDs,qc026,constant vs intermittent,q001a010q001a001q006
+q001a010 q001a010q001a001 q001a010q001a001q005a002,qc001a010 qc008a001 qc045a002,hip pain Initial Evaluation tylenol,qc026,constant vs intermittent,q001a010q001a001q006
+q001a010 q001a010q001a001 q001a010q001a001q005a003,qc001a010 qc008a001 qc045a003,hip pain Initial Evaluation cortisone shot,qc026,constant vs intermittent,q001a010q001a001q006
+q001a010 q001a010q001a001 q001a010q001a001q005a004,qc001a010 qc008a001 qc045a004,hip pain Initial Evaluation PT,qc026,constant vs intermittent,q001a010q001a001q006
+q001a010,qc001a010,hip pain,qc999,NA,NA
+q001a010 q001a010q001a001 q001a010q001a001q006a002,qc001a010 qc008a001 qc026a002,hip pain Initial Evaluation intermittent,qc027,frequency,q001a010q001a001q006a002q001
+q001a010 q001a010q001a001 q001a010q001a001q006a002 q001a010q001a001q006a002q001a001,qc001a010 qc008a001 qc026a002 qc027a001,hip pain Initial Evaluation intermittent more than 5 times a day,qc029,Duration,q001a010q001a001q006a002q002
+q001a010 q001a010q001a001 q001a010q001a001q006a002 q001a010q001a001q006a002q001a002,qc001a010 qc008a001 qc026a002 qc027a002,hip pain Initial Evaluation intermittent 2-5 times a day,qc029,Duration,q001a010q001a001q006a002q002
+q001a010 q001a010q001a001 q001a010q001a001q006a002 q001a010q001a001q006a002q001a003,qc001a010 qc008a001 qc026a002 qc027a003,hip pain Initial Evaluation intermittent once a day,qc029,Duration,q001a010q001a001q006a002q002
+q001a010 q001a010q001a001 q001a010q001a001q006a002 q001a010q001a001q006a002q001a004,qc001a010 qc008a001 qc026a002 qc027a004,hip pain Initial Evaluation intermittent less than once a day,qc028,frequcny detail,q001a010q001a001q006a002q001a004q001
+q001a010 q001a010q001a001 q001a010q001a001q006a002 q001a010q001a001q006a002q001a004,qc001a010 qc008a001 qc026a002 qc027a004,hip pain Initial Evaluation intermittent less than once a day,qc029,Duration,q001a010q001a001q006a002q002
+q001a010 q001a010q001a001 q001a010q001a001q006a002 q001a010q001a001q006a002q001a004,qc001a010 qc008a001 qc026a002 qc027a004,hip pain Initial Evaluation intermittent less than once a day,qc029,Duration,q001a010q001a001q006a002q002
+q001a010 q001a010q001a001 q001a010q001a001q006a002 q001a010q001a001q006a002q001a004,qc001a010 qc008a001 qc026a002 qc027a004,hip pain Initial Evaluation intermittent less than once a day,qc029,Duration,q001a010q001a001q006a002q002
+q001a010 q001a010q001a001 q001a010q001a001q006a002 q001a010q001a001q006a002q001a005,qc001a010 qc008a001 qc026a002 qc027a005,hip pain Initial Evaluation intermittent Constant,qc029,Duration,q001a010q001a001q006a002q002
+q001a010,qc001a010,hip pain,qc999,NA,NA
+q001a010,qc001a010,hip pain,qc999,NA,NA
+q001a010,qc001a010,hip pain,qc999,NA,NA
+q001a010,qc001a010,hip pain,qc999,NA,NA
+q001a010 q001a010q001a002,qc001a010 qc008a002,hip pain Follow up evaluation,qc012,Course since last evaluation,q001a010q001a002q001
+q001a010,qc001a010,hip pain,qc999,NA,NA
+q001a010,qc001a010,hip pain,qc999,NA,NA
+q001a010,qc001a010,hip pain,qc999,NA,NA
+q001a011,qc001a011,Urinary frequency,qc008,Initial vs Reval,q001a011q001
+q001a011 q001a011q001a001,qc001a011 qc008a001,Urinary frequency Initial Evaluation,qc009,Onset,q001a011q001a001q001
+q001a011 q001a011q001a001 q001a011q001a001q001a001,qc001a011 qc008a001 qc009a001,Urinary frequency Initial Evaluation 0-1 days ago,qc021,Associated symptoms,q001a011q001a001q004
+q001a011 q001a011q001a001 q001a011q001a001q001a002,qc001a011 qc008a001 qc009a002,Urinary frequency Initial Evaluation 2-6 days ago,qc010,Onset details,q001a011q001a001q001a002q001
+q001a011 q001a011q001a001 q001a011q001a001q001a002,qc001a011 qc008a001 qc009a002,Urinary frequency Initial Evaluation 2-6 days ago,qc021,Associated symptoms,q001a011q001a001q004
+q001a011 q001a011q001a001 q001a011q001a001q001a002,qc001a011 qc008a001 qc009a002,Urinary frequency Initial Evaluation 2-6 days ago,qc021,Associated symptoms,q001a011q001a001q004
+q001a011 q001a011q001a001 q001a011q001a001q001a002,qc001a011 qc008a001 qc009a002,Urinary frequency Initial Evaluation 2-6 days ago,qc021,Associated symptoms,q001a011q001a001q004
+q001a011 q001a011q001a001 q001a011q001a001q001a002,qc001a011 qc008a001 qc009a002,Urinary frequency Initial Evaluation 2-6 days ago,qc021,Associated symptoms,q001a011q001a001q004
+q001a011 q001a011q001a001 q001a011q001a001q001a002,qc001a011 qc008a001 qc009a002,Urinary frequency Initial Evaluation 2-6 days ago,qc021,Associated symptoms,q001a011q001a001q004
+q001a011 q001a011q001a001 q001a011q001a001q001a002,qc001a011 qc008a001 qc009a002,Urinary frequency Initial Evaluation 2-6 days ago,qc021,Associated symptoms,q001a011q001a001q004
+q001a011 q001a011q001a001 q001a011q001a001q001a003,qc001a011 qc008a001 qc009a003,Urinary frequency Initial Evaluation 1-2 weeks ago,qc021,Associated symptoms,q001a011q001a001q004
+q001a011 q001a011q001a001 q001a011q001a001q001a004,qc001a011 qc008a001 qc009a004,Urinary frequency Initial Evaluation More than 2 weeks ago,qc011,Onset details,q001a011q001a001q001a004q001
+q001a011 q001a011q001a001 q001a011q001a001q001a004,qc001a011 qc008a001 qc009a004,Urinary frequency Initial Evaluation More than 2 weeks ago,qc021,Associated symptoms,q001a011q001a001q004
+q001a011 q001a011q001a001 q001a011q001a001q001a004,qc001a011 qc008a001 qc009a004,Urinary frequency Initial Evaluation More than 2 weeks ago,qc021,Associated symptoms,q001a011q001a001q004
+q001a011 q001a011q001a001 q001a011q001a001q001a004,qc001a011 qc008a001 qc009a004,Urinary frequency Initial Evaluation More than 2 weeks ago,qc021,Associated symptoms,q001a011q001a001q004
+q001a011 q001a011q001a001 q001a011q001a001q002a001,qc001a011 qc008a001 qc020a001,Urinary frequency Initial Evaluation Progressing,qc021,Associated symptoms,q001a011q001a001q004
+q001a011 q001a011q001a001 q001a011q001a001q002a002,qc001a011 qc008a001 qc020a002,"Urinary frequency Initial Evaluation Stable, persistent",qc021,Associated symptoms,q001a011q001a001q004
+q001a011 q001a011q001a001 q001a011q001a001q002a003,qc001a011 qc008a001 qc020a003,Urinary frequency Initial Evaluation Improving,qc021,Associated symptoms,q001a011q001a001q004
+q001a011 q001a011q001a001 q001a011q001a001q003a001,qc001a011 qc008a001 qc046a001,Urinary frequency Initial Evaluation 1-4 a day,qc021,Associated symptoms,q001a011q001a001q004
+q001a011 q001a011q001a001 q001a011q001a001q003a002,qc001a011 qc008a001 qc046a002,Urinary frequency Initial Evaluation 5-8 a day,qc021,Associated symptoms,q001a011q001a001q004
+q001a011 q001a011q001a001 q001a011q001a001q003a003,qc001a011 qc008a001 qc046a003,Urinary frequency Initial Evaluation 9-10 a day,qc021,Associated symptoms,q001a011q001a001q004
+q001a011 q001a011q001a001 q001a011q001a001q003a004,qc001a011 qc008a001 qc046a004,Urinary frequency Initial Evaluation greater than 10 a day,qc021,Associated symptoms,q001a011q001a001q004
+q001a011 q001a011q001a001 q001a011q001a001q003a010,qc001a011 qc008a001 ,Urinary frequency Initial Evaluation ,qc021,Associated symptoms,q001a011q001a001q004
+q001a011 q001a011q001a001 q001a011q001a001q003a010,qc001a011 qc008a001 ,Urinary frequency Initial Evaluation ,qc021,Associated symptoms,q001a011q001a001q004
+q001a011 q001a011q001a001 q001a011q001a001q003a010,qc001a011 qc008a001 ,Urinary frequency Initial Evaluation ,qc021,Associated symptoms,q001a011q001a001q004
+q001a011 q001a011q001a001 q001a011q001a001q003a010,qc001a011 qc008a001 ,Urinary frequency Initial Evaluation ,qc021,Associated symptoms,q001a011q001a001q004
+q001a011,qc001a011,Urinary frequency,qc999,NA,NA
+q001a011,qc001a011,Urinary frequency,qc999,NA,NA
+q001a011,qc001a011,Urinary frequency,qc999,NA,NA
+q001a011,qc001a011,Urinary frequency,qc999,NA,NA
+q001a011,qc001a011,Urinary frequency,qc999,NA,NA
+q001a011,qc001a011,Urinary frequency,qc999,NA,NA
+q001a011,qc001a011,Urinary frequency,qc999,NA,NA
+q001a011,qc001a011,Urinary frequency,qc999,NA,NA
+q001a011,qc001a011,Urinary frequency,qc999,NA,NA
+q001a011 q001a011q001a001 q001a011q001a001q004a010,qc001a011 qc008a001 qc021a010,Urinary frequency Initial Evaluation Fever,qc016,Measured Temperature,q001a011q001a001q004a010q001
+q001a011,qc001a011,Urinary frequency,qc999,NA,NA
+q001a011,qc001a011,Urinary frequency,qc999,NA,NA
+q001a011,qc001a011,Urinary frequency,qc999,NA,NA
+q001a011,qc001a011,Urinary frequency,qc999,NA,NA
+q001a011 q001a011q001a002,qc001a011 qc008a002,Urinary frequency Follow up evaluation,qc012,Course since last evaluation,q001a011q001a002q001
+q001a011,qc001a011,Urinary frequency,qc999,NA,NA
+q001a011,qc001a011,Urinary frequency,qc999,NA,NA
+q001a011,qc001a011,Urinary frequency,qc999,NA,NA
+q001a012,qc001a012,Constipation,qc008,Initial vs Reval,q001a012q001
+q001a012 q001a012q001a001,qc001a012 qc008a001,Constipation Initial Evaluation,qc009,Onset,q001a012q001a001q001
+q001a012 q001a012q001a001 q001a012q001a001q001a001,qc001a012 qc008a001 qc009a001,Constipation Initial Evaluation 0-1 days ago,qc051,associated sympotms (Abdomen),q001a012q001a001q006
+q001a012 q001a012q001a001 q001a012q001a001q001a002,qc001a012 qc008a001 qc009a002,Constipation Initial Evaluation 2-6 days ago,qc010,Onset details,q001a012q001a001q001a002q001
+q001a012 q001a012q001a001 q001a012q001a001q001a002,qc001a012 qc008a001 qc009a002,Constipation Initial Evaluation 2-6 days ago,qc051,associated sympotms (Abdomen),q001a012q001a001q006
+q001a012 q001a012q001a001 q001a012q001a001q001a002,qc001a012 qc008a001 qc009a002,Constipation Initial Evaluation 2-6 days ago,qc051,associated sympotms (Abdomen),q001a012q001a001q006
+q001a012 q001a012q001a001 q001a012q001a001q001a002,qc001a012 qc008a001 qc009a002,Constipation Initial Evaluation 2-6 days ago,qc051,associated sympotms (Abdomen),q001a012q001a001q006
+q001a012 q001a012q001a001 q001a012q001a001q001a002,qc001a012 qc008a001 qc009a002,Constipation Initial Evaluation 2-6 days ago,qc051,associated sympotms (Abdomen),q001a012q001a001q006
+q001a012 q001a012q001a001 q001a012q001a001q001a002,qc001a012 qc008a001 qc009a002,Constipation Initial Evaluation 2-6 days ago,qc051,associated sympotms (Abdomen),q001a012q001a001q006
+q001a012 q001a012q001a001 q001a012q001a001q001a002,qc001a012 qc008a001 qc009a002,Constipation Initial Evaluation 2-6 days ago,qc051,associated sympotms (Abdomen),q001a012q001a001q006
+q001a012 q001a012q001a001 q001a012q001a001q001a003,qc001a012 qc008a001 qc009a003,Constipation Initial Evaluation 1-2 weeks ago,qc051,associated sympotms (Abdomen),q001a012q001a001q006
+q001a012 q001a012q001a001 q001a012q001a001q001a004,qc001a012 qc008a001 qc009a004,Constipation Initial Evaluation More than 2 weeks ago,qc011,Onset details,q001a012q001a001q001a004q001
+q001a012 q001a012q001a001 q001a012q001a001q001a004,qc001a012 qc008a001 qc009a004,Constipation Initial Evaluation More than 2 weeks ago,qc051,associated sympotms (Abdomen),q001a012q001a001q006
+q001a012 q001a012q001a001 q001a012q001a001q001a004,qc001a012 qc008a001 qc009a004,Constipation Initial Evaluation More than 2 weeks ago,qc051,associated sympotms (Abdomen),q001a012q001a001q006
+q001a012 q001a012q001a001 q001a012q001a001q001a004,qc001a012 qc008a001 qc009a004,Constipation Initial Evaluation More than 2 weeks ago,qc051,associated sympotms (Abdomen),q001a012q001a001q006
+q001a012 q001a012q001a001 q001a012q001a001q002a001,qc001a012 qc008a001 qc047a001,Constipation Initial Evaluation 0,qc051,associated sympotms (Abdomen),q001a012q001a001q006
+q001a012 q001a012q001a001 q001a012q001a001q002a002,qc001a012 qc008a001 qc047a002,Constipation Initial Evaluation 44563,qc051,associated sympotms (Abdomen),q001a012q001a001q006
+q001a012 q001a012q001a001 q001a012q001a001q002a003,qc001a012 qc008a001 qc047a003,Constipation Initial Evaluation 3 or greater,qc051,associated sympotms (Abdomen),q001a012q001a001q006
+q001a012 q001a012q001a001 q001a012q001a001q003a001,qc001a012 qc008a001 qc048a001,Constipation Initial Evaluation None,qc051,associated sympotms (Abdomen),q001a012q001a001q006
+q001a012 q001a012q001a001 q001a012q001a001q003a002,qc001a012 qc008a001 qc048a002,Constipation Initial Evaluation Little,qc051,associated sympotms (Abdomen),q001a012q001a001q006
+q001a012 q001a012q001a001 q001a012q001a001q003a003,qc001a012 qc008a001 qc048a003,Constipation Initial Evaluation Moderate to large,qc051,associated sympotms (Abdomen),q001a012q001a001q006
+q001a012 q001a012q001a001 q001a012q001a001q004a001,qc001a012 qc008a001 qc049a001,Constipation Initial Evaluation Normal,qc051,associated sympotms (Abdomen),q001a012q001a001q006
+q001a012 q001a012q001a001 q001a012q001a001q004a002,qc001a012 qc008a001 qc049a002,"Constipation Initial Evaluation Small size, condensed",qc051,associated sympotms (Abdomen),q001a012q001a001q006
+q001a012 q001a012q001a001 q001a012q001a001q004a003,qc001a012 qc008a001 qc049a003,Constipation Initial Evaluation Watery,qc051,associated sympotms (Abdomen),q001a012q001a001q006
+q001a012 q001a012q001a001 q001a012q001a001q005a001,qc001a012 qc008a001 qc050a001,Constipation Initial Evaluation Milk of Magnesia,qc051,associated sympotms (Abdomen),q001a012q001a001q006
+q001a012 q001a012q001a001 q001a012q001a001q005a002,qc001a012 qc008a001 qc050a002,Constipation Initial Evaluation Miralax,qc051,associated sympotms (Abdomen),q001a012q001a001q006
+q001a012 q001a012q001a001 q001a012q001a001q005a003,qc001a012 qc008a001 qc050a003,Constipation Initial Evaluation Dulcolax,qc051,associated sympotms (Abdomen),q001a012q001a001q006
+q001a012 q001a012q001a001 q001a012q001a001q005a004,qc001a012 qc008a001 qc050a004,Constipation Initial Evaluation Senokot,qc051,associated sympotms (Abdomen),q001a012q001a001q006
+q001a012 q001a012q001a001 q001a012q001a001q005a005,qc001a012 qc008a001 qc050a005,Constipation Initial Evaluation Metamucil,qc051,associated sympotms (Abdomen),q001a012q001a001q006
+q001a012 q001a012q001a001 q001a012q001a001q005a006,qc001a012 qc008a001 qc050a006,Constipation Initial Evaluation Other OTC,qc051,associated sympotms (Abdomen),q001a012q001a001q006
+q001a012,qc001a012,Constipation,qc999,NA,NA
+q001a012,qc001a012,Constipation,qc999,NA,NA
+q001a012 q001a012q001a001 q001a012q001a001q006a003,qc001a012 qc008a001 qc051a003,Constipation Initial Evaluation Vomit,qc052,Vomit frequency for past 48 hours,q001a012q001a001q006a003q001
+q001a012 q001a012q001a001 q001a012q001a001q006a003 q001a012q001a001q006a003q001a001,qc001a012 qc008a001 qc051a003 qc052a001,Constipation Initial Evaluation Vomit 44563,qc053,Vomit character,q001a012q001a001q006a003q002
+q001a012 q001a012q001a001 q001a012q001a001q006a003 q001a012q001a001q006a003q001a002,qc001a012 qc008a001 qc051a003 qc052a002,Constipation Initial Evaluation Vomit 44625,qc053,Vomit character,q001a012q001a001q006a003q002
+q001a012 q001a012q001a001 q001a012q001a001q006a003 q001a012q001a001q006a003q001a003,qc001a012 qc008a001 qc051a003 qc052a003,Constipation Initial Evaluation Vomit 6 or greater,qc053,Vomit character,q001a012q001a001q006a003q002
+q001a012,qc001a012,Constipation,qc999,NA,NA
+q001a012,qc001a012,Constipation,qc999,NA,NA
+q001a012,qc001a012,Constipation,qc999,NA,NA
+q001a012,qc001a012,Constipation,qc999,NA,NA
+q001a012 q001a012q001a001 q001a012q001a001q006a005,qc001a012 qc008a001 qc051a005,Constipation Initial Evaluation Abdominal pain,qc054,location,q001a012q001a001q006a005q001
+q001a012 q001a012q001a001 q001a012q001a001q006a005 q001a012q001a001q006a005q001a001,qc001a012 qc008a001 qc051a005 qc054a001,Constipation Initial Evaluation Abdominal pain Epigastric,qc027,frequency,q001a012q001a001q006a005q003
+q001a012 q001a012q001a001 q001a012q001a001q006a005 q001a012q001a001q006a005q001a002,qc001a012 qc008a001 qc051a005 qc054a002,Constipation Initial Evaluation Abdominal pain RUQ,qc027,frequency,q001a012q001a001q006a005q003
+q001a012 q001a012q001a001 q001a012q001a001q006a005 q001a012q001a001q006a005q001a003,qc001a012 qc008a001 qc051a005 qc054a003,Constipation Initial Evaluation Abdominal pain LUQ,qc027,frequency,q001a012q001a001q006a005q003
+q001a012 q001a012q001a001 q001a012q001a001q006a005 q001a012q001a001q006a005q001a004,qc001a012 qc008a001 qc051a005 qc054a004,Constipation Initial Evaluation Abdominal pain Periumbilical,qc027,frequency,q001a012q001a001q006a005q003
+q001a012 q001a012q001a001 q001a012q001a001q006a005 q001a012q001a001q006a005q001a005,qc001a012 qc008a001 qc051a005 qc054a005,Constipation Initial Evaluation Abdominal pain RLQ,qc027,frequency,q001a012q001a001q006a005q003
+q001a012 q001a012q001a001 q001a012q001a001q006a005 q001a012q001a001q006a005q001a006,qc001a012 qc008a001 qc051a005 qc054a006,Constipation Initial Evaluation Abdominal pain LLQ,qc027,frequency,q001a012q001a001q006a005q003
+q001a012 q001a012q001a001 q001a012q001a001q006a005 q001a012q001a001q006a005q001a007,qc001a012 qc008a001 qc051a005 qc054a007,Constipation Initial Evaluation Abdominal pain General,qc027,frequency,q001a012q001a001q006a005q003
+q001a012 q001a012q001a001 q001a012q001a001q006a005 q001a012q001a001q006a005q002a001,qc001a012 qc008a001 qc051a005 qc032a001,Constipation Initial Evaluation Abdominal pain 1,qc027,frequency,q001a012q001a001q006a005q003
+q001a012 q001a012q001a001 q001a012q001a001q006a005 q001a012q001a001q006a005q002a002,qc001a012 qc008a001 qc051a005 qc032a002,Constipation Initial Evaluation Abdominal pain 2,qc027,frequency,q001a012q001a001q006a005q003
+q001a012 q001a012q001a001 q001a012q001a001q006a005 q001a012q001a001q006a005q002a003,qc001a012 qc008a001 qc051a005 qc032a003,Constipation Initial Evaluation Abdominal pain 3,qc027,frequency,q001a012q001a001q006a005q003
+q001a012 q001a012q001a001 q001a012q001a001q006a005 q001a012q001a001q006a005q002a004,qc001a012 qc008a001 qc051a005 qc032a004,Constipation Initial Evaluation Abdominal pain 4,qc027,frequency,q001a012q001a001q006a005q003
+q001a012 q001a012q001a001 q001a012q001a001q006a005 q001a012q001a001q006a005q002a005,qc001a012 qc008a001 qc051a005 qc032a005,Constipation Initial Evaluation Abdominal pain 5,qc027,frequency,q001a012q001a001q006a005q003
+q001a012 q001a012q001a001 q001a012q001a001q006a005 q001a012q001a001q006a005q002a006,qc001a012 qc008a001 qc051a005 qc032a006,Constipation Initial Evaluation Abdominal pain 6,qc027,frequency,q001a012q001a001q006a005q003
+q001a012 q001a012q001a001 q001a012q001a001q006a005 q001a012q001a001q006a005q002a007,qc001a012 qc008a001 qc051a005 qc032a007,Constipation Initial Evaluation Abdominal pain 7,qc027,frequency,q001a012q001a001q006a005q003
+q001a012 q001a012q001a001 q001a012q001a001q006a005 q001a012q001a001q006a005q002a008,qc001a012 qc008a001 qc051a005 qc032a008,Constipation Initial Evaluation Abdominal pain 8,qc027,frequency,q001a012q001a001q006a005q003
+q001a012 q001a012q001a001 q001a012q001a001q006a005 q001a012q001a001q006a005q002a009,qc001a012 qc008a001 qc051a005 qc032a009,Constipation Initial Evaluation Abdominal pain 9,qc027,frequency,q001a012q001a001q006a005q003
+q001a012 q001a012q001a001 q001a012q001a001q006a005 q001a012q001a001q006a005q002a010,qc001a012 qc008a001 qc051a005 qc032a010,Constipation Initial Evaluation Abdominal pain 10,qc027,frequency,q001a012q001a001q006a005q003
+q001a012,qc001a012,Constipation,qc999,NA,NA
+q001a012,qc001a012,Constipation,qc999,NA,NA
+q001a012,qc001a012,Constipation,qc999,NA,NA
+q001a012,qc001a012,Constipation,qc999,NA,NA
+q001a012,qc001a012,Constipation,qc999,NA,NA
+q001a012 q001a012q001a002,qc001a012 qc008a002,Constipation Follow up evaluation,qc012,Course since last evaluation,q001a012q001a002q001
+q001a012,qc001a012,Constipation,qc999,NA,NA
+q001a012,qc001a012,Constipation,qc999,NA,NA
+q001a012,qc001a012,Constipation,qc999,NA,NA
+q001a013,qc001a013,Left inguinal hernia,qc008,Initial vs Reval,q001a013q001
+q001a013 q001a013q001a001,qc001a013 qc008a001,Left inguinal hernia Initial Evaluation,qc009,Onset,q001a013q001a001q001
+q001a013 q001a013q001a001 q001a013q001a001q001a001,qc001a013 qc008a001 qc009a001,Left inguinal hernia Initial Evaluation 0-1 days ago,qc020,Course since onset,q001a013q001a001q005
+q001a013 q001a013q001a001 q001a013q001a001q001a002,qc001a013 qc008a001 qc009a002,Left inguinal hernia Initial Evaluation 2-6 days ago,qc010,Onset details,q001a013q001a001q001a002q001
+q001a013 q001a013q001a001 q001a013q001a001q001a002,qc001a013 qc008a001 qc009a002,Left inguinal hernia Initial Evaluation 2-6 days ago,qc020,Course since onset,q001a013q001a001q005
+q001a013 q001a013q001a001 q001a013q001a001q001a002,qc001a013 qc008a001 qc009a002,Left inguinal hernia Initial Evaluation 2-6 days ago,qc020,Course since onset,q001a013q001a001q005
+q001a013 q001a013q001a001 q001a013q001a001q001a002,qc001a013 qc008a001 qc009a002,Left inguinal hernia Initial Evaluation 2-6 days ago,qc020,Course since onset,q001a013q001a001q005
+q001a013 q001a013q001a001 q001a013q001a001q001a002,qc001a013 qc008a001 qc009a002,Left inguinal hernia Initial Evaluation 2-6 days ago,qc020,Course since onset,q001a013q001a001q005
+q001a013 q001a013q001a001 q001a013q001a001q001a002,qc001a013 qc008a001 qc009a002,Left inguinal hernia Initial Evaluation 2-6 days ago,qc020,Course since onset,q001a013q001a001q005
+q001a013 q001a013q001a001 q001a013q001a001q001a002,qc001a013 qc008a001 qc009a002,Left inguinal hernia Initial Evaluation 2-6 days ago,qc020,Course since onset,q001a013q001a001q005
+q001a013 q001a013q001a001 q001a013q001a001q001a003,qc001a013 qc008a001 qc009a003,Left inguinal hernia Initial Evaluation 1-2 weeks ago,qc020,Course since onset,q001a013q001a001q005
+q001a013 q001a013q001a001 q001a013q001a001q001a004,qc001a013 qc008a001 qc009a004,Left inguinal hernia Initial Evaluation More than 2 weeks ago,qc011,Onset details,q001a013q001a001q001a004q001
+q001a013 q001a013q001a001 q001a013q001a001q001a004,qc001a013 qc008a001 qc009a004,Left inguinal hernia Initial Evaluation More than 2 weeks ago,qc020,Course since onset,q001a013q001a001q005
+q001a013 q001a013q001a001 q001a013q001a001q001a004,qc001a013 qc008a001 qc009a004,Left inguinal hernia Initial Evaluation More than 2 weeks ago,qc020,Course since onset,q001a013q001a001q005
+q001a013 q001a013q001a001 q001a013q001a001q001a004,qc001a013 qc008a001 qc009a004,Left inguinal hernia Initial Evaluation More than 2 weeks ago,qc020,Course since onset,q001a013q001a001q005
+q001a013 q001a013q001a001 q001a013q001a001q002a001,qc001a013 qc008a001 qc036a001,Left inguinal hernia Initial Evaluation yes,qc020,Course since onset,q001a013q001a001q005
+q001a013 q001a013q001a001 q001a013q001a001q002a002,qc001a013 qc008a001 qc036a002,Left inguinal hernia Initial Evaluation no,qc020,Course since onset,q001a013q001a001q005
+q001a013 q001a013q001a001 q001a013q001a001q003a001,qc001a013 qc008a001 qc047a001,Left inguinal hernia Initial Evaluation 0,qc020,Course since onset,q001a013q001a001q005
+q001a013 q001a013q001a001 q001a013q001a001q003a002,qc001a013 qc008a001 qc047a002,Left inguinal hernia Initial Evaluation 44563,qc020,Course since onset,q001a013q001a001q005
+q001a013 q001a013q001a001 q001a013q001a001q003a003,qc001a013 qc008a001 qc047a003,Left inguinal hernia Initial Evaluation 3 or greater,qc020,Course since onset,q001a013q001a001q005
+q001a013 q001a013q001a001 q001a013q001a001q004a001,qc001a013 qc008a001 qc051a001,Left inguinal hernia Initial Evaluation Bloating,qc020,Course since onset,q001a013q001a001q005
+q001a013 q001a013q001a001 q001a013q001a001q004a002,qc001a013 qc008a001 qc051a002,Left inguinal hernia Initial Evaluation Nausea,qc020,Course since onset,q001a013q001a001q005
+q001a013 q001a013q001a001 q001a013q001a001q004a003,qc001a013 qc008a001 qc051a003,Left inguinal hernia Initial Evaluation Vomit,qc020,Course since onset,q001a013q001a001q005
+q001a013 q001a013q001a001 q001a013q001a001q004a004,qc001a013 qc008a001 qc051a004,Left inguinal hernia Initial Evaluation Diarrhea,qc020,Course since onset,q001a013q001a001q005
+q001a013 q001a013q001a001 q001a013q001a001q004a005,qc001a013 qc008a001 qc051a005,Left inguinal hernia Initial Evaluation Abdominal pain,qc054,location,q001a013q001a001q004a005q001
+q001a013 q001a013q001a001 q001a013q001a001q004a005 q001a013q001a001q004a005q001a001,qc001a013 qc008a001 qc051a005 qc054a001,Left inguinal hernia Initial Evaluation Abdominal pain Epigastric,qc032,severity,q001a013q001a001q004a005q002
+q001a013 q001a013q001a001 q001a013q001a001q004a005 q001a013q001a001q004a005q001a002,qc001a013 qc008a001 qc051a005 qc054a002,Left inguinal hernia Initial Evaluation Abdominal pain RUQ,qc032,severity,q001a013q001a001q004a005q002
+q001a013 q001a013q001a001 q001a013q001a001q004a005 q001a013q001a001q004a005q001a003,qc001a013 qc008a001 qc051a005 qc054a003,Left inguinal hernia Initial Evaluation Abdominal pain LUQ,qc032,severity,q001a013q001a001q004a005q002
+q001a013 q001a013q001a001 q001a013q001a001q004a005 q001a013q001a001q004a005q001a004,qc001a013 qc008a001 qc051a005 qc054a004,Left inguinal hernia Initial Evaluation Abdominal pain Periumbilical,qc032,severity,q001a013q001a001q004a005q002
+q001a013 q001a013q001a001 q001a013q001a001q004a005 q001a013q001a001q004a005q001a005,qc001a013 qc008a001 qc051a005 qc054a005,Left inguinal hernia Initial Evaluation Abdominal pain RLQ,qc032,severity,q001a013q001a001q004a005q002
+q001a013 q001a013q001a001 q001a013q001a001q004a005 q001a013q001a001q004a005q001a006,qc001a013 qc008a001 qc051a005 qc054a006,Left inguinal hernia Initial Evaluation Abdominal pain LLQ,qc032,severity,q001a013q001a001q004a005q002
+q001a013 q001a013q001a001 q001a013q001a001q004a005 q001a013q001a001q004a005q001a007,qc001a013 qc008a001 qc051a005 qc054a007,Left inguinal hernia Initial Evaluation Abdominal pain General,qc032,severity,q001a013q001a001q004a005q002
+q001a013 q001a013q001a001 q001a013q001a001q004a005,qc001a013 qc008a001 qc051a005,Left inguinal hernia Initial Evaluation Abdominal pain,qc020,Course since onset,q001a013q001a001q005
+q001a013 q001a013q001a001 q001a013q001a001q004a005,qc001a013 qc008a001 qc051a005,Left inguinal hernia Initial Evaluation Abdominal pain,qc020,Course since onset,q001a013q001a001q005
+q001a013 q001a013q001a001 q001a013q001a001q004a005,qc001a013 qc008a001 qc051a005,Left inguinal hernia Initial Evaluation Abdominal pain,qc020,Course since onset,q001a013q001a001q005
+q001a013 q001a013q001a001 q001a013q001a001q004a005,qc001a013 qc008a001 qc051a005,Left inguinal hernia Initial Evaluation Abdominal pain,qc020,Course since onset,q001a013q001a001q005
+q001a013 q001a013q001a001 q001a013q001a001q004a005,qc001a013 qc008a001 qc051a005,Left inguinal hernia Initial Evaluation Abdominal pain,qc020,Course since onset,q001a013q001a001q005
+q001a013 q001a013q001a001 q001a013q001a001q004a005,qc001a013 qc008a001 qc051a005,Left inguinal hernia Initial Evaluation Abdominal pain,qc020,Course since onset,q001a013q001a001q005
+q001a013 q001a013q001a001 q001a013q001a001q004a005,qc001a013 qc008a001 qc051a005,Left inguinal hernia Initial Evaluation Abdominal pain,qc020,Course since onset,q001a013q001a001q005
+q001a013 q001a013q001a001 q001a013q001a001q004a005,qc001a013 qc008a001 qc051a005,Left inguinal hernia Initial Evaluation Abdominal pain,qc020,Course since onset,q001a013q001a001q005
+q001a013 q001a013q001a001 q001a013q001a001q004a005,qc001a013 qc008a001 qc051a005,Left inguinal hernia Initial Evaluation Abdominal pain,qc020,Course since onset,q001a013q001a001q005
+q001a013 q001a013q001a001 q001a013q001a001q004a005,qc001a013 qc008a001 qc051a005,Left inguinal hernia Initial Evaluation Abdominal pain,qc020,Course since onset,q001a013q001a001q005
+q001a013,qc001a013,Left inguinal hernia,qc999,NA,NA
+q001a013,qc001a013,Left inguinal hernia,qc999,NA,NA
+q001a013,qc001a013,Left inguinal hernia,qc999,NA,NA
+q001a013 q001a013q001a002,qc001a013 qc008a002,Left inguinal hernia Follow up evaluation,qc012,Course since last evaluation,q001a013q001a002q001
+q001a013,qc001a013,Left inguinal hernia,qc999,NA,NA
+q001a013,qc001a013,Left inguinal hernia,qc999,NA,NA
+q001a013,qc001a013,Left inguinal hernia,qc999,NA,NA
+q001a014,qc001a014,Ear discomfort,qc008,Initial vs Reval,q001a014q001
+q001a014 q001a014q001a001,qc001a014 qc008a001,Ear discomfort Initial Evaluation,qc009,Onset,q001a014q001a001q001
+q001a014 q001a014q001a001 q001a014q001a001q001a001,qc001a014 qc008a001 qc009a001,Ear discomfort Initial Evaluation 0-1 days ago,qc057,Injury near onset,q001a014q001a001q005
+q001a014 q001a014q001a001 q001a014q001a001q001a002,qc001a014 qc008a001 qc009a002,Ear discomfort Initial Evaluation 2-6 days ago,qc010,Onset details,q001a014q001a001q001a002q001
+q001a014 q001a014q001a001 q001a014q001a001q001a002,qc001a014 qc008a001 qc009a002,Ear discomfort Initial Evaluation 2-6 days ago,qc057,Injury near onset,q001a014q001a001q005
+q001a014 q001a014q001a001 q001a014q001a001q001a002,qc001a014 qc008a001 qc009a002,Ear discomfort Initial Evaluation 2-6 days ago,qc057,Injury near onset,q001a014q001a001q005
+q001a014 q001a014q001a001 q001a014q001a001q001a002,qc001a014 qc008a001 qc009a002,Ear discomfort Initial Evaluation 2-6 days ago,qc057,Injury near onset,q001a014q001a001q005
+q001a014 q001a014q001a001 q001a014q001a001q001a002,qc001a014 qc008a001 qc009a002,Ear discomfort Initial Evaluation 2-6 days ago,qc057,Injury near onset,q001a014q001a001q005
+q001a014 q001a014q001a001 q001a014q001a001q001a002,qc001a014 qc008a001 qc009a002,Ear discomfort Initial Evaluation 2-6 days ago,qc057,Injury near onset,q001a014q001a001q005
+q001a014 q001a014q001a001 q001a014q001a001q001a002,qc001a014 qc008a001 qc009a002,Ear discomfort Initial Evaluation 2-6 days ago,qc057,Injury near onset,q001a014q001a001q005
+q001a014 q001a014q001a001 q001a014q001a001q001a003,qc001a014 qc008a001 qc009a003,Ear discomfort Initial Evaluation 1-2 weeks ago,qc057,Injury near onset,q001a014q001a001q005
+q001a014 q001a014q001a001 q001a014q001a001q001a004,qc001a014 qc008a001 qc009a004,Ear discomfort Initial Evaluation More than 2 weeks ago,qc011,Onset details,q001a014q001a001q001a004q001
+q001a014 q001a014q001a001 q001a014q001a001q001a004,qc001a014 qc008a001 qc009a004,Ear discomfort Initial Evaluation More than 2 weeks ago,qc057,Injury near onset,q001a014q001a001q005
+q001a014 q001a014q001a001 q001a014q001a001q001a004,qc001a014 qc008a001 qc009a004,Ear discomfort Initial Evaluation More than 2 weeks ago,qc057,Injury near onset,q001a014q001a001q005
+q001a014 q001a014q001a001 q001a014q001a001q001a004,qc001a014 qc008a001 qc009a004,Ear discomfort Initial Evaluation More than 2 weeks ago,qc057,Injury near onset,q001a014q001a001q005
+q001a014 q001a014q001a001 q001a014q001a001q002a001,qc001a014 qc008a001 qc055a001,Ear discomfort Initial Evaluation pain,qc032,severity,q001a014q001a001q002a001q001
+q001a014 q001a014q001a001 q001a014q001a001q002a001,qc001a014 qc008a001 qc055a001,Ear discomfort Initial Evaluation pain,qc057,Injury near onset,q001a014q001a001q005
+q001a014 q001a014q001a001 q001a014q001a001q002a001,qc001a014 qc008a001 qc055a001,Ear discomfort Initial Evaluation pain,qc057,Injury near onset,q001a014q001a001q005
+q001a014 q001a014q001a001 q001a014q001a001q002a001,qc001a014 qc008a001 qc055a001,Ear discomfort Initial Evaluation pain,qc057,Injury near onset,q001a014q001a001q005
+q001a014 q001a014q001a001 q001a014q001a001q002a001,qc001a014 qc008a001 qc055a001,Ear discomfort Initial Evaluation pain,qc057,Injury near onset,q001a014q001a001q005
+q001a014 q001a014q001a001 q001a014q001a001q002a001,qc001a014 qc008a001 qc055a001,Ear discomfort Initial Evaluation pain,qc057,Injury near onset,q001a014q001a001q005
+q001a014 q001a014q001a001 q001a014q001a001q002a001,qc001a014 qc008a001 qc055a001,Ear discomfort Initial Evaluation pain,qc057,Injury near onset,q001a014q001a001q005
+q001a014 q001a014q001a001 q001a014q001a001q002a001,qc001a014 qc008a001 qc055a001,Ear discomfort Initial Evaluation pain,qc057,Injury near onset,q001a014q001a001q005
+q001a014 q001a014q001a001 q001a014q001a001q002a001,qc001a014 qc008a001 qc055a001,Ear discomfort Initial Evaluation pain,qc057,Injury near onset,q001a014q001a001q005
+q001a014 q001a014q001a001 q001a014q001a001q002a001,qc001a014 qc008a001 qc055a001,Ear discomfort Initial Evaluation pain,qc057,Injury near onset,q001a014q001a001q005
+q001a014 q001a014q001a001 q001a014q001a001q002a001,qc001a014 qc008a001 qc055a001,Ear discomfort Initial Evaluation pain,qc057,Injury near onset,q001a014q001a001q005
+q001a014 q001a014q001a001 q001a014q001a001q002a002,qc001a014 qc008a001 qc055a002,Ear discomfort Initial Evaluation fullness,qc057,Injury near onset,q001a014q001a001q005
+q001a014 q001a014q001a001 q001a014q001a001q002a003,qc001a014 qc008a001 qc055a003,Ear discomfort Initial Evaluation itching,qc057,Injury near onset,q001a014q001a001q005
+q001a014 q001a014q001a001 q001a014q001a001q002a004,qc001a014 qc008a001 qc055a004,Ear discomfort Initial Evaluation drainage,qc056,drainage character,q001a014q001a001q002a004q001
+q001a014 q001a014q001a001 q001a014q001a001q002a004,qc001a014 qc008a001 qc055a004,Ear discomfort Initial Evaluation drainage,qc057,Injury near onset,q001a014q001a001q005
+q001a014 q001a014q001a001 q001a014q001a001q002a004,qc001a014 qc008a001 qc055a004,Ear discomfort Initial Evaluation drainage,qc057,Injury near onset,q001a014q001a001q005
+q001a014 q001a014q001a001 q001a014q001a001q002a004,qc001a014 qc008a001 qc055a004,Ear discomfort Initial Evaluation drainage,qc057,Injury near onset,q001a014q001a001q005
+q001a014 q001a014q001a001 q001a014q001a001q002a005,qc001a014 qc008a001 qc055a005,Ear discomfort Initial Evaluation hearing difficulty,qc057,Injury near onset,q001a014q001a001q005
+q001a014 q001a014q001a001 q001a014q001a001q003a001,qc001a014 qc008a001 qc020a001,Ear discomfort Initial Evaluation Progressing,qc057,Injury near onset,q001a014q001a001q005
+q001a014 q001a014q001a001 q001a014q001a001q003a002,qc001a014 qc008a001 qc020a002,"Ear discomfort Initial Evaluation Stable, persistent",qc057,Injury near onset,q001a014q001a001q005
+q001a014 q001a014q001a001 q001a014q001a001q003a003,qc001a014 qc008a001 qc020a003,Ear discomfort Initial Evaluation Improving,qc057,Injury near onset,q001a014q001a001q005
+q001a014 q001a014q001a001 q001a014q001a001q004a001,qc001a014 qc008a001 qc022a001,Ear discomfort Initial Evaluation Right,qc057,Injury near onset,q001a014q001a001q005
+q001a014 q001a014q001a001 q001a014q001a001q004a002,qc001a014 qc008a001 qc022a002,Ear discomfort Initial Evaluation Left,qc057,Injury near onset,q001a014q001a001q005
+q001a014 q001a014q001a001 q001a014q001a001q004a003,qc001a014 qc008a001 qc022a003,Ear discomfort Initial Evaluation Both,qc057,Injury near onset,q001a014q001a001q005
+q001a014,qc001a014,Ear discomfort,qc999,NA,NA
+q001a014,qc001a014,Ear discomfort,qc999,NA,NA
+q001a014 q001a014q001a002,qc001a014 qc008a002,Ear discomfort Follow up evaluation,qc012,Course since last evaluation,q001a014q001a002q001
+q001a014,qc001a014,Ear discomfort,qc999,NA,NA
+q001a014,qc001a014,Ear discomfort,qc999,NA,NA
+q001a014,qc001a014,Ear discomfort,qc999,NA,NA
+q001a015,qc001a015,reflux,qc008,Initial vs Reval,q001a015q001
+q001a015 q001a015q001a001,qc001a015 qc008a001,reflux Initial Evaluation,qc009,Onset,q001a015q001a001q001
+q001a015 q001a015q001a001 q001a015q001a001q001a001,qc001a015 qc008a001 qc009a001,reflux Initial Evaluation 0-1 days ago,qc060,Associated symptom,q001a015q001a001q005
+q001a015 q001a015q001a001 q001a015q001a001q001a002,qc001a015 qc008a001 qc009a002,reflux Initial Evaluation 2-6 days ago,qc010,Onset details,q001a015q001a001q001a002q001
+q001a015 q001a015q001a001 q001a015q001a001q001a002,qc001a015 qc008a001 qc009a002,reflux Initial Evaluation 2-6 days ago,qc060,Associated symptom,q001a015q001a001q005
+q001a015 q001a015q001a001 q001a015q001a001q001a002,qc001a015 qc008a001 qc009a002,reflux Initial Evaluation 2-6 days ago,qc060,Associated symptom,q001a015q001a001q005
+q001a015 q001a015q001a001 q001a015q001a001q001a002,qc001a015 qc008a001 qc009a002,reflux Initial Evaluation 2-6 days ago,qc060,Associated symptom,q001a015q001a001q005
+q001a015 q001a015q001a001 q001a015q001a001q001a002,qc001a015 qc008a001 qc009a002,reflux Initial Evaluation 2-6 days ago,qc060,Associated symptom,q001a015q001a001q005
+q001a015 q001a015q001a001 q001a015q001a001q001a002,qc001a015 qc008a001 qc009a002,reflux Initial Evaluation 2-6 days ago,qc060,Associated symptom,q001a015q001a001q005
+q001a015 q001a015q001a001 q001a015q001a001q001a002,qc001a015 qc008a001 qc009a002,reflux Initial Evaluation 2-6 days ago,qc060,Associated symptom,q001a015q001a001q005
+q001a015 q001a015q001a001 q001a015q001a001q001a003,qc001a015 qc008a001 qc009a003,reflux Initial Evaluation 1-2 weeks ago,qc060,Associated symptom,q001a015q001a001q005
+q001a015 q001a015q001a001 q001a015q001a001q001a004,qc001a015 qc008a001 qc009a004,reflux Initial Evaluation More than 2 weeks ago,qc011,Onset details,q001a015q001a001q001a004q001
+q001a015 q001a015q001a001 q001a015q001a001q001a004,qc001a015 qc008a001 qc009a004,reflux Initial Evaluation More than 2 weeks ago,qc060,Associated symptom,q001a015q001a001q005
+q001a015 q001a015q001a001 q001a015q001a001q001a004,qc001a015 qc008a001 qc009a004,reflux Initial Evaluation More than 2 weeks ago,qc060,Associated symptom,q001a015q001a001q005
+q001a015 q001a015q001a001 q001a015q001a001q001a004,qc001a015 qc008a001 qc009a004,reflux Initial Evaluation More than 2 weeks ago,qc060,Associated symptom,q001a015q001a001q005
+q001a015 q001a015q001a001 q001a015q001a001q002a001,qc001a015 qc008a001 qc020a001,reflux Initial Evaluation Progressing,qc060,Associated symptom,q001a015q001a001q005
+q001a015 q001a015q001a001 q001a015q001a001q002a002,qc001a015 qc008a001 qc020a002,"reflux Initial Evaluation Stable, persistent",qc060,Associated symptom,q001a015q001a001q005
+q001a015 q001a015q001a001 q001a015q001a001q002a003,qc001a015 qc008a001 qc020a003,reflux Initial Evaluation Improving,qc060,Associated symptom,q001a015q001a001q005
+q001a015 q001a015q001a001 q001a015q001a001q003a001,qc001a015 qc008a001 qc058a001,reflux Initial Evaluation None,qc060,Associated symptom,q001a015q001a001q005
+q001a015 q001a015q001a001 q001a015q001a001q003a002,qc001a015 qc008a001 qc058a002,reflux Initial Evaluation Omeprazole (PPI),qc060,Associated symptom,q001a015q001a001q005
+q001a015 q001a015q001a001 q001a015q001a001q003a003,qc001a015 qc008a001 qc058a003,reflux Initial Evaluation Pepcid,qc060,Associated symptom,q001a015q001a001q005
+q001a015 q001a015q001a001 q001a015q001a001q003a004,qc001a015 qc008a001 qc058a004,reflux Initial Evaluation Tums,qc060,Associated symptom,q001a015q001a001q005
+q001a015 q001a015q001a001 q001a015q001a001q003a005,qc001a015 qc008a001 qc058a005,reflux Initial Evaluation Other,qc060,Associated symptom,q001a015q001a001q005
+q001a015 q001a015q001a001 q001a015q001a001q004a001,qc001a015 qc008a001 qc059a001,reflux Initial Evaluation Never,qc060,Associated symptom,q001a015q001a001q005
+q001a015 q001a015q001a001 q001a015q001a001q004a002,qc001a015 qc008a001 qc059a002,reflux Initial Evaluation 0-1 year ago,qc060,Associated symptom,q001a015q001a001q005
+q001a015 q001a015q001a001 q001a015q001a001q004a003,qc001a015 qc008a001 qc059a003,reflux Initial Evaluation 2-5 years ago,qc060,Associated symptom,q001a015q001a001q005
+q001a015 q001a015q001a001 q001a015q001a001q004a004,qc001a015 qc008a001 qc059a004,reflux Initial Evaluation Older than 5 years ago ,qc060,Associated symptom,q001a015q001a001q005
+q001a015,qc001a015,reflux,qc999,NA,NA
+q001a015,qc001a015,reflux,qc999,NA,NA
+q001a015,qc001a015,reflux,qc999,NA,NA
+q001a015 q001a015q001a002,qc001a015 qc008a002,reflux Follow up evaluation,qc012,Course since last evaluation,q001a015q001a002q001
+q001a015,qc001a015,reflux,qc999,NA,NA
+q001a015,qc001a015,reflux,qc999,NA,NA
+q001a015,qc001a015,reflux,qc999,NA,NA
+q001a016,qc001a016,anxiety,qc008,Initial vs Reval,q001a016q001
+q001a016 q001a016q001a001,qc001a016 qc008a001,anxiety Initial Evaluation,qc009,Onset,q001a016q001a001q001
+q001a016 q001a016q001a001 q001a016q001a001q001a001,qc001a016 qc008a001 qc009a001,anxiety Initial Evaluation 0-1 days ago,qc081,Treatment history (anxiety),q001a016q001a001q008
+q001a016 q001a016q001a001 q001a016q001a001q001a002,qc001a016 qc008a001 qc009a002,anxiety Initial Evaluation 2-6 days ago,qc010,Onset details,q001a016q001a001q001a002q001
+q001a016 q001a016q001a001 q001a016q001a001q001a002,qc001a016 qc008a001 qc009a002,anxiety Initial Evaluation 2-6 days ago,qc081,Treatment history (anxiety),q001a016q001a001q008
+q001a016 q001a016q001a001 q001a016q001a001q001a002,qc001a016 qc008a001 qc009a002,anxiety Initial Evaluation 2-6 days ago,qc081,Treatment history (anxiety),q001a016q001a001q008
+q001a016 q001a016q001a001 q001a016q001a001q001a002,qc001a016 qc008a001 qc009a002,anxiety Initial Evaluation 2-6 days ago,qc081,Treatment history (anxiety),q001a016q001a001q008
+q001a016 q001a016q001a001 q001a016q001a001q001a002,qc001a016 qc008a001 qc009a002,anxiety Initial Evaluation 2-6 days ago,qc081,Treatment history (anxiety),q001a016q001a001q008
+q001a016 q001a016q001a001 q001a016q001a001q001a002,qc001a016 qc008a001 qc009a002,anxiety Initial Evaluation 2-6 days ago,qc081,Treatment history (anxiety),q001a016q001a001q008
+q001a016 q001a016q001a001 q001a016q001a001q001a002,qc001a016 qc008a001 qc009a002,anxiety Initial Evaluation 2-6 days ago,qc081,Treatment history (anxiety),q001a016q001a001q008
+q001a016 q001a016q001a001 q001a016q001a001q001a003,qc001a016 qc008a001 qc009a003,anxiety Initial Evaluation 1-2 weeks ago,qc081,Treatment history (anxiety),q001a016q001a001q008
+q001a016 q001a016q001a001 q001a016q001a001q001a004,qc001a016 qc008a001 qc009a004,anxiety Initial Evaluation More than 2 weeks ago,qc011,Onset details,q001a016q001a001q001a004q001
+q001a016 q001a016q001a001 q001a016q001a001q001a004,qc001a016 qc008a001 qc009a004,anxiety Initial Evaluation More than 2 weeks ago,qc081,Treatment history (anxiety),q001a016q001a001q008
+q001a016 q001a016q001a001 q001a016q001a001q001a004,qc001a016 qc008a001 qc009a004,anxiety Initial Evaluation More than 2 weeks ago,qc081,Treatment history (anxiety),q001a016q001a001q008
+q001a016 q001a016q001a001 q001a016q001a001q001a004,qc001a016 qc008a001 qc009a004,anxiety Initial Evaluation More than 2 weeks ago,qc081,Treatment history (anxiety),q001a016q001a001q008
+q001a016 q001a016q001a001 q001a016q001a001q002a001,qc001a016 qc008a001 qc020a001,anxiety Initial Evaluation Progressing,qc081,Treatment history (anxiety),q001a016q001a001q008
+q001a016 q001a016q001a001 q001a016q001a001q002a002,qc001a016 qc008a001 qc020a002,"anxiety Initial Evaluation Stable, persistent",qc081,Treatment history (anxiety),q001a016q001a001q008
+q001a016 q001a016q001a001 q001a016q001a001q002a003,qc001a016 qc008a001 qc020a003,anxiety Initial Evaluation Improving,qc081,Treatment history (anxiety),q001a016q001a001q008
+q001a016 q001a016q001a001 q001a016q001a001q003a001,qc001a016 qc008a001 qc061a001,anxiety Initial Evaluation Start questionnaire,qc062,"[GAD.1] Feeling nervous, anxious, or on edge (past 2 weeks)",q001a016q001a001q003a001q001
+q001a016 q001a016q001a001 q001a016q001a001q003a001 q001a016q001a001q003a001q001a001,qc001a016 qc008a001 qc061a001 qc062a001,anxiety Initial Evaluation Start questionnaire Not at all,qc068,[GAD.7] Feeling afraid as if something awful might happen (past 2 weeks),q001a016q001a001q003a001q007
+q001a016 q001a016q001a001 q001a016q001a001q003a001 q001a016q001a001q003a001q001a002,qc001a016 qc008a001 qc061a001 qc062a002,anxiety Initial Evaluation Start questionnaire Several days,qc068,[GAD.7] Feeling afraid as if something awful might happen (past 2 weeks),q001a016q001a001q003a001q007
+q001a016 q001a016q001a001 q001a016q001a001q003a001 q001a016q001a001q003a001q001a003,qc001a016 qc008a001 qc061a001 qc062a003,anxiety Initial Evaluation Start questionnaire More than half the days,qc068,[GAD.7] Feeling afraid as if something awful might happen (past 2 weeks),q001a016q001a001q003a001q007
+q001a016 q001a016q001a001 q001a016q001a001q003a001 q001a016q001a001q003a001q001a004,qc001a016 qc008a001 qc061a001 qc062a004,anxiety Initial Evaluation Start questionnaire nearly every day,qc068,[GAD.7] Feeling afraid as if something awful might happen (past 2 weeks),q001a016q001a001q003a001q007
+q001a016 q001a016q001a001 q001a016q001a001q003a001 q001a016q001a001q003a001q002a001,qc001a016 qc008a001 qc061a001 qc063a001,anxiety Initial Evaluation Start questionnaire Not at all,qc068,[GAD.7] Feeling afraid as if something awful might happen (past 2 weeks),q001a016q001a001q003a001q007
+q001a016 q001a016q001a001 q001a016q001a001q003a001 q001a016q001a001q003a001q002a002,qc001a016 qc008a001 qc061a001 qc063a002,anxiety Initial Evaluation Start questionnaire Several days,qc068,[GAD.7] Feeling afraid as if something awful might happen (past 2 weeks),q001a016q001a001q003a001q007
+q001a016 q001a016q001a001 q001a016q001a001q003a001 q001a016q001a001q003a001q002a003,qc001a016 qc008a001 qc061a001 qc063a003,anxiety Initial Evaluation Start questionnaire More than half the days,qc068,[GAD.7] Feeling afraid as if something awful might happen (past 2 weeks),q001a016q001a001q003a001q007
+q001a016 q001a016q001a001 q001a016q001a001q003a001 q001a016q001a001q003a001q002a004,qc001a016 qc008a001 qc061a001 qc063a004,anxiety Initial Evaluation Start questionnaire nearly every day,qc068,[GAD.7] Feeling afraid as if something awful might happen (past 2 weeks),q001a016q001a001q003a001q007
+q001a016 q001a016q001a001 q001a016q001a001q003a001 q001a016q001a001q003a001q003a001,qc001a016 qc008a001 qc061a001 qc064a001,anxiety Initial Evaluation Start questionnaire Not at all,qc068,[GAD.7] Feeling afraid as if something awful might happen (past 2 weeks),q001a016q001a001q003a001q007
+q001a016 q001a016q001a001 q001a016q001a001q003a001 q001a016q001a001q003a001q003a002,qc001a016 qc008a001 qc061a001 qc064a002,anxiety Initial Evaluation Start questionnaire Several days,qc068,[GAD.7] Feeling afraid as if something awful might happen (past 2 weeks),q001a016q001a001q003a001q007
+q001a016 q001a016q001a001 q001a016q001a001q003a001 q001a016q001a001q003a001q003a003,qc001a016 qc008a001 qc061a001 qc064a003,anxiety Initial Evaluation Start questionnaire More than half the days,qc068,[GAD.7] Feeling afraid as if something awful might happen (past 2 weeks),q001a016q001a001q003a001q007
+q001a016 q001a016q001a001 q001a016q001a001q003a001 q001a016q001a001q003a001q003a004,qc001a016 qc008a001 qc061a001 qc064a004,anxiety Initial Evaluation Start questionnaire nearly every day,qc068,[GAD.7] Feeling afraid as if something awful might happen (past 2 weeks),q001a016q001a001q003a001q007
+q001a016 q001a016q001a001 q001a016q001a001q003a001 q001a016q001a001q003a001q004a001,qc001a016 qc008a001 qc061a001 qc065a001,anxiety Initial Evaluation Start questionnaire Not at all,qc068,[GAD.7] Feeling afraid as if something awful might happen (past 2 weeks),q001a016q001a001q003a001q007
+q001a016 q001a016q001a001 q001a016q001a001q003a001 q001a016q001a001q003a001q004a002,qc001a016 qc008a001 qc061a001 qc065a002,anxiety Initial Evaluation Start questionnaire Several days,qc068,[GAD.7] Feeling afraid as if something awful might happen (past 2 weeks),q001a016q001a001q003a001q007
+q001a016 q001a016q001a001 q001a016q001a001q003a001 q001a016q001a001q003a001q004a003,qc001a016 qc008a001 qc061a001 qc065a003,anxiety Initial Evaluation Start questionnaire More than half the days,qc068,[GAD.7] Feeling afraid as if something awful might happen (past 2 weeks),q001a016q001a001q003a001q007
+q001a016 q001a016q001a001 q001a016q001a001q003a001 q001a016q001a001q003a001q004a004,qc001a016 qc008a001 qc061a001 qc065a004,anxiety Initial Evaluation Start questionnaire nearly every day,qc068,[GAD.7] Feeling afraid as if something awful might happen (past 2 weeks),q001a016q001a001q003a001q007
+q001a016 q001a016q001a001 q001a016q001a001q003a001 q001a016q001a001q003a001q005a001,qc001a016 qc008a001 qc061a001 qc066a001,anxiety Initial Evaluation Start questionnaire Not at all,qc068,[GAD.7] Feeling afraid as if something awful might happen (past 2 weeks),q001a016q001a001q003a001q007
+q001a016 q001a016q001a001 q001a016q001a001q003a001 q001a016q001a001q003a001q005a002,qc001a016 qc008a001 qc061a001 qc066a002,anxiety Initial Evaluation Start questionnaire Several days,qc068,[GAD.7] Feeling afraid as if something awful might happen (past 2 weeks),q001a016q001a001q003a001q007
+q001a016 q001a016q001a001 q001a016q001a001q003a001 q001a016q001a001q003a001q005a003,qc001a016 qc008a001 qc061a001 qc066a003,anxiety Initial Evaluation Start questionnaire More than half the days,qc068,[GAD.7] Feeling afraid as if something awful might happen (past 2 weeks),q001a016q001a001q003a001q007
+q001a016 q001a016q001a001 q001a016q001a001q003a001 q001a016q001a001q003a001q005a004,qc001a016 qc008a001 qc061a001 qc066a004,anxiety Initial Evaluation Start questionnaire nearly every day,qc068,[GAD.7] Feeling afraid as if something awful might happen (past 2 weeks),q001a016q001a001q003a001q007
+q001a016 q001a016q001a001 q001a016q001a001q003a001 q001a016q001a001q003a001q006a001,qc001a016 qc008a001 qc061a001 qc067a001,anxiety Initial Evaluation Start questionnaire Not at all,qc068,[GAD.7] Feeling afraid as if something awful might happen (past 2 weeks),q001a016q001a001q003a001q007
+q001a016 q001a016q001a001 q001a016q001a001q003a001 q001a016q001a001q003a001q006a002,qc001a016 qc008a001 qc061a001 qc067a002,anxiety Initial Evaluation Start questionnaire Several days,qc068,[GAD.7] Feeling afraid as if something awful might happen (past 2 weeks),q001a016q001a001q003a001q007
+q001a016 q001a016q001a001 q001a016q001a001q003a001 q001a016q001a001q003a001q006a003,qc001a016 qc008a001 qc061a001 qc067a003,anxiety Initial Evaluation Start questionnaire More than half the days,qc068,[GAD.7] Feeling afraid as if something awful might happen (past 2 weeks),q001a016q001a001q003a001q007
+q001a016 q001a016q001a001 q001a016q001a001q003a001 q001a016q001a001q003a001q006a004,qc001a016 qc008a001 qc061a001 qc067a004,anxiety Initial Evaluation Start questionnaire nearly every day,qc068,[GAD.7] Feeling afraid as if something awful might happen (past 2 weeks),q001a016q001a001q003a001q007
+q001a016 q001a016q001a001 q001a016q001a001q003a001,qc001a016 qc008a001 qc061a001,anxiety Initial Evaluation Start questionnaire,qc081,Treatment history (anxiety),q001a016q001a001q008
+q001a016 q001a016q001a001 q001a016q001a001q003a001,qc001a016 qc008a001 qc061a001,anxiety Initial Evaluation Start questionnaire,qc081,Treatment history (anxiety),q001a016q001a001q008
+q001a016 q001a016q001a001 q001a016q001a001q003a001,qc001a016 qc008a001 qc061a001,anxiety Initial Evaluation Start questionnaire,qc081,Treatment history (anxiety),q001a016q001a001q008
+q001a016 q001a016q001a001 q001a016q001a001q003a001,qc001a016 qc008a001 qc061a001,anxiety Initial Evaluation Start questionnaire,qc081,Treatment history (anxiety),q001a016q001a001q008
+q001a016 q001a016q001a001 q001a016q001a001q003a002,qc001a016 qc008a001 qc061a002,anxiety Initial Evaluation It is measured with self questionair,qc069,GAD7 score,q001a016q001a001q003a002q001
+q001a016 q001a016q001a001 q001a016q001a001q003a002,qc001a016 qc008a001 qc061a002,anxiety Initial Evaluation It is measured with self questionair,qc081,Treatment history (anxiety),q001a016q001a001q008
+q001a016 q001a016q001a001 q001a016q001a001q003a002,qc001a016 qc008a001 qc061a002,anxiety Initial Evaluation It is measured with self questionair,qc081,Treatment history (anxiety),q001a016q001a001q008
+q001a016 q001a016q001a001 q001a016q001a001q003a002,qc001a016 qc008a001 qc061a002,anxiety Initial Evaluation It is measured with self questionair,qc081,Treatment history (anxiety),q001a016q001a001q008
+q001a016 q001a016q001a001 q001a016q001a001q003a002,qc001a016 qc008a001 qc061a002,anxiety Initial Evaluation It is measured with self questionair,qc081,Treatment history (anxiety),q001a016q001a001q008
+q001a016 q001a016q001a001 q001a016q001a001q005a002,qc001a016 qc008a001 ,anxiety Initial Evaluation ,qc081,Treatment history (anxiety),q001a016q001a001q008
+q001a016 q001a016q001a001 q001a016q001a001q005a002,qc001a016 qc008a001 ,anxiety Initial Evaluation ,qc081,Treatment history (anxiety),q001a016q001a001q008
+q001a016 q001a016q001a001 q001a016q001a001q005a002,qc001a016 qc008a001 ,anxiety Initial Evaluation ,qc081,Treatment history (anxiety),q001a016q001a001q008
+q001a016 q001a016q001a001 q001a016q001a001q005a002,qc001a016 qc008a001 ,anxiety Initial Evaluation ,qc081,Treatment history (anxiety),q001a016q001a001q008
+q001a016 q001a016q001a001 q001a016q001a001q005a002,qc001a016 qc008a001 ,anxiety Initial Evaluation ,qc081,Treatment history (anxiety),q001a016q001a001q008
+q001a016 q001a016q001a001 q001a016q001a001q005a002,qc001a016 qc008a001 ,anxiety Initial Evaluation ,qc081,Treatment history (anxiety),q001a016q001a001q008
+q001a016 q001a016q001a001 q001a016q001a001q005a004,qc001a016 qc008a001 ,anxiety Initial Evaluation ,qc081,Treatment history (anxiety),q001a016q001a001q008
+q001a016 q001a016q001a001 q001a016q001a001q005a004,qc001a016 qc008a001 ,anxiety Initial Evaluation ,qc081,Treatment history (anxiety),q001a016q001a001q008
+q001a016 q001a016q001a001 q001a016q001a001q005a004,qc001a016 qc008a001 ,anxiety Initial Evaluation ,qc081,Treatment history (anxiety),q001a016q001a001q008
+q001a016 q001a016q001a001 q001a016q001a001q006a001 q001a016q001a001q006a001q001a001,qc001a016 qc008a001  qc062a001,anxiety Initial Evaluation  Not at all,qc068,[GAD.7] Feeling afraid as if something awful might happen (past 2 weeks),q001a016q001a001q006a001q007
+q001a016 q001a016q001a001 q001a016q001a001q006a001 q001a016q001a001q006a001q001a002,qc001a016 qc008a001  qc062a002,anxiety Initial Evaluation  Several days,qc068,[GAD.7] Feeling afraid as if something awful might happen (past 2 weeks),q001a016q001a001q006a001q007
+q001a016 q001a016q001a001 q001a016q001a001q006a001 q001a016q001a001q006a001q001a003,qc001a016 qc008a001  qc062a003,anxiety Initial Evaluation  More than half the days,qc068,[GAD.7] Feeling afraid as if something awful might happen (past 2 weeks),q001a016q001a001q006a001q007
+q001a016 q001a016q001a001 q001a016q001a001q006a001 q001a016q001a001q006a001q001a004,qc001a016 qc008a001  qc062a004,anxiety Initial Evaluation  nearly every day,qc068,[GAD.7] Feeling afraid as if something awful might happen (past 2 weeks),q001a016q001a001q006a001q007
+q001a016 q001a016q001a001 q001a016q001a001q006a001 q001a016q001a001q006a001q002a001,qc001a016 qc008a001  qc063a001,anxiety Initial Evaluation  Not at all,qc068,[GAD.7] Feeling afraid as if something awful might happen (past 2 weeks),q001a016q001a001q006a001q007
+q001a016 q001a016q001a001 q001a016q001a001q006a001 q001a016q001a001q006a001q002a002,qc001a016 qc008a001  qc063a002,anxiety Initial Evaluation  Several days,qc068,[GAD.7] Feeling afraid as if something awful might happen (past 2 weeks),q001a016q001a001q006a001q007
+q001a016 q001a016q001a001 q001a016q001a001q006a001 q001a016q001a001q006a001q002a003,qc001a016 qc008a001  qc063a003,anxiety Initial Evaluation  More than half the days,qc068,[GAD.7] Feeling afraid as if something awful might happen (past 2 weeks),q001a016q001a001q006a001q007
+q001a016 q001a016q001a001 q001a016q001a001q006a001 q001a016q001a001q006a001q002a004,qc001a016 qc008a001  qc063a004,anxiety Initial Evaluation  nearly every day,qc068,[GAD.7] Feeling afraid as if something awful might happen (past 2 weeks),q001a016q001a001q006a001q007
+q001a016 q001a016q001a001 q001a016q001a001q006a001 q001a016q001a001q006a001q003a001,qc001a016 qc008a001  qc064a001,anxiety Initial Evaluation  Not at all,qc068,[GAD.7] Feeling afraid as if something awful might happen (past 2 weeks),q001a016q001a001q006a001q007
+q001a016 q001a016q001a001 q001a016q001a001q006a001 q001a016q001a001q006a001q003a002,qc001a016 qc008a001  qc064a002,anxiety Initial Evaluation  Several days,qc068,[GAD.7] Feeling afraid as if something awful might happen (past 2 weeks),q001a016q001a001q006a001q007
+q001a016 q001a016q001a001 q001a016q001a001q006a001 q001a016q001a001q006a001q003a003,qc001a016 qc008a001  qc064a003,anxiety Initial Evaluation  More than half the days,qc068,[GAD.7] Feeling afraid as if something awful might happen (past 2 weeks),q001a016q001a001q006a001q007
+q001a016 q001a016q001a001 q001a016q001a001q006a001 q001a016q001a001q006a001q003a004,qc001a016 qc008a001  qc064a004,anxiety Initial Evaluation  nearly every day,qc068,[GAD.7] Feeling afraid as if something awful might happen (past 2 weeks),q001a016q001a001q006a001q007
+q001a016 q001a016q001a001 q001a016q001a001q006a001 q001a016q001a001q006a001q004a001,qc001a016 qc008a001  qc065a001,anxiety Initial Evaluation  Not at all,qc068,[GAD.7] Feeling afraid as if something awful might happen (past 2 weeks),q001a016q001a001q006a001q007
+q001a016 q001a016q001a001 q001a016q001a001q006a001 q001a016q001a001q006a001q004a002,qc001a016 qc008a001  qc065a002,anxiety Initial Evaluation  Several days,qc068,[GAD.7] Feeling afraid as if something awful might happen (past 2 weeks),q001a016q001a001q006a001q007
+q001a016 q001a016q001a001 q001a016q001a001q006a001 q001a016q001a001q006a001q004a003,qc001a016 qc008a001  qc065a003,anxiety Initial Evaluation  More than half the days,qc068,[GAD.7] Feeling afraid as if something awful might happen (past 2 weeks),q001a016q001a001q006a001q007
+q001a016 q001a016q001a001 q001a016q001a001q006a001 q001a016q001a001q006a001q004a004,qc001a016 qc008a001  qc065a004,anxiety Initial Evaluation  nearly every day,qc068,[GAD.7] Feeling afraid as if something awful might happen (past 2 weeks),q001a016q001a001q006a001q007
+q001a016 q001a016q001a001 q001a016q001a001q006a001 q001a016q001a001q006a001q005a001,qc001a016 qc008a001  qc066a001,anxiety Initial Evaluation  Not at all,qc068,[GAD.7] Feeling afraid as if something awful might happen (past 2 weeks),q001a016q001a001q006a001q007
+q001a016 q001a016q001a001 q001a016q001a001q006a001 q001a016q001a001q006a001q005a002,qc001a016 qc008a001  qc066a002,anxiety Initial Evaluation  Several days,qc068,[GAD.7] Feeling afraid as if something awful might happen (past 2 weeks),q001a016q001a001q006a001q007
+q001a016 q001a016q001a001 q001a016q001a001q006a001 q001a016q001a001q006a001q005a003,qc001a016 qc008a001  qc066a003,anxiety Initial Evaluation  More than half the days,qc068,[GAD.7] Feeling afraid as if something awful might happen (past 2 weeks),q001a016q001a001q006a001q007
+q001a016 q001a016q001a001 q001a016q001a001q006a001 q001a016q001a001q006a001q005a004,qc001a016 qc008a001  qc066a004,anxiety Initial Evaluation  nearly every day,qc068,[GAD.7] Feeling afraid as if something awful might happen (past 2 weeks),q001a016q001a001q006a001q007
+q001a016 q001a016q001a001 q001a016q001a001q006a001 q001a016q001a001q006a001q006a001,qc001a016 qc008a001  qc067a001,anxiety Initial Evaluation  Not at all,qc068,[GAD.7] Feeling afraid as if something awful might happen (past 2 weeks),q001a016q001a001q006a001q007
+q001a016 q001a016q001a001 q001a016q001a001q006a001 q001a016q001a001q006a001q006a002,qc001a016 qc008a001  qc067a002,anxiety Initial Evaluation  Several days,qc068,[GAD.7] Feeling afraid as if something awful might happen (past 2 weeks),q001a016q001a001q006a001q007
+q001a016 q001a016q001a001 q001a016q001a001q006a001 q001a016q001a001q006a001q006a003,qc001a016 qc008a001  qc067a003,anxiety Initial Evaluation  More than half the days,qc068,[GAD.7] Feeling afraid as if something awful might happen (past 2 weeks),q001a016q001a001q006a001q007
+q001a016 q001a016q001a001 q001a016q001a001q006a001 q001a016q001a001q006a001q006a004,qc001a016 qc008a001  qc067a004,anxiety Initial Evaluation  nearly every day,qc068,[GAD.7] Feeling afraid as if something awful might happen (past 2 weeks),q001a016q001a001q006a001q007
+q001a016 q001a016q001a001 q001a016q001a001q006a001,qc001a016 qc008a001 ,anxiety Initial Evaluation ,qc081,Treatment history (anxiety),q001a016q001a001q008
+q001a016 q001a016q001a001 q001a016q001a001q006a001,qc001a016 qc008a001 ,anxiety Initial Evaluation ,qc081,Treatment history (anxiety),q001a016q001a001q008
+q001a016 q001a016q001a001 q001a016q001a001q006a001,qc001a016 qc008a001 ,anxiety Initial Evaluation ,qc081,Treatment history (anxiety),q001a016q001a001q008
+q001a016 q001a016q001a001 q001a016q001a001q006a001,qc001a016 qc008a001 ,anxiety Initial Evaluation ,qc081,Treatment history (anxiety),q001a016q001a001q008
+q001a016 q001a016q001a001 q001a016q001a001q006a002,qc001a016 qc008a001 ,anxiety Initial Evaluation ,qc081,Treatment history (anxiety),q001a016q001a001q008
+q001a016 q001a016q001a001 q001a016q001a001q006a002,qc001a016 qc008a001 ,anxiety Initial Evaluation ,qc081,Treatment history (anxiety),q001a016q001a001q008
+q001a016 q001a016q001a001 q001a016q001a001q006a002,qc001a016 qc008a001 ,anxiety Initial Evaluation ,qc081,Treatment history (anxiety),q001a016q001a001q008
+q001a016 q001a016q001a001 q001a016q001a001q006a002,qc001a016 qc008a001 ,anxiety Initial Evaluation ,qc081,Treatment history (anxiety),q001a016q001a001q008
+q001a016 q001a016q001a001 q001a016q001a001q007a001,qc001a016 qc008a001 qc070a001,anxiety Initial Evaluation Start questionnaire,qc072,[PHQ.1] Little interest or pleasure in doing things? (past 2 weeks),q001a016q001a001q007a001q001
+q001a016 q001a016q001a001 q001a016q001a001q007a001 q001a016q001a001q007a001q001a001,qc001a016 qc008a001 qc070a001 qc072a001,anxiety Initial Evaluation Start questionnaire not at all,qc080,"[PHQ.9] Thoughts that you would be better off dead, or thoughts of hurting yourself in some way? (past 2 weeks)",q001a016q001a001q007a001q009
+q001a016 q001a016q001a001 q001a016q001a001q007a001 q001a016q001a001q007a001q001a002,qc001a016 qc008a001 qc070a001 qc072a002,anxiety Initial Evaluation Start questionnaire several days,qc080,"[PHQ.9] Thoughts that you would be better off dead, or thoughts of hurting yourself in some way? (past 2 weeks)",q001a016q001a001q007a001q009
+q001a016 q001a016q001a001 q001a016q001a001q007a001 q001a016q001a001q007a001q001a003,qc001a016 qc008a001 qc070a001 qc072a003,anxiety Initial Evaluation Start questionnaire more than half the days,qc080,"[PHQ.9] Thoughts that you would be better off dead, or thoughts of hurting yourself in some way? (past 2 weeks)",q001a016q001a001q007a001q009
+q001a016 q001a016q001a001 q001a016q001a001q007a001 q001a016q001a001q007a001q001a004,qc001a016 qc008a001 qc070a001 qc072a004,anxiety Initial Evaluation Start questionnaire nearly every day,qc080,"[PHQ.9] Thoughts that you would be better off dead, or thoughts of hurting yourself in some way? (past 2 weeks)",q001a016q001a001q007a001q009
+q001a016 q001a016q001a001 q001a016q001a001q007a001 q001a016q001a001q007a001q002a001,qc001a016 qc008a001 qc070a001 qc073a001,anxiety Initial Evaluation Start questionnaire not at all,qc080,"[PHQ.9] Thoughts that you would be better off dead, or thoughts of hurting yourself in some way? (past 2 weeks)",q001a016q001a001q007a001q009
+q001a016 q001a016q001a001 q001a016q001a001q007a001 q001a016q001a001q007a001q002a002,qc001a016 qc008a001 qc070a001 qc073a002,anxiety Initial Evaluation Start questionnaire several days,qc080,"[PHQ.9] Thoughts that you would be better off dead, or thoughts of hurting yourself in some way? (past 2 weeks)",q001a016q001a001q007a001q009
+q001a016 q001a016q001a001 q001a016q001a001q007a001 q001a016q001a001q007a001q002a003,qc001a016 qc008a001 qc070a001 qc073a003,anxiety Initial Evaluation Start questionnaire more than half the days,qc080,"[PHQ.9] Thoughts that you would be better off dead, or thoughts of hurting yourself in some way? (past 2 weeks)",q001a016q001a001q007a001q009
+q001a016 q001a016q001a001 q001a016q001a001q007a001 q001a016q001a001q007a001q002a004,qc001a016 qc008a001 qc070a001 qc073a004,anxiety Initial Evaluation Start questionnaire nearly every day,qc080,"[PHQ.9] Thoughts that you would be better off dead, or thoughts of hurting yourself in some way? (past 2 weeks)",q001a016q001a001q007a001q009
+q001a016 q001a016q001a001 q001a016q001a001q007a001 q001a016q001a001q007a001q003a001,qc001a016 qc008a001 qc070a001 qc074a001,anxiety Initial Evaluation Start questionnaire not at all,qc080,"[PHQ.9] Thoughts that you would be better off dead, or thoughts of hurting yourself in some way? (past 2 weeks)",q001a016q001a001q007a001q009
+q001a016 q001a016q001a001 q001a016q001a001q007a001 q001a016q001a001q007a001q003a002,qc001a016 qc008a001 qc070a001 qc074a002,anxiety Initial Evaluation Start questionnaire several days,qc080,"[PHQ.9] Thoughts that you would be better off dead, or thoughts of hurting yourself in some way? (past 2 weeks)",q001a016q001a001q007a001q009
+q001a016 q001a016q001a001 q001a016q001a001q007a001 q001a016q001a001q007a001q003a003,qc001a016 qc008a001 qc070a001 qc074a003,anxiety Initial Evaluation Start questionnaire more than half the days,qc080,"[PHQ.9] Thoughts that you would be better off dead, or thoughts of hurting yourself in some way? (past 2 weeks)",q001a016q001a001q007a001q009
+q001a016 q001a016q001a001 q001a016q001a001q007a001 q001a016q001a001q007a001q003a004,qc001a016 qc008a001 qc070a001 qc074a004,anxiety Initial Evaluation Start questionnaire nearly every day,qc080,"[PHQ.9] Thoughts that you would be better off dead, or thoughts of hurting yourself in some way? (past 2 weeks)",q001a016q001a001q007a001q009
+q001a016 q001a016q001a001 q001a016q001a001q007a001 q001a016q001a001q007a001q004a001,qc001a016 qc008a001 qc070a001 qc075a001,anxiety Initial Evaluation Start questionnaire not at all,qc080,"[PHQ.9] Thoughts that you would be better off dead, or thoughts of hurting yourself in some way? (past 2 weeks)",q001a016q001a001q007a001q009
+q001a016 q001a016q001a001 q001a016q001a001q007a001 q001a016q001a001q007a001q004a002,qc001a016 qc008a001 qc070a001 qc075a002,anxiety Initial Evaluation Start questionnaire several days,qc080,"[PHQ.9] Thoughts that you would be better off dead, or thoughts of hurting yourself in some way? (past 2 weeks)",q001a016q001a001q007a001q009
+q001a016 q001a016q001a001 q001a016q001a001q007a001 q001a016q001a001q007a001q004a003,qc001a016 qc008a001 qc070a001 qc075a003,anxiety Initial Evaluation Start questionnaire more than half the days,qc080,"[PHQ.9] Thoughts that you would be better off dead, or thoughts of hurting yourself in some way? (past 2 weeks)",q001a016q001a001q007a001q009
+q001a016 q001a016q001a001 q001a016q001a001q007a001 q001a016q001a001q007a001q004a004,qc001a016 qc008a001 qc070a001 qc075a004,anxiety Initial Evaluation Start questionnaire nearly every day,qc080,"[PHQ.9] Thoughts that you would be better off dead, or thoughts of hurting yourself in some way? (past 2 weeks)",q001a016q001a001q007a001q009
+q001a016 q001a016q001a001 q001a016q001a001q007a001 q001a016q001a001q007a001q005a001,qc001a016 qc008a001 qc070a001 qc076a001,anxiety Initial Evaluation Start questionnaire not at all,qc080,"[PHQ.9] Thoughts that you would be better off dead, or thoughts of hurting yourself in some way? (past 2 weeks)",q001a016q001a001q007a001q009
+q001a016 q001a016q001a001 q001a016q001a001q007a001 q001a016q001a001q007a001q005a002,qc001a016 qc008a001 qc070a001 qc076a002,anxiety Initial Evaluation Start questionnaire several days,qc080,"[PHQ.9] Thoughts that you would be better off dead, or thoughts of hurting yourself in some way? (past 2 weeks)",q001a016q001a001q007a001q009
+q001a016 q001a016q001a001 q001a016q001a001q007a001 q001a016q001a001q007a001q005a003,qc001a016 qc008a001 qc070a001 qc076a003,anxiety Initial Evaluation Start questionnaire more than half the days,qc080,"[PHQ.9] Thoughts that you would be better off dead, or thoughts of hurting yourself in some way? (past 2 weeks)",q001a016q001a001q007a001q009
+q001a016 q001a016q001a001 q001a016q001a001q007a001 q001a016q001a001q007a001q005a004,qc001a016 qc008a001 qc070a001 qc076a004,anxiety Initial Evaluation Start questionnaire nearly every day,qc080,"[PHQ.9] Thoughts that you would be better off dead, or thoughts of hurting yourself in some way? (past 2 weeks)",q001a016q001a001q007a001q009
+q001a016 q001a016q001a001 q001a016q001a001q007a001 q001a016q001a001q007a001q006a001,qc001a016 qc008a001 qc070a001 qc077a001,anxiety Initial Evaluation Start questionnaire not at all,qc080,"[PHQ.9] Thoughts that you would be better off dead, or thoughts of hurting yourself in some way? (past 2 weeks)",q001a016q001a001q007a001q009
+q001a016 q001a016q001a001 q001a016q001a001q007a001 q001a016q001a001q007a001q006a002,qc001a016 qc008a001 qc070a001 qc077a002,anxiety Initial Evaluation Start questionnaire several days,qc080,"[PHQ.9] Thoughts that you would be better off dead, or thoughts of hurting yourself in some way? (past 2 weeks)",q001a016q001a001q007a001q009
+q001a016 q001a016q001a001 q001a016q001a001q007a001 q001a016q001a001q007a001q006a003,qc001a016 qc008a001 qc070a001 qc077a003,anxiety Initial Evaluation Start questionnaire more than half the days,qc080,"[PHQ.9] Thoughts that you would be better off dead, or thoughts of hurting yourself in some way? (past 2 weeks)",q001a016q001a001q007a001q009
+q001a016 q001a016q001a001 q001a016q001a001q007a001 q001a016q001a001q007a001q006a004,qc001a016 qc008a001 qc070a001 qc077a004,anxiety Initial Evaluation Start questionnaire nearly every day,qc080,"[PHQ.9] Thoughts that you would be better off dead, or thoughts of hurting yourself in some way? (past 2 weeks)",q001a016q001a001q007a001q009
+q001a016 q001a016q001a001 q001a016q001a001q007a001 q001a016q001a001q007a001q007a001,qc001a016 qc008a001 qc070a001 qc078a001,anxiety Initial Evaluation Start questionnaire not at all,qc080,"[PHQ.9] Thoughts that you would be better off dead, or thoughts of hurting yourself in some way? (past 2 weeks)",q001a016q001a001q007a001q009
+q001a016 q001a016q001a001 q001a016q001a001q007a001 q001a016q001a001q007a001q007a002,qc001a016 qc008a001 qc070a001 qc078a002,anxiety Initial Evaluation Start questionnaire several days,qc080,"[PHQ.9] Thoughts that you would be better off dead, or thoughts of hurting yourself in some way? (past 2 weeks)",q001a016q001a001q007a001q009
+q001a016 q001a016q001a001 q001a016q001a001q007a001 q001a016q001a001q007a001q007a003,qc001a016 qc008a001 qc070a001 qc078a003,anxiety Initial Evaluation Start questionnaire more than half the days,qc080,"[PHQ.9] Thoughts that you would be better off dead, or thoughts of hurting yourself in some way? (past 2 weeks)",q001a016q001a001q007a001q009
+q001a016 q001a016q001a001 q001a016q001a001q007a001 q001a016q001a001q007a001q007a004,qc001a016 qc008a001 qc070a001 qc078a004,anxiety Initial Evaluation Start questionnaire nearly every day,qc080,"[PHQ.9] Thoughts that you would be better off dead, or thoughts of hurting yourself in some way? (past 2 weeks)",q001a016q001a001q007a001q009
+q001a016 q001a016q001a001 q001a016q001a001q007a001 q001a016q001a001q007a001q008a001,qc001a016 qc008a001 qc070a001 qc079a001,anxiety Initial Evaluation Start questionnaire not at all,qc080,"[PHQ.9] Thoughts that you would be better off dead, or thoughts of hurting yourself in some way? (past 2 weeks)",q001a016q001a001q007a001q009
+q001a016 q001a016q001a001 q001a016q001a001q007a001 q001a016q001a001q007a001q008a002,qc001a016 qc008a001 qc070a001 qc079a002,anxiety Initial Evaluation Start questionnaire several days,qc080,"[PHQ.9] Thoughts that you would be better off dead, or thoughts of hurting yourself in some way? (past 2 weeks)",q001a016q001a001q007a001q009
+q001a016 q001a016q001a001 q001a016q001a001q007a001 q001a016q001a001q007a001q008a003,qc001a016 qc008a001 qc070a001 qc079a003,anxiety Initial Evaluation Start questionnaire more than half the days,qc080,"[PHQ.9] Thoughts that you would be better off dead, or thoughts of hurting yourself in some way? (past 2 weeks)",q001a016q001a001q007a001q009
+q001a016 q001a016q001a001 q001a016q001a001q007a001 q001a016q001a001q007a001q008a004,qc001a016 qc008a001 qc070a001 qc079a004,anxiety Initial Evaluation Start questionnaire nearly every day,qc080,"[PHQ.9] Thoughts that you would be better off dead, or thoughts of hurting yourself in some way? (past 2 weeks)",q001a016q001a001q007a001q009
+q001a016 q001a016q001a001 q001a016q001a001q007a001,qc001a016 qc008a001 qc070a001,anxiety Initial Evaluation Start questionnaire,qc081,Treatment history (anxiety),q001a016q001a001q008
+q001a016 q001a016q001a001 q001a016q001a001q007a001,qc001a016 qc008a001 qc070a001,anxiety Initial Evaluation Start questionnaire,qc081,Treatment history (anxiety),q001a016q001a001q008
+q001a016 q001a016q001a001 q001a016q001a001q007a001,qc001a016 qc008a001 qc070a001,anxiety Initial Evaluation Start questionnaire,qc081,Treatment history (anxiety),q001a016q001a001q008
+q001a016 q001a016q001a001 q001a016q001a001q007a001,qc001a016 qc008a001 qc070a001,anxiety Initial Evaluation Start questionnaire,qc081,Treatment history (anxiety),q001a016q001a001q008
+q001a016 q001a016q001a001 q001a016q001a001q007a002,qc001a016 qc008a001 qc070a002,anxiety Initial Evaluation Score is ready,qc071,PHQ9 score,q001a016q001a001q007a002q001
+q001a016 q001a016q001a001 q001a016q001a001q007a002,qc001a016 qc008a001 qc070a002,anxiety Initial Evaluation Score is ready,qc081,Treatment history (anxiety),q001a016q001a001q008
+q001a016 q001a016q001a001 q001a016q001a001q007a002,qc001a016 qc008a001 qc070a002,anxiety Initial Evaluation Score is ready,qc081,Treatment history (anxiety),q001a016q001a001q008
+q001a016 q001a016q001a001 q001a016q001a001q007a002,qc001a016 qc008a001 qc070a002,anxiety Initial Evaluation Score is ready,qc081,Treatment history (anxiety),q001a016q001a001q008
+q001a016 q001a016q001a001 q001a016q001a001q007a002,qc001a016 qc008a001 qc070a002,anxiety Initial Evaluation Score is ready,qc081,Treatment history (anxiety),q001a016q001a001q008
+q001a016,qc001a016,anxiety,qc999,NA,NA
+q001a016,qc001a016,anxiety,qc999,NA,NA
+q001a016,qc001a016,anxiety,qc999,NA,NA
+q001a016,qc001a016,anxiety,qc999,NA,NA
+q001a016,qc001a016,anxiety,qc999,NA,NA
+q001a016,qc001a016,anxiety,qc999,NA,NA
+q001a016,qc001a016,anxiety,qc999,NA,NA
+q001a016 q001a016q001a002,qc001a016 qc008a002,anxiety Follow up evaluation,qc012,Course since last evaluation,q001a016q001a002q001
+q001a016 q001a016q001a002 q001a016q001a002q001a001,qc001a016 qc008a002 qc012a001,anxiety Follow up evaluation Progressed,qc070,PHQ9 is needed,q001a016q001a002q003
+q001a016 q001a016q001a002 q001a016q001a002q001a002,qc001a016 qc008a002 qc012a002,"anxiety Follow up evaluation Stable, persistent",qc070,PHQ9 is needed,q001a016q001a002q003
+q001a016 q001a016q001a002 q001a016q001a002q001a003,qc001a016 qc008a002 qc012a003,anxiety Follow up evaluation Improving,qc070,PHQ9 is needed,q001a016q001a002q003
+q001a016 q001a016q001a002 q001a016q001a002q002a001,qc001a016 qc008a002 qc061a001,anxiety Follow up evaluation Start questionnaire,qc062,"[GAD.1] Feeling nervous, anxious, or on edge (past 2 weeks)",q001a016q001a002q002a001q001
+q001a016 q001a016q001a002 q001a016q001a002q002a001 q001a016q001a002q002a001q001a001,qc001a016 qc008a002 qc061a001 qc062a001,anxiety Follow up evaluation Start questionnaire Not at all,qc068,[GAD.7] Feeling afraid as if something awful might happen (past 2 weeks),q001a016q001a002q002a001q007
+q001a016 q001a016q001a002 q001a016q001a002q002a001 q001a016q001a002q002a001q001a002,qc001a016 qc008a002 qc061a001 qc062a002,anxiety Follow up evaluation Start questionnaire Several days,qc068,[GAD.7] Feeling afraid as if something awful might happen (past 2 weeks),q001a016q001a002q002a001q007
+q001a016 q001a016q001a002 q001a016q001a002q002a001 q001a016q001a002q002a001q001a003,qc001a016 qc008a002 qc061a001 qc062a003,anxiety Follow up evaluation Start questionnaire More than half the days,qc068,[GAD.7] Feeling afraid as if something awful might happen (past 2 weeks),q001a016q001a002q002a001q007
+q001a016 q001a016q001a002 q001a016q001a002q002a001 q001a016q001a002q002a001q001a004,qc001a016 qc008a002 qc061a001 qc062a004,anxiety Follow up evaluation Start questionnaire nearly every day,qc068,[GAD.7] Feeling afraid as if something awful might happen (past 2 weeks),q001a016q001a002q002a001q007
+q001a016 q001a016q001a002 q001a016q001a002q002a001 q001a016q001a002q002a001q002a001,qc001a016 qc008a002 qc061a001 qc063a001,anxiety Follow up evaluation Start questionnaire Not at all,qc068,[GAD.7] Feeling afraid as if something awful might happen (past 2 weeks),q001a016q001a002q002a001q007
+q001a016 q001a016q001a002 q001a016q001a002q002a001 q001a016q001a002q002a001q002a002,qc001a016 qc008a002 qc061a001 qc063a002,anxiety Follow up evaluation Start questionnaire Several days,qc068,[GAD.7] Feeling afraid as if something awful might happen (past 2 weeks),q001a016q001a002q002a001q007
+q001a016 q001a016q001a002 q001a016q001a002q002a001 q001a016q001a002q002a001q002a003,qc001a016 qc008a002 qc061a001 qc063a003,anxiety Follow up evaluation Start questionnaire More than half the days,qc068,[GAD.7] Feeling afraid as if something awful might happen (past 2 weeks),q001a016q001a002q002a001q007
+q001a016 q001a016q001a002 q001a016q001a002q002a001 q001a016q001a002q002a001q002a004,qc001a016 qc008a002 qc061a001 qc063a004,anxiety Follow up evaluation Start questionnaire nearly every day,qc068,[GAD.7] Feeling afraid as if something awful might happen (past 2 weeks),q001a016q001a002q002a001q007
+q001a016 q001a016q001a002 q001a016q001a002q002a001 q001a016q001a002q002a001q003a001,qc001a016 qc008a002 qc061a001 qc064a001,anxiety Follow up evaluation Start questionnaire Not at all,qc068,[GAD.7] Feeling afraid as if something awful might happen (past 2 weeks),q001a016q001a002q002a001q007
+q001a016 q001a016q001a002 q001a016q001a002q002a001 q001a016q001a002q002a001q003a002,qc001a016 qc008a002 qc061a001 qc064a002,anxiety Follow up evaluation Start questionnaire Several days,qc068,[GAD.7] Feeling afraid as if something awful might happen (past 2 weeks),q001a016q001a002q002a001q007
+q001a016 q001a016q001a002 q001a016q001a002q002a001 q001a016q001a002q002a001q003a003,qc001a016 qc008a002 qc061a001 qc064a003,anxiety Follow up evaluation Start questionnaire More than half the days,qc068,[GAD.7] Feeling afraid as if something awful might happen (past 2 weeks),q001a016q001a002q002a001q007
+q001a016 q001a016q001a002 q001a016q001a002q002a001 q001a016q001a002q002a001q003a004,qc001a016 qc008a002 qc061a001 qc064a004,anxiety Follow up evaluation Start questionnaire nearly every day,qc068,[GAD.7] Feeling afraid as if something awful might happen (past 2 weeks),q001a016q001a002q002a001q007
+q001a016 q001a016q001a002 q001a016q001a002q002a001 q001a016q001a002q002a001q004a001,qc001a016 qc008a002 qc061a001 qc065a001,anxiety Follow up evaluation Start questionnaire Not at all,qc068,[GAD.7] Feeling afraid as if something awful might happen (past 2 weeks),q001a016q001a002q002a001q007
+q001a016 q001a016q001a002 q001a016q001a002q002a001 q001a016q001a002q002a001q004a002,qc001a016 qc008a002 qc061a001 qc065a002,anxiety Follow up evaluation Start questionnaire Several days,qc068,[GAD.7] Feeling afraid as if something awful might happen (past 2 weeks),q001a016q001a002q002a001q007
+q001a016 q001a016q001a002 q001a016q001a002q002a001 q001a016q001a002q002a001q004a003,qc001a016 qc008a002 qc061a001 qc065a003,anxiety Follow up evaluation Start questionnaire More than half the days,qc068,[GAD.7] Feeling afraid as if something awful might happen (past 2 weeks),q001a016q001a002q002a001q007
+q001a016 q001a016q001a002 q001a016q001a002q002a001 q001a016q001a002q002a001q004a004,qc001a016 qc008a002 qc061a001 qc065a004,anxiety Follow up evaluation Start questionnaire nearly every day,qc068,[GAD.7] Feeling afraid as if something awful might happen (past 2 weeks),q001a016q001a002q002a001q007
+q001a016 q001a016q001a002 q001a016q001a002q002a001 q001a016q001a002q002a001q005a001,qc001a016 qc008a002 qc061a001 qc066a001,anxiety Follow up evaluation Start questionnaire Not at all,qc068,[GAD.7] Feeling afraid as if something awful might happen (past 2 weeks),q001a016q001a002q002a001q007
+q001a016 q001a016q001a002 q001a016q001a002q002a001 q001a016q001a002q002a001q005a002,qc001a016 qc008a002 qc061a001 qc066a002,anxiety Follow up evaluation Start questionnaire Several days,qc068,[GAD.7] Feeling afraid as if something awful might happen (past 2 weeks),q001a016q001a002q002a001q007
+q001a016 q001a016q001a002 q001a016q001a002q002a001 q001a016q001a002q002a001q005a003,qc001a016 qc008a002 qc061a001 qc066a003,anxiety Follow up evaluation Start questionnaire More than half the days,qc068,[GAD.7] Feeling afraid as if something awful might happen (past 2 weeks),q001a016q001a002q002a001q007
+q001a016 q001a016q001a002 q001a016q001a002q002a001 q001a016q001a002q002a001q005a004,qc001a016 qc008a002 qc061a001 qc066a004,anxiety Follow up evaluation Start questionnaire nearly every day,qc068,[GAD.7] Feeling afraid as if something awful might happen (past 2 weeks),q001a016q001a002q002a001q007
+q001a016 q001a016q001a002 q001a016q001a002q002a001 q001a016q001a002q002a001q006a001,qc001a016 qc008a002 qc061a001 qc067a001,anxiety Follow up evaluation Start questionnaire Not at all,qc068,[GAD.7] Feeling afraid as if something awful might happen (past 2 weeks),q001a016q001a002q002a001q007
+q001a016 q001a016q001a002 q001a016q001a002q002a001 q001a016q001a002q002a001q006a002,qc001a016 qc008a002 qc061a001 qc067a002,anxiety Follow up evaluation Start questionnaire Several days,qc068,[GAD.7] Feeling afraid as if something awful might happen (past 2 weeks),q001a016q001a002q002a001q007
+q001a016 q001a016q001a002 q001a016q001a002q002a001 q001a016q001a002q002a001q006a003,qc001a016 qc008a002 qc061a001 qc067a003,anxiety Follow up evaluation Start questionnaire More than half the days,qc068,[GAD.7] Feeling afraid as if something awful might happen (past 2 weeks),q001a016q001a002q002a001q007
+q001a016 q001a016q001a002 q001a016q001a002q002a001 q001a016q001a002q002a001q006a004,qc001a016 qc008a002 qc061a001 qc067a004,anxiety Follow up evaluation Start questionnaire nearly every day,qc068,[GAD.7] Feeling afraid as if something awful might happen (past 2 weeks),q001a016q001a002q002a001q007
+q001a016 q001a016q001a002 q001a016q001a002q002a001,qc001a016 qc008a002 qc061a001,anxiety Follow up evaluation Start questionnaire,qc070,PHQ9 is needed,q001a016q001a002q003
+q001a016 q001a016q001a002 q001a016q001a002q002a001,qc001a016 qc008a002 qc061a001,anxiety Follow up evaluation Start questionnaire,qc070,PHQ9 is needed,q001a016q001a002q003
+q001a016 q001a016q001a002 q001a016q001a002q002a001,qc001a016 qc008a002 qc061a001,anxiety Follow up evaluation Start questionnaire,qc070,PHQ9 is needed,q001a016q001a002q003
+q001a016 q001a016q001a002 q001a016q001a002q002a001,qc001a016 qc008a002 qc061a001,anxiety Follow up evaluation Start questionnaire,qc070,PHQ9 is needed,q001a016q001a002q003
+q001a016 q001a016q001a002 q001a016q001a002q002a002,qc001a016 qc008a002 qc061a002,anxiety Follow up evaluation It is measured with self questionair,qc069,GAD7 score,q001a016q001a002q002a002q001
+q001a016 q001a016q001a002 q001a016q001a002q002a002,qc001a016 qc008a002 qc061a002,anxiety Follow up evaluation It is measured with self questionair,qc070,PHQ9 is needed,q001a016q001a002q003
+q001a016 q001a016q001a002 q001a016q001a002q002a002,qc001a016 qc008a002 qc061a002,anxiety Follow up evaluation It is measured with self questionair,qc070,PHQ9 is needed,q001a016q001a002q003
+q001a016 q001a016q001a002 q001a016q001a002q002a002,qc001a016 qc008a002 qc061a002,anxiety Follow up evaluation It is measured with self questionair,qc070,PHQ9 is needed,q001a016q001a002q003
+q001a016 q001a016q001a002 q001a016q001a002q002a002,qc001a016 qc008a002 qc061a002,anxiety Follow up evaluation It is measured with self questionair,qc070,PHQ9 is needed,q001a016q001a002q003
+q001a016 q001a016q001a002 q001a016q001a002q003a001,qc001a016 qc008a002 qc070a001,anxiety Follow up evaluation Start questionnaire,qc072,[PHQ.1] Little interest or pleasure in doing things? (past 2 weeks),q001a016q001a002q003a001q001
+q001a016 q001a016q001a002 q001a016q001a002q003a001 q001a016q001a002q003a001q001a001,qc001a016 qc008a002 qc070a001 qc072a001,anxiety Follow up evaluation Start questionnaire not at all,qc080,"[PHQ.9] Thoughts that you would be better off dead, or thoughts of hurting yourself in some way? (past 2 weeks)",q001a016q001a002q003a001q009
+q001a016 q001a016q001a002 q001a016q001a002q003a001 q001a016q001a002q003a001q001a002,qc001a016 qc008a002 qc070a001 qc072a002,anxiety Follow up evaluation Start questionnaire several days,qc080,"[PHQ.9] Thoughts that you would be better off dead, or thoughts of hurting yourself in some way? (past 2 weeks)",q001a016q001a002q003a001q009
+q001a016 q001a016q001a002 q001a016q001a002q003a001 q001a016q001a002q003a001q001a003,qc001a016 qc008a002 qc070a001 qc072a003,anxiety Follow up evaluation Start questionnaire more than half the days,qc080,"[PHQ.9] Thoughts that you would be better off dead, or thoughts of hurting yourself in some way? (past 2 weeks)",q001a016q001a002q003a001q009
+q001a016 q001a016q001a002 q001a016q001a002q003a001 q001a016q001a002q003a001q001a004,qc001a016 qc008a002 qc070a001 qc072a004,anxiety Follow up evaluation Start questionnaire nearly every day,qc080,"[PHQ.9] Thoughts that you would be better off dead, or thoughts of hurting yourself in some way? (past 2 weeks)",q001a016q001a002q003a001q009
+q001a016 q001a016q001a002 q001a016q001a002q003a001 q001a016q001a002q003a001q002a001,qc001a016 qc008a002 qc070a001 qc073a001,anxiety Follow up evaluation Start questionnaire not at all,qc080,"[PHQ.9] Thoughts that you would be better off dead, or thoughts of hurting yourself in some way? (past 2 weeks)",q001a016q001a002q003a001q009
+q001a016 q001a016q001a002 q001a016q001a002q003a001 q001a016q001a002q003a001q002a002,qc001a016 qc008a002 qc070a001 qc073a002,anxiety Follow up evaluation Start questionnaire several days,qc080,"[PHQ.9] Thoughts that you would be better off dead, or thoughts of hurting yourself in some way? (past 2 weeks)",q001a016q001a002q003a001q009
+q001a016 q001a016q001a002 q001a016q001a002q003a001 q001a016q001a002q003a001q002a003,qc001a016 qc008a002 qc070a001 qc073a003,anxiety Follow up evaluation Start questionnaire more than half the days,qc080,"[PHQ.9] Thoughts that you would be better off dead, or thoughts of hurting yourself in some way? (past 2 weeks)",q001a016q001a002q003a001q009
+q001a016 q001a016q001a002 q001a016q001a002q003a001 q001a016q001a002q003a001q002a004,qc001a016 qc008a002 qc070a001 qc073a004,anxiety Follow up evaluation Start questionnaire nearly every day,qc080,"[PHQ.9] Thoughts that you would be better off dead, or thoughts of hurting yourself in some way? (past 2 weeks)",q001a016q001a002q003a001q009
+q001a016 q001a016q001a002 q001a016q001a002q003a001 q001a016q001a002q003a001q003a001,qc001a016 qc008a002 qc070a001 qc074a001,anxiety Follow up evaluation Start questionnaire not at all,qc080,"[PHQ.9] Thoughts that you would be better off dead, or thoughts of hurting yourself in some way? (past 2 weeks)",q001a016q001a002q003a001q009
+q001a016 q001a016q001a002 q001a016q001a002q003a001 q001a016q001a002q003a001q003a002,qc001a016 qc008a002 qc070a001 qc074a002,anxiety Follow up evaluation Start questionnaire several days,qc080,"[PHQ.9] Thoughts that you would be better off dead, or thoughts of hurting yourself in some way? (past 2 weeks)",q001a016q001a002q003a001q009
+q001a016 q001a016q001a002 q001a016q001a002q003a001 q001a016q001a002q003a001q003a003,qc001a016 qc008a002 qc070a001 qc074a003,anxiety Follow up evaluation Start questionnaire more than half the days,qc080,"[PHQ.9] Thoughts that you would be better off dead, or thoughts of hurting yourself in some way? (past 2 weeks)",q001a016q001a002q003a001q009
+q001a016 q001a016q001a002 q001a016q001a002q003a001 q001a016q001a002q003a001q003a004,qc001a016 qc008a002 qc070a001 qc074a004,anxiety Follow up evaluation Start questionnaire nearly every day,qc080,"[PHQ.9] Thoughts that you would be better off dead, or thoughts of hurting yourself in some way? (past 2 weeks)",q001a016q001a002q003a001q009
+q001a016 q001a016q001a002 q001a016q001a002q003a001 q001a016q001a002q003a001q004a001,qc001a016 qc008a002 qc070a001 qc075a001,anxiety Follow up evaluation Start questionnaire not at all,qc080,"[PHQ.9] Thoughts that you would be better off dead, or thoughts of hurting yourself in some way? (past 2 weeks)",q001a016q001a002q003a001q009
+q001a016 q001a016q001a002 q001a016q001a002q003a001 q001a016q001a002q003a001q004a002,qc001a016 qc008a002 qc070a001 qc075a002,anxiety Follow up evaluation Start questionnaire several days,qc080,"[PHQ.9] Thoughts that you would be better off dead, or thoughts of hurting yourself in some way? (past 2 weeks)",q001a016q001a002q003a001q009
+q001a016 q001a016q001a002 q001a016q001a002q003a001 q001a016q001a002q003a001q004a003,qc001a016 qc008a002 qc070a001 qc075a003,anxiety Follow up evaluation Start questionnaire more than half the days,qc080,"[PHQ.9] Thoughts that you would be better off dead, or thoughts of hurting yourself in some way? (past 2 weeks)",q001a016q001a002q003a001q009
+q001a016 q001a016q001a002 q001a016q001a002q003a001 q001a016q001a002q003a001q004a004,qc001a016 qc008a002 qc070a001 qc075a004,anxiety Follow up evaluation Start questionnaire nearly every day,qc080,"[PHQ.9] Thoughts that you would be better off dead, or thoughts of hurting yourself in some way? (past 2 weeks)",q001a016q001a002q003a001q009
+q001a016 q001a016q001a002 q001a016q001a002q003a001 q001a016q001a002q003a001q005a001,qc001a016 qc008a002 qc070a001 qc076a001,anxiety Follow up evaluation Start questionnaire not at all,qc080,"[PHQ.9] Thoughts that you would be better off dead, or thoughts of hurting yourself in some way? (past 2 weeks)",q001a016q001a002q003a001q009
+q001a016 q001a016q001a002 q001a016q001a002q003a001 q001a016q001a002q003a001q005a002,qc001a016 qc008a002 qc070a001 qc076a002,anxiety Follow up evaluation Start questionnaire several days,qc080,"[PHQ.9] Thoughts that you would be better off dead, or thoughts of hurting yourself in some way? (past 2 weeks)",q001a016q001a002q003a001q009
+q001a016 q001a016q001a002 q001a016q001a002q003a001 q001a016q001a002q003a001q005a003,qc001a016 qc008a002 qc070a001 qc076a003,anxiety Follow up evaluation Start questionnaire more than half the days,qc080,"[PHQ.9] Thoughts that you would be better off dead, or thoughts of hurting yourself in some way? (past 2 weeks)",q001a016q001a002q003a001q009
+q001a016 q001a016q001a002 q001a016q001a002q003a001 q001a016q001a002q003a001q005a004,qc001a016 qc008a002 qc070a001 qc076a004,anxiety Follow up evaluation Start questionnaire nearly every day,qc080,"[PHQ.9] Thoughts that you would be better off dead, or thoughts of hurting yourself in some way? (past 2 weeks)",q001a016q001a002q003a001q009
+q001a016 q001a016q001a002 q001a016q001a002q003a001 q001a016q001a002q003a001q006a001,qc001a016 qc008a002 qc070a001 qc077a001,anxiety Follow up evaluation Start questionnaire not at all,qc080,"[PHQ.9] Thoughts that you would be better off dead, or thoughts of hurting yourself in some way? (past 2 weeks)",q001a016q001a002q003a001q009
+q001a016 q001a016q001a002 q001a016q001a002q003a001 q001a016q001a002q003a001q006a002,qc001a016 qc008a002 qc070a001 qc077a002,anxiety Follow up evaluation Start questionnaire several days,qc080,"[PHQ.9] Thoughts that you would be better off dead, or thoughts of hurting yourself in some way? (past 2 weeks)",q001a016q001a002q003a001q009
+q001a016 q001a016q001a002 q001a016q001a002q003a001 q001a016q001a002q003a001q006a003,qc001a016 qc008a002 qc070a001 qc077a003,anxiety Follow up evaluation Start questionnaire more than half the days,qc080,"[PHQ.9] Thoughts that you would be better off dead, or thoughts of hurting yourself in some way? (past 2 weeks)",q001a016q001a002q003a001q009
+q001a016 q001a016q001a002 q001a016q001a002q003a001 q001a016q001a002q003a001q006a004,qc001a016 qc008a002 qc070a001 qc077a004,anxiety Follow up evaluation Start questionnaire nearly every day,qc080,"[PHQ.9] Thoughts that you would be better off dead, or thoughts of hurting yourself in some way? (past 2 weeks)",q001a016q001a002q003a001q009
+q001a016 q001a016q001a002 q001a016q001a002q003a001 q001a016q001a002q003a001q007a001,qc001a016 qc008a002 qc070a001 qc078a001,anxiety Follow up evaluation Start questionnaire not at all,qc080,"[PHQ.9] Thoughts that you would be better off dead, or thoughts of hurting yourself in some way? (past 2 weeks)",q001a016q001a002q003a001q009
+q001a016 q001a016q001a002 q001a016q001a002q003a001 q001a016q001a002q003a001q007a002,qc001a016 qc008a002 qc070a001 qc078a002,anxiety Follow up evaluation Start questionnaire several days,qc080,"[PHQ.9] Thoughts that you would be better off dead, or thoughts of hurting yourself in some way? (past 2 weeks)",q001a016q001a002q003a001q009
+q001a016 q001a016q001a002 q001a016q001a002q003a001 q001a016q001a002q003a001q007a003,qc001a016 qc008a002 qc070a001 qc078a003,anxiety Follow up evaluation Start questionnaire more than half the days,qc080,"[PHQ.9] Thoughts that you would be better off dead, or thoughts of hurting yourself in some way? (past 2 weeks)",q001a016q001a002q003a001q009
+q001a016 q001a016q001a002 q001a016q001a002q003a001 q001a016q001a002q003a001q007a004,qc001a016 qc008a002 qc070a001 qc078a004,anxiety Follow up evaluation Start questionnaire nearly every day,qc080,"[PHQ.9] Thoughts that you would be better off dead, or thoughts of hurting yourself in some way? (past 2 weeks)",q001a016q001a002q003a001q009
+q001a016 q001a016q001a002 q001a016q001a002q003a001 q001a016q001a002q003a001q008a001,qc001a016 qc008a002 qc070a001 qc079a001,anxiety Follow up evaluation Start questionnaire not at all,qc080,"[PHQ.9] Thoughts that you would be better off dead, or thoughts of hurting yourself in some way? (past 2 weeks)",q001a016q001a002q003a001q009
+q001a016 q001a016q001a002 q001a016q001a002q003a001 q001a016q001a002q003a001q008a002,qc001a016 qc008a002 qc070a001 qc079a002,anxiety Follow up evaluation Start questionnaire several days,qc080,"[PHQ.9] Thoughts that you would be better off dead, or thoughts of hurting yourself in some way? (past 2 weeks)",q001a016q001a002q003a001q009
+q001a016 q001a016q001a002 q001a016q001a002q003a001 q001a016q001a002q003a001q008a003,qc001a016 qc008a002 qc070a001 qc079a003,anxiety Follow up evaluation Start questionnaire more than half the days,qc080,"[PHQ.9] Thoughts that you would be better off dead, or thoughts of hurting yourself in some way? (past 2 weeks)",q001a016q001a002q003a001q009
+q001a016 q001a016q001a002 q001a016q001a002q003a001 q001a016q001a002q003a001q008a004,qc001a016 qc008a002 qc070a001 qc079a004,anxiety Follow up evaluation Start questionnaire nearly every day,qc080,"[PHQ.9] Thoughts that you would be better off dead, or thoughts of hurting yourself in some way? (past 2 weeks)",q001a016q001a002q003a001q009
+q001a016,qc001a016,anxiety,qc999,NA,NA
+q001a016,qc001a016,anxiety,qc999,NA,NA
+q001a016,qc001a016,anxiety,qc999,NA,NA
+q001a016,qc001a016,anxiety,qc999,NA,NA
+q001a016 q001a016q001a002 q001a016q001a002q003a002,qc001a016 qc008a002 qc070a002,anxiety Follow up evaluation Score is ready,qc071,PHQ9 score,q001a016q001a002q003a002q001
+q001a016,qc001a016,anxiety,qc999,NA,NA
+q001a016,qc001a016,anxiety,qc999,NA,NA
+q001a016,qc001a016,anxiety,qc999,NA,NA
+q001a016,qc001a016,anxiety,qc999,NA,NA

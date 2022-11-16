@@ -702,7 +702,7 @@ def mass_classifier(request):
       k=k+1
       if len(i)>3:
         kkk=0
-        while kkk<1000:
+        while kkk<100000:
           print(str(kkk)+str(text_to_predict(i))+str(datetime.now()))
           #text.append(i)
           #output.append(text_to_predict(i))
