@@ -701,10 +701,13 @@ def mass_classifier(request):
     for i in mass_text:
       k=k+1
       if len(i)>3:
-        print(str(text_to_predict(i))+str(datetime.now()))
-        #text.append(i)
-        #output.append(text_to_predict(i))
-        #print(str(k)+"/"+str(length)+" "+str(datetime.now())+"  "+str(text_to_predict(i))+": "+i)
+        kkk=0
+        while kkk<1000:
+          print(str(text_to_predict(i))+str(datetime.now()))
+          #text.append(i)
+          #output.append(text_to_predict(i))
+          #print(str(k)+"/"+str(length)+" "+str(datetime.now())+"  "+str(text_to_predict(i))+": "+i)
+          kkk=kkk+1
     pcp=[]
     alarm=[]
     etc=[]
