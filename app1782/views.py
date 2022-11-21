@@ -429,13 +429,16 @@ def text_to_predict(text):
   array.append(text)
   sequence_mass=tokenizer_mass.texts_to_sequences(array)  
   sequence_mass=tf.keras.preprocessing.sequence.pad_sequences(sequence_mass, maxlen=max_len)
-  model.predict(np.expand_dims(sequence_mass[0], 0))[0]
+  #model.predict(np.expand_dims(sequence_mass[0], 0))[0]
+  print(str(model.predict(np.expand_dims(sequence_mass[0], 0), train=False)))
+'''
   return_array=[]
   for i in model.predict(np.expand_dims(sequence_mass[0], 0))[0]:
     return_array.append(round(i,2))
   return_array2=[]
   for j in return_array:
     return_array2.append(round(j*100,0))
+'''  
   return return_array2
 
 def classifier(request):
