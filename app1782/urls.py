@@ -56,6 +56,7 @@ urlpatterns = [
     path('letstart', views.letstart, name='letstart'),
     path('cc_list_maker', views.cc_list_maker, name='cc_list_maker'),
     path('branch_copy', views.branch_copy, name='branch_copy'),
+    path('one_line_classify', views.one_line_classify, name='one_line_classify'),
 
     path('dup_q_delete', views.dup_q_delete, name='dup_q_delete'),
     path('dup_q_delete', views.dup_a_delete, name='dup_a_delete'),

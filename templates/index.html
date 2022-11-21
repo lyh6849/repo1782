@@ -66,6 +66,20 @@
             }
         })
     }
+    function one_line_classify(){
+        text_184=$(event.target).val()
+        $.ajax({
+            type:'post',
+            url:'one_line_classify',
+            data:{
+                text_184:text_184,
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+            }, 
+            success:function(response){
+                $("body").append(response.predict)
+            }
+        })
+    }
     function mass_data_to_classifier(mass_text){
         mass_text=$(event.target).val()
         data_type=$('input[name=data_type]').val()
@@ -78,6 +92,8 @@
                 csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
             }, 
             success:function(response){
+
+                /*
                 length=response.text.length
                 for(i=0;i<length;i++){
                     pred_pcp=response.pcp[i]
@@ -102,6 +118,7 @@
                         $(".result").append("<tr class=\"pred_negative\"><td><button type=\"button\" class=\"btn btn-primary\" value=1 onclick=\"update_data_set()\" style=\"color: rgb(255, 255, 255, "+pred_pcp+"); background-color:rgb(255, 0, 0, "+pred_pcp+")\"><input value=1 style=\"display: none;\">"+pred_pcp+"</button></td><td><button type=\"button\" onclick=\"update_data_set()\" class=\"btn btn-primary\" style=\"color: rgb(255,255,255,"+pred_alarm+"); background-color:rgb(0, 200, 0, "+pred_alarm+")\"><input value=2 style=\"display: none;\">"+pred_alarm+"</button></td><td><button onclick=\"update_data_set()\" type=\"button\" class=\"btn btn-primary\" style=\"color: rgb(255,255,255,"+pred_etc+"); background-color:rgb(0, 0, 255, "+pred_etc+")\"><input value=3 style=\"display: none;\">"+pred_etc+"</button></td><td><button onclick=\"update_data_set()\" type=\"button\" class=\"btn btn-outline-warning\"><input value=4 style=\"display: none;\"> - </button></td><td class=\"text_div\"><input style=\"display: none\" value=\""+pred+"\"><div style=\"background-color:rgb(255, 238, 0, "+pred_max+")\">"+pred+"</div></td><td>"+data_type+"</td><td>"+date_cut+"</td></tr>")
                     }
                 }
+                */
             }
         })
     }
@@ -193,7 +210,7 @@
 </head>
 
 <body>
-    <textarea style="width: 100vw" class="form" ondblclick='mass_data_to_classifier()'></textarea>
+    <textarea style="width: 100vw" class="form" ondblclick='one_line_classify()'></textarea>
     <input type="text" name="data_type"><input type="text" name="date_cut">
     <button class="btn btn-dark" style="color:white" onclick='hide_negative()'>POSITIVE / NEGATIVE</button>
     <table class="result">

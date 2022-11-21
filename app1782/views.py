@@ -422,6 +422,10 @@ def texttext(text):
   sequence=tokenizer.texts_to_sequences(array)  
   sequence=pad_sequences(sequence, maxlen=max_length, padding=padding_type, truncating=trunc_type)
   return model.predict(np.expand_dims(sequence[0], 0))[0]
+  
+def one_line_classify(request):
+  text_182=request.POST['text_182']
+  return JsonResponse (text_to_predict(text_182))
 
 def text_to_predict(text):
   text=str(text)
@@ -430,9 +434,9 @@ def text_to_predict(text):
   sequence_mass=tokenizer_mass.texts_to_sequences(array)  
   sequence_mass=tf.keras.preprocessing.sequence.pad_sequences(sequence_mass, maxlen=max_len)
   #model.predict(np.expand_dims(sequence_mass[0], 0))[0]
-  print(str(model.predict(np.expand_dims(sequence_mass[0], 0), train=False)))
+  print()
   return_array2=[]
-  return return_array2
+  return str(model(np.expand_dims(sequence_mass[0], 0), train=False))
   '''
   return_array=[]
   for i in model.predict(np.expand_dims(sequence_mass[0], 0))[0]:
@@ -710,7 +714,6 @@ def mass_classifier(request):
         #text.append(i)
         #output.append(text_to_predict(i))
         #print(str(k)+"/"+str(length)+" "+str(datetime.now())+"  "+str(text_to_predict(i))+": "+i)
-
     pcp=[]
     alarm=[]
     etc=[]
