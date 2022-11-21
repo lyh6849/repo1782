@@ -436,7 +436,7 @@ def text_to_predict(text):
   #model.predict(np.expand_dims(sequence_mass[0], 0))[0]
   print()
   return_array2=[]
-  return str(model(np.expand_dims(sequence_mass[0], 0), Train=False))
+  return str(model(np.expand_dims(sequence_mass[0], 0)))
   '''
   return_array=[]
   for i in model.predict(np.expand_dims(sequence_mass[0], 0))[0]:
