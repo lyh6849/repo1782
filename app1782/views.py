@@ -138,8 +138,16 @@ def predict(input_data):
   output_list_271=[]
   for i in os.listdir("dream_data/train"):
     output_list_271.append(i)
-  predict_array=model_748.predict(vectorize_layer(tf.expand_dims(input_data,-1)))[0]
-  return output_list_271[find_highest_three(predict_array)[0]], output_list_271[find_highest_three(predict_array)[1]], output_list_271[find_highest_three(predict_array)[2]]
+  iiii=0
+  while iiii<2:
+    print(model_748.predict(vectorize_layer(tf.expand_dims(input_data,-1)))[0])
+    iiii=iiii+1
+    gc.collect()
+    keras.backend.clear_session()
+
+  return "delete"
+  #return output_list_271[find_highest_three(predict_array)[0]], output_list_271[find_highest_three(predict_array)[1]], output_list_271[find_highest_three(predict_array)[2]]
+
 
 def predict_2(request):
   input_data=request.POST['input']
@@ -422,10 +430,19 @@ def texttext(text):
   sequence=tokenizer.texts_to_sequences(array)  
   sequence=pad_sequences(sequence, maxlen=max_length, padding=padding_type, truncating=trunc_type)
   return model.predict(np.expand_dims(sequence[0], 0))[0]
-  
+import gc
+from tensorflow.keras import backend as K
+
 def one_line_classify(request):
   text_182=request.POST['text_182']
-  return JsonResponse (text_to_predict(text_182))
+  text=str(text_182)
+  array=[]
+  array.append(text)
+  sequence_mass=tokenizer_mass.texts_to_sequences(array)  
+  sequence_mass=tf.keras.preprocessing.sequence.pad_sequences(sequence_mass, maxlen=max_len)
+  qqq=1
+  text_to_predict(text)  
+  return JsonResponse ({"predict":"test"})
 
 def text_to_predict(text):
   text=str(text)
@@ -433,18 +450,11 @@ def text_to_predict(text):
   array.append(text)
   sequence_mass=tokenizer_mass.texts_to_sequences(array)  
   sequence_mass=tf.keras.preprocessing.sequence.pad_sequences(sequence_mass, maxlen=max_len)
-  #model.predict(np.expand_dims(sequence_mass[0], 0))[0]
-  print()
-  return_array2=[]
-  return model.predict(np.expand_dims(sequence_mass[0], 0))[0]
-  '''
-  return_array=[]
-  for i in model.predict(np.expand_dims(sequence_mass[0], 0))[0]:
-    return_array.append(round(i,2))
-  for j in return_array:
-    return_array2.append(round(j*100,0))
-  '''  
-  
+  result=model.predict(np.expand_dims(sequence_mass[0], 0))[0]
+  gc.collect()
+  keras.backend.clear_session()
+  return result 
+
 
 def classifier(request):
   output=request.POST['ajax_input']
@@ -700,28 +710,17 @@ def new_qc(request):
   return JsonResponse({"last_qc":last_qc})
 
 def mass_classifier(request):
+  '''
     mass_text=request.POST['input']
-    mass_text=mass_text.split('\n')
-    length=len(mass_text)
-    output=[]
-    text=[]
-    k=0
-    for i in mass_text:
-      k=k+1
-      if len(i)>3:
-        kkk=0
-        print(str(k)+str(text_to_predict(i))+str(datetime.now()))
-        #text.append(i)
-        #output.append(text_to_predict(i))
-        #print(str(k)+"/"+str(length)+" "+str(datetime.now())+"  "+str(text_to_predict(i))+": "+i)
-    pcp=[]
-    alarm=[]
-    etc=[]
-    #for i in output:
-      #pcp.append(i[0])
-      #alarm.append(i[1])
-      #etc.append(i[2])
-    return JsonResponse({"text":text,"pcp":pcp,"alarm":alarm,"etc":etc})
+    array=
+    array.append(text)
+  '''
+  sequence_mass=tokenizer_mass.texts_to_sequences([request.POST['input']])  
+  sequence_mass=tf.keras.preprocessing.sequence.pad_sequences(sequence_mass, maxlen=max_len)
+  result=model.predict(np.expand_dims(sequence_mass[0], 0))[0]
+  gc.collect()
+  keras.backend.clear_session()
+  return JsonResponse({"text":request.POST['input'],"pcp":str(result[0]),"alarm":str(result[1]),"etc":str(result[2])})
 
 def exst_q_select(request):
   parent_id=""
@@ -1984,3 +1983,103 @@ callbacks = [
 #model.fit(x_train, y_train, validation_split=0.1, batch_size=16, epochs=15, callbacks=callbacks, verbose=1)
 #model.fit(x_train, y_train, validation_split=0.2, batch_size=batch_size, epochs=2, verbose=1)
 model.load_weights(checkpoint_path)
+
+
+
+
+
+
+
+
+
+
+
+dense=dense_counter()
+seed = 42
+embedding_dim = 16
+batch_size = 1
+max_features = 5000
+sequence_length = 30
+AUTOTUNE = tf.data.experimental.AUTOTUNE
+epochs = 300
+
+raw_train_ds = tf.keras.utils.text_dataset_from_directory(
+    'dream_data/train', 
+    batch_size=batch_size, 
+    validation_split=0.2, 
+    subset='training', 
+    seed=seed)
+
+raw_val_ds = tf.keras.utils.text_dataset_from_directory(
+    'dream_data/train', 
+    batch_size=batch_size, 
+    validation_split=0.2, 
+    subset='validation', 
+    seed=seed)
+
+raw_test_ds = tf.keras.utils.text_dataset_from_directory(
+    'dream_data/test', 
+    batch_size=batch_size)
+
+vectorize_layer = TextVectorization(
+    max_tokens=max_features,
+    output_mode='int',
+    output_sequence_length=sequence_length)
+
+#text_ds = total_dataset.map(lambda x, y: x)
+#vectorize_layer.adapt(text_ds)
+
+train_text = raw_train_ds.map(lambda x, y: x)
+vectorize_layer.adapt(train_text)
+
+def vectorize_text(text, label):
+  text2 = tf.expand_dims(text, -1)
+  return vectorize_layer(text2), label
+
+text_batch, label_batch = next(iter(raw_train_ds))
+first_review, first_label = text_batch[0], label_batch[0]
+
+train_ds = raw_train_ds.map(vectorize_text)
+val_ds = raw_val_ds.map(vectorize_text)
+test_ds = raw_test_ds.map(vectorize_text)
+
+AUTOTUNE = tf.data.AUTOTUNE
+
+train_ds = train_ds.cache().prefetch(buffer_size=AUTOTUNE)
+val_ds = val_ds.cache().prefetch(buffer_size=AUTOTUNE)
+test_ds = test_ds.cache().prefetch(buffer_size=AUTOTUNE)
+
+
+model_748 = tf.keras.Sequential([
+  layers.Embedding(max_features + 1, embedding_dim),
+  layers.Dropout(0.2),
+  layers.GlobalAveragePooling1D(),
+  layers.Dropout(0.2),
+  layers.Dense(len(os.listdir("dream_data/train")))])
+
+model_748.summary()
+
+model_748.compile(loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
+              optimizer='adam',
+              metrics=['accuracy'])
+
+loss, accuracy = model_748.evaluate(test_ds)
+
+checkpoint_path_748 = "save_ML/cp.ckpt"
+checkpoint_dir = os.path.dirname(checkpoint_path_748)
+
+cp_callback_748 = tf.keras.callbacks.ModelCheckpoint(checkpoint_path_748,
+                                                save_weights_only=True,
+                                                verbose=1)
+
+callbacks_748 = [
+    tf.keras.callbacks.EarlyStopping(patience=5, monitor='val_loss'),
+    tf.keras.callbacks.TensorBoard(log_dir='./logs'),
+    cp_callback_748
+]
+
+#model.fit(x_train, y_train, validation_split=0.1, batch_size=16, epochs=15, callbacks=callbacks, verbose=1)
+#model.fit(x_train, y_train, validation_split=0.2, batch_size=batch_size, epochs=2, verbose=1)
+
+#history = model_748.fit(train_ds, validation_data=val_ds, epochs=epochs, callbacks=callbacks_748)
+model_748.load_weights(checkpoint_path_748)
