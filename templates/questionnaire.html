@@ -10,13 +10,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <style>
-        .answer{margin-left:5px;font-weight:lighter;}
-        .answer:hover{color:white;cursor: pointer;font-weight: bold;}
+        .answer{margin-left:5px;font-weight:bold;}
+        .answer:hover{color:rgb(61, 125, 209);cursor: pointer;font-weight: bold;}
         .answer_note{margin-left:5px;font-weight:lighter;}
         .question{padding:10px;margin-left:10px;font-weight:bold;position:relative;}
-        .question:hover{
-            background-color: #638fb886;
-        }
+
         .focus{width:100vw;}
     
         .question_note{margin-left:15px;font-weight:bold;}
@@ -61,6 +59,7 @@
             border-radius: 5px;
             color: #30423b;}
         .close_button:hover{background-color: #1C6EA4;color:white;}
+        .next_question_shine{background-color:yellow;}
     </style>
 </head>
 
@@ -77,7 +76,7 @@
     <div class="question_note" id="q000_note" value="Type of visit"></div>
 </div>
 <datalist id="cc_list"></datalist>
-
+<button type="button" onclick="next_question_is()">jjj</button>
     {%endblock%}
 </body>
 <script>
@@ -96,7 +95,7 @@
 
 
     function a_generate(q_id_1521,a_id_1521,a_value_1521){
-        $(q_id_1521).append("<div class=\"answer hide\" id=\""+a_id_1521+"\" onclick=\"select_copy(\'"+a_id_1521+"\');\" value=\""+a_value_1521+"\"><i class=\"fa-regular fa-square\"></i> "+first_letter_upper(a_value_1521)+"</div>")
+        $(q_id_1521).append("<div class=\"answer hide\" id=\""+a_id_1521+"\" onclick=\"select_copy(\'"+a_id_1521+"\');next_question_is();\" value=\""+a_value_1521+"\"><i class=\"fa-regular fa-square\"></i> "+first_letter_upper(a_value_1521)+"</div>")
         $("#"+a_id_1521).fadeIn()
         $("#"+a_id_1521).removeClass("hide")
         $("#"+a_id_1521).css("display","")
@@ -197,8 +196,10 @@
                     //$("#"+q_id).children(".answer").slideUp(1000)
                     $("#"+q_id).children(".answer").addClass("hide")
                 } 
+                next_question_is()
             }
         })
+
     }
     function select(){
         select_copy($(event.target).attr("id"))
@@ -277,6 +278,9 @@
         $(event.target).siblings(".answer").toggleClass("hide")
         $(event.target).siblings(".close_button").toggleClass("hide")
         //$(event.target).children(".answer_to_q").remove()
+        next_question_is()
+
+    
     }
     function next(){
         alert($(event.target).parent().attr("id"))
@@ -300,6 +304,8 @@
     function close_above_a(){
         $(event.target).siblings(".answer").addClass("hide")
         $(event.target).addClass("hide")
+        next_question_is()
+
     }
     function cc_select(){
         for (i_1583=0;i_1583<cc_list.length;i_1583++){
@@ -483,6 +489,22 @@
         return result
     }
 
+    function next_question_is(){
+        $(".question").removeClass("next_question_shine")
+        i_319=0
+        for (j_319=0;j_319<$(".question").length;j_319++){
+            answer_hide_count=$(".question").eq(j_319).children(".answer.hide").length
+            //$("body").append($(".question").eq(j_319).attr("id")+"answer_hide_count is "+answer_hide_count+" and i_319 is "+i_319+"<BR>")
+            if (answer_hide_count==0 && i_319==0 &&$(".question").eq(j_319).attr("id")!="q001"){
+                i_319=1
+                next_question_id=$(".question").eq(j_319).attr("id")
+                $("#"+next_question_id).addClass("next_question_shine")
+                //$("body").append("next question id is "+next_question_id+"<BR>")
+            }
+        }
+        //$("body").append("<BR><BR>")
+    }
+
     $(document).ready(function(){
         cc_list=[]
         $.ajax({
@@ -522,5 +544,9 @@
             alert("working")
         })
     })
+
+
+
+
 </script>
 </html>
