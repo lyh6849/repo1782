@@ -10,6 +10,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <style>
+        body{color:#d0d6db;}
         .answer{margin-left:5px;font-weight:bold;}
         .answer:hover{color:rgb(61, 125, 209);cursor: pointer;font-weight: bold;}
         .answer_note{margin-left:5px;font-weight:lighter;}
@@ -59,13 +60,34 @@
             border-radius: 5px;
             color: #30423b;}
         .close_button:hover{background-color: #1C6EA4;color:white;}
-        .next_question_shine{background-color:yellow;}
+        .next_question_shine{    
+            color: black;
+            position: fixed;
+            height: 80vh;
+            width: 80vw;
+            left: 10vw;
+            top: 10vh;
+            z-index: 2;
+            text-align: center;
+            font-size: 2em;
+            background-color: #edeffff0;
+            margin: 0;
+        }
+        .next_question_shine .question{
+            display:none;
+        }
+        .next_question_shine .answer{
+            text-align: left;
+            margin-left:20vw;
+        }
+
     </style>
 </head>
 
 <body>
     
     {%block body%}
+    <div class="next_question_board"></div>
     <form action="" method="POST">
         <div class="form" id="form">
            {%csrf_token%}
@@ -76,7 +98,6 @@
     <div class="question_note" id="q000_note" value="Type of visit"></div>
 </div>
 <datalist id="cc_list"></datalist>
-<button type="button" onclick="next_question_is()">jjj</button>
     {%endblock%}
 </body>
 <script>
@@ -96,7 +117,7 @@
 
     function a_generate(q_id_1521,a_id_1521,a_value_1521){
         $(q_id_1521).append("<div class=\"answer hide\" id=\""+a_id_1521+"\" onclick=\"select_copy(\'"+a_id_1521+"\');next_question_is();\" value=\""+a_value_1521+"\"><i class=\"fa-regular fa-square\"></i> "+first_letter_upper(a_value_1521)+"</div>")
-        $("#"+a_id_1521).fadeIn()
+        $("#"+a_id_1521).fadeIn(2000)
         $("#"+a_id_1521).removeClass("hide")
         $("#"+a_id_1521).css("display","")
         
@@ -105,14 +126,15 @@
 
         if(q_type=="on"){
             if(b=="q001"){
-                $(a).append("<div class=\"question hide\" id=\""+b+"\" onclick=\"\" value=\""+c+"\"><span onclick=\'remove_hide();\'>"+first_letter_upper(c)+"?</span></div>")
+                $(a).append("<div class=\"question \" id=\""+b+"\" onclick=\"\" value=\""+c+"\"><span onclick=\'remove_hide();\'>"+first_letter_upper(c)+"?</span></div>")
             } else {
-                $(a).append("<div class=\"question hide\" id=\""+b+"\" onclick=\"\" value=\""+c+"\"><span onclick=\'remove_hide();\'>"+first_letter_upper(c)+" (Select all that applies and click [Next Question])?</span></div>")
+                $(a).append("<div class=\"question \" id=\""+b+"\" onclick=\"\" value=\""+c+"\"><span onclick=\'remove_hide();\'>"+first_letter_upper(c)+"? (Select all)</span></div>")
             }
         } else {
-            $(a).append("<div class=\"question hide\" id=\""+b+"\" onclick=\"\"value=\""+c+"\"><span onclick=\'remove_hide();\'>"+first_letter_upper(c)+"?</span></div>")
+            $(a).append("<div class=\"question \" id=\""+b+"\" onclick=\"\"value=\""+c+"\"><span onclick=\'remove_hide();\'>"+first_letter_upper(c)+"?</span></div>")
         }
-        $("#"+b).fadeIn()
+        //$("#"+b).fadeIn()
+        //$("#"+b).css("display","")
     }
     function a_replace_to_unselected(a_id_6115,a_value_6115){
         $("#"+a_id_6115).replaceWith("<div class=\"answer\" id=\""+a_id_6115+"\" onclick=\"select_copy(\'"+a_id_6115+"\');\" value=\""+a_value_6115+"\"><i class=\"fa-regular fa-square\"></i> "+first_letter_upper(a_value_6115)+"</div>")
@@ -122,16 +144,15 @@
     }
 
     function select_copy(a_id_6192){
-        a_id_7619=a_id_6192
-        q_id=$("#"+a_id_7619).parent().attr("id")
-        q_value=$("#"+q_id).attr("value")
-        a_value=$("#"+a_id_7619).attr("value")
-        selected_siblings_id=[]
+        a_id_7619=a_id_6192 //get a_id 
+        q_id=$("#"+a_id_7619).parent().attr("id") //get parent q_id
+        q_value=$("#"+q_id).attr("value") //get parent q_value
+        a_value=$("#"+a_id_7619).attr("value") //get a_value
+        selected_siblings_id=[] //make an array to push ids of selected answers
         for (i_367=0;i_367<$("#"+a_id_7619).siblings(".selected").length;i_367++){
-            //unselect_2($("#"+a_id_7619).siblings(".selected").eq(i_367).attr("id"))
             selected_siblings_id.push($("#"+a_id_7619).siblings(".selected").eq(i_367).attr("id"))
-        }
-        $.ajax({
+        } //collect sected a's ids in sected_siblings_id array
+        $.ajax({//get every information connected to a_id
             type:'post',
             url:'next_questionnaire',
             data:{
@@ -150,18 +171,13 @@
                 if(response.q_type=="on" && q_id!="q001"){
                     count_1521=$("#"+a_id_7619).siblings(".selected").length+1
                     if(count_1521==1){
-                        $("#"+q_id+"_note").append("<div class=\"answer_note inline\" id=\""+a_id_7619+"_note\"  value=\""+a_value+"\">"+q_value+": "+a_value+"</div>")
                         $("<span class=\"answer_to_q\" id=\""+a_id_7619+"_span\"> "+a_value+";</span>").insertBefore($("#"+q_id).children(".answer").first())
                     } else{
-                        $("<div class=\"answer_note inline\" id=\""+a_id_7619+"_note\"  value=\""+a_value+"\">, "+a_value+"</div>").insertAfter($("#"+q_id+"_note").children(".answer_note").last())
                         $("<span class=\"answer_to_q\" id=\""+a_id_7619+"_span\"> "+a_value+";</span>").insertAfter($("#"+q_id).children(".answer_to_q").last())
                     }
                 } else if(response.q_type=="on" && q_id=="q001"){
                     count_1521=$("#"+a_id_7619).siblings(".selected").length+1
-                    $("#"+q_id+"_note").append("<div class=\"answer_note inline\" id=\""+a_id_7619+"_note\"  value=\""+a_value+"\">Problem #"+count_1521+": "+a_value+"</div>")
-                } else {
-                    $("#"+q_id+"_note").append("<div class=\"answer_note\" id=\""+a_id_7619+"_note\"  value=\""+a_value+"\">"+q_value+": "+a_value+"</div>")
-                }
+                } 
                 for (i_7124=0;i_7124<response.q_details.length;i_7124++){
                     q_id_618=response.q_details[i_7124][0]
                     q_value_618=response.q_details[i_7124][1]
@@ -186,6 +202,7 @@
                             }
                         }
                         if(response.q_details[i_7124][2]=="on"&&q_id_618!="q001"){
+                            
                             $("#"+q_id_618).append("<button class=\'close_button\'type\'button\' onclick=\'close_above_a();\'>Next Question</button>")
                             //$("<button class=\'close_button\'type\'button\' onclick=\'close_above_a();\'>Next Question</button>").insertAfter($("#"+q_id_618).children().last())
 
@@ -491,6 +508,7 @@
 
     function next_question_is(){
         $(".question").removeClass("next_question_shine")
+
         i_319=0
         for (j_319=0;j_319<$(".question").length;j_319++){
             answer_hide_count=$(".question").eq(j_319).children(".answer.hide").length
@@ -498,11 +516,15 @@
             if (answer_hide_count==0 && i_319==0 &&$(".question").eq(j_319).attr("id")!="q001"){
                 i_319=1
                 next_question_id=$(".question").eq(j_319).attr("id")
+
                 $("#"+next_question_id).addClass("next_question_shine")
+                
                 //$("body").append("next question id is "+next_question_id+"<BR>")
             }
         }
-        //$("body").append("<BR><BR>")
+
+
+
     }
 
     $(document).ready(function(){
@@ -529,7 +551,7 @@
             success:function(response){
                 for (i=0;i<response.q_details.length;i++){
                     q_generate_2("body",response.q_details[i][0],response.q_details[i][1],response.q_details[i][2])
-                    $("#"+response.q_details[i][0]).addClass("focus")
+                    $("#"+response.q_details[i][0]).addClass("focus next_question_shine")
                     //$("body").append("<div class=\"question\" id=\""+response.q_details[i][0]+"\" value=\""+response.q_details[i][1]+"\">"+response.q_details[i][1]+"</div>")
                 }
                 for (i=0;i<response.a_details.length;i++){
