@@ -300,12 +300,17 @@
 
 
     function remove_hide(){
-        $(event.target).siblings(".answer").toggleClass("hide")
-        $(event.target).siblings(".close_button").toggleClass("hide")
+        remove_hide_target($(event.target).parent().attr("id"))
+        //$(event.target).siblings(".answer").toggleClass("hide")
+        //$(event.target).siblings(".close_button").toggleClass("hide")
+        //$(event.target).children(".answer_to_q").remove()
+        //next_question_is()
+    }
+    function remove_hide_target(some_id){
+        $("#"+some_id).children("span").eq(0).siblings(".answer").toggleClass("hide")
+        $("#"+some_id).children("span").eq(0).siblings(".close_button").toggleClass("hide")
         //$(event.target).children(".answer_to_q").remove()
         next_question_is()
-
-    
     }
     function next(){
         alert($(event.target).parent().attr("id"))
@@ -515,7 +520,9 @@
     }
 
     function next_question_is(){
+
         next_question_id="none"
+        $(".next_question_shine").removeClass("next_question_shine")
         $(".question").removeClass("next_question_shine")
         $(".cc_mark").remove()
         i_319=0
@@ -537,9 +544,11 @@
             }
         }
         if (next_question_id=="none"){
-            $("#q001").addClass("next_question_shine")
-            $("#q001").children(".close_button, .answer").removeClass("hide")
-            
+            if($(".the_end").length==0){
+                $("body").append("<div class=\'next_question_shine the_end\'><h1>THE END</h1><button type=\'button\' onclick=\"remove_hide_target(\'q001\');\">  +  </button></div>")
+            } else{
+                $(".the_end").addClass("next_question_shine")
+            }
         }
     }
 
