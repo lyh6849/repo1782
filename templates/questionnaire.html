@@ -13,7 +13,11 @@
 
         html{overflow-x: hidden;}
         body{color:#000000;width:100vw;padding-left:0vw;}
-        .cc_mark{position:fixed;top:3vh;left:3vw;}
+        .cc_mark{    
+            position: absolute;
+            top: 10px;
+            right: 20px;
+        }
 
         .answer{margin-left:5px;font-weight:bold;}
         .answer:hover{color:rgb(61, 125, 209);cursor: pointer;font-weight: bold;}
@@ -36,7 +40,7 @@
             margin: auto;
             width: 70vw;
             margin-top: 2vh;
-            height: 5vh;
+            height: 15vh;
             font-size: 35px;
             color:#5e5353;
             padding:5px;
@@ -78,9 +82,10 @@
             background-color: #fffffffb;
             margin: 0;
             padding-left:5vw;
+            opacity:0%;
         }
         .next_question_shine .q_title{
-            margin-top:25vh;
+            margin-top:20vh;
             margin-bottom:5vh
         }
         .next_question_shine .question{display:none;}
@@ -168,10 +173,8 @@
     printed_q_list=[]
 
     function a_generate(q_id_1521,a_id_1521,a_value_1521){
-        $(q_id_1521).append("<div class=\"answer hide\" id=\""+a_id_1521+"\" onclick=\"select_copy(\'"+a_id_1521+"\');next_question_is();\" value=\""+a_value_1521+"\"><i class=\"fa-regular fa-square\"></i> "+first_letter_upper(a_value_1521)+"</div>")
-        $("#"+a_id_1521).fadeIn(2000)
-        $("#"+a_id_1521).removeClass("hide")
-        $("#"+a_id_1521).css("display","")
+        $(q_id_1521).append("<div class=\"answer \" id=\""+a_id_1521+"\" onclick=\"select_copy(\'"+a_id_1521+"\');next_question_is();\" value=\""+a_value_1521+"\"><i class=\"fa-regular fa-square\"></i> "+first_letter_upper(a_value_1521)+"</div>")
+
         
     }
     brx3="<br><br><br>"
@@ -425,7 +428,6 @@
     function to_the_input(tt){
         $("#cc_input").replaceWith("<input type=\"text\" id=\"cc_input\"class=\"input_bar\" onkeyup=\"cc_search()\" name=\"cc_search\" value=\""+tt+"\"></input>")
         $("#cc_input").val('')
-        $("#cc_input").placeholder('+')
     }
 
     function unselect(){
@@ -581,6 +583,13 @@
     function sub_func_821(){
         $(".next_question_shine").append("<div class=\"vertical_bar\" onclick=\"collapse_expand()\"></div>")
     }
+
+    function sub_func_846(){
+        $(".next_question_shine").animate({
+            opacity:"100%"
+        },1000,function(){
+        })
+    }
     function next_question_is(){
         $(".vertical_bar").remove()
         next_question_id="none"
@@ -601,7 +610,7 @@
                 sub_func_821()                
                 //$("body").append("next question id is "+next_question_id+"<BR>")
                 if(select_first_n(next_question_id,4)=="q001"&&next_question_id.length>=12){
-                    $("#"+next_question_id).append("<div class=\'cc_mark\'>"+$("#"+select_first_n(next_question_id,8)).attr("value")+"</div>")
+                    $("#"+next_question_id).append("<div class=\'cc_mark\'>["+$("#"+select_first_n(next_question_id,8)).attr("value")+"]</div>")
                 }
             }
         }
@@ -613,6 +622,7 @@
             }
             sub_func_821()
         }
+        sub_func_846()
         //$(".next_question_shine").append("<div class=\'vertical_bar\' onclick=\'shine_collapse()\'")
     }
 
@@ -669,12 +679,13 @@
                     //$("#"+response.a_details[i][0]).append("<div class=\"answer\" id=\""+response.a_details[i][1]+"\" onclick=\"select();\" value=\""+response.a_details[i][2]+"\">"+response.a_details[i][2]+"</div>")
                 }
                 $("#q000").append("<button class=\'close_button\'type\'button\' onclick=\'close_above_a();\'>Next Question</button>")
-
+                sub_func_846()
             }
+            
         })
-        $("#next").click(function(){
-            alert("working")
-        })
+        
+
+
     })
 
 
