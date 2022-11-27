@@ -12,7 +12,7 @@
     <style>
 
         html{overflow-x: hidden;}
-        body{color:#000000;width:100vw;padding-left:0vw;}
+        body{color:#000000;width:100vw;padding-left:0vw;position:fixed;left:-95vw;}
         .cc_mark{    
             position: absolute;
             top: 10px;
@@ -640,6 +640,19 @@
               }, 1000, function() {
                 // Animation complete.
               });
+        }
+        //alert($(window).width())
+        //alert($("body").position().left)
+        if($("body").position().left<0){
+            $("body").animate({
+                left:"0vw"
+            }, 1000, function(){
+            })
+        } else {
+            $("body").animate({
+                left:"-95vw"
+            }, 1000, function(){
+            }) 
         }
 
     }
