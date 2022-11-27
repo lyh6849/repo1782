@@ -78,7 +78,7 @@
             z-index: 2;
             text-align: center;
             font-size: 2.5vw;
-            background-color: #fffffff0;
+            background-color: #fffffffb;
             margin: 0;
             padding-left:5vw;
         }
@@ -107,10 +107,17 @@
             color: #3676a3;
             margin-left: 0px;
         }
+        .next_question_shine .close_button:hover{
+            background: #3676a3;
+            color:white;
+        }
 
         .next_question_shine .answer_to_q{
             display:none;
         }
+        .the_end_text{font-size:6vw;font-weight: bold;padding-top:25vh;        }
+        .fa-regular{cursor:pointer;}
+        .plus_icon{font-size:6vw;}
         .vertical_bar{width:5vw;position:absolute;height:100vh;left:0;top:0;background-color: #769cb5;}
         @media screen and (max-width: 767px) {
             .next_question_shine  {
@@ -348,8 +355,8 @@
         //next_question_is()
     }
     function remove_hide_target(some_id){
-        $("#"+some_id).children("span").eq(0).siblings(".answer").toggleClass("hide")
-        $("#"+some_id).children("span").eq(0).siblings(".close_button").toggleClass("hide")
+        $("#"+some_id).children(".q_title").siblings(".answer").toggleClass("hide")
+        $("#"+some_id).children(".q_title").siblings(".close_button").toggleClass("hide")
         //$(event.target).children(".answer_to_q").remove()
         next_question_is()
     }
@@ -402,11 +409,21 @@
             }
         }
     }
+    function add_more_cc(){
+        if ($("#q001").length==1){
+            remove_hide_target('q001')
+        } else {
+            select_copy("q000a003")
+        }
+    }
+
     function disppear(){
         $(event.target).remove()
     }
     function to_the_input(tt){
         $("#cc_input").replaceWith("<input type=\"text\" id=\"cc_input\"class=\"input_bar\" onkeyup=\"cc_search()\" name=\"cc_search\" value=\""+tt+"\"></input>")
+        $("#cc_input").val('')
+        $("#cc_input").placeholder('+')
     }
 
     function unselect(){
@@ -559,7 +576,9 @@
         result=result+x.slice(1)
         return result
     }
-
+    function sub_func_821(){
+        $(".next_question_shine").append("<div class=\"vertical_bar\" onclick=\"collapse_expand()\"></div>")
+    }
     function next_question_is(){
         $(".vertical_bar").remove()
         next_question_id="none"
@@ -577,8 +596,7 @@
                 next_question_id=$(".question").eq(j_319).attr("id")
 
                 $("#"+next_question_id).addClass("next_question_shine")
-                $(".next_question_shine").append("<div class=\"vertical_bar\" onclick=\"collapse_expand()\"></div>")
-                
+                sub_func_821()                
                 //$("body").append("next question id is "+next_question_id+"<BR>")
                 if(select_first_n(next_question_id,4)=="q001"&&next_question_id.length>=12){
                     $("#"+next_question_id).append("<div class=\'cc_mark\'>"+$("#"+select_first_n(next_question_id,8)).attr("value")+"</div>")
@@ -587,10 +605,11 @@
         }
         if (next_question_id=="none"){
             if($(".the_end").length==0){
-                $("body").append("<div class=\'next_question_shine the_end\'><h1>THE END</h1><button type=\'button\' onclick=\"remove_hide_target(\'q001\');\">  +  </button></div>")
+                $("body").append("<div class=\'next_question_shine the_end\'><div class=\"the_end_text\">THE END</div>  <i class=\"fa-solid fa-plus plus_icon\" onclick=\"add_more_cc();\"></i></div>")
             } else{
                 $(".the_end").addClass("next_question_shine")
             }
+            sub_func_821()
         }
         //$(".next_question_shine").append("<div class=\'vertical_bar\' onclick=\'shine_collapse()\'")
     }
