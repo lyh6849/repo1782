@@ -117,7 +117,8 @@
         .next_question_shine .answer_to_q{
             display:none;
         }
-        .the_end_text{font-size:6vw;font-weight: bold;padding-top:25vh;        }
+        .the_end{padding-top:25vh;}
+        .the_end_text{font-size:6vw;font-weight: bold;}
         .fa-regular{cursor:pointer;}
         .plus_icon{font-size:6vw;}
         .vertical_bar{width:5vw;position:absolute;height:100vh;left:0;top:0;background-color: #769cb5;}
@@ -616,7 +617,10 @@
         }
         if (next_question_id=="none"){
             if($(".the_end").length==0){
-                $("body").append("<div class=\'next_question_shine the_end\'><div class=\"the_end_text\">THE END</div>  <i class=\"fa-solid fa-plus plus_icon\" onclick=\"add_more_cc();\"></i></div>")
+                $("body").append("<div class=\'next_question_shine the_end\'></div>")
+                $(".the_end").append("<div class=\"the_end_text\">THE END</div>")
+                $(".the_end").append("<div class=\"the_end_text\" onclick=\"collapse_expand();\">Review</div>")
+                $(".the_end").append("<i class=\"fa-solid fa-plus plus_icon\" onclick=\"add_more_cc();\"></i>")
             } else{
                 $(".the_end").addClass("next_question_shine")
             }
