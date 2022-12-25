@@ -50,7 +50,6 @@ from nltk.corpus import stopwords
 from datetime import datetime
 #from sklearn.model_selection import train_test_split
 
-
 # Create your views here.
 def home (request):  
     #return HttpResponse("Hello World")
@@ -100,15 +99,57 @@ def getQuestions(request):
   print(output_list[best])
   return JsonResponse({"questions":result, "q_list":output_qualify})
 
+def close_above_a_input(request):
+  a_id_97623=request.POST['a_id_3261']
+  a_value_92623=request.POST['a_value_3261']
+  for i in a_bank.objects.all():
+    if i.a_id==a_id_97623:
+      lvl=i.a_lvl
+  return JsonResponse({"a_id":a_id_97623,"note":a_value_92623,"lvl":lvl})
+
+def close_above_a(request):
+  selected=request.POST['selected'].split(',')
+  note=[]
+  for i in selected:
+    for j in a_bank.objects.all():
+      if j.a_id==i:
+        note.append(j.a_note)
+        lvl=j.a_lvl
+  return JsonResponse({"a_id":selected,"note":note,"lvl":lvl})
 
 def initial_open(request):
   target_array_q=[]
   target_array_a=[]
+  cc_id_pair=[]
+  q_type_array=[]
   for i in q_bank.objects.all().order_by('q_id'):
     target_array_q.append([i.q_id,i.q_value,i.q_type,remove_last_n(i.q_id,4)])
+    if if_exist(q_type_array,i.q_type)==0:
+      q_type_array.append(i.q_type)
   for i in a_bank.objects.all().order_by('a_id'):
-    target_array_a.append([i.q_id,i.a_id,i.a_value])
-  return JsonResponse({"target_array_q":target_array_q,"target_array_a":target_array_a})
+    target_array_a.append([i.q_id,i.a_id,i.a_value,i.a_note,i.a_lvl])
+  return JsonResponse({"target_array_q":target_array_q,"target_array_a":target_array_a,"cc_id_pair":cc_id_pair,"q_type_array":q_type_array})
+
+def change_q_type(request):
+  q_class_oisjoe=""
+  exist="no"
+  q_class_89hweg=id_to_class_converter(request.POST['parent_q_id_0he0'])
+  for i in q_class.objects.all():
+    if i.q_type==request.POST['new_type_fg0n9s']:
+      exist="yes"
+  for i in q_bank.objects.all():
+    if i.q_class==q_class_89hweg:
+      target=get_object_or_404(q_bank, id=i.id)
+      target.q_type=request.POST['new_type_fg0n9s']
+      target.save()
+      print("updated q_bank")
+  for i in q_class.objects.all():
+    if i.q_class==q_class_89hweg:
+      target=get_object_or_404(q_class, id=i.id)
+      target.q_type=request.POST['new_type_fg0n9s']
+      target.save()
+      print("updated q_class")
+  return JsonResponse({"new_type":request.POST['new_type_fg0n9s'],"exist":exist})
 
 def remove_last_n(aa,n):
     result=""
@@ -117,6 +158,7 @@ def remove_last_n(aa,n):
         result=result+aa[count]
         count = count + 1
     return result
+
 
 def find_highest_three(array):
   m=sorted(array,reverse=True)
@@ -138,16 +180,13 @@ def predict(input_data):
   output_list_271=[]
   for i in os.listdir("dream_data/train"):
     output_list_271.append(i)
-  iiii=0
-  while iiii<2:
-    print(model_748.predict(vectorize_layer(tf.expand_dims(input_data,-1)))[0])
-    iiii=iiii+1
-    gc.collect()
-    keras.backend.clear_session()
-
-  return "delete"
-  #return output_list_271[find_highest_three(predict_array)[0]], output_list_271[find_highest_three(predict_array)[1]], output_list_271[find_highest_three(predict_array)[2]]
-
+  predict_array=model_748.predict(vectorize_layer(tf.expand_dims(input_data,-1)))[0]
+  print(predict_array)
+  gc.collect()
+  keras.backend.clear_session()
+  print(output_list_271)
+  print(find_highest_three(predict_array)[0])
+  return output_list_271[find_highest_three(predict_array)[0]], output_list_271[find_highest_three(predict_array)[1]], output_list_271[find_highest_three(predict_array)[2]]
 
 def predict_2(request):
   input_data=request.POST['input']
@@ -309,11 +348,12 @@ def add_a_create_new_qc(request):
 
   target=q_class(q_class=new_qc,q_type=q_type_751, q_value=q_value_751)
   target.save()
-  target=a_bank(a_id=request.POST['a_id'], a_class=new_qc+"a"+number_to_3_digits(new_ac_numb), q_id=request.POST['q_id'], a_value=request.POST['a_value'])
+  target=a_bank(a_id=request.POST['a_id'], a_class=new_qc+"a"+number_to_3_digits(new_ac_numb), q_id=request.POST['q_id'], a_value=request.POST['a_value'],a_note=request.POST['a_note_914'],a_lvl=request.POST['a_lvl_914'])
   target.save()
   target=a_class(a_class=new_qc+"a"+number_to_3_digits(new_ac_numb), a_value=request.POST['q_id'],q_class=new_qc)
   target.save()
-  return redirect('/')
+  return JsonResponse({"a_note":request.POST['a_note_914'],"a_lvl":request.POST['a_lvl_914']})
+
 
 
   
@@ -356,9 +396,12 @@ def edit_a_apply_exst_qc(request):
   for i in a_bank.objects.all():
     if i.a_id==request.POST['a_id']:
       a_class_725=i.a_class
-  target=get_object_or_404(a_class,a_class=a_class_725)
-  target.a_value=request.POST['a_value']
-  target.save()
+      
+  for i in a_class.objects.all():
+    if i.a_class==a_class_725:
+      target=get_object_or_404(a_class,id=i.id)
+      target.a_value=request.POST['a_value']
+      target.save()
   for i in a_bank.objects.all():
     if i.a_class==a_class_725:
       target=get_object_or_404(a_bank,id=i.id)
@@ -368,12 +411,51 @@ def edit_a_apply_exst_qc(request):
   return JsonResponse({'same_class_id':same_class_id})
 
 def new_ac(q_id_178):
-  for i in a_bank.objects.all():
+  last_a_class_178=""
+  for i in a_bank.objects.all().order_by('a_id'):
     if i.q_id==q_id_178:
       last_a_class_178=i.a_class
-  new_ac=remove_last_n(last_a_class_178,3)+number_to_3_digits(int(select_last_n(last_a_class_178,3))+1)
+  if len(last_a_class_178)>4:
+    new_ac=remove_last_n(last_a_class_178,3)+number_to_3_digits(int(select_last_n(last_a_class_178,3))+1)
+  else:
+    new_ac=id_to_class_converter(q_id_178)+"a001"
   return new_ac
 
+def del_square(request):
+  q_class_oishg=request.POST['q_class_to_delete']
+  get_object_or_404(q_class,q_class=q_class_oishg).delete()
+  for i in a_class.objects.all():
+    if i.q_class==q_class_oishg:
+      get_object_or_404(a_class,id=i.id).delete()
+  return JsonResponse({"q_class_to_delete":q_class_oishg})
+
+def add_new_qac_set(request):
+  q_value_9715=request.POST['q_value_687']
+  q_type_9721=request.POST['q_type_687']
+  a_values=request.POST['a_value_687'].split('\n')
+  combine_9822=[]
+  for i in q_class.objects.all().order_by('q_class'):
+    last_q_class=i.q_class
+  next_class=remove_last_n(last_q_class,3)+number_to_3_digits(int(select_last_n(last_q_class,3))+1)
+  q_class(q_class=next_class,q_value=q_value_9715,q_type=q_type_9721).save()
+  combine_9822.append(next_class)
+  a_number_185=1
+  for i in a_values:
+    a_class(a_class=next_class+"a00"+str(a_number_185),a_value=i,q_class=next_class).save()
+    combine_9822.append(next_class+"a00"+str(a_number_185))
+    a_number_185=a_number_185+1
+  return JsonResponse({"classes":combine_9822})
+def next_number_id_class(last_q_class):
+  return remove_last_n(last_q_class,3)+number_to_3_digits(int(select_last_n(last_q_class,3))+1)
+
+def select_multiple_qc(request):
+  qc_list=[]
+  ac_list=[]
+  for i in q_class.objects.all().order_by('q_class'):
+    qc_list.append([i.q_class,i.q_value])
+  for i in a_class.objects.all().order_by('a_class'):
+    ac_list.append([i.a_class,i.a_value])
+  return JsonResponse({"qc":qc_list,"ac":ac_list})
 
 def collapse_cc(request):
   target_array=[]
@@ -386,6 +468,8 @@ def add_a_apply_exst_qc(request):
   a_class_178=""
   a_value_178=request.POST['a_value']
   q_id_178=remove_last_n(request.POST['a_id'],4)
+  a_note=request.POST['a_note_914']
+  a_lvl=request.POST['a_lvl_914']
   same_class_id=[]
   same_class_pair=[]
   for i in q_bank.objects.all():
@@ -394,16 +478,156 @@ def add_a_apply_exst_qc(request):
   target=a_class(a_class=new_ac(q_id_178),a_value=a_value_178,q_class=id_to_class_converter(q_id_178))
   target.save()
   for i in same_class_id:
+    last_a_id_178=""
     for j in a_bank.objects.all().order_by('a_id'):
       if j.q_id==i:
         last_a_id_178=j.a_id
-    new_a_id_178=remove_last_n(last_a_id_178,3)+number_to_3_digits(int(select_last_n(last_a_id_178,3))+1)
-    target=a_bank(a_id=new_a_id_178,a_value=a_value_178,q_id=i,a_class=new_ac(i))
+    if last_a_id_178=="":
+      new_a_id_178=i+"a001"
+    else:
+      new_a_id_178=remove_last_n(last_a_id_178,3)+number_to_3_digits(int(select_last_n(last_a_id_178,3))+1)
+    target=a_bank(a_id=new_a_id_178,a_value=a_value_178,q_id=i,a_class=new_ac(i),a_note=a_note,a_lvl=a_lvl)
+    print(new_ac(i))
     target.save()
     same_class_pair.append([i,new_a_id_178])
-  return JsonResponse({'same_class_pair':same_class_pair})
- 
+  return JsonResponse({'same_class_pair':same_class_pair,"a_value_178":a_value_178,"a_lvl_914":a_lvl,"a_note_914":a_note})
+def add_a_20592(request):
+  a_id_list=[]
+  for i in a_bank.objects.all():
+    if i.q_id==request.POST['q_id_236252']:
+      a_id_list.append(i.a_value)
+  print(a_id_list)
+  return JsonResponse({"a_id_list":a_id_list})
+def new_class(request):
+  new_qc=""
+  for i in q_class.objects.all().order_by("q_class"):
+    last_qc_79210=i.q_class
+  if last_qc_79210=="":
+    new_qc="qc000"
+  else: 
+    new_qc=next_number_id_class(last_qc_79210)
+  print("new class is "+new_qc)
+  return JsonResponse({"new_qc":new_qc})
+  
+def old_class_add_a(request):
+  same_qc_ids=[]
+  for i in q_bank.objects.all():
+    if i.q_class==request.POST['q_class_87925']:
+      same_qc_ids.append(i.q_id)
+  print(str(same_qc_ids)+"shares q_class"+str(request.POST['q_class_87925'])+"<BR>")
+  last_a_class_10851=""
+  for i in a_class.objects.all().order_by("a_class"):
+    if i.q_class==request.POST['q_class_87925']:
+      last_a_class_10851=i.a_class
+  if last_a_class_10851=="":
+    last_a_class_10851=request.POST['q_class_87925']+"a000"
+  new_a_class_3512=next_number_id_class(last_a_class_10851)
+  print("new a_class is "+str(new_a_class_3512)+"<BR>")
+  a_class(a_class=new_a_class_3512,q_class=request.POST['q_class_87925'],a_value=request.POST['a_value_87925']).save()
+  #a_bank(a_value=request.POST['a_value_87925'],a_class=new_a_class_3512,q_class=request.POST['q_class_87925'])
+  same_qc_aq_pair=[]
+  for i in same_qc_ids:
+    print("starting loop for "+str(i)+"<BR>")
+    last_a_id_79823=""
+    for j in a_bank.objects.all().order_by('a_id'):
+      if j.q_id==i:
+        last_a_id_79823=j.a_id
+    if last_a_id_79823=="":
+      last_a_id_79823=i+"a000"
+    new_a_id_982052=next_number_id_class(last_a_id_79823)
+    print("new_a_id for"+str(i)+" is "+str(new_a_id_982052)+"<BR>")
+    a_bank(q_id=i,a_note=request.POST['a_note_87925'],a_lvl=request.POST['a_lvl_87925'],a_id=new_a_id_982052, a_value=request.POST['a_value_87925'],a_class=new_a_class_3512).save()
+    print("saved"+str(new_a_id_982052)+"<BR>")
+    same_qc_aq_pair.append([i,new_a_id_982052,request.POST['a_value_87925'],request.POST['a_lvl_87925'],request.POST['a_note_87925']])
+  return JsonResponse({"pair_92358":same_qc_aq_pair})
 
+def new_class_add_a(request):
+  new_qc=""
+  for i in q_class.objects.all().order_by("q_class"):
+    last_qc_79210=i.q_class
+  if last_qc_79210=="":
+    new_qc="qc000"
+  else: 
+    new_qc=next_number_id_class(last_qc_79210)
+  print("new class is "+new_qc)
+  exst_answers=[]
+  for i in q_bank.objects.all():
+    if i.q_id==request.POST['q_id_87925']:
+      target=get_object_or_404(q_bank,id=i.id)
+      target.q_class=new_qc
+      target.save()
+      q_class(q_class=new_qc,q_value=i.q_value,q_type=i.q_type).save()
+  a_number_8295=1
+  last_a_id_10851=""
+  for i in a_bank.objects.all().order_by('a_id'):
+    if i.q_id==request.POST['q_id_87925']:
+      exst_answers.append([i.a_id,i.a_value,i.a_lvl,i.a_note])
+      target=get_object_or_404(a_bank,id=i.id)
+      new_a_class_7925=new_qc+"a"+number_to_3_digits(a_number_8295)
+      target.a_class=new_a_class_7925
+      target.save()
+      a_class(a_class=new_a_class_7925,a_value=i.a_value,q_class=new_qc).save()
+      a_number_8295=a_number_8295+1
+      last_a_id_10851=i.a_id
+  if last_a_id_10851=="":
+    last_a_id_10851=request.POST['q_id_87925']+"a000"
+  new_a_class_7925=new_qc+"a"+number_to_3_digits(a_number_8295)
+  a_class(a_class=new_a_class_7925,a_value=request.POST['a_value_87925'],q_class=new_qc).save()
+  print(last_a_id_10851)
+  a_bank(a_class=new_a_class_7925,a_value=request.POST['a_value_87925'],a_id=next_number_id_class(last_a_id_10851),a_lvl=request.POST['a_lvl_87925'],a_note=request.POST['a_note_87925'],q_id=request.POST['q_id_87925']).save()
+  return JsonResponse({"new_class_09202":new_qc,"a_value_985142":request.POST['a_value_87925'],"a_id_92841":next_number_id_class(last_a_id_10851),"a_lvl_108121":request.POST['a_lvl_87925'],"a_note_928351":request.POST['a_note_87925'],"q_id_81240":request.POST['q_id_87925']})
+  
+def delete_this_id(request):
+  if request.POST['data_type']=="a_bank":
+    print("this is a_bank delete")
+    for i in a_bank.objects.all():
+      if str(i.id)==str(request.POST['target_id']):
+        get_object_or_404(a_bank,id=i.id).delete()
+        print("deleted"+str(i.id))
+  elif request.POST['data_type']=="a_class":
+    print("this is a_class delete")
+    for i in a_class.objects.all():
+      if str(i.id)==str(request.POST['target_id']):
+        get_object_or_404(a_class,id=i.id).delete()
+        print("deleted"+str(i.id))
+  elif request.POST['data_type']=="q_bank":
+    print("this is q_bank delete")
+    for i in q_bank.objects.all():
+      if str(i.id)==str(request.POST['target_id']):
+        get_object_or_404(q_bank,id=i.id).delete()
+        print("deleted"+str(i.id))
+  elif request.POST['data_type']=="q_class":
+    print("this is q_class delete")
+    for i in q_class.objects.all():
+      if str(i.id)==str(request.POST['target_id']):
+        get_object_or_404(q_class,id=i.id).delete()
+        print("deleted"+str(i.id))
+  return JsonResponse({"target":request.POST['target_id']})
+
+gap_owoeigw=0
+while gap_owoeigw==0:
+  print("running another round")
+  delete_count=0
+  for i in a_bank.objects.all():
+    oeoijwgpj=0
+    for j in q_bank.objects.all():
+      if j.q_id==i.q_id:
+        oeoijwgpj=1
+    if oeoijwgpj==0:
+      get_object_or_404(a_bank,id=i.id).delete()
+      delete_count=delete_count+1
+      print(i.a_id)
+  for i in q_bank.objects.all():
+    oeoijwgsdfsdpj=0
+    for j in a_bank.objects.all():
+      if remove_last_n(i.q_id,4)==j.a_id:
+        oeoijwgsdfsdpj=1
+    if oeoijwgsdfsdpj==0 and len(i.q_id)>4:
+      get_object_or_404(q_bank,id=i.id).delete()
+      delete_count=delete_count+1
+      print(i.q_id)
+  if delete_count==0:
+    gap_owoeigw=1
 
 
 
@@ -485,14 +709,63 @@ def home4(request):
       cc_array.append([a.a_value])
   return render(request,'questionnaire.html',{"cc_array":cc_array})
 
+def db_review(request):
+  return render(request,'db_review.html',{})
+
+def delete_q_02962(request):
+  q_id_90080=request.POST['q_id_902']
+  for i in q_bank.objects.all():
+    if len(i.q_id)>=len(q_id_90080):
+      if first_n(i.q_id,len(q_id_90080))==q_id_90080:
+        print("deleted"+i.q_id)
+        get_object_or_404(q_bank,id=i.id).delete()
+  for i in a_bank.objects.all():
+    if len(i.a_id)>=len(q_id_90080):
+      if first_n(i.a_id,len(q_id_90080))==q_id_90080:
+        get_object_or_404(a_bank,id=i.id).delete()
+        print("deleted"+i.a_id)
+  return JsonResponse({"q_id_80141":q_id_90080})  
+
+def save_q_0295(request):
+  q_id_84351=request.POST['q_id_98hw']
+  q_value_84351=request.POST['q_value_98hw']
+  q_type_84351=request.POST['q_type_98hw']
+  q_class_84351=request.POST['q_class_98hw']
+  same_qc_ids=[]
+  for i in q_bank.objects.all():
+    if i.q_class==q_class_84351:
+      same_qc_ids.append(i.q_id)
+      target=get_object_or_404(q_bank, id=i.id)
+      target.q_value=q_value_84351
+      target.q_type=q_type_84351
+      target.save()
+      print("saved "+i.q_id+" in q_bank")
+  target=get_object_or_404(q_class, q_class=q_class_84351)
+  target.q_value=q_value_84351
+  target.q_type=q_type_84351
+  target.save()
+  print("updated q_class")
+  return JsonResponse({
+    "same_qc_list":same_qc_ids,
+    'q_value_698':q_value_84351,
+    'q_type_698':q_type_84351
+    })
 
 def auto_ajax(request):
   target_array_qc=[]
   target_array_ac=[]
-  for i in q_class.objects.all().order_by('q_class'):
-    target_array_qc.append([i.q_class,i.q_value])
-  for i in a_class.objects.all().order_by('a_class'):
-    target_array_ac.append([i.a_class,i.a_value,i.q_class])
+  q_class_to_collect_a=[]
+  input_5126=request.POST['input_5125']
+  for i in q_class.objects.all():
+    iygoiuo=[i.q_class,i.q_value]
+    if len(i.q_value) >= len(input_5126):
+      if if_exist(target_array_qc,iygoiuo)==0 and first_n(i.q_value,len(input_5126)).lower()==input_5126.lower():
+        target_array_qc.append(iygoiuo)
+        q_class_to_collect_a.append(i.q_class)
+  for i in a_class.objects.all():
+    oiwoihwpeh=[i.a_class,i.a_value,i.q_class]
+    if if_exist(target_array_ac,oiwoihwpeh)==0 and if_exist(q_class_to_collect_a,i.q_class)==1:
+      target_array_ac.append([i.a_class,i.a_value,i.q_class])
   return JsonResponse({"target_array_qc":target_array_qc,"target_array_ac":target_array_ac})
 
 def select_2(request):
@@ -554,18 +827,19 @@ def next_questionnaire(request):
       if len(q_list)==0 and remove_last_n(i.q_id,4)==remove_last_n(copy_a_id,8) and int(select_last_n(i.q_id,3))>int(select_last_n(remove_last_n(copy_a_id,4),3)):
         q_list.append(i.q_id)
     copy_a_id=remove_last_n(copy_a_id,8)
-  print(q_list)
   for i in q_list:
     for j in qb:
       if j.q_id==i:
-        q_details.append([j.q_id,j.q_value,j.q_type])
+        q_details.append([j.q_id,j.q_value,j.q_type,j.q_class])
     for j in ab:
       if j.q_id==i:
         a_details.append([i,j.a_id,j.a_value])
-  print(a_details)
   for i in a_bank.objects.all():
     if i.q_id==q_id and i.a_id!=a_id:
       siblings.append(i.a_id)
+    if i.a_id==a_id:
+      lvl=i.a_lvl
+      note=i.a_note
   
   for i in siblings:
     copy_a_id=parent_a_id
@@ -577,7 +851,63 @@ def next_questionnaire(request):
         if len(q_list)==0 and remove_last_n(i.q_id,4)==remove_last_n(copy_a_id,8) and int(select_last_n(i.q_id,3))>int(select_last_n(remove_last_n(copy_a_id,4),3)) and element_exst_check(siblings_children,i.q_id)==-1:
           siblings_children.append(i.q_id)
       copy_a_id=remove_last_n(copy_a_id,8)
-  return JsonResponse({"q_list":q_list,"q_details":q_details,"a_details":a_details,"siblings":siblings,"siblings_children":siblings_children, "q_type":q_type})
+  return JsonResponse({
+    "q_list":q_list,
+    "q_details":q_details,
+    "a_details":a_details,
+    "siblings":siblings,
+    "siblings_children":siblings_children, 
+    "q_type":q_type,
+    "lvl":lvl,
+    "note":note,
+    "a_id":a_id
+    })
+
+def add_new_q_91721(request):
+  new_qc_192581=new_qc_2()
+  last_q_id_98124=""
+  a_id_81925=request.POST['a_id_891285']
+  for i in q_bank.objects.all().order_by("q_id"):
+    if remove_last_n(i.q_id,4)==a_id_81925:
+      last_q_id_98124=i.q_id
+  if last_q_id_98124=="":
+    last_q_id_98124=a_id_81925+"q000"
+  next_q_id_7891=next_number_id_class(last_q_id_98124)
+  print(new_qc_192581)
+  q_bank(q_id=next_q_id_7891,q_value=request.POST['q_value_97912'], q_type=request.POST['q_type_97912'],q_class=new_qc_192581).save()
+  q_class(q_value=request.POST['q_value_97912'], q_type=request.POST['q_type_97912'],q_class=new_qc_192581).save()
+  return JsonResponse({"q_value":request.POST['q_value_97912'],"q_id":next_q_id_7891,"q_type":request.POST['q_type_97912'],"a_id":a_id_81925})
+def edit_panel_info_1850(request):
+  for i in q_bank.objects.all():
+    if i.q_id==request.POST['q_id_902']:
+      qc_8928=i.q_class
+      qt_9802=i.q_type
+  a_id_list=[]
+  for i in a_bank.objects.all():
+    if i.q_id==request.POST['q_id_902']:
+      a_id_list.append(i.a_value)
+  return JsonResponse({"q_class":qc_8928, "q_type":qt_9802,"a_id_list":a_id_list})
+
+def a_edit_panel_open(request):
+  for i in a_bank.objects.all():
+    if i.a_id==request.POST['a_id_902']:
+      ac_8928=i.a_class
+      al_9802=i.a_lvl
+      an_5829=i.a_note
+  q_id_list=[]
+  for i in q_bank.objects.all().order_by('q_id'):
+    if remove_last_n(i.q_id,4)==request.POST['a_id_902']:
+      q_id_list.append(i.q_value)
+  return JsonResponse({"a_class":ac_8928, "a_lvl":al_9802,"a_note":an_5829,"q_id_list":q_id_list})
+
+def note_editor(request):
+  a_id=request.POST['a_id_1512']
+  a_class=id_to_class_converter(a_id)
+  used_count=0
+  for i in a_bank.objects.all():
+    if i.a_class==a_class:
+      used_count=used_count+1
+  return JsonResponse({"used_count":used_count})
 
 def cc_list_maker(request):
   cc_list=[]
@@ -589,35 +919,34 @@ def cc_list_maker(request):
 def branch_copy(request):
   input_id_7516=request.POST['a_id']
   parent_id_7516=request.POST['parent_id_7516']
-  print("We got "+str(input_id_7516))
   q_7516=[]
   a_7516=[]
   n=len(input_id_7516)
   for a in a_bank.objects.all().order_by('a_id'):
     if(len(a.a_id)>=n):
       if (first_n(a.a_id,n)==input_id_7516):
-        a_7516.append([parent_id_7516+remove_first_n(a.a_id,n),a.a_value,a.a_class])
-        print(a.a_id)
+        a_7516.append([parent_id_7516+remove_first_n(a.a_id,n),a.a_value,a.a_class,a.a_note,a.a_lvl])
   for a in q_bank.objects.all().order_by('q_id'):
     if(len(a.q_id)>=n):
-      
       if (first_n(a.q_id,n)==input_id_7516):
         q_7516.append([parent_id_7516+remove_first_n(a.q_id,n),a.q_value,a.q_type,a.q_class])
-        print(a.q_id)
   return JsonResponse({"q_7516":q_7516,"a_7516":a_7516})
 
 
 def letstart(request):
   q_details=[]
   a_details=[]
-  cc_list=[]
+  cc_id_pair=[]
   for i in q_bank.objects.all().order_by('q_id'):
     if i.q_id=="q000":
       q_details.append([i.q_id,i.q_value,i.q_type])
   for j in a_bank.objects.all().order_by('a_id'):
     if j.q_id=="q000":
       a_details.append(["q000",j.a_id,j.a_value])
-  return JsonResponse({"q_details":q_details,"a_details":a_details})
+    if(len(j.a_id)==8):
+      cc_id_pair.append([j.a_id,j.a_value])
+  print(cc_id_pair)
+  return JsonResponse({"q_details":q_details,"a_details":a_details,"cc_id_pair":cc_id_pair})
 
 def last_element_in_array(array):
   if len(array)==0:
@@ -636,20 +965,20 @@ def find_last_children(request):
         last_child_numb=int(i.a_class[-3:])
   return JsonResponse({"last_child_numb":last_child_numb})
 
-def delete_a_from_data_2(request):
-  print("here")
-
+def del_a(request):
   id_151=request.POST['id_151']
-  used_151=1
-  for i in a_bank.objects.all():
-    if i.a_id==id_151:
+  a_id_151=request.POST['a_id_151']
+  used_151=0
+  for i in q_bank.objects.all():
+    if i.q_class==id_to_class_converter(id_151):
       used_151=used_151+1
   if used_151==1:
-    target=get_object_or_404(a_bank,a_id=id_151)
+    target=get_object_or_404(a_bank,a_id=a_id_151)
     target.delete()
-    target=get_object_or_404(a_class,a_id=id_151)
+    target=get_object_or_404(a_class,a_class=id_to_class_converter(a_id_151))
     target.delete()
-  return JsonResponse({"used":used_151})
+  print("rutn???/")
+  return JsonResponse({"used":used_151,'a_id':a_id_151})
      
 def class_used_counter(request):
   qc=request.POST['q_class']
@@ -707,7 +1036,17 @@ def new_qc(request):
   last_qc=""
   for i in q_class.objects.all().order_by('q_class'):
     last_qc=i.q_class
+  if last_qc=="":
+    last_qc="qc000"
   return JsonResponse({"last_qc":last_qc})
+
+def new_qc_2():
+  last_qc=""
+  for i in q_class.objects.all().order_by('q_class'):
+    last_qc=i.q_class
+  if last_qc=="":
+    last_qc="qc000"  
+  return next_number_id_class(last_qc)
 
 def mass_classifier(request):
   '''
@@ -735,8 +1074,9 @@ def exst_q_select(request):
       q_value=i.q_value
       q_type=i.q_type
   for i in ac_db:
-    if i.q_class==request.POST['q_class']:
-      a_array_382.append([i.a_value,i.a_class])
+    weigjweog=[i.a_value,i.a_class]
+    if i.q_class==request.POST['q_class'] and if_exist(a_array_382,weigjweog)==0:
+      a_array_382.append(weigjweog)
   return JsonResponse({"a_array_382":a_array_382,"q_value":q_value,"q_type":q_type})
 
 def id_to_class_converter(id_256):
@@ -852,6 +1192,8 @@ def select_last_n(aa,n):
         count = count + 1
     return result
 
+def load_ext_seq(request):
+  parent_a_8hnodf=request.POST['parent_a_215']
 def number_to_3_digits(n):
   aa=select_last_n("0000"+str(n),3)
   return aa 
@@ -862,25 +1204,46 @@ def ac_insert(request):
   return redirect('/')
 
 def qc_insert(request):
-  new_qc=q_class(q_class=request.POST['q_class'], q_value=request.POST['q_value'], q_type=request.POST['q_type'])
+  q_c_oiwhegow=request.POST['q_class']
+  new_qc=q_class(q_class=q_c_oiwhegow, q_value=request.POST['q_value'], q_type=request.POST['q_type'])
   new_qc.save()
+  print("Successfully saved "+str(q_c_oiwhegow))
   return redirect('/')
 
 def q_insert(request):
-    q_db = q_bank(q_id=request.POST['q_id'], q_value=request.POST['q_value'], q_type=request.POST['q_type'],q_class=request.POST['q_class'])
+    q_id_ohwogehwoeijw=request.POST['q_id']
+    q_db = q_bank(q_id=q_id_ohwogehwoeijw, q_value=request.POST['q_value'], q_type=request.POST['q_type'],q_class=request.POST['q_class'])
     q_db.save()
+    print("Successfully saved "+str(q_id_ohwogehwoeijw))
     return redirect('/')
  
 def cc_insert(request):
     cc_db_insert = cc_db(cc_id="", cc_lead_value="", cc_value=request.POST['c_value'])
     cc_db_insert.save()
     return redirect('/')
- 
+
 def a_insert(request):
     a_db = a_bank(a_id=request.POST['a_id'], a_value=request.POST['a_value'], q_id=request.POST['q_id'],a_class=request.POST['a_class'])
     a_db.save()
+    print("Successfully saved "+str(request.POST['a_id']))
     return redirect('/')
- 
+
+def save_new_class(request):
+  q_class(q_value=request.POST['q_value_98hw'],q_type=request.POST['q_type_98hw'],q_class=request.POST['q_class_98hw']).save()
+  target=get_object_or_404(q_bank,q_id=request.POST['q_id_98hw'])
+  target.q_value=request.POST['q_value_98hw']
+  target.q_type=request.POST['q_type_98hw']
+  target.q_class=request.POST['q_class_98hw']
+  target.save()
+  print("Created a new class, updated "+ request.POST['q_id_98hw'])
+  return JsonResponse({"q_id":request.POST['q_id_98hw'],"q_value":request.POST['q_value_98hw']})
+def a_insert_ajax_2(request):
+    print()
+    a_db = a_bank(a_id=request.POST['a_id'], a_value=request.POST['a_value'], q_id=request.POST['q_id'],a_class=request.POST['a_class'],a_note=request.POST['a_note'],a_lvl=request.POST['a_lvl'])
+    a_db.save()
+    print("Successfully saved "+str(request.POST['a_class']))
+    return redirect('/')
+
 def q_delete(request):
     target=get_object_or_404(q_bank, q_id=request.POST['q_id'])
     target.delete()
@@ -1080,9 +1443,9 @@ def array_to_string(array):
 
 def id_to_predict_input(x):
   input_array=[]
-  while len(x)>=8:
+  while len(x)>=4:
     input_array.append(id_to_class_converter(x))
-    x=remove_last_n(x,8)
+    x=remove_last_n(x,4)
   reverse_array=[]
   j=0
   while j<len(input_array):
@@ -1090,6 +1453,18 @@ def id_to_predict_input(x):
     j=j+1
   return array_to_string(reverse_array)
 
+def id_to_string(x):
+  input_array=[]
+  while len(x)>=4:
+    input_array.append(x)
+    x=remove_last_n(x,4)
+  reverse_array=[]
+  j=0
+  while j<len(input_array):
+    reverse_array.append(input_array[len(input_array)-1-j])
+    j=j+1
+  return array_to_string(reverse_array)
+'''
 def id_to_string(x):
   input_array=[]
   while len(x)>=8:
@@ -1101,13 +1476,13 @@ def id_to_string(x):
     reverse_array.append(input_array[len(input_array)-1-j])
     j=j+1
   return array_to_string(reverse_array)
-
+'''
 
 def id_to_value_string(x):
   input_array=[]
-  while len(x)>=8:
+  while len(x)>=4:
     input_array.append(id_to_value_converter(x))
-    x=remove_last_n(x,8)
+    x=remove_last_n(x,4)
   reverse_array=[]
   j=0
   while j<len(input_array):
@@ -1143,10 +1518,21 @@ def db_to_scenario_simple():
   for i in a_bank.objects.all().order_by("a_id"):
     last_ans=0
     a_id_457=i.a_id
+    '''
+    i_19812=0
+    q_bank_in_order=q_bank.objects.all().order_by("q_id")
+    while last_ans==0:
+      j=q_bank_in_order[i_19812]
+      if remove_last_n(j.q_id,4)==a_id_457 and last_ans==0:
+        last_ans=1
+        new_row=[id_to_string(a_id_457), id_to_predict_input(a_id_457), id_to_value_string(a_id_457),j.q_class,j.q_value,j.q_id]
+      i_19812=i_19812+1
+    '''
     for j in q_bank.objects.all().order_by("q_id"):
       if remove_last_n(j.q_id,4)==a_id_457 and last_ans==0:
         last_ans=1
         new_row=[id_to_string(a_id_457), id_to_predict_input(a_id_457), id_to_value_string(a_id_457),j.q_class,j.q_value,j.q_id]
+    
     while last_ans==0 and len(a_id_457)>8:
       for j in q_bank.objects.all().order_by("q_id"):
         if remove_last_n(j.q_id,4)==remove_last_n(a_id_457,8) and int(select_last_n(j.q_id,3))>int(select_last_n(remove_last_n(a_id_457,4),3)):
@@ -1156,9 +1542,114 @@ def db_to_scenario_simple():
         a_id_457=remove_last_n(a_id_457,8)
     if last_ans==0:
       new_row=[id_to_string(a_id_457),id_to_predict_input(a_id_457), id_to_value_string(a_id_457),"qc999","NA","NA"]
+    
     add_row_to_csv('scenario_class.csv',new_row)
+def get_csv_row(csv_file,nth):
+  with open (csv_file,'r') as c:
+    read=csv.reader(c,delimiter=',')
+    n=0
+    for i in read:
+      n=n+1
+      if n==nth:
+        nth_row=i
+  return nth_row
+
+def combine_csv(csv1,cvs2):
+  with open (csv1,'r') as c:
+    read=csv.reader(c,delimiter=',')
+    for i in read:
+      add_row_to_csv(cvs2,i)
+
+def shuffle_csv(csv_file):
+  sequence=[]
+  interim_array_1513=[]
+  i_672=1
+  while i_672<len(pd.read_csv(csv_file))+2:
+    sequence.append(i_672)
+    i_672=i_672+1
+  print(sequence)
+  random.shuffle(sequence)
+  for i in sequence:
+    interim_array_1513.append(get_csv_row(csv_file,i))
+  f=open(csv_file,'w')
+  f.truncate()
+  f.close()
+  for i in interim_array_1513:
+    add_row_to_csv(csv_file,i)
+
+def csv_row_count(csv_file):
+  cnt=0
+  with open(csv_file) as f:
+    cr = csv.reader(f)
+    for row in cr:
+      cnt += 1
+  return cnt
+
+def db_to_scenario_simple_ajax(request):
+  
+  f=open("scenario_class.csv",'w')
+  f.truncate()
+  f.close()
+  q_bank_data=[]
+  a_bank_all=a_bank.objects.all().order_by("a_id")
+  q_bank_all=q_bank.objects.all().order_by("q_id")
+  qc_used_count=[]
+  i_3634=0
+  if not os.path.exists("scenario_each_class"):
+    os.makedirs("scenario_each_class")
+  elif os.path.exists("scenario_each_class"):
+    shutil.rmtree("scenario_each_class")
+    os.makedirs("scenario_each_class")
+
+  max_len=0
+  for i in a_bank_all:
+    last_ans=0
+    a_id_457=i.a_id
+    for j in q_bank_all:
+      if remove_last_n(j.q_id,4)==a_id_457 and last_ans==0:
+        last_ans=1
+        new_row=[id_to_string(a_id_457), id_to_predict_input(a_id_457), id_to_value_string(a_id_457),j.q_class,j.q_value,j.q_id]
+    while last_ans==0 and len(a_id_457)>8:
+      for j in q_bank_all:
+        if remove_last_n(j.q_id,4)==remove_last_n(a_id_457,8) and int(select_last_n(j.q_id,3))>int(select_last_n(remove_last_n(a_id_457,4),3)):
+          last_ans=1
+          new_row=[id_to_string(a_id_457), id_to_predict_input(a_id_457), id_to_value_string(a_id_457),j.q_class,j.q_value,j.q_id]
+      if last_ans==0:
+        a_id_457=remove_last_n(a_id_457,8)
+    if last_ans==0:
+      new_row=[id_to_string(a_id_457),id_to_predict_input(a_id_457), id_to_value_string(a_id_457),"qc999","NA","NA"]
+    if os.path.exists("scenario_each_class/"+new_row[3]+".csv"):
+      add_row_to_csv("scenario_each_class/"+new_row[3]+".csv",new_row)
+      max_candidate=csv_row_count("scenario_each_class/"+new_row[3]+".csv")
+      if max_candidate>max_len:
+        max_len=max_candidate
+    else:
+      f=open("scenario_each_class/"+new_row[3]+".csv",'w')
+      f.close()
+      add_row_to_csv("scenario_each_class/"+new_row[3]+".csv",new_row)
+    #add_row_to_csv('scenario_class.csv',new_row)
+
+  return JsonResponse({})
 
 
+
+def db_csv_number_equalizer(request):
+  max_len=0
+  for i in os.listdir("scenario_each_class"):
+    if csv_row_count("scenario_each_class/"+i) > max_len:
+      max_len=csv_row_count("scenario_each_class/"+i)
+    shuffle_csv("scenario_each_class/"+i)
+  for i in os.listdir("scenario_each_class"):
+    duplicate_line=1
+    print(i)
+    while csv_row_count("scenario_each_class/"+i)<max_len:
+      add_row_to_csv("scenario_each_class/"+i,get_csv_row("scenario_each_class/"+i,duplicate_line))
+      duplicate_line=duplicate_line+1
+    print(csv_row_count("scenario_each_class/"+i))
+    print(csv_row_count('scenario_class.csv'))
+    combine_csv("scenario_each_class/"+i,'scenario_class.csv')
+  #shuffle_csv('scenario_class.csv')  
+  return JsonResponse({})
 
 
 
@@ -1264,6 +1755,180 @@ def db_to_scenario():
       myFile =open("scenario/"+str(mei)+".txt",'w')
       myFile.write(array_to_string(i))
       myFile.close()
+def q_generate_smq(request):
+  qc_list=request.POST['list'].split(',')
+  a_id=request.POST['a_id']
+  next_id=""
+  new_q_list=[]
+  new_a_list=[]
+  new_q_id_pair=[]
+  for i in q_bank.objects.all().order_by('q_id'):
+    if remove_last_n(i.q_id,4)==a_id:
+      next_id=i.q_id
+  if next_id=="":
+    next_id=a_id+"q001"
+  else:
+    next_id=remove_last_n(next_id,3)+number_to_3_digits(int(select_last_n(next_id,3))+1)
+
+  for i in qc_list:
+    for j in q_class.objects.all():
+      if j.q_class==i:
+        target=q_bank(q_id=next_id,q_value=j.q_value,q_type=j.q_type,q_class=j.q_class)
+        print(next_id)
+        print(j.q_value)
+        print(j.q_type)
+        print(j.q_class)
+        target.save()
+        nswew=[next_id,j.q_value,j.q_type,j.q_class]
+        eje35=[i,next_id]
+        if if_exist(new_q_list,nswew)==0:
+          new_q_list.append(nswew)
+        if if_exist(new_a_list,eje35)==0:
+          new_q_id_pair.append(eje35)
+    next_id=remove_last_n(next_id,3)+number_to_3_digits(int(select_last_n(next_id,3))+1)
+
+  for r in new_q_id_pair:
+    a_number=1
+    for q in a_class.objects.all().order_by('a_class'):
+      if remove_last_n(q.a_class,4)==r[0]:
+        new_a_id=r[1]+"a"+number_to_3_digits(a_number)
+        a_number=a_number+1
+        target=a_bank(a_id=new_a_id,a_value=q.a_value,q_id=r[1],a_class=q.a_class,a_note=q.a_value,a_lvl=3)
+        target.save()
+        new_a_list.append([new_a_id,q.a_value,r[1],q.a_class])
+  for i in new_q_list:
+    print(i)
+  print("<BR>")
+  for i in new_a_list:
+    print(i)
+  return JsonResponse({"new_q_list":new_q_list,"new_a_list":new_a_list})
+
+def if_exist(array,value):
+  r=0
+  for i in array:
+    if i==value:
+      r=1
+  return r
+'''
+bbwba=0
+for i in a_bank.objects.all():
+  if i.a_id=="q001a016q001a002q003a002q001a004q004a001" and bbwba<4:
+    get_object_or_404(a_bank,id=i.id).delete()
+    bbwba=1
+
+aboijsfd=[]
+weoigjwo=[]
+for i in a_class.objects.all():
+  if if_exist(aboijsfd,i.a_class)==0:
+    aboijsfd.append(i.a_class)
+  else:
+    weoigjwo.append(i.a_class)
+print(weoigjwo)
+
+aboijsfd2=[]
+weoigjwo2=[]
+for i in a_bank.objects.all():
+  if if_exist(aboijsfd2,i.a_id)==0:
+    aboijsfd2.append(i.a_id)
+  else:
+    weoigjwo2.append(i.a_id)
+print(weoigjwo2)
+
+aboijsfd=[]
+weoigjwo=[]
+for i in q_bank.objects.all():
+  if if_exist(aboijsfd,i.q_id)==0:
+    aboijsfd.append(i.q_id)
+  else:
+    weoigjwo.append(i.q_id)
+print(weoigjwo)
+
+aboijsfd=[]
+weoigjwo=[]
+for i in q_class.objects.all():
+  if if_exist(aboijsfd,i.q_class)==0:
+    aboijsfd.append(i.q_class)
+  else:
+    weoigjwo.append(i.q_class)
+print(weoigjwo)
+
+arragweg=[]
+for i in a_class.objects.all():
+  whgwoigw=[i.a_class,i.a_value]
+  if if_exist(arragweg,whgwoigw)==0:
+    arragweg.append(whgwoigw)
+  elif if_exist(arragweg,whgwoigw)==1:
+    target=get_object_or_404(a_class,id=i.id)
+    target.delete()
+
+for i in q_bank.objects.all():
+  if remove_last_n(i.q_id,3)=="smq_containerq":
+    target=get_object_or_404(q_bank,id=i.id)
+    target.delete()
+
+wegiowh=[]
+oihrgwe=[]
+ansdgww=[]
+baoidjf=[]
+for i in q_bank.objects.all():
+  if if_exist(wegiowh,i.q_class)==0:
+    wegiowh.append(i.q_class)
+for i in a_bank.objects.all():
+  if if_exist(oihrgwe,i.a_class)==0:
+    oihrgwe.append(i.a_class)
+for i in q_class.objects.all():
+  if if_exist(wegiowh,i.q_class)==0:
+    target=get_object_or_404(q_class,id=i.id)
+    target.delete()
+    ansdgww.append(i.q_class)
+for i in a_class.objects.all():
+  if if_exist(oihrgwe,i.a_class)==0:
+    target=get_object_or_404(a_class,id=i.id)
+    target.delete()
+    baoidjf.append(i.a_class)
+print(ansdgww)
+print(baoidjf)
+
+aboihwoi=[]
+for i in a_bank.objects.all():
+  wboihwote=[i.a_class,i.a_value]
+  if if_exist(aboihwoi,wboihwote)==0:
+    aboihwoi.append(wboihwote)
+    target=a_class(a_class=i.a_class,q_class=remove_last_n(i.a_class,4),a_value=i.a_value)
+    target.save()
+
+wegiowh=[]
+oihrgwe=[]
+ansdgww=[]
+baoidjf=[]
+for i in q_bank.objects.all():
+  if if_exist(wegiowh,i.q_class)==0:
+    wegiowh.append(i.q_class)
+for i in a_bank.objects.all():
+  if if_exist(oihrgwe,i.a_class)==0:
+    oihrgwe.append(i.a_class)
+for i in q_class.objects.all():
+  if if_exist(wegiowh,i.q_class)==0:
+    target=get_object_or_404(q_class,id=i.id)
+    target.delete()
+    ansdgww.append(i.q_class)
+for i in a_class.objects.all():
+  if if_exist(oihrgwe,i.a_class)==0:
+    target=get_object_or_404(a_class,id=i.id)
+    target.delete()
+    baoidjf.append(i.a_class)
+print(ansdgww)
+print(baoidjf)
+'''
+def q_square_list(request):
+  q_class_978235=[]
+  for i in q_class.objects.all():
+    q_class_978235.append([i.q_class,i.q_value])
+  a_class_982y35=[]
+  for i in a_class.objects.all().order_by("a_class"):
+    a_class_982y35.append([i.a_class,i.a_value])
+  return JsonResponse({"q_class":q_class_978235,"a_class":a_class_982y35})
+
 
 def dense_counter():
   dense_list=[]
@@ -1352,8 +2017,94 @@ def train_data_generator():
     for i in dense_value_count:
       dense_count.append(i[1])
     dense_count=sorted(dense_count)
-    min_number=dense_count[int(len(dense_count)/2)]/5
-    max_number=dense_count[int(len(dense_count)/2)]*2
+    min_number=dense_count[int(len(dense_count)/2)]/200
+    max_number=dense_count[int(len(dense_count)/2)]*200
+    print(min_number)
+    print(max_number)
+  for i in dense_value_count:
+    if i[1]<min_number:
+      delete_list.append(i[0])
+    elif i[1]>max_number:
+      overload_list.append(i[0])
+  random.shuffle(intput_output_data)
+  new_input_output_data=[]
+
+  for i in intput_output_data:
+    if element_exst_check(delete_list,i[1])==-1:
+      new_input_output_data.append(i)
+  intput_output_data=new_input_output_data
+
+  new_input_output_data=[]
+  new_data_insert_value_count=[]
+  for i in dense_value:
+    new_data_insert_value_count.append([i,0])
+  for i in intput_output_data:
+    used_so_far_count=0
+    for j in new_data_insert_value_count:
+      if j[0]==i[1]:
+        used_so_far_count=j[1]
+        j[1]=j[1]+1
+        if used_so_far_count<max_number:
+          new_input_output_data.append(i)
+  intput_output_data=new_input_output_data
+  print(len(intput_output_data))
+
+  for i in dense_value:
+    if element_exst_check(delete_list,i)==-1:
+      dense_list.append(i)
+  
+  for i in dense_list:
+    os.makedirs("dream_data/train/"+i)
+    os.makedirs("dream_data/test/"+i)
+
+  data_count=0
+  for i in intput_output_data:
+    if data_count/len(intput_output_data)<0.9999:
+      myFile=open("dream_data/train/"+str(i[1])+"/"+str(data_count)+".txt",'w')
+      myFile.write(i[0])
+      myFile.close()
+    else: 
+      myFile=open("dream_data/test/"+str(i[1])+"/"+str(data_count)+".txt",'w')
+      myFile.write(i[0])
+      myFile.close()
+    data_count=data_count+1
+
+def train_data_generator_ajax(request):
+  dense_list=[]
+  dense_value=[]
+  dense_value_count=[]
+  dense_count=[]
+  intput_output_data=[]
+  min_number=0
+  max_number=0
+  delete_list=[]
+  overload_list=[]
+  if not os.path.exists("dream_data"):
+    os.makedirs("dream_data")
+    os.makedirs("dream_data/train")
+    os.makedirs("dream_data/test")
+  elif os.path.exists("dream_data"):
+    shutil.rmtree("dream_data")
+    os.makedirs("dream_data/train")
+    os.makedirs("dream_data/test")
+
+  with open ('scenario_class.csv','r') as c:
+    read=csv.reader(c,delimiter=",")
+    for i in read:
+      if element_exst_check(dense_value,i[3])==-1:
+        dense_value.append(i[3])
+        dense_value_count.append([i[3],1])
+      else:
+        for j in dense_value_count:
+          if j[0]==i[3]:
+            j[1]=j[1]+1
+      intput_output_data.append([i[1],i[3]])
+    for i in dense_value_count:
+      dense_count.append(i[1])
+    dense_count=sorted(dense_count)
+    min_number=dense_count[int(len(dense_count)/2)]/200
+    max_number=dense_count[int(len(dense_count)/2)]*200
+    print(dense_count[len(dense_count)-1])
   for i in dense_value_count:
     if i[1]<min_number:
       delete_list.append(i[0])
@@ -1402,6 +2153,8 @@ def train_data_generator():
       myFile.write(i[0])
       myFile.close()
     data_count=data_count+1
+  return JsonResponse({})
+
 
 def combine():
   
@@ -1620,25 +2373,230 @@ def train_janice():
   #model.fit(x_train, y_train, validation_split=0.2, batch_size=batch_size, epochs=2, verbose=1)
 
   history = model_748.fit(train_ds, validation_data=val_ds, epochs=epochs, callbacks=callbacks_748)
+
+#q_bank(q_id="q000",q_class="qc000",q_type="on",q_value="Type of visit").save()
+
+def train_janice_ajax(request):
+  dense=dense_counter()
+  seed = 42
+  embedding_dim = 16
+  batch_size = 1
+  max_features = 5000
+  sequence_length = 30
+  AUTOTUNE = tf.data.experimental.AUTOTUNE
+  epochs = 300
+  
+  raw_train_ds = tf.keras.utils.text_dataset_from_directory(
+      'dream_data/train', 
+      batch_size=batch_size, 
+      validation_split=0.2, 
+      subset='training', 
+      seed=seed)
+
+  raw_val_ds = tf.keras.utils.text_dataset_from_directory(
+      'dream_data/train', 
+      batch_size=batch_size, 
+      validation_split=0.2, 
+      subset='validation', 
+      seed=seed)
+
+  raw_test_ds = tf.keras.utils.text_dataset_from_directory(
+      'dream_data/test', 
+      batch_size=batch_size)
+
+  vectorize_layer = TextVectorization(
+      max_tokens=max_features,
+      output_mode='int',
+      output_sequence_length=sequence_length)
+
+  #text_ds = total_dataset.map(lambda x, y: x)
+  #vectorize_layer.adapt(text_ds)
+
+  train_text = raw_train_ds.map(lambda x, y: x)
+  vectorize_layer.adapt(train_text)
+
+  def vectorize_text(text, label):
+    text2 = tf.expand_dims(text, -1)
+    return vectorize_layer(text2), label
+
+  text_batch, label_batch = next(iter(raw_train_ds))
+  first_review, first_label = text_batch[0], label_batch[0]
+
+  train_ds = raw_train_ds.map(vectorize_text)
+  val_ds = raw_val_ds.map(vectorize_text)
+  test_ds = raw_test_ds.map(vectorize_text)
+
+  AUTOTUNE = tf.data.AUTOTUNE
+
+  train_ds = train_ds.cache().prefetch(buffer_size=AUTOTUNE)
+  val_ds = val_ds.cache().prefetch(buffer_size=AUTOTUNE)
+  test_ds = test_ds.cache().prefetch(buffer_size=AUTOTUNE)
+
+  
+  model_748 = tf.keras.Sequential([
+    layers.Embedding(max_features + 1, embedding_dim),
+    layers.Dropout(0.2),
+    layers.GlobalAveragePooling1D(),
+    layers.Dropout(0.2),
+    layers.Dense(len(os.listdir("dream_data/train")))])
+
+  model_748.summary()
+
+  model_748.compile(loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
+                optimizer='adam',
+                metrics=['accuracy'])
+  
+  loss, accuracy = model_748.evaluate(test_ds)
+
+  checkpoint_path_748 = "save_ML/cp.ckpt"
+  checkpoint_dir = os.path.dirname(checkpoint_path_748)
+
+  cp_callback_748 = tf.keras.callbacks.ModelCheckpoint(checkpoint_path_748,
+                                                  save_weights_only=True,
+                                                  verbose=1)
+
+  callbacks_748 = [
+      tf.keras.callbacks.EarlyStopping(patience=5, monitor='val_loss'),
+      tf.keras.callbacks.TensorBoard(log_dir='./logs'),
+      cp_callback_748
+  ]
+
+  #model.fit(x_train, y_train, validation_split=0.1, batch_size=16, epochs=15, callbacks=callbacks, verbose=1)
+  #model.fit(x_train, y_train, validation_split=0.2, batch_size=batch_size, epochs=2, verbose=1)
+
+  history = model_748.fit(train_ds, validation_data=val_ds, epochs=epochs, callbacks=callbacks_748)
   #model_748.load_weights(checkpoint_path_748)
+  return JsonResponse({})
+
+def a_class_load(request):
+  a_class_1714=a_class.objects.all().order_by('a_class')
+  return_data=[]
+  for i_1714 in a_class_1714:
+    if if_exist(return_data,[i_1714.id,i_1714.a_class,i_1714.a_value,i_1714.q_class])==0:
+      return_data.append([i_1714.id,i_1714.a_class,i_1714.a_value,i_1714.q_class])
+  return JsonResponse({"return_data":return_data})
+  
+def q_class_load(request):
+  q_class_1714=q_class.objects.all().order_by('q_class')
+  return_data=[]
+  for i_1714 in q_class_1714:
+    if if_exist(return_data,[i_1714.id,i_1714.q_class,i_1714.q_value,i_1714.q_type])==0:
+      return_data.append([i_1714.id,i_1714.q_class,i_1714.q_value,i_1714.q_type])
+  return JsonResponse({"return_data":return_data})
+  
+def a_bank_load(request):
+  a_bank_1714=a_bank.objects.all().order_by('a_id')
+  return_data=[]
+  for i_1714 in a_bank_1714:
+    ijeorj=[i_1714.id,i_1714.a_id,i_1714.q_id,i_1714.a_value,i_1714.a_class,i_1714.a_note,i_1714.a_lvl]
+    if if_exist(return_data,ijeorj)==0:
+      return_data.append(ijeorj)
+  return JsonResponse({"return_data":return_data})
+  
+def q_bank_load(request):
+  q_bank_1714=q_bank.objects.all().order_by('q_id')
+  return_data=[]
+  for i_1714 in q_bank_1714:
+    jjj=[i_1714.id,i_1714.q_id,i_1714.q_value,i_1714.q_type,i_1714.q_class]
+    if if_exist(return_data,jjj)==0:
+      return_data.append(jjj)
+  return JsonResponse({"return_data":return_data})
+
+def duplicate_qc_delete(request):
+  q_id=request.POST['q_id']
+  id_list=[]
+  for i in q_bank.objects.all():
+    if i.q_class==id_to_class_converter(q_id):
+      id_list.append(i.q_id)
+  return JsonResponse({"id_list":id_list})
+def lvl_editor(request):
+  a_id=request.POST['a_id']
+  new_lvl_6215=request.POST['new_lvl_754']
+  for i in a_bank.objects.all():
+    if i.a_id==a_id:
+      target=get_object_or_404(a_bank,id=i.id)
+      target.a_lvl=new_lvl_6215
+      target.save()
+  return JsonResponse({"a_id":a_id,"new_lvl":new_lvl_6215})
+
+def type_editor(request):
+  q_id=request.POST['q_id']
+  new_type_6215=request.POST['new_type_754']
+  for i in q_bank.objects.all():
+    if i.q_id==q_id:
+      target=get_object_or_404(q_bank,id=i.id)
+      target.q_type=new_type_6215
+      target.save()
+  return JsonResponse({"q_id":q_id,"new_type":new_type_6215})
 
 
+def update_note(request):
+  target = get_object_or_404(a_bank, a_id=request.POST['a_id'])
+  target.a_note=request.POST['a_note']
+  target.save()
+  return JsonResponse({"completed":request.POST['a_note']})
+
+def update_note_multiple(request):
+  note=request.POST["textarea"]
+  a_id=request.POST["a_id_2731"]
+  a_class=id_to_class_converter(a_id)
+  id_list=[]
+  for i in a_bank.objects.all():
+    if i.a_class==a_class:
+      target=get_object_or_404(a_bank,id=i.id)
+      target.a_note=note
+      id_list.append(i.a_id)
+      target.save()
+  return JsonResponse ({"note":note,"id_list":id_list})
+
+
+
+def update_lvl(request):
+  target = get_object_or_404(a_bank, a_id=request.POST['a_id'])
+  target.a_lvl=request.POST['a_lvl']
+  target.save()
+  return JsonResponse({"completed":request.POST['a_lvl']})
 
 def ai_question_generator(request):
   a_id_185=request.POST['a_id_185']
   ai_generated_q=[]
   predict_q=predict(id_to_predict_input(a_id_185))
   print(a_id_185)
-  for i in q_class.objects.all().order_by('q_class'):
-    if i.q_class==predict_q[0] or i.q_class==predict_q[1] or i.q_class==predict_q[2]:
-      ai_generated_q.append([i.q_class,i.q_value,i.q_type])
+  wijgwe=0
+  while wijgwe<3:
+    for i in q_class.objects.all().order_by('q_class'):
+      if i.q_class==predict_q[wijgwe]:
+        ai_generated_q.append([i.q_class,i.q_value,i.q_type])
+    wijgwe=wijgwe+1
   ai_generated_a=[]
   for i in a_class.objects.all().order_by('a_class'):
     if i.q_class==predict_q[0] or i.q_class==predict_q[1] or i.q_class==predict_q[2]:
-      ai_generated_a.append([i.a_class,i.q_class,i.a_value])
+      if(if_exist(ai_generated_a,[i.a_class,i.q_class,i.a_value]))==0:
+        ai_generated_a.append([i.a_class,i.q_class,i.a_value])
   print(ai_generated_q)
+  print(ai_generated_a)
 
   return JsonResponse({"ai_generated_q":ai_generated_q, "ai_generated_a": ai_generated_a})
+def delete_class(request):
+  target_class=request.POST['target_class']
+  target_value=request.POST['target_value']
+  for i in a_class.objects.all():
+    if i.a_class==target_class and i.a_value==target_value:
+      target=get_object_or_404(a_class,id=i.id)
+      target.delete()
+  for i in q_class.objects.all():
+    if i.q_class==target_class and i.q_value==target_value:
+      target=get_object_or_404(q_class,id=i.id)
+      target.delete()
+  for i in a_bank.objects.all():
+    if i.a_id==target_class and i.a_value==target_value:
+      target=get_object_or_404(a_bank,id=i.id)
+      target.delete()
+  for i in q_bank.objects.all():
+    if i.q_id==target_class and i.q_value==target_value:
+      target=get_object_or_404(q_bank,id=i.id)
+      target.delete()  
+  return JsonResponse({"response":1})
 
 def home3(request):
     val=request.POST
@@ -1806,38 +2764,83 @@ def delete_a_apply_exst_qc(request):
   id_271=request.POST['id_271']
   target_array=[]
 
-  for i in a_bank.objects.all().order_by('a_id'):
-    if i.a_id==id_271:
-      target_ac=i.a_class
+  target_ac=id_to_class_converter(id_271)
   for i in a_bank.objects.all():
     if i.a_class==target_ac:
       target=get_object_or_404(a_bank,id=i.id)
       target.delete()
       target_array.append(i.a_id)
-  target=get_object_or_404(a_class,a_class=target_ac)
-  target.delete()
+  print(target_ac)
+  for i in a_class.objects.all():
+    if i.a_class==target_ac:
+      target=get_object_or_404(a_class,id=i.id)
+      target.delete()
   print(target_array)
   return JsonResponse({"target_array":target_array})
 def add_a_common_save(request):
   q_id_914=remove_last_n(request.POST['a_id_914'],4)
   a_value_914=request.POST['a_value_914']
   q_class_914=id_to_class_converter(q_id_914)
+  a_note=request.POST['a_note_914']
+  a_lvl=request.POST['a_lvl_914']
   used_914=0
   for i in q_bank.objects.all():
     if i.q_class==id_to_class_converter(q_id_914):
       used_914=used_914+1
   if used_914<2:
+    found_last_ac_914=0
     for i in a_class.objects.all().order_by('a_class'):
       if i.q_class==q_class_914:
         last_ac_914=i.a_class
-    new_ac_914=remove_last_n(last_ac_914,3)+pad(int(select_last_n(last_ac_914,3))+1,3)
+        found_last_ac_914=1
+    if found_last_ac_914==0:
+      new_ac_914=q_class_914+"a001"
+    else:
+      new_ac_914=remove_last_n(last_ac_914,3)+pad(int(select_last_n(last_ac_914,3))+1,3)
     target=a_class(a_class=new_ac_914,a_value=a_value_914,q_class=q_class_914)
     target.save()
-    target=a_bank(a_value=a_value_914,a_id=request.POST['a_id_914'],q_id=q_id_914,a_class=new_ac_914)
+    target=a_bank(a_value=a_value_914,a_id=request.POST['a_id_914'],q_id=q_id_914,a_class=new_ac_914,a_lvl=a_lvl,a_note=a_note)
     target.save()
-  return JsonResponse({"used_914":used_914})
+  return JsonResponse({"used_914":used_914,"a_lvl_914":a_lvl,"a_note_914":a_note})
 
+def load_ext_seq(request):
+  parent_a_182=request.POST['parent_a_215']
+  list_215=[]
+  for i in q_bank.objects.all().order_by('q_id'):
+    if remove_last_n(i.q_id,4)==parent_a_182:
+      list_215.append(i.q_id)
+  return JsonResponse({"list":list_215})
 
+def upload_new_seq(request):
+  new_seq_2151=request.POST['new_seq'].split("\n")
+  parent_a_2151=request.POST['parent_a']
+  new_seq_pair_2151=[]
+  n_9851=1
+  for i in new_seq_2151:
+    if len(i)>4:
+      new_seq_pair_2151.append([i,n_9851])
+      n_9851=n_9851+1
+  old_seq_2151=request.POST['old_seq'].split("\n")
+  
+  for i in q_bank.objects.all():
+    for j in new_seq_pair_2151:
+      if len(i.q_id)>=len(j[0]):
+        if first_n(i.q_id,len(j[0]))==j[0]:
+          target=get_object_or_404(q_bank,id=i.id)
+          new_id_2153=parent_a_2151+"q"+number_to_3_digits(j[1])+remove_first_n(i.q_id,len(j[0]))
+          target.q_id=new_id_2153
+          target.save()
+  for i in a_bank.objects.all():
+    for j in new_seq_pair_2151:
+      if len(i.a_id)>=len(j[0]):
+        if first_n(i.a_id,len(j[0]))==j[0]:
+          target=get_object_or_404(a_bank,id=i.id)
+          new_id_2153=parent_a_2151+"q"+number_to_3_digits(j[1])+remove_first_n(i.a_id,len(j[0]))
+          target.a_id=new_id_2153
+          target.q_id=remove_last_n(new_id_2153,4)
+          target.save()
+  return JsonResponse({})
+  
 def delete_a_create_new_qc(request):
   id_283=request.POST['id_283']
   for i in q_class.objects.all().order_by('q_class'):
@@ -1988,3 +2991,113 @@ model.load_weights(checkpoint_path)
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+dense=dense_counter()
+seed = 42
+embedding_dim = 16
+batch_size = 1
+max_features = 5000
+sequence_length = 30
+AUTOTUNE = tf.data.experimental.AUTOTUNE
+epochs = 300
+
+raw_train_ds = tf.keras.utils.text_dataset_from_directory(
+    'dream_data/train', 
+    batch_size=batch_size, 
+    validation_split=0.2, 
+    subset='training', 
+    seed=seed)
+
+raw_val_ds = tf.keras.utils.text_dataset_from_directory(
+    'dream_data/train', 
+    batch_size=batch_size, 
+    validation_split=0.2, 
+    subset='validation', 
+    seed=seed)
+
+raw_test_ds = tf.keras.utils.text_dataset_from_directory(
+    'dream_data/test', 
+    batch_size=batch_size)
+
+vectorize_layer = TextVectorization(
+    max_tokens=max_features,
+    output_mode='int',
+    output_sequence_length=sequence_length)
+
+#text_ds = total_dataset.map(lambda x, y: x)
+#vectorize_layer.adapt(text_ds)
+
+train_text = raw_train_ds.map(lambda x, y: x)
+vectorize_layer.adapt(train_text)
+
+def vectorize_text(text, label):
+  text2 = tf.expand_dims(text, -1)
+  return vectorize_layer(text2), label
+
+text_batch, label_batch = next(iter(raw_train_ds))
+first_review, first_label = text_batch[0], label_batch[0]
+
+train_ds = raw_train_ds.map(vectorize_text)
+val_ds = raw_val_ds.map(vectorize_text)
+test_ds = raw_test_ds.map(vectorize_text)
+
+AUTOTUNE = tf.data.AUTOTUNE
+
+train_ds = train_ds.cache().prefetch(buffer_size=AUTOTUNE)
+val_ds = val_ds.cache().prefetch(buffer_size=AUTOTUNE)
+test_ds = test_ds.cache().prefetch(buffer_size=AUTOTUNE)
+
+
+model_748 = tf.keras.Sequential([
+  layers.Embedding(max_features + 1, embedding_dim),
+  layers.Dropout(0.2),
+  layers.GlobalAveragePooling1D(),
+  layers.Dropout(0.2),
+  layers.Dense(len(os.listdir("dream_data/train")))])
+
+model_748.summary()
+
+model_748.compile(loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
+              optimizer='adam',
+              metrics=['accuracy'])
+
+loss, accuracy = model_748.evaluate(test_ds)
+
+checkpoint_path_748 = "save_ML/cp.ckpt"
+checkpoint_dir = os.path.dirname(checkpoint_path_748)
+
+cp_callback_748 = tf.keras.callbacks.ModelCheckpoint(checkpoint_path_748,
+                                                save_weights_only=True,
+                                                verbose=1)
+
+callbacks_748 = [
+    tf.keras.callbacks.EarlyStopping(patience=5, monitor='val_loss'),
+    tf.keras.callbacks.TensorBoard(log_dir='./logs'),
+    cp_callback_748
+]
+
+#model.fit(x_train, y_train, validation_split=0.1, batch_size=16, epochs=15, callbacks=callbacks, verbose=1)
+#model.fit(x_train, y_train, validation_split=0.2, batch_size=batch_size, epochs=2, verbose=1)
+model_748.load_weights(checkpoint_path_748)
+
+
+#db_to_scenario_simple()
+#db_to_scenario()
+#train_data_generator()
+#train_janice()

@@ -1,0 +1,2125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+    <meta charset='utf-8'name="viewport" content="width=device-width, initial-scale=1"/>
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+    <script src="https://kit.fontawesome.com/257d2aa939.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <style>
+
+    </style>
+
+
+</head>
+<body>
+
+    <button type="button" class="btn collapse_btn" onclick="collapse_cc()">Collapse</button>
+    <div onclick="self_append()"></div>
+    {%block body%}
+    <script>
+        collpase_cc=1
+        function collapse_parent(){
+            if ($(".a_parent").width()>200){
+                $(".a_parent").css({"width":"4vw","left":"71vw"})
+            } else {
+                $(".a_parent").css({"width":"80vw","left":"10vw"})
+
+            }
+
+        }
+        function collapse_cc(){
+            $.ajax({
+                type:'post',
+                url:'collapse_cc',
+                data:{
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+                },
+                success:function(response){
+                    if (collpase_cc==1){
+                        for (i=0;i<response.target_array.length;i++){
+                            $("#"+response.target_array[i]).removeClass("hide")
+                            $("#"+response.target_array[i]).addClass("hide")
+                            collpase_cc=0
+                        }
+                    }   else if(collpase_cc==0){
+                        for (i=0;i<response.target_array.length;i++){
+                            $("#"+response.target_array[i]).removeClass("hide")
+                            collpase_cc=1
+                        }
+                    }
+                }
+            })
+        }
+
+
+        function find_by_qid(qi,n){
+
+            q_value='not found'
+            for (i=0;i<question_array.length;i++){
+                if(question_array[i][1]==qi){
+                    q_value=question_array[i][n]
+                }
+            }
+            return q_value
+
+        }
+        function find_by_qc(qc,n){
+            q_value="not found"
+            for (i=0;i<qc_array.length;i++){
+                if(qc_array[i][1]==qc){
+                    q_value=qc_array[i][n]
+                }
+            }
+            return q_value
+        }
+
+        function find_by_ac(ac,n){
+            a_value="not found"
+            for (i=0;i<ac_array.length;i++){
+                if(ac_array[i][1]==ac){
+                    a_value=ac_array[i][n]
+                }
+            }
+            return a_value
+        }
+
+        function exst_q_select(qc){
+            parent_a_id=$("#"+qc).parent().parent().parent().attr("id");
+            parent_q_id=$("#"+qc).parent().parent().attr("id");
+            $("#"+parent_q_id).remove()
+            $.ajax({
+                type:'post', 
+                url:'exst_q_select',
+                data:{
+                    q_class: qc,
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+                }, 
+                success: function(response){
+                    
+                    q_generate(parent_a_id,parent_q_id,response.q_value,response.q_type) 
+                    q_insert_ajax(parent_q_id,response.q_value,response.q_type,qc)
+                    ans_numb=1
+                    for (j=0;j<response.a_array_382.length;j++){
+                        a_insert_ajax(parent_q_id+"a"+pad(ans_numb,3),response.a_array_382[j][0],parent_q_id,response.a_array_382[j][1])
+                        a_generate(parent_q_id,parent_q_id+"a"+pad(ans_numb,3),response.a_array_382[j][0],response.a_array_382[j][0],3)
+                        ans_numb++
+                    }
+                }
+            })
+        }
+
+        function pad(num, size) {
+            var s = num+"";
+            while (s.length < size) s = "0" + s;
+            return s;
+        }
+
+        answer_array=[]
+        original="{{answer_array}}"
+        answer_number=original.match(/\[(\d+),/g).length
+        answer_match=original.match(/\[(\d+),\s&#x27;([aq\d]+)&#x27;,\s&#x27;([a-zA-Z\s\-\(\)\,\'\[\]\d\.\/?:]+)&#x27;,\s&#x27;([aq\d]+)&#x27;,\s&#x27;([acq\d]+)&#x27;\]/g)
+        answer_match_number=answer_match.length
+        if(answer_number==answer_match_number){
+            for (i=0;i<answer_match_number;++i){
+                answer_submatch=answer_match[i].match(/\[(\d+),\s&#x27;([aq\d]+)&#x27;,\s&#x27;([a-zA-Z\s\-\(\)\,\'\[\]\d\.\/]+)&#x27;,\s&#x27;([aq\d]+)&#x27;,\s&#x27;([acq\d]+)&#x27;\]/)
+                answer_array.push([answer_submatch[1],answer_submatch[2],answer_submatch[3],answer_submatch[4],answer_submatch[5]])
+            }
+        } else {
+            answer_array=["we failed to read some of your answers when running Regex"]
+        }
+        question_array=[]
+        question_original="{{question_array}}"
+        question_number=question_original.match(/\[(\d+),/g).length
+        question_match=question_original.match(/\[(\d+),\s&#x27;([aq\d]+)&#x27;,\s&#x27;([a-zA-Z\s\-\(\)\,\'\[\]\d\.\/?:]+)&#x27;,\s&#x27;([a-z]+)&#x27;,\s&#x27;([aqc\d]+)&#x27;\]/g)
+        question_match_number=question_match.length
+        if(question_number==question_match_number){
+            for (i=0;i<question_number;++i){
+                question_submatch=question_match[i].match(/\[(\d+),\s&#x27;([aq\d]+)&#x27;,\s&#x27;([a-zA-Z\s\-\(\)\,\'\[\]\d\.\/?:]+)&#x27;,\s&#x27;([a-z]+)&#x27;,\s&#x27;([aqc\d]+)&#x27;\]/)
+                question_array.push([question_submatch[1],question_submatch[2],question_submatch[3],question_submatch[4],question_submatch[5]])
+            }
+        } else {
+            question_array=["we failed to read some of your questions when running Regex"]
+            $(".body2").append("question_number: "+question_number+"<BR>question_match_number: "+question_match_number+"<BR>")
+        }
+
+        qc_array=[]
+        qc_original="{{qc_array}}"
+        qc_number=qc_original.match(/\[(\d+),/g).length
+        qc_match=qc_original.match(/\[(\d+),\s&#x27;([aqc\d]+)&#x27;,\s&#x27;([a-zA-Z\s\-\(\)\,\'\[\]\d\.\/?:]+)&#x27;,\s&#x27;([a-z]+)&#x27;\]/g)
+        qc_match_number=qc_match.length
+        if(qc_number==qc_match_number){
+            for (i=0;i<qc_number;++i){
+                qc_submatch=qc_match[i].match(/\[(\d+),\s&#x27;([aqc\d]+)&#x27;,\s&#x27;([a-zA-Z\s\-\(\)\,\'\[\]\d\.\/?:]+)&#x27;,\s&#x27;([a-z]+)&#x27;\]/)
+                qc_array.push([qc_submatch[1],qc_submatch[2],qc_submatch[3],qc_submatch[4]])
+            }
+        } else {
+            qc_array=["we failed to read some of your qcs when running Regex"]
+            $(".body2").append("qc_number: "+qc_number+"<BR>qc_match_number: "+qc_match_number+"<BR>")
+        }
+
+        ac_array=[]
+        ac_original="{{ac_array}}"
+        ac_number=ac_original.match(/\[(\d+),/g).length
+        ac_match=ac_original.match(/\[(\d+),\s&#x27;([aqc\d]+)&#x27;,\s&#x27;([aqc\d]+)&#x27;,\s&#x27;([a-zA-Z\s\-\(\)\,\'\[\]\d\.\/?:]+)&#x27;,\s&#x27;([aqc\d]+)&#x27;\]/g)
+        ac_match_number=ac_match.length
+        if(ac_number==ac_match_number){
+            for (i=0;i<ac_number;++i){
+                ac_submatch=ac_match[i].match(/\[(\d+),\s&#x27;([aqc\d]+)&#x27;,\s&#x27;([aqc\d]+)&#x27;,\s&#x27;([a-zA-Z\s\-\(\)\,\'\[\]\d\.\/?:]+)&#x27;,\s&#x27;([aqc\d]+)&#x27;\]/)
+                ac_array.push([ac_submatch[1],ac_submatch[2],ac_submatch[3],ac_submatch[4]])
+            }
+        } else {
+            ac_array=["we failed to read some of your qcs when running Regex"]
+            $(".body2").append("ac_number: "+ac_number+"<BR>ac_match_number: "+ac_match_number+"<BR>")
+        }
+
+        
+
+        c_array=[]
+        c_original="{{c_array}}"
+        //c_number=c_original.match(/\[(\d+),/g).length
+        c_match=c_original.match(/\[(\d+),\s&#x27;([aq\d]+)&#x27;,\s&#x27;([a-zA-Z\s\-\(\)\,\'\[\]\d\.\/?:]*)&#x27;,\s&#x27;([a-zA-Z\s\-\(\)\,\'\[\]\d\.\/?:]+)&#x27;\]/g)
+        //c_match_number=c_match.length
+/*
+        if(c_number==c_match_number){
+            for (i=0;i<c_match_number;++i){
+                c_submatch=c_match[i].match(/\[(\d+),\s&#x27;([aq\d]+)&#x27;,\s&#x27;([a-zA-Z\s\-\(\)\,\'\[\]\d\.\/?:]*)&#x27;,\s&#x27;([a-zA-Z\s\-\(\)\,\'\[\]\d\.\/?:]+)&#x27;\]/)
+                c_array.push([c_submatch[1],c_submatch[2],c_submatch[3],c_submatch[4]])
+            }
+        } else {
+            c_array=["we failed to read some of your questions when running Regex"]
+        }
+*/
+
+        function collapse(){
+            $(event.target).parent().parent().children(".primary").toggleClass("hide")
+            $(event.target).toggleClass("fa-sort-down")
+            $(event.target).toggleClass("fa-caret-right")
+        }
+    </script>
+ 
+ 
+    <script>
+
+        function cases(id){
+            input2=[""]
+            a_id2=id
+            //a_id2=answer_array[i][1]
+            loop_id2=a_id2
+            o=0
+            while (loop_id2.length >0){
+                o=o+1
+                id_div2=loop_id2.match(/([aq,\d]*)([aq])(\d\d\d$)/)
+                if (id_div2[2]=="a"){
+                    for (j=0;j<answer_array.length;++j){
+                        if(answer_array[j][1]==loop_id2){
+                            for (q=0;q<input2.length;++q){
+                                input2[q]=answer_array[j][2]+" "+input2[q]
+                            }
+                        }
+                    }
+                    loop_id2=id_div2[1]
+                } else if (id_div2[2]=='q') {
+                    if (loop_id2==a_id2.slice(0,loop_id2.length)){
+                        if(id_div2[3]==0){
+                            loop_id2=id_div2[1]
+                        } else {
+                            for (m=0;m<question_array.length;++m){
+                                if(question_array[m][1]==loop_id2){
+                                    input_length=input2.length
+                                    for (q=0;q<input_length;++q){
+                                        input2[q]=question_array[m][2]+" "+input2[q]
+                                        input2.push(input2[q])
+                                    }
+                                    input2.splice(0,input_length)
+                                }
+                            }
+                            z=id_div2[3]-1
+                            loop_id2=id_div2[1]+'q'+pad(z,3)
+                        }
+                    } else {
+                        if(id_div2[3]==0){
+                            loop_id2=id_div2[1]
+                        } else {
+                            up_question="undefined"
+                            for (e=0;e<question_array.length;++e){
+                                if(loop_id2==question_array[e][1]){
+                                    up_question=question_array[e][2]
+                                }
+                            }
+                            array_add=[]
+    
+                            for (j=0;j<answer_array.length;++j){
+                                if(answer_array[j][3]==loop_id2){
+                                    for (q=0;q<input2.length;++q){
+                                        array_add.push(up_question+" "+answer_array[j][2]+" "+input2[q])
+                                    }
+                                }
+                            }
+                            if(array_add.length>0){
+                                input2=array_add
+                            }
+        /*
+                            for (n=0;n<array_add.length;++n){
+                                input2.push(array_add[n])
+                                $(".up_body").append(input2.length+"<BR>")
+                                }
+                                */
+                            z=id_div2[3]-1
+                            loop_id2=id_div2[1]+'q'+pad(z,3)
+                        }
+                    }
+                }
+            }
+            return input2
+        }
+        function remove_last_n(element,n){
+            result=""
+            for (i=0;i<element.length-n;i++){
+                result=result+element[i]
+            }
+            return result
+        }
+        function re_train(){
+            in_out_list=[]
+            class_list=[]
+            in_list=[]
+            out_list=[]
+            for (i=0; i<answer_array.length; ++i){
+                output=[]
+                for (w=0;w<question_array.length;++w){
+                    if(output.length==0){
+                        for(t=1;t<5;++t){
+                            if(question_array[w][1]==answer_array[i][1]+"q"+pad(t,3)){
+                                output.push(question_array[w][2]);
+                                if (jQuery.inArray(question_array[w][2],class_list)==-1) {
+                                    class_list.push(question_array[w][2]);
+                                }
+                                t=5;
+                            }
+                        }
+                    }
+                }
+                if(output.length==0){
+                    original_answer_id=answer_array[i][1]
+                    for(mm=0;mm<4;++mm){
+                        if(output.length==0&&original_answer_id.length>5){
+                            all_match=original_answer_id.match(/([aq,\d]*)(q)(\d\d\d)(a)(\d\d\d$)/)
+                            parent_q_id=all_match[1]+all_match[2]
+                            parent_q_numb=original_answer_id.match(/([aq,\d]*)(q)(\d\d\d)(a)(\d\d\d$)/)[3]
+                            for (t=1;t<8;++t){
+                                for (w=0;w<question_array.length;++w){
+                                    if(question_array[w][1]==parent_q_id+pad(parseInt(parent_q_numb)+t,3)){
+                                        output.push(question_array[w][2]);
+                                        if (jQuery.inArray(question_array[w][2],class_list)==-1) {
+                                            class_list.push(question_array[w][2]);
+                                        }
+                                        t=8
+                                    }
+                                }
+                            }
+                        }
+                        original_answer_id=all_match[1]
+                    }
+                }
+    
+                for (k=0;k<cases(answer_array[i][1]).length;++k){
+                    in_out_list.push([in_out_list.length+1,answer_array[i][1],cases(answer_array[i][1])[k],output])
+                    in_list.push(cases(answer_array[i][1])[k])
+                    out_list.push(output)
+                }
+            }
+            new_out_list=[]
+            for (ii=0;ii<out_list.length;++ii){
+                new_out_list.push(String(out_list[ii]))
+                //$(".up_body").append(ii+"<BR>")
+
+            }
+
+
+            $.ajax({
+                type: "POST",
+                url: "re_train",
+                data:{
+                    in_list: in_list,
+                    out_list2: new_out_list,
+                    class_list: class_list,
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+                },
+                success: function(){
+                }
+            });
+        }
+        function woeifjwe(){
+            $.ajax({
+                type: "POST",
+                url: "predict_2",
+                data:{
+                    input: $("#fowiegowigejwe").val(),
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+                },
+                success: function(){
+                }
+            });
+        }
+
+        function woeifjwe_class(){
+            $.ajax({
+                type: "POST",
+                url: "predict_3",
+                data:{
+                    input: $("#fowiegowigejwe_3").val(),
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+                },
+                success: function(){
+                }
+            });
+        }
+        function submit_test(){
+            $q_id = $('#q_id').val();
+            $q_value = $('#q_value').val();
+            $question_type = $('#question_type').val();
+             
+            if($q_id == "" || $q_value == "" || $question_type == ""){
+                alert("Please complete field");
+            }else{
+                $.ajax({
+                    type: "POST",
+                    url: "insert",
+                    data:{
+                        q_id: $q_id,
+                        q_value: $q_value,
+                        question_type: $question_type,
+                        csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+                    },
+                    success: function(){
+                        alert('Save Data');
+                        $('#q_id').val('');
+                        $('#q_value').val('');
+                        $('#question_type').val('');
+                        window.location = "/";
+                    }
+                });
+            }
+        };
+     
+     
+     
+    function new_answer(){
+        var auto_clarify=$(event.target).parent().children("div").attr("class");
+        if(auto_clarify=="auto"){
+            var children_number=$(event.target).parent().children("div").children("div").length;
+            var last_answer_id=$(event.target).parent().children("div").children("div").last().attr("id");
+     
+        } else if (auto_clarify!="auto") {
+            var children_number=$(event.target).parent().children("div").length;
+            var last_answer_id=$(event.target).parent().children("div").last().attr("id");
+            
+        }
+        var parent_id=$(event.target).parent().attr("id");
+        $("#print_here").append("last answer id: "+last_answer_id+"<BR>")
+        $("#print_here").append(children_number+"<BR>")
+        $("#print_here").append(auto_clarify+"<BR>")
+     
+        if (children_number>0){
+            let an = last_answer_id.match(/(^[a-zA-Z0-9._%+-]*)(\D)(\d+)$/);
+            var next_answer_number=+an[3]+1;
+            var next_answer_number=('000'+next_answer_number).slice(-3);
+            var next_a_id=an[1]+an[2]+next_answer_number
+            if(auto_clarify=="auto"){
+                $("#"+parent_id).children("div").append("<div id=\""+next_a_id+"\" style=\"margin-left:10px\"> - <input type=\"text\" name=\""+next_a_id+"\"></div>")
+            } else if (auto_clarify!="auto") {
+                $("#"+parent_id).append("<div id=\""+next_a_id+"\" style=\"margin-left:10px\"> - <input type=\"text\" name=\""+next_a_id+"\"></div>")
+            }
+     
+        } else {
+            //$().append(parent_id)
+            var next_a_id = parent_id+"a001"
+            $("#"+parent_id).append("<div id=\""+parent_id+"a001\" style=\"margin-left:10px\"> - <input type=\"text\" name=\""+parent_id+"a001\"></div>")
+        }
+     
+        $("#"+next_a_id).append("<button type=\"button\" onclick=\"new_question()\">+Q</button>")
+        $("#"+next_a_id).append("<button type=\"button\" onclick=\"d_delete()\">Del</button>")
+     };
+     
+     
+
+     
+     
+     
+    function d_delete(){
+        var id=$(event.target).parent().attr("id");
+        $("#"+id).remove();
+    };
+     
+    function delete_branch(){
+        id_1242=$(event.target).parent().attr("id")
+        $.ajax({
+            type:'post',
+            url:'delete_branch',
+            data: {
+                id_1242:id_1242,
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+            }, 
+            success:function(response){
+                for(i_1242=0;i_1242<response.delete_1242.length;i_1242++){
+                    $("#"+response.delete_1242[i_1242]).remove()
+                }
+            }
+        })
+    }
+
+
+    function delete_a_create_new_qc(){
+        id_283=$(event.target).parent().attr("id")
+        button_id_283=id_283+"_delete_button_1"
+        $.ajax({
+            type:'post',
+            url:'delete_a_create_new_qc',
+            data:{
+                id_283:id_283, 
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+            },
+            success:function(){
+                $("#"+id_283).remove()
+            }
+        })
+    }
+    function del_a(){
+        q_id_151=$(event.target).parent().parent().attr("id")
+        a_id_151=$(event.target).parent().attr("id")
+        button_id_151=a_id_151+"_delete_button"
+        $.ajax({
+            type:'post',
+            url:"del_a",
+            data:{
+                id_151:q_id_151,
+                a_id_151:a_id_151,
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+            },
+            success:function(response){
+                if(response.used==1){
+                    $("#"+response.a_id).remove()
+                } else if (response. used >1){
+                    $("#"+button_id_151).replaceWith("<button type=\'button\' id=\""+button_id_151+"_1\" onclick=\'delete_a_create_new_qc()\'>-</button><button onclick=\'delete_a_apply_exst_qc()\' id=\""+button_id_151+"_2\" type=\'button\'>---</button>")
+                }
+            }
+        })
+    }
+    function delete_a_apply_exst_qc(){
+        id_271=$(event.target).parent().attr("id")
+        button_id_283=id_271+"_delete_button_2"
+        $.ajax({
+            type:'post',
+            url:'delete_a_apply_exst_qc',
+            data:{
+                id_271:id_271,
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+            }, 
+            success:function(response){
+                for(i=0;i<response.target_array.length;i++){
+                    $("#"+response.target_array[i]).remove()
+                }
+            }
+        })
+    }
+
+     
+    function test_func(){
+        $.ajax({
+            type: "POST",
+            url: "test_def",
+            data:{
+                q_id: "test",
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+            },
+            success: function(response){
+                alert(response.result)
+            }
+        });
+    }
+    function delete_from_data(){
+        root_id=$(event.target).parent().attr("id")
+        answer_id_array=[]
+        answer_count_289=$("#"+root_id).children(".primary").length
+        for (i=0;i<answer_count_289;i++){
+            a_id_468=$("#"+root_id).children(".primary").eq(i).attr('id')
+            answer_id_array.push(a_id_468)
+        }
+        $.ajax({
+            type:'post',
+            url:"class_used_counter_by_id",
+            data:{
+                a_id:root_id,
+                q_id:root_id,
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+            },
+            success:function(response){  
+                if(root_id[root_id.length-4]=="a"){
+                    if(response.a_count<2){
+                        a_dbl_del_by_id(root_id)
+                        $("#"+root_id).remove()
+                    } else if (response.a_count>1){
+                        a_delete_ajax(root_id)
+                        $("#"+root_id).remove()
+                    }
+                } else if(root_id[root_id.length-4]=="q"){
+                    if(response.q_count==0){
+                        $("#"+root_id).replaceWith("error: class is used for 0")
+                    }
+                    else if(response.q_count==1){
+                        q_dbl_del_by_id(root_id)
+                        for (i=0;i<answer_count_289;i++){
+                            a_dbl_del_by_id(answer_id_array[i])
+                        }
+                        $("#"+root_id).remove()
+                    } else if (response.q_count>1){
+                        q_delete_ajax(root_id)
+                        for (i=0;i<answer_count_289;i++){
+                            a_delete_ajax(answer_id_array[i])
+                        }
+                        $("#"+root_id).remove()
+                    }
+                }
+            }
+        })
+    }
+
+    function edit_q_apply_exst_qc(){
+        q_id=$(event.target).parent().attr('id')
+        q_value=$("#"+q_id+"_input").val()
+        $.ajax({
+            type: "POST",
+            url: "edit_q_apply_exst_qc",
+            data:{
+                q_id: q_id,
+                q_value: q_value,
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+            },
+            success: function(response){
+                $("#"+q_id+"_input").replaceWith("<span id=\""+q_id+"_value\" ondblclick=\"dbl_click()\"style=\"display:inline;\" value=\""+q_value+"\">"+q_value+"</span>")
+                for (i=0;i<response.same_q_class.length;i++){
+                    $("#"+response.same_q_class[i]+"_value").replaceWith("<span id=\""+q_id+"_value\" ondblclick=\"dbl_click()\"style=\"display:inline;\" value=\""+q_value+"\">"+q_value+"</span>")
+                }
+                $("#"+q_id+"_edit_save_1").remove()
+                $("#"+q_id+"_edit_save_2").remove()
+            }
+        });
+    }
+
+    function qc_delete_ajax(clas) {
+        $.ajax({
+            type: "POST",
+            url: "qc_delete",
+            data:{
+                q_class: clas,
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+            },
+            success: function(){
+            }
+        });
+    };  
+
+    function ac_delete_ajax(clas) {
+        $.ajax({
+            type: "POST",
+            url: "ac_delete",
+            data:{
+                a_class: clas,
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+            },
+            success: function(){
+            }
+        });
+    };  
+    
+    
+    function q_delete_ajax(id) {
+        $.ajax({
+            type: "POST",
+            url: "q_delete",
+            data:{
+                q_id: id,
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+            },
+            success: function(){
+            }
+        });
+    };  
+    
+    function a_dbl_del_by_id(id){
+        $.ajax({
+            type: "POST",
+            url: "a_dbl_del_by_id",
+            data:{
+                a_id: id,
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+            }
+        });
+    }
+        
+    function q_dbl_del_by_id(id){
+        $.ajax({
+            type: "POST",
+            url: "q_dbl_del_by_id",
+            data:{
+                q_id: id,
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+            }
+        });
+    }
+        
+    
+    function show_id(){
+        id =$(event.target).parent().attr("id");
+        $(event.target).replaceWith(id)
+    }
+    function use_exst_q(){
+        $(event.target).siblings("div").remove();
+        $(event.target).siblings("button#select_button").remove();
+        var input=$(event.target).val();
+        var new_q_id =$(event.target).parent().attr("id");
+        duplicate_checker_array=['t']
+        for (i=0; i<qc_array.length;i++){
+            if(qc_array[i][2].slice(0,input.length).toLowerCase()==input.toLowerCase()){
+
+            }
+        }
+    }
+    function first_letter_upper(x){
+        result=""
+        result=result+x[0].toUpperCase()
+        result=result+x.slice(1)
+        return result
+    }
+    function auto_ajax(){
+        
+        $(event.target).siblings("div").remove();
+        $(event.target).siblings("br").remove();
+        $(event.target).siblings("button#select_button").remove();
+        $('.exst_q_container').remove();
+        $(event.target).parent().append("<div class=\'exst_q_container\'><div class=\'non_exst_q_container\'></div></div>")
+        exist=0
+        var input_124=$(event.target).val();
+        var new_q_id =$(event.target).parent().attr("id");
+        
+        $.ajax({
+            type:'post',
+            url:'auto_ajax',
+            data:{
+                input_5125:input_124,
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+            },
+            success:function(response){
+                $('.exst_q_container').empty();
+                for (i=0;i<response.target_array_qc.length;i++){
+                    $(".exst_q_container").append("<div class=\'exst_q_suggest\' id=\'"+response.target_array_qc[i][0]+"\' onclick=\"exst_q_select(\'"+response.target_array_qc[i][0]+"\')\">"+response.target_array_qc[i][1]+"<BR></div>")    
+                }
+                for (j=0;j<response.target_array_ac.length;j++){
+                    $("#"+response.target_array_ac[j][2]).append("- "+response.target_array_ac[j][1]+"<br>")
+                }
+            }
+        })
+        /*
+        for (i=0;i<qc_array.length;i++){
+            qc_exist=qc_array[i][2].slice(0,input.length).toLowerCase()
+            input_lowercase=input.toLowerCase()
+            if(qc_exist==input_lowercase){
+                exist=1
+                if(input.length>0){
+                    $(".exst_q_container").append("<div class=\'exst_q_suggest\' id=\'"+qc_array[i][1]+"\' onclick=\"exst_q_select(\'"+qc_array[i][1]+"\')\">"+qc_array[i][2]+"<BR></div>")    
+                    for (j=0;j<ac_array.length;j++){
+                        if(ac_array[j][1]==qc_array[i][1]){
+                            $("#"+qc_array[i][1]).append("- "+ac_array[j][3]+"<br>")
+                        }
+                    }
+                }
+            }
+        }
+        */
+        //if(input.length>0&&exist==1){$(".exst_q_container").append("<div class=\'exst_q_suggest flex_center\' id=\'\' onclick=\"\">+</div>")}
+/*        
+        duplicate_checker_array=['t']
+        for (i=0; i<question_array.length;i++){
+            if(question_array[i][2].slice(0,input.length).toLowerCase()==input.toLowerCase()){
+                var m = 1;
+                duplicate_checker=""
+                t=1
+                for(r=0;r<answer_array.length;r++){
+                    if(answer_array[r][3]==question_array[i][1]){
+                        duplicate_checker=duplicate_checker+answer_array[r][2]
+                    }
+                }
+                if (jQuery.inArray(duplicate_checker,duplicate_checker_array)!==-1){
+                } else if (jQuery.inArray(duplicate_checker,duplicate_checker_array)==-1) {
+                    duplicate_checker_array.push(duplicate_checker)
+                    $(event.target).parent().append("<div id=\"interim_"+i+"\" class=\"interim_"+i+"\"></div><button value=\"interim_"+i+"\" id=\"select_button\" type=\"button\" onclick=\"select()\">Select</button><BR>")
+                    for(j=0;j<answer_array.length;j++){
+                        if(answer_array[j][3]==question_array[i][1]){
+                            $("#interim_"+i).append("<div id=\""+new_q_id+"a"+pad(m,3)+"\" style=\"margin-left:10px\">- <input type=\"text\" value=\""+answer_array[j][2]+"\" id=\""+new_q_id+"a"+pad(m,3)+"_input\" name=\""+new_q_id+"a"+pad(m,3)+"\"></input></div>")
+                            $("#interim_"+i).children("#"+new_q_id+"a"+pad(m,3)).append("<button type=\"button\" onclick=\"new_question()\">+Q</button>")
+                            $("#interim_"+i).children("#"+new_q_id+"a"+pad(m,3)).append("<button type=\"button\" onclick=\"a_ajax()\">Save</button>")
+                            $("#interim_"+i).children("#"+new_q_id+"a"+pad(m,3)).append("<button type=\"button\" onclick=\"d_delete()\">Del</button>")
+                            $("#interim_"+i).children("#"+new_q_id+"a"+pad(m,3)).append("<br>")
+                            m=m+1;
+                            }
+                        }
+                    }
+                }
+            }
+*/           
+        }
+        function branch_copy_2(){
+            branch_copy($(event.target).prev("input").val())
+        }
+        function branch_copy(id_7516){
+            parent_id_7516=$(event.target).parent().attr("id")
+
+            $.ajax({
+                type:"post",
+                url:"branch_copy",
+                data:{
+                    a_id:id_7516,
+                    parent_id_7516:parent_id_7516,
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+                },
+                success:function(response){
+                    id_length=4
+                    cycle_stop=0
+                    while  (cycle_stop<999){
+
+                        counter_7516=0
+                        /*
+                        0= q_id
+                        1=q_value
+                        2=q_type
+                        3=q_class
+                        */
+                            
+                        for (i_7516=0;i_7516<response.q_7516.length;i_7516++){
+                            if(response.q_7516[i_7516][0].length==id_length+parent_id_7516.length){
+                                counter_7516=1
+                                current_q=response.q_7516[i_7516]
+                                q_generate(remove_last_n(current_q[0],4),current_q[0],current_q[1],current_q[2])
+                                q_insert_ajax(current_q[0],current_q[1],current_q[2],current_q[3])
+                            }
+                        }
+                        //0=a_id;1=a_value;2=a_class
+                        for (i_7516=0;i_7516<response.a_7516.length;i_7516++){
+                            if(response.a_7516[i_7516][0].length==parent_id_7516.length+id_length+4){
+                                current_a=response.a_7516[i_7516]
+                                a_generate(remove_last_n(current_a[0],4),current_a[0],current_a[1],current_a[3],current_a[4])
+                                a_insert_ajax_2(current_a[0],current_a[1],remove_last_n(current_a[0],4),current_a[2],current_a[3],current_a[4],current_a[5])
+                            }
+                        }
+                        if (counter_7516==0){
+                            cycle_stop=1000
+                        } else {
+                            id_length=id_length+8
+                        }
+                    }
+                }
+            })
+        }
+ 
+        function select(){
+            var new_class=$(event.target).val()
+            var q_id=$(event.target).parent("div").attr("id")
+            var clone = $("."+new_class).children().clone(true)
+            $(event.target).siblings("div").remove()
+            $(event.target).siblings("#select_button").remove()
+            $(event.target).siblings("br").remove()
+            $(event.target).remove()
+            $("#"+q_id).append(clone);
+ 
+        }
+ 
+        function yes_no(){
+            var q_id=$(event.target).parent().attr("id")
+            $(event.target).parent().append("<div id=\""+q_id+"a001\" style=\"margin-left:10px\"> - <input id=\""+q_id+"a001_input\" type=\"text\" name=\""+q_id+"a001\" value=\"yes\"></div>")
+            $("#"+q_id+"a001").append("<button type=\"button\" onclick=\"new_question()\">+Q</button>")
+            $("#"+q_id+"a001").append("<button type=\"button\" onclick=\"a_ajax()\">Save</button>")
+            $("#"+q_id+"a001").append("<button type=\"button\" onclick=\"d_delete()\">Del</button>")
+            $(event.target).parent().append("<div id=\""+q_id+"a002\" style=\"margin-left:10px\"> - <input id=\""+q_id+"a002_input\" type=\"text\" name=\""+q_id+"a002\" value=\"no\"></div>")
+            $("#"+q_id+"a002").append("<button type=\"button\" onclick=\"new_question()\">+Q</button>")
+            $("#"+q_id+"a002").append("<button type=\"button\" onclick=\"a_ajax()\">Save</button>")
+            $("#"+q_id+"a002").append("<button type=\"button\" onclick=\"d_delete()\">Del</button>")
+        }
+        
+        function dbl_click(){
+            var aorq=$(event.target).parent().attr("id").match(/[aq,\d]*([aq])\d\d\d$/)[1]
+            let yes= event.target.textContent
+            if( aorq=="a"){
+                var a_id=$(event.target).parent().attr("id");
+                $(event.target).replaceWith( "<input type=\"text\" value=\""+yes+"\" id=\""+a_id+"_input\" name=\""+a_id+"\"><button id=\""+a_id+"_edit_save\" type=\"button\" onclick=\"a_value_update_ajax()\">Save</button>" );
+            } else if (aorq=="q"){
+                var q_id=$(event.target).parent().attr("id");
+                $(event.target).replaceWith( "<input type=\"text\" value=\""+yes+"\" id=\""+q_id+"_input\" name=\""+q_id+"\"><button id=\""+q_id+"_edit_save\"type=\"button\" onclick=\"q_value_update_ajax()\">Save</button>" );
+            }
+        }
+ 
+    </script>
+   
+    <datalist id="datalist"></datalist>
+    <script>
+        var q_list = []  
+        var q_lead_list=[]
+        
+        $(document).ready(function(){
+            for(i=0;i<c_array.length;++i){
+                if (jQuery.inArray(c_array[i][3],q_list)==-1){
+                    q_list.push(c_array[i][3])
+                    $("#q_list").append("<option value=\""+c_array[i][3]+"\">")
+                }
+            }
+
+            for(i=0;i<c_array.length;++i){
+                if (jQuery.inArray(c_array[i][2],q_list)==-1){
+                    q_lead_list.push(c_array[i][2])
+                    $("#q_lead_list").append("<option value=\""+c_array[i][2]+"\">")
+                }
+            }
+        })
+        
+ 
+       
+    </script>
+    <datalist id="q_list"></datalist>
+    <datalist id="q_lead_list"></datalist>
+ 
+    <script>
+        function q_type_update_ajax(){
+            var q_id=$(event.target).parent().attr("id");
+            var input_id=q_id+"_q_type";
+            var question_type=$(event.target).val()
+            $.ajax({
+                type:'post',
+                url:'q_type_update',
+                data:{
+                    q_id: q_id,
+                    question_type: question_type,
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+                }, 
+                success: function(response){
+                    for (i=0;i<response.same_type_q_id.length;i++){
+                        $("body").append("#"+response.same_type_q_id[i]+"_q_type_"+question_type+"<BR>")
+                        $("#"+response.same_type_q_id[i]+"_q_type_"+question_type).prop("checked", true);
+                    }
+                }
+            })
+        }
+
+        function q_value_update_ajax(){
+            var q_id=$(event.target).parent().attr("id");
+            var q_value=$("#"+q_id+"_input").val()
+            button_id=q_id+"_edit_save"
+            $.ajax({
+                type:'POST',
+                url:'q_value_update_ajax',
+                data:{
+                    q_id: q_id,
+                    q_value: q_value,
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+                }, 
+                success: function(response){
+                    if (response.q_use_count==0){
+                        $("#"+q_id+"_input").replaceWith("Error: a_use_count 0")
+                    } else if (response.q_use_count==1){
+                        $("#"+q_id+"_input").replaceWith( "<span ondblclick=\"dbl_click()\"style=\"display:inline;\" value=\""+q_value+"\">"+q_value+"</span>" );
+                    } else if (response.q_use_count > 1){
+                        $("#"+button_id).replaceWith("<button type=\'button\' id=\""+button_id+"_1\" onclick=\'edit_q_create_new_qc()\'>+</button><button onclick=\'edit_q_apply_exst_qc()\' id=\""+button_id+"_2\" type=\'button\'>+++</button>")
+                    } else {
+                        $("#"+q_id+"_input").replaceWith("Error: "+response.q_use_count)
+                    }
+                }
+            })
+        }
+ 
+        function a_value_update_ajax(){
+            var a_id=$(event.target).parent().attr("id");
+            var a_value=$("#"+a_id+"_input").val()
+            button_id=a_id+"_edit_save"
+            $.ajax({
+                type:'post',
+                url:'a_value_update',
+                data:{
+                    a_id: a_id,
+                    a_value: a_value,
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+                }, 
+                success: function(response){
+                    if (response.a_use_count==0){
+                        $("#"+a_id+"_input").replaceWith("Error: a_use_count 0"+a_id)
+                    } else if (response.a_use_count==1){
+                        $("#"+a_id+"_input").replaceWith( "<span ondblclick=\"dbl_click()\"style=\"display:inline;\" value=\""+a_value+"\">"+a_value+"</span>" );
+                    } else if (response.a_use_count > 1){
+                        $("#"+button_id).replaceWith("<button type=\'button\' id=\""+button_id+"_1\" onclick=\'edit_a_create_new_qc()\'>+</button><button onclick=\'edit_a_apply_exst_qc()\' id=\""+button_id+"_2\" type=\'button\'>+++</button>")
+                    } else {
+                        $("#"+a_id+"_input").replaceWith("Error: "+response.a_use_count)
+                    }
+                }
+            })
+        }
+        
+        function a_delete_ajax(id) {
+            $.ajax({
+                type:'post',
+                url:'a_delete',
+                data:{
+                    a_id: id,
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+                },
+                success:function(data){
+                }
+            }); 
+        };    
+ 
+        function new_question(){
+            var a_id=$(event.target).parent().attr("id");
+            var a_count=$(event.target).parent().children(".primary").length;
+            if(a_count==0){
+                var q_id=a_id+"q001";
+            } else {
+                var last_q_id=$(event.target).parent().children(".primary").last().attr("id");
+                let an = last_q_id.match(/(^[a-zA-Z0-9._%+-]*)(\D)(\d+)$/);
+                var next_q_number=+an[3]+1;
+                var next_q_number=('000'+next_q_number).slice(-3);
+                var q_id=an[1]+an[2]+next_q_number;
+            }
+            new_question_info_set(a_id,q_id)
+        };
+        
+        function new_question_info_set(a_id,q_id){
+            $("#"+a_id).append("<div id=\""+q_id+"\" style=\"margin:15px\"></div>")
+            $("#"+q_id).append("Q)<input type=\"text\" id=\""+q_id+"_input\" name=\""+q_id+"\" list=\"q_list\" onkeyup=\"auto_ajax()\">")
+            $("#"+q_id).append("<button type=\"button\" onclick=\"add_a_to_exst_q()\">+A</button>")
+            $("#"+q_id).append("<button type=\"button\" onclick=\"erase()\">New_A</button>")
+            $("#"+q_id).append("<button type=\"button\" onclick=\"add_q()\">Save</button>")
+            $("#"+q_id).append("<button type=\"button\" onclick=\"d_delete()\">Del</button>")
+            $("#"+q_id).append("<button type=\"button\" onclick=\"yes_no()\">Y/N</button>")
+            $("#"+q_id).append("<input type=\"text\" class=\'f09h2304h\' id=\'"+q_id+"_type\'placeholder=\'TYPE\' value=\'off\'></input>")
+        }
+        /*
+        function q_type_for_new_q(q_id){
+            $("#"+q_id).append("<select id=\'"+q_id+"_type\'></select>")
+            for (i_9782y9582=0;i_9782y9582<q_type_array.length;i_9782y9582++){
+                $("#"+q_id+"_type").append("<option id=\'"+q_id+"_"+i_9782y9582+"\'>"+q_type_array[i_9782y9582]+"</option>")
+            }
+        }
+        */
+
+        function erase(){
+            $(event.target).siblings("div").remove()
+            $(event.target).siblings("br").remove()
+            $(event.target).siblings("button#select_button").remove()
+        }
+        
+        function q_insert_ajax(q_id,q_value,q_type,q_class){
+          $.ajax({
+                type: "POST",
+                url: "q_insert",
+                data:{
+                    q_id: q_id,
+                    q_value: q_value,
+                    q_type: q_type,
+                    q_class: q_class,
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+                }, 
+                success: function(){
+                }
+            })
+        }
+        function a_insert_ajax(a_id,a_value,q_id,a_class){
+            $.ajax({
+                type: "POST",
+                url: "a_insert",
+                data:{
+                    a_id: a_id,
+                    a_value: a_value,
+                    q_id: q_id,
+                    a_class: a_class,
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+                }, 
+                success: function(){
+                }
+            })
+        }
+
+        function a_insert_ajax_2(a_id,a_value,q_id,a_class,a_note,a_lvl,a_parent){
+            $.ajax({
+                type: "POST",
+                url: "a_insert_ajax_2",
+                data:{
+                    a_id: a_id,
+                    a_value: a_value,
+                    q_id: q_id,
+                    a_class: a_class,
+                    a_note: a_note,
+                    a_lvl: a_lvl,
+                    a_parent: a_parent,
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+                }, 
+                success: function(){
+                }
+            })
+        }
+
+        function ac_insert_ajax(q_class,a_class,a_value){
+            $.ajax({
+                type: "POST",
+                url: "ac_insert",
+                data:{
+                    q_class: q_class,
+                    a_class: a_class,
+                    a_value: a_value,
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+                },
+                success: function(){
+                }
+            });
+        }
+        
+        function qc_insert_ajax(q_class,q_value,q_type){
+            $.ajax({
+                type: "POST",
+                url: "qc_insert",
+                data:{
+                    q_class: q_class,
+                    q_value: q_value,
+                    q_type: q_type,
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+                },
+                success: function(){
+                }
+            });
+        }
+        function new_qc(){
+            last_qc=qc_array[qc_array.length-1][1]
+            last_qc=last_qc.slice(-3)
+            return "qc"+String(pad(Number(last_qc)+1,3))
+        }
+
+        function last_number_plus_one(id){
+            return id.substring(0,id.length-3)+pad(Number(id.slice(-3))+1,3)
+        }
+        function add_qc_smq(){
+            if($("#smq_textarea").val().length==0){
+                $("#smq_textarea").val($(event.target).val())
+            } else {
+                $("#smq_textarea").val($("#smq_textarea").val()+","+$(event.target).val())
+            }
+        }
+
+        function q_generate_smq(){
+            qc_to_generate=$("#smq_textarea").val()
+            parent_a_id=$(event.target).parent().parent().parent().attr("id")
+            $.ajax({
+                type:'post',
+                url:'q_generate_smq',
+                data:{
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+                    list:qc_to_generate,
+                    a_id:parent_a_id
+                },success:function(response){
+                    $("#qc_select_window").remove()
+                    q_list=response.new_q_list
+                    a_list=response.new_a_list
+                    for (i_3732=0;i_3732<response.new_q_list.length;i_3732++){
+                        q_generate(parent_a_id,q_list[i_3732][0],q_list[i_3732][1],q_list[i_3732][2])
+                    }
+                    for (i_3732=0;i_3732<response.new_a_list.length;i_3732++){
+                        a_generate(a_list[i_3732][2],a_list[i_3732][0],a_list[i_3732][1],a_list[i_3732][1],3)
+                    }
+                }
+            })
+        }
+
+        function exit_smq(){
+            $("#qc_select_window").remove()
+
+        }
+        function select_multiple_qc(){
+            $("#qc_select_window").remove()
+
+            $("#"+$(event.target).parent().attr("id")).append("<div id=\'qc_select_window\'></div>")
+            $("#qc_select_window").append("<div class=\'smq_container\' id=\'smq_container\'></div>")
+            $("#smq_container").append("<button type=\'button\' onclick=\'q_generate_smq()\'>Create</button>")
+            $("#smq_container").append("<button type=\'button\' onclick=\'exit_smq()\'>Exit</button>")
+            $("#qc_select_window").append("<textarea class=\'smq_text\' id=\"smq_textarea\"></textarea>")
+            $.ajax({
+                type:"post",
+                url:"select_multiple_qc",
+                data:{
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+                }, 
+                success:function(response){
+                    qc_97y3=response.qc
+                    ac_98y3=response.ac
+                    for (i_6467=0;i_6467<response.qc.length;i_6467++){
+                        $("#qc_select_window").append("<button class=\'smq_button\'type=\'button\' onmouseout=\'hide_q_class()\'onmouseover=\"show_q_class()\"onclick=\'add_qc_smq()\' value=\'"+qc_97y3[i_6467][0]+"\'>"+qc_97y3[i_6467][0]+"</button>")
+                        $("#qc_select_window").append("<div class=\'smq_show_class hide\' id=\""+response.qc[i_6467][0]+"_show_class\"><p class=\"weogijweg\">"+response.qc[i_6467][1]+"</p></div>")
+                    }
+                    for (i_6467=0;i_6467<ac_98y3.length;i_6467++){
+                        $("#"+remove_last_n(ac_98y3[i_6467][0],4)+"_show_class").append("<div class=\'smq_answer_show\'>"+ac_98y3[i_6467][1]+"</div>")
+
+                    }
+                }
+            })
+        }
+
+        function q_generate(parent_id,q_id,q_value,on_off){
+            $("#"+parent_id).append("<div class=\'primary\' id=\""+q_id+"\" style=\"margin:15px\"><b>Q</b>) <span id=\""+q_id+"_value\" ondblclick=\"dbl_click()\"style=\"display:inline;\" value=\""+q_value+"\">"+first_letter_upper(q_value)+"</span></div>")
+            $("#"+q_id).append("<button type=\"button\" onclick=\"add_a_to_exst_q()\">+A</button>")
+            $("#"+q_id).append("<button type=\"button\" onclick=\"delete_from_data()\">Del</button>")
+            $("#"+q_id).append("<div class=\'collapse_container\' onclick=\'collapse()\'><i class=\"collapse_button fa-solid fa-sort-down\" ></i></div>")
+            $("#"+q_id).append("<input type=\"text\" class=\'f09h2304h\' id=\'"+q_id+"_type\' placeholder=\'TYPE\' ondblclick=\'change_q_type()\'value=\'"+on_off+"\'></input>")
+            //$("#"+q_id).append("<select class=\"q_type_ffi8\" id=\'"+q_id+"_type\' onchange=\'type_editor()\'></select>")
+        }
+
+        function open_input(){
+            $("<input type=\'text\'>").insertBefore($(event.target))
+            $(event.target).replaceWith("<button type=\"button\" onclick=\"branch_copy_2();\">++Q</button>")
+        }
+
+
+        function a_generate(parent_id,a_id,a_value,a_note,a_lvl){
+            $("#"+parent_id).append("<div class=\"primary\"id=\""+a_id+"\" style=\"margin-left:10px\">- <span id=\""+a_id+"_value\" ondblclick=\"dbl_click()\"style=\"display:inline;\" value=\""+a_value+"\">"+first_letter_upper(a_value)+"</span></div>")
+            $("#"+a_id).append("<div class=\'collapse_container\' onclick=\'collapse()\'><i class=\"collapse_button fa-solid fa-sort-down\" ></i></div>")
+            $("#"+a_id).append("<button type=\"button\" onclick=\"new_question()\">+Q</button>")
+            $("#"+a_id).append("<button type=\"button\" onclick=\"ai_question_generator()\">AI</button>")
+            $("#"+a_id).append("<button type=\"button\" onclick=\"del_a()\" id=\""+a_id+"_delete_button\">Del</button>")
+            $("#"+a_id).append("<button type=\"button\" onclick=\"open_input()\">++Q</button>")
+            $("#"+a_id).append("<button type=\"button\" onclick=\"show_id()\">#</button>")
+            $("#"+a_id).append("<button type=\"button\" onclick=\"select_multiple_qc()\">QC</button>")
+
+            if (String(a_note).length==0){
+                $("#"+a_id).append("<span class=\"a_note\" id=\""+a_id+"_note\"onclick=\"note_editor()\"> NA </span>")
+            } else {
+                $("#"+a_id).append("<span class=\"a_note\" id=\""+a_id+"_note\"onclick=\"note_editor()\">"+a_note+"</span>")
+            }
+            
+            $("#"+a_id).append("<select class=\"a_lvl\" id=\'"+a_id+"_lvl\' onchange=\'lvl_editor()\'></select>")
+            select_lvl(a_id,a_lvl)
+            if (String(a_lvl).length==0 || a_lvl==null ){
+                $("#"+a_id).append("<span class=\"a_lvl\" id=\""+a_id+"_lvl\"onclick=\"lvl_editor()\"> NA </span>")
+                $("#"+a_id+"_lvl").append("<option id=\'"+a_id+"_NA\'value=\"NA\" selected>NA</option>")
+            }
+        }
+        /*
+        $(document).ready(function(){
+            qwoiejfw=[]
+            $.ajax({
+                type:'post',
+                url:'q_type_array_maker',
+                data:{
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+                }, success:function(response){
+                    response.q_type_array
+                }
+
+            })
+        })
+        */
+
+        function select_type(q_id,q_type){
+            for (i_6121=0;i_6121<q_type_array.length;i_6121++){
+                type_97152=q_type_array[i_6121]
+                if (type_97152==q_type){
+                    $("#"+q_id+"_type").append("<option id=\""+q_id+"_"+i_6121+"\" value=\""+type_97152+"\" selected>"+type_97152+"</option>")
+                } else{
+                    $("#"+q_id+"_type").append("<option id=\""+q_id+"_"+i_6121+"\" value=\""+type_97152+"\" onclick=\'type_editor()\'>"+type_97152+"</option>")
+                }
+            }
+            //$("#"+q_id).append("<input type=\"text\" class=\'f09h2304h\' placeholder=\'TYPE\' ondblclick=\'change_q_type()\'value=\'"+q_type+"\'></input>")
+        }
+        function change_q_type(){
+            new_type_298352=$(event.target).val()
+            parent_q_id=$(event.target).parent().attr("id")
+            $.ajax({
+                type:'post',
+                url:'change_q_type',
+                data:{
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+                    new_type_fg0n9s:new_type_298352,
+                    parent_q_id_0he0:parent_q_id
+                }, success:function(response){
+                    $("#"+parent_q_id).val(response.new_type)
+                    if(response.exist=="no"){
+                        alert("We've created a new type")
+                    }
+                }
+            })
+        }
+        function select_lvl(a_id,a_lvl){
+            for (i_6121=0;i_6121<10;i_6121++){
+                if (i_6121==a_lvl){
+                    $("#"+a_id+"_lvl").append("<option id=\""+a_id+"_"+i_6121+"\" value=\""+i_6121+"\" selected>"+i_6121+"</option>")
+                } else{
+                    $("#"+a_id+"_lvl").append("<option id=\""+a_id+"_"+i_6121+"\" value=\""+i_6121+"\" onclick=\'lvl_editor()\'>"+i_6121+"</option>")
+                }
+            }
+        }
+        
+        function parent_editor(){
+            a_id_1514=$(event.target).parent().attr("id")
+            $("body").append("<div class=\'input_container\'id=\'input_edit_container_"+a_id_1514+"\'></div>")
+            $("#input_edit_container_"+a_id_1514).append("<textarea id=\"input_edit_"+a_id_1514+"\"></textarea><button onclick=\'update_parent(\""+a_id_1514+"\")\'>Done</button>")
+        }
+
+        function type_editor(){
+            new_type=document.querySelector("#"+$(event.target).attr("id")).value
+            q_id_1513=$(event.target).parent().attr("id")
+            $(event.target).children("option").remove()
+            $.ajax({
+                type:'post',
+                url:'type_editor',
+                data:{
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+                    q_id:q_id_1513, 
+                    new_type_754:new_type
+                }, success:function(response){
+                    select_type(response.q_id,response.new_type)
+                }
+            })
+        }
+        function lvl_editor(){
+            new_lvl=document.querySelector("#"+$(event.target).attr("id")).value
+            a_id_1513=$(event.target).parent().attr("id")
+            $(event.target).children("option").remove()
+            $.ajax({
+                type:'post',
+                url:'lvl_editor',
+                data:{
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+                    a_id:a_id_1513, 
+                    new_lvl_754:new_lvl
+                }, success:function(response){
+                    select_lvl(response.a_id,response.new_lvl)
+                }
+            })
+        }
+        function note_editor(){
+            a_id_1512=$(event.target).parent().attr("id")
+            exist_note=document.getElementById(a_id_1512+"_note").innerHTML
+            $.ajax({
+                type:'post',
+                url:'note_editor',
+                data:{
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+                    a_id_1512:a_id_1512
+                },success:function(response){
+                    $("body").append("<div class=\'input_container\'id=\'input_edit_container_"+a_id_1512+"\'></div>")
+                    wwiaawep="#input_edit_container_"+a_id_1512
+                    $(wwiaawep).append("<textarea id=\"input_edit_"+a_id_1512+"\" >"+exist_note+"</textarea>")
+                    $(wwiaawep).append("<button class=\"close_container\" onclick=\'close_container()\'>Exit</button>")
+
+                    if(response.used_count==1){
+                        $(wwiaawep).append("<button onclick=\'update_note(\""+a_id_1512+"\")\'>Done</button>")
+                    } else{
+                        $(wwiaawep).append("<button onclick=\'update_note(\""+a_id_1512+"\")\'> + </button>")
+                        $(wwiaawep).append("<button onclick=\'update_note_multiple(\""+a_id_1512+"\")\'>+++</button>")
+                    }
+                }
+            })
+        }
+        function close_container(){
+            $(event.target).parent().remove()
+        }
+        function update_parent(x){
+            new_parent=$(event.target).siblings("textarea").val()
+            $.ajax({
+                type:"post",
+                url:"update_parent",
+                data:{
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+                    a_id:x,
+                    a_parent:new_parent
+                },success:function(response){
+                    $(".input_container").remove()
+                    $("#"+x+"_parent").replaceWith("<span class=\"a_parent\" id=\""+x+"_parent\"onclick=\"parent_editor()\">"+response.completed+"</span>")
+                }
+            })
+        }
+        function update_note_multiple(aaa){
+            $.ajax({
+                type:"post",
+                url:"update_note_multiple",
+                data:{
+                    a_id_2731:aaa,
+                    textarea:$(event.target).siblings("textarea").val(),
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+                }, success:function(response){
+                    $(".input_container").remove()
+                    for (i_3463=0;i_3463<response.id_list.length;i_3463++){
+                        $("#"+response.id_list[i_3463]+"_note").replaceWith("<span class=\"a_note\" id=\""+response.id_list[i_3463]+"_note\"onclick=\"note_editor()\">"+response.note+"</span>")
+
+                    }
+
+                }
+            })
+        }
+
+        function update_lvl(x){
+            new_lvl=$(event.target).siblings("textarea").val()
+            $.ajax({
+                type:"post",
+                url:"update_lvl",
+                data:{
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+                    a_id:x,
+                    a_lvl:new_lvl
+                },success:function(response){
+                    $(".input_container").remove()
+                    $("#"+x+"_lvl").replaceWith("<span class=\"a_lvl\" id=\""+x+"_lvl\"onclick=\"lvl_editor()\">"+response.completed+"</span>")
+                }
+            })
+        }
+
+        function update_note(x){
+            new_note=$(event.target).siblings("textarea").val()
+            $.ajax({
+                type:"post",
+                url:"update_note",
+                data:{
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+                    a_id:x,
+                    a_note:new_note
+                },success:function(response){
+                    $(".input_container").remove()
+                    $("#"+x+"_note").replaceWith("<span class=\"a_note\" id=\""+x+"_note\"onclick=\"note_editor()\">"+response.completed+"</span>")
+                }
+            })
+        }
+
+        function create_new_qc_for_new_a(){
+            last_sibling_q_id=$(event.target).parent().parent().parent().parent().children("div").last().attr('id')
+            up_a_id=$(event.target).parent().attr('id')
+            up_q_id=up_a_id.substring(0,up_a_id.length-4)
+            up_up_a=$(event.target).parent().parent().parent().parent().parent().parent()    
+            up_up_a_id=$(event.target).parent().parent().parent().parent().parent().parent().attr('id')            
+            up_up_a.append("<div id=\'"+last_number_plus_one(last_sibling_q_id)+"\'>test</div>")
+            new_q_id_for_create=last_number_plus_one(last_sibling_q_id)
+            q_generate(up_a_id.substring(0,up_a_id.length-8),new_q_id_for_create,find_by_qid(up_a_id.substring(0,up_a_id.length-4),2),find_by_qid(up_a_id.substring(0,up_a_id.length-4),3))
+            new_qc_for_create=new_qc()
+            q_insert_ajax(new_q_id_for_create,find_by_qid(up_a_id.substring(0,up_a_id.length-4),2),find_by_qid(up_a_id.substring(0,up_a_id.length-4),3),new_qc_for_create)
+            qc_insert_ajax(new_qc_for_create,find_by_qid(up_a_id.substring(0,up_a_id.length-4),2),find_by_qid(up_a_id.substring(0,up_a_id.length-4),3))
+            old_qc=find_by_qid(up_a_id.substring(0,up_a_id.length-4),4)
+            answer_count=1
+            for (i=0;i<ac_array.length;i++){
+                if(ac_array[i][1]==old_qc){
+                    new_a_id_for_create=new_q_id_for_create+"a"+pad(answer_count,3)
+                    a_generate(new_q_id_for_create,new_a_id_for_create,ac_array[i][3],"null","null")
+                    a_insert_ajax(new_a_id_for_create,ac_array[i][3],new_q_id_for_create,new_qc_for_create)
+                    ac_insert_ajax(new_qc_for_create,new_qc_for_create+"a"+pad(answer_count,3),ac_array[i][3])
+                    answer_count++
+
+                }
+            }
+            new_a_id_for_create=new_q_id_for_create+"a"+pad(answer_count,3)
+            a_generate(new_q_id_for_create,new_q_id_for_create+"a"+pad(answer_count,3),$(event.target).siblings("input").val(),"null","null")
+            a_insert_ajax(new_a_id_for_create,$(event.target).siblings("input").val(),new_q_id_for_create,new_qc_for_create)
+            ac_insert_ajax(new_qc_for_create,new_qc_for_create+"a"+pad(answer_count,3),$(event.target).siblings("input").val())
+            for (i=0;i<answer_array.length;i++){
+                if(answer_array[i][3]==up_q_id){
+                    a_delete_ajax(answer_array[i][1])
+                }
+            }
+            q_delete_ajax(up_q_id)
+            $("#"+up_q_id).remove()
+        }  
+        function add_a_create_new_qc(){
+            q_id=$(event.target).parent().parent().attr('id')
+            a_id=$(event.target).parent().attr('id')
+            a_value=$("#"+a_id+"_input").val()
+            a_lvl_914=$("#"+a_id+"_lvl").val()
+            a_note_914=$("#"+a_id+"_note").val()
+            a_parent_914=$("#"+a_id+"_parent").val()
+            $.ajax({
+                type:'POST',
+                url:'add_a_create_new_qc',
+                data:{
+                    q_id:q_id,
+                    a_id:a_id,
+                    a_value:a_value,
+                    a_lvl_914:a_lvl_914,
+                    a_parent_914:a_parent_914,
+                    a_note_914:a_note_914,
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+                },
+                success: function(response){
+                    $("#"+a_id).remove()
+                    a_generate(q_id,a_id,a_value,response.a_note,response.a_lvl)
+                }
+            })
+        }
+        function edit_a_create_new_qc(){
+            q_id=$(event.target).parent().parent().attr('id')
+            a_id=$(event.target).parent().attr('id')
+            a_value=$("#"+a_id+"_input").val()
+            $.ajax({
+                type:'POST',
+                url:'edit_a_create_new_qc',
+                data:{
+                    q_id:q_id,
+                    a_id:a_id,
+                    a_value:a_value,
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+                },
+                success: function(){
+                    $("#"+a_id+"_input").replaceWith( "<span ondblclick=\"dbl_click()\"style=\"display:inline;\" value=\""+a_value+"\">"+a_value+"</span>" );
+                    $("#"+a_id+"_edit_save_1").remove()
+                    $("#"+a_id+"_edit_save_2").remove()
+                }
+            })
+        } 
+
+        function edit_q_create_new_qc(){
+            q_id=$(event.target).parent().attr('id')
+            q_value=$("#"+q_id+"_input").val()
+            $.ajax({
+                type:'POST',
+                url:'edit_q_create_new_qc',
+                data:{
+                    q_id:q_id,
+                    q_value:q_value,
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+                },
+                success: function(){
+                    $("#"+q_id+"_input").replaceWith( "<span ondblclick=\"dbl_click()\"style=\"display:inline;\" value=\""+q_value+"\">"+q_value+"</span>" );
+                    $("#"+q_id+"_edit_save_1").remove()
+                    $("#"+q_id+"_edit_save_2").remove()
+                }
+            })
+        } 
+
+        function edit_a_apply_exst_qc(){
+            q_id=$(event.target).parent().parent().attr('id')
+            a_id=$(event.target).parent().attr('id')
+            a_value=$("#"+a_id+"_input").val()
+            $.ajax({
+                type:"POST",
+                url:"edit_a_apply_exst_qc",
+                data:{
+                    q_id:q_id,
+                    a_id:a_id,
+                    a_value:a_value,
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+                },
+                success: function(response){
+                    for (i=0;i<response.same_class_id.length;i++){
+                        $("#"+response.same_class_id[i]+"_value").replaceWith("<span id=\""+a_id+"_value\" ondblclick=\"dbl_click()\"style=\"display:inline;\" value=\""+a_value+"\">"+a_value+"</span>")
+                    }
+                    $("#"+a_id+"_input").replaceWith( "<span ondblclick=\"dbl_click()\"style=\"display:inline;\" value=\""+a_value+"\">"+a_value+"</span>" );
+                    $("#"+a_id+"_edit_save_1").remove()
+                    $("#"+a_id+"_edit_save_2").remove()
+                }
+            })
+        }
+
+        function edit_a_apply_exst_qc(){
+            q_id=$(event.target).parent().parent().attr('id')
+            a_id=$(event.target).parent().attr('id')
+            a_value=$("#"+a_id+"_input").val()
+            $.ajax({
+                type:"POST",
+                url:"edit_a_apply_exst_qc",
+                data:{
+                    q_id:q_id,
+                    a_id:a_id,
+                    a_value:a_value,
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+                },
+                success: function(response){
+                    for (i=0;i<response.same_class_id.length;i++){
+                        $("#"+response.same_class_id[i]+"_value").replaceWith("<span id=\""+a_id+"_value\" ondblclick=\"dbl_click()\"style=\"display:inline;\" value=\""+a_value+"\">"+a_value+"</span>")
+                    }
+                    $("#"+a_id+"_input").replaceWith( "<span ondblclick=\"dbl_click()\"style=\"display:inline;\" value=\""+a_value+"\">"+a_value+"</span>" );
+                    $("#"+a_id+"_edit_save_1").remove()
+                    $("#"+a_id+"_edit_save_2").remove()
+                }
+            })
+        }
+
+        function add_a_apply_exst_qc(){
+            q_id=$(event.target).parent().parent().attr('id')
+            a_id=$(event.target).parent().attr('id')
+            a_value=$("#"+a_id+"_input").val()
+            a_lvl_914=$("#"+a_id+"_lvl").val()
+            a_note_914=$("#"+a_id+"_note").val()
+            a_parent_914=$("#"+a_id+"_parent").val()
+            $.ajax({
+                type:"POST",
+                url:"add_a_apply_exst_qc",
+                data:{
+                    q_id:q_id,
+                    a_id:a_id,
+                    a_value:a_value,
+                    a_lvl_914:a_lvl_914,
+                    a_parent_914:a_parent_914,
+                    a_note_914:a_note_914,
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+                },
+                success: function(response){
+                    $("#"+a_id).remove()
+                    for (i=0;i<response.same_class_pair.length;i++){
+                        a_generate(response.same_class_pair[i][0],response.same_class_pair[i][1],response.a_value_178,response.a_note_914,response.a_lvl_914)
+                    }
+
+                }
+            })
+        }
+
+        
+        function add_a_common_save(){
+            q_id_914=$(event.target).parent().parent().attr("id")
+            a_id_914=$(event.target).parent().attr("id")
+            a_value_914=$("#"+a_id_914+"_input").val()
+            a_lvl_914=$("#"+a_id_914+"_lvl").val()
+            a_note_914=$("#"+a_id_914+"_note").val()
+            a_parent_914=$("#"+a_id_914+"_parent").val()
+            button_id_914=a_id_914+"_button"
+            $.ajax({
+                type:'post',
+                url:"add_a_common_save",
+                data:{
+                    a_id_914:a_id_914,
+                    button_id_914:button_id_914,
+                    a_value_914:a_value_914,
+                    a_lvl_914:a_lvl_914,
+                    a_parent_914:a_parent_914,
+                    a_note_914:a_note_914,
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+                },
+                success:function(response){
+                    if(response.used_914<2){
+                        $("#"+a_id_914).remove();
+                        a_generate(q_id_914,a_id_914,a_value_914,response.a_note_914,response.a_lvl_9144)
+                    } else {
+                        $("#"+button_id_914).replaceWith("<button type=\'button\' id=\""+button_id_914+"_1\" onclick=\'add_a_create_new_qc()\'>+</button><button onclick=\'add_a_apply_exst_qc()\' id=\""+button_id_914+"_2\" type=\'button\'>+++</button>")
+                    }
+                }
+            })
+        }
+        function add_a_to_one_q(){
+            a_id_471=$(event.target).parent().attr('id')
+            new_a_value=$(event.target).siblings("input[name="+a_id_471+"]").val();
+            q_id_471=a_id_471.substring(0,a_id_471.length-4)
+            used_count=0
+            parent_q_class=find_by_qid(q_id_471,4)
+            for(i=0;i<question_array.length;i++){
+                if(question_array[i][4]==parent_q_class){
+                    used_count++
+                }
+            }
+            $.ajax({
+                type:'post',
+                url:"class_used_counter",
+                data:{
+                    a_class:"",
+                    q_class:parent_q_class,
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+                },
+                success:function(response){  
+                    //console.log(response.last_child_numb);
+                    response.q_count
+                    if(response.q_count==0){
+                        alert("Something's wrong, can't find the qid with such qclass")
+                    } else if (response.q_count==1){
+                        $("#"+$(event.target).parent().attr('id')).remove()
+                        $.ajax({
+                            type:'post',
+                            url:"find_last_children",
+                            data:{
+                                q_class:parent_q_class,
+                                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+                            },
+                            success:function(response){  
+                                parent_q_class+"a"+pad(response.last_child_numb+1,3)
+                                new_a_class=parent_q_class+"a"+pad(response.last_child_numb+1,3)
+                                $("#"+a_id_471).remove()
+                                a_generate(q_id_471,a_id_471,new_a_value,"null","null")
+                                ac_insert_ajax(parent_q_class,new_a_class,new_a_value)
+                                a_insert_ajax(a_id_471,new_a_value,q_id_471,new_a_class)
+                            }
+                        })
+                    } else if (response.q_count>1){
+                        $(event.target).after("<button type=\'button\' onclick=\'create_new_qc_for_new_a()\'>+</button><button type=\'button\' >+++</button>")
+                        $(event.target).remove()
+        
+                    } 
+                }
+            })
+        }
+
+        function add_a_to_exst_q(){
+            var children_number=$(event.target).parent().children(".primary").length;
+            var last_answer_id=$(event.target).parent().children(".primary").last().attr("id");
+            var parent_id=$(event.target).parent().attr("id");
+           
+            if (children_number>0){
+                let an = last_answer_id.match(/(^[a-zA-Z0-9._%+-]*)(\D)(\d+)$/);
+                var next_answer_number=+an[3]+1;
+                var next_answer_number=('000'+next_answer_number).slice(-3);
+                var next_a_id=an[1]+an[2]+next_answer_number
+                $("#"+parent_id).append("<div class=\'primary\' id=\""+next_a_id+"\" style=\"margin-left:10px\"> - <input id=\""+next_a_id+"_input\" onkeyup=\"a_to_note()\" type=\"text\" name=\""+next_a_id+"\"></div>")
+            } else {
+                var next_a_id = parent_id+"a001"
+                $("#"+parent_id).append("<div class=\'primary\' id=\""+parent_id+"a001\" style=\"margin-left:10px\"> - <input id=\""+next_a_id+"_input\" onkeyup=\"a_to_note()\" type=\"text\" name=\""+parent_id+"a001\"></div>")
+            }
+            $("#"+next_a_id).append("<button type=\"button\" onclick=\"new_question()\">+Q</button>")
+            $("#"+next_a_id).append("<button type=\"button\" onclick=\"add_a_common_save()\" id=\""+next_a_id+"_button\">Save</button>")
+            $("#"+next_a_id).append("<button type=\"button\" onclick=\"d_delete()\">Del</button>")
+            $("#"+next_a_id).append("<button type=\"button\" onclick=\"branch_copy()\">++Q</button>")
+            $("#"+next_a_id).append("<input class=\"a_parent\" type=\"text\" id=\""+next_a_id+"_parent\"value=\'"+remove_last_n(next_a_id,8)+"\'></input>")
+            $("#"+next_a_id).append("<input class=\"a3a32y\" type=\"text\" id=\""+next_a_id+"_lvl\"value=\'3\'></input>")
+            $("#"+next_a_id).append("<input class=\"a3t131\" type=\"text\" id=\""+next_a_id+"_note\"></input>")
+        }
+        function a_to_note(){
+            $("#"+$(event.target).parent().attr("id")+"_note").val($(event.target).val())
+        }
+        function new_answer(){
+            if($(event.target).parent().children(".non_exst_q_container").length==0){
+                $(event.target).parent().append("<div class=\'non_exst_q_container\'></div>")
+            }
+            var children_number=$(event.target).parent().children(".primary").length;
+            var last_answer_id=$(event.target).parent().children(".primary").last().attr("id");
+            var parent_id=$(event.target).parent().attr("id");
+           
+            $("body").append("last answer id: "+last_answer_id+"<BR>")
+            $("body").append(children_number+"<BR>")
+        
+            if (children_number>0){
+                let an = last_answer_id.match(/(^[a-zA-Z0-9._%+-]*)(\D)(\d+)$/);
+                var next_answer_number=+an[3]+1;
+                var next_answer_number=('000'+next_answer_number).slice(-3);
+                var next_a_id=an[1]+an[2]+next_answer_number
+                $(".non_exst_q_container").append("<div id=\""+next_a_id+"\" style=\"margin-left:10px\"> - <input type=\"text\" name=\""+next_a_id+"\"></div>")
+            } else {
+                var next_a_id = parent_id+"a001"
+                $(".non_exst_q_container").append("<div id=\""+parent_id+"a001\" style=\"margin-left:10px\"> - <input id=\""+next_a_id+"_input\" type=\"text\" name=\""+parent_id+"a001\"></div>")
+            }
+            $("#"+next_a_id).append("<button type=\"button\" onclick=\"new_question()\">+Q</button>")
+            $("#"+next_a_id).append("<button type=\"button\" onclick=\"add_a_to_one_q()\">Save</button>")
+            $("#"+next_a_id).append("<button type=\"button\" onclick=\"d_delete()\">Del</button>")
+            $("#"+next_a_id).append("<button type=\"button\" onclick=\"branch_copy()\">++Q</button>")
+         };
+         
+         function add_q(){
+            self=$(event.target)
+            q_id=self.parent().attr('id')
+            q_value=$("#"+q_id+"_input").val()
+            q_type=$("#"+q_id+"_type").val()
+            new_a_number=$("#"+q_id).children(".primary").length
+            answer_array_688=[]
+            for (i=0;i<new_a_number;i++){
+                a_id_617=$(event.target).parent().children(".primary").eq(i).attr('id')
+                a_value_617=$(event.target).parent().children(".primary").eq(i).children("input[name="+a_id_617+"]").val()
+                a_note_617=$(event.target).parent().children(".primary").eq(i).children("#"+a_id_617+"_note").val()
+                a_lvl_617=$(event.target).parent().children(".primary").eq(i).children("#"+a_id_617+"_lvl").val()
+                a_parent_617=$(event.target).parent().children(".primary").eq(i).children("#"+a_id_617+"_parent").val()
+                answer_array_688.push([a_id_617,a_value_617,a_note_617,a_lvl_617,a_parent_617])
+            }
+            $("body").append(answer_array_688)
+            $.ajax({
+                type: "POST",
+                url: "new_qc",
+                data:{
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+                }, 
+                success: function(response){
+                    lqc=response.last_qc
+                    q_class="qc"+pad(Number(lqc.substring(lqc.length-3,lqc.length))+1,3)
+                    $("#"+q_id).remove()
+                    q_generate(q_id.substring(0,q_id.length-4),q_id,q_value,q_type)
+                    q_insert_ajax(q_id,q_value,q_type,q_class)
+                    qc_insert_ajax(q_class,q_value,q_type)
+                    $('body').append(new_a_number+"sdfsdf<BR>")
+                    for (i=0;i<new_a_number;i++){
+                        a_generate(q_id,answer_array_688[i][0],answer_array_688[i][1],answer_array_688[i][2],answer_array_688[i][3])
+                        ac_insert_ajax(q_class,q_class+"a"+pad(i+1,3),answer_array_688[i][1])
+                        a_insert_ajax_2(answer_array_688[i][0],answer_array_688[i][1],q_id,q_class+"a"+pad(i+1,3),answer_array_688[i][2],answer_array_688[i][3],answer_array_688[i][4])
+                        
+                    }
+                }
+            })
+         }
+
+         function qa_ajax(){
+            q_id= $(event.target).parent().attr("id");
+            question_type=$(event.target).siblings("input[name="+q_id+"_q_type]:checked").val();
+            q_value= $("#"+q_id+"_input").val();
+            $.ajax({
+                type: "POST",
+                url: "q_insert",
+                data:{
+                    q_id: q_id,
+                    q_value: q_value,
+                    q_type: question_type,
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+                }, 
+                success: function(){
+                    $("#"+q_id+"_input").replaceWith(q_value);
+                }
+            })
+            a_count=$(event.target).parent().children("div").length
+            for(i=0;i<a_count;++i){
+                window["a_id"+i]=$(event.target).parent().children("div").eq(i).attr("id")
+                window["a_value"+i]=$("#"+window["a_id"+i]+"_input").val();
+                d=$("#"+window["a_id"+i]+"_input").val();
+                $.ajax({
+                    type: "POST",   
+                    url: "a_insert",
+                    data:{
+                        a_id: window["a_id"+i],
+                        a_value: window["a_value"+i],
+                        q_id: q_id,
+                        csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+                    }, 
+                    success: function(){
+                        
+                    }
+                })
+                $("#"+window["a_id"+i]+"_input").replaceWith(window["a_value"+i]);
+            }
+        }
+ 
+        function q_ajax(){
+            var current_q_id= $(event.target).parent().attr("id");
+            var test=$(event.target).siblings("input[name="+current_q_id+"_q_type]:checked").val();
+            var current_q_input= current_q_id+"_input";
+            var current_q_type= current_q_id+"_q_type";
+            var current_value= $("#"+current_q_input).val();
+            $.ajax({
+                type: "POST",
+                url: "q_insert",
+                data:{
+                    q_id: current_q_id,
+                    q_value: current_value,
+                    q_type: test,
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+                }, 
+                success: function(){
+                    $("#"+current_q_input).replaceWith(current_value);
+                }
+            })
+        }
+ 
+        function a_ajax(){
+            var current_a_id= $(event.target).parent().attr("id");
+            var current_q_id= $(event.target).parent().parent().attr("id");
+            var current_a_input= current_a_id+"_input";
+            var current_value= $("#"+current_a_input).val();
+            $.ajax({
+                type: "POST",
+                url: "a_insert",
+                data:{
+                    a_id: current_a_id,
+                    a_value: current_value,
+                    q_id: current_q_id,
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+                }, 
+                success: function(){
+                    $("#"+current_a_input).replaceWith(current_value);
+                }
+            })
+        }
+    
+ 
+ 
+    </script>
+    <script>
+ 
+        function d_delete(){
+            var id=$(event.target).parent().attr("id");
+            $("#"+id).remove();
+        };
+        
+        function input_maker(loop_id){
+            input=""
+            while (loop_id.length > 0){
+                id_div=loop_id.match(/([aq,\d]*)([aq])(\d\d\d$)/)
+                if (id_div[2]=='a'){
+                        for (j=0;j<answer_array.length;++j){
+                        if(answer_array[j][1]==loop_id){
+                            input=answer_array[j][2]+" "+input
+                            //$("body").append("answer_arrayj1="+answer_array[j][1]+"<BR>loop_id is:"+loop_id+"<BR>");
+                        }
+                    }
+                    loop_id=id_div[1]
+                        
+                } else if (id_div[2]=='q') {
+                    for (m=0;m<question_array.length;++m){
+                        if(question_array[m][1]==loop_id){
+                            input=question_array[m][2]+" "+input
+                        }
+                    }
+                    if(id_div[3]==0){
+                        loop_id=id_div[1]
+                    } else {
+                        z=id_div[3]-1
+                        loop_id=id_div[1]+'q'+pad(z,3)
+                    }
+                }
+            }
+            return input
+        }
+
+        function sorter(q_array,score){
+            var sorted=[]
+            for (w=0;w<5;w++){
+                k=0
+                p=0
+                for (i=0;i<score.length;++i){
+                    if (score[i]>=p){
+                        p=score[i]
+                        k=i
+                    }
+                }
+                sorted.push(q_array[k])
+                score.splice(k,1)
+                q_array.splice(k,1)
+            }
+            return sorted
+        }   
+
+
+        function ai_question(){
+            var a_id=$(event.target).parent().parent().attr("id");
+            var list_id=$(event.target).parent().attr("id");
+            a_input=input_maker(a_id)
+            var a_count=$(event.target).parent().parent().children("div").length;
+            $.ajax({
+                type:'post',
+                url: "{% url 'getQuestions'%}",
+                data:{
+                    input: a_input,
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+        
+                },
+                success:function(response){
+                    console.log(response.questions);
+                    sorted=sorter(response.q_list,response.questions)
+                    $("#"+list_id).append("<div class=\"list\"></div>")
+                        for (e=0; e<sorted.length;++e){
+                            $("#"+list_id).children("div.list").append("<div class=\"ai_list\" onclick=\"ai_question_generator(\'"+sorted[e]+"\');\">"+sorted[e]+"</div>")
+                            }
+                        },
+                    
+                error: function(response){
+                    $(event.target).append("error")
+                }
+            })
+            
+        }
+
+        function ai_question_generator(){
+            a_id_185=$(event.target).parent().attr("id")
+            a_id_186=$(event.target).parent().attr("id")
+            sub_q_number=$("#"+a_id_185).children(".primary").length
+            while (sub_q_number>0){
+                a_id_186=$("#"+a_id_186).children(".primary").last().attr("id")
+                sub_q_number=$("#"+a_id_186).children(".primary").length
+            }
+            a_count_185=$(event.target).parent().children(".primary").length;
+            last_q_id=$(event.target).parent().children(".primary").last().attr("id");
+            $.ajax({
+                type:"POST",
+                url:"ai_question_generator",
+                data:{
+                    a_id_185:a_id_186,
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+                },
+                success: function(response){
+
+                    if(a_count_185==0){
+                        var q_id=a_id_185+"q001";
+                    } else {
+                        let an = last_q_id.match(/(^[a-zA-Z0-9._%+-]*)(\D)(\d+)$/);
+                        var next_q_number=+an[3]+1;
+                        var next_q_number=('000'+next_q_number).slice(-3);
+                        var q_id=an[1]+an[2]+next_q_number;
+                    }
+                    new_question_info_set(a_id_185,q_id)
+                    $("#"+q_id).append("<div class=\'exst_q_container\'><div class=\'non_exst_q_container\'></div></div>")
+                    for(j=0;j<response.ai_generated_q.length;j++){
+                        //$(".exst_q_container").append("<div class=\'exst_q_suggest\' id=\'"+response.ai_generated_q[j][0]+"\' onclick=\"\")\">"+response.ai_generated_q[j][1]+"<BR></div>")    
+                        $(".exst_q_container").append("<div class=\'exst_q_suggest\' id=\'"+response.ai_generated_q[j][0]+"\' onclick=\"exst_q_select(\'"+response.ai_generated_q[j][0]+"\')\">["+first_letter_upper(response.ai_generated_q[j][1])+"]<BR></div>")    
+
+                    }
+                    for (r=0;r<response.ai_generated_a.length;r++){
+                        $("#"+response.ai_generated_a[r][1]).append("- "+first_letter_upper(response.ai_generated_a[r][2])+"<br>")
+
+                    }
+                }
+            })
+        }
+    </script>
+ 
+    {%csrf_token%}
+ 
+ 
+ 
+    <script>
+        let tt="{{result}}";
+        let match=tt.match(/&#x27;([a-z,0-9,_]+)&#x27;:\s\[&#x27;([a-z,0-9,\s,\/,-,\.]+)&#x27;\]/gi)
+        $.each(match, function(index,value){
+            var csr_recogn=/csrfmiddlewaretoken/gi;
+            if(csr_recogn.test(value)){
+                let match_csr=value.match(/&#x27;[a-z,0-9,_]+&#x27;:\s\[&#x27;([a-z,0-9,\s,\/,-,\.]+)&#x27;\]/i)
+                $csrfmiddlewaretoken=match_csr[1];
+            }
+        })      
+        $.each(match, function(index,value){
+            let match2=value.match(/&#x27;([a-z,0-9,_]+)&#x27;:\s\[&#x27;([a-z,0-9,\s,\/,-,\.]+)&#x27;\]/i)
+            var q_recogn=/q\d\d\d$/gi;
+            var a_recogn=/a\d\d\d$/gi;
+            if  (q_recogn.test(match2[1])){
+                var id=match2[1]
+                var value=match2[2]
+                $.ajax({
+                    type: "POST",
+                    url: "q_insert",
+                    data:{
+                        q_id: id,
+                        q_value: value,
+                        csrfmiddlewaretoken: $csrfmiddlewaretoken
+                    },
+                    success: function(){
+                        $("body").append("q_added")
+ 
+                    }
+                });
+            } 
+        })          
+        $.each(match, function(index,value){
+            let match2=value.match(/&#x27;([a-z,0-9,_]+)&#x27;:\s\[&#x27;([a-z,0-9,\s,\/,-,\.]+)&#x27;\]/i)
+            var q_recogn=/q\d\d\d$/gi;
+            var a_recogn=/a\d\d\d$/gi;
+            var q_type_recogn=/q\d\d\d_q_type$/gi;
+            if  (q_type_recogn.test(match2[1])){
+                var q_plus_type=match2[1]
+                let match_q_type=q_plus_type.match(/([a-z,0-9,_]+)_q_type/i)
+                var id=match_q_type[1]
+                var value=match2[2]
+                $.ajax({
+                    type: "POST",
+                    url: "q_type_update",
+                    data:{
+                        q_id: id,
+                        question_type: value,
+                        csrfmiddlewaretoken: $csrfmiddlewaretoken
+                    },
+                    success: function(){
+                        $("body").append("q_type_added")
+ 
+                        }
+                });
+            }
+ 
+        })       
+        $.each(match, function(index,value){            
+            let match2=value.match(/&#x27;([a-z,0-9,_]+)&#x27;:\s\[&#x27;([a-z,0-9,\s,\/,-,\.]+)&#x27;\]/i)
+            var a_recogn=/a\d\d\d$/gi;
+ 
+            if (a_recogn.test(match2[1])){
+                var q_plus_a=match2[1]
+                let match_q=q_plus_a.match(/([a-z,0-9,_]+)a\d\d\d/i)
+                $q_id= match_q[1]
+                $id=match2[1]
+                $value=match2[2]
+                    $.ajax({
+                        type: "POST",
+                        url: "a_insert",
+                        data:{
+                            a_id: $id,
+                            a_value: $value,
+                            q_id: $q_id,
+                            csrfmiddlewaretoken: $csrfmiddlewaretoken
+                        },
+                        success: function(){
+                            $("body").append("a_added")
+                        }
+                    });
+            }
+        })       
+        function show_q_class(){
+            $("#"+$(event.target).val()+"_show_class").removeClass("hide")
+        }
+        function hide_q_class(){
+            $("#"+$(event.target).val()+"_show_class").addClass("hide")
+ 
+        }
+        function if_exst(array,element){
+            result=0
+            for (i_791=0;i_791<array.length;i_791++){
+                if (array[i_791]==element){
+                    result=1
+                }
+            }
+            return result 
+        }
+    </script>
+
+     <script> 
+        q_type_array=[]
+        $(document).ready(function(){
+            $.ajax({
+                type:'POST',
+                url:'initial_open',
+                data:{
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+                }, 
+                success:function(response){
+                    for (i=0;i<response.target_array_q.length;++i){
+                        if(response.target_array_q[i][0].length==4){
+                            q_generate("form",response.target_array_q[i][0],response.target_array_q[i][1],response.target_array_q[i][2])
+                        } else {
+                            q_generate(response.target_array_q[i][3],response.target_array_q[i][0],response.target_array_q[i][1],response.target_array_q[i][2])
+                        }
+                        
+                        for (j=0;j<response.target_array_a.length;++j){
+                            if(response.target_array_a[j][0]==response.target_array_q[i][0]){
+                                a_generate(response.target_array_a[j][0],response.target_array_a[j][1],response.target_array_a[j][2],response.target_array_a[j][3], response.target_array_a[j][4])
+                            }
+                        }
+                        
+                    }
+
+                    /*
+
+                    */
+                }
+            })
+        })
+        function db_to_scenario_simple_ajax(){$.ajax({url:'db_to_scenario_simple_ajax'})}       
+        function db_csv_number_equalizer(){$.ajax({url:'db_csv_number_equalizer'})}       
+        function train_data_generator_ajax(){$.ajax({url:'train_data_generator_ajax'})}       
+        function train_janice_ajax(){$.ajax({url:'train_janice_ajax'})}       
+    
+    </script>
+
+    
+    <form action="" method="POST">
+         <div class="form" id="form">
+            {%csrf_token%}
+ 
+        </div>
+        <input type ="submit"></button>
+    </form>
+    <button type="button" onclick="db_to_scenario_simple_ajax()">db_to_scenario_simple</button>
+    <button type="button" onclick="db_csv_number_equalizer()">db_csv_number_equalizer</button>
+    <button type="button" onclick="train_data_generator_ajax()">train_data_generator</button>
+    <button type="button" onclick="train_janice_ajax()">train_janice</button>
+    
+    {%endblock%}
+<button type="button" onclick="json()">delete</button>
+</body>
+</html>
+ 
+ 
+ 
+
+

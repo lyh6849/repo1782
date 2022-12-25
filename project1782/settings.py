@@ -34,6 +34,7 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
     '44.193.7.156',
     '3.237.63.103', 
+    '3.224.114.31', 
     '3.238.195.207'
 ]
 
@@ -84,14 +85,24 @@ WSGI_APPLICATION = 'project1782.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-
+'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db2.sqlite3',
+        'NAME': BASE_DIR / 'db3.sqlite3',
     }
 }
-
+'''
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'kmedi',
+        'PASSWORD': 'Dbfish8150',
+        'HOST': 'database-1.cw4hn5bo3pdk.us-east-1.rds.amazonaws.com',
+        'PORT': '5432',
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -128,6 +139,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
+STATICFILES_DIRS=[
+    os.path.join(BASE_DIR,'static')
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

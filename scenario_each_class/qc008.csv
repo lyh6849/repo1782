@@ -1,0 +1,145 @@
+q001 q001a003,qc001 qc001a003,Chief Complaint UTI,qc008,Initial vs Reval,q001a003q004
+q001 q001a014,qc001 qc001a014,Chief Complaint Ear discomfort,qc008,Initial vs Reval,q001a014q001
+q001 q001a004 q001a004q002 q001a004q002a004,qc001 qc001a004  ,Chief Complaint Knee pain  ,qc008,Initial vs Reval,q001a004q003
+q001 q001a015,qc001 qc001a015,Chief Complaint reflux,qc008,Initial vs Reval,q001a015q001
+q001 q001a008,qc001 qc001a008,Chief Complaint Double vision,qc008,Initial vs Reval,q001a008q001
+q001 q001a007,qc001 qc001a007,Chief Complaint skin fold rash,qc008,Initial vs Reval,q001a007q001
+q001 q001a002,qc001 qc001a002,Chief Complaint COVID,qc008,Initial vs Reval,q001a002q001
+q001 q001a011,qc001 qc001a011,Chief Complaint Urinary frequency,qc008,Initial vs Reval,q001a011q001
+q001 q001a012,qc001 qc001a012,Chief Complaint Constipation,qc008,Initial vs Reval,q001a012q001
+q001 q001a010,qc001 qc001a010,Chief Complaint hip pain,qc008,Initial vs Reval,q001a010q001
+q001 q001a006,qc001 qc001a006,Chief Complaint Hernia,qc008,Initial vs Reval,q001a006q001
+q001 q001a013,qc001 qc001a013,Chief Complaint Left inguinal hernia,qc008,Initial vs Reval,q001a013q001
+q001 q001a004 q001a004q001 q001a004q001a003,qc001 qc001a004  ,Chief Complaint Knee pain  ,qc008,Initial vs Reval,q001a004q003
+q001 q001a004 q001a004q002 q001a004q002a002,qc001 qc001a004  ,Chief Complaint Knee pain  ,qc008,Initial vs Reval,q001a004q003
+q001 q001a004 q001a004q002 q001a004q002a004,qc001 qc001a004  ,Chief Complaint Knee pain  ,qc008,Initial vs Reval,q001a004q003
+q001 q001a004 q001a004q001 q001a004q001a003,qc001 qc001a004  ,Chief Complaint Knee pain  ,qc008,Initial vs Reval,q001a004q003
+q001 q001a004 q001a004q002 q001a004q002a002,qc001 qc001a004  ,Chief Complaint Knee pain  ,qc008,Initial vs Reval,q001a004q003
+q001 q001a004,qc001 qc001a004,Chief Complaint Knee pain,qc008,Initial vs Reval,q001a004q003
+q001 q001a004 q001a004q002 q001a004q002a004,qc001 qc001a004  ,Chief Complaint Knee pain  ,qc008,Initial vs Reval,q001a004q003
+q001 q001a004 q001a004q002 q001a004q002a002,qc001 qc001a004  ,Chief Complaint Knee pain  ,qc008,Initial vs Reval,q001a004q003
+q001 q001a004 q001a004q002 q001a004q002a002,qc001 qc001a004  ,Chief Complaint Knee pain  ,qc008,Initial vs Reval,q001a004q003
+q001 q001a005,qc001 qc001a005,Chief Complaint Chest pain,qc008,Initial vs Reval,q001a005q001
+q001 q001a004 q001a004q002 q001a004q002a002,qc001 qc001a004  ,Chief Complaint Knee pain  ,qc008,Initial vs Reval,q001a004q003
+q001 q001a004 q001a004q001 q001a004q001a003,qc001 qc001a004  ,Chief Complaint Knee pain  ,qc008,Initial vs Reval,q001a004q003
+q001 q001a004 q001a004q002 q001a004q002a002,qc001 qc001a004  ,Chief Complaint Knee pain  ,qc008,Initial vs Reval,q001a004q003
+q001 q001a003,qc001 qc001a003,Chief Complaint UTI,qc008,Initial vs Reval,q001a003q004
+q001 q001a014,qc001 qc001a014,Chief Complaint Ear discomfort,qc008,Initial vs Reval,q001a014q001
+q001 q001a004 q001a004q002 q001a004q002a004,qc001 qc001a004  ,Chief Complaint Knee pain  ,qc008,Initial vs Reval,q001a004q003
+q001 q001a015,qc001 qc001a015,Chief Complaint reflux,qc008,Initial vs Reval,q001a015q001
+q001 q001a008,qc001 qc001a008,Chief Complaint Double vision,qc008,Initial vs Reval,q001a008q001
+q001 q001a007,qc001 qc001a007,Chief Complaint skin fold rash,qc008,Initial vs Reval,q001a007q001
+q001 q001a002,qc001 qc001a002,Chief Complaint COVID,qc008,Initial vs Reval,q001a002q001
+q001 q001a011,qc001 qc001a011,Chief Complaint Urinary frequency,qc008,Initial vs Reval,q001a011q001
+q001 q001a012,qc001 qc001a012,Chief Complaint Constipation,qc008,Initial vs Reval,q001a012q001
+q001 q001a010,qc001 qc001a010,Chief Complaint hip pain,qc008,Initial vs Reval,q001a010q001
+q001 q001a006,qc001 qc001a006,Chief Complaint Hernia,qc008,Initial vs Reval,q001a006q001
+q001 q001a013,qc001 qc001a013,Chief Complaint Left inguinal hernia,qc008,Initial vs Reval,q001a013q001
+q001 q001a004 q001a004q001 q001a004q001a003,qc001 qc001a004  ,Chief Complaint Knee pain  ,qc008,Initial vs Reval,q001a004q003
+q001 q001a004 q001a004q002 q001a004q002a002,qc001 qc001a004  ,Chief Complaint Knee pain  ,qc008,Initial vs Reval,q001a004q003
+q001 q001a004 q001a004q002 q001a004q002a004,qc001 qc001a004  ,Chief Complaint Knee pain  ,qc008,Initial vs Reval,q001a004q003
+q001 q001a004 q001a004q001 q001a004q001a003,qc001 qc001a004  ,Chief Complaint Knee pain  ,qc008,Initial vs Reval,q001a004q003
+q001 q001a004 q001a004q002 q001a004q002a002,qc001 qc001a004  ,Chief Complaint Knee pain  ,qc008,Initial vs Reval,q001a004q003
+q001 q001a004,qc001 qc001a004,Chief Complaint Knee pain,qc008,Initial vs Reval,q001a004q003
+q001 q001a004 q001a004q002 q001a004q002a004,qc001 qc001a004  ,Chief Complaint Knee pain  ,qc008,Initial vs Reval,q001a004q003
+q001 q001a004 q001a004q002 q001a004q002a002,qc001 qc001a004  ,Chief Complaint Knee pain  ,qc008,Initial vs Reval,q001a004q003
+q001 q001a004 q001a004q002 q001a004q002a002,qc001 qc001a004  ,Chief Complaint Knee pain  ,qc008,Initial vs Reval,q001a004q003
+q001 q001a005,qc001 qc001a005,Chief Complaint Chest pain,qc008,Initial vs Reval,q001a005q001
+q001 q001a004 q001a004q002 q001a004q002a002,qc001 qc001a004  ,Chief Complaint Knee pain  ,qc008,Initial vs Reval,q001a004q003
+q001 q001a004 q001a004q001 q001a004q001a003,qc001 qc001a004  ,Chief Complaint Knee pain  ,qc008,Initial vs Reval,q001a004q003
+q001 q001a004 q001a004q002 q001a004q002a002,qc001 qc001a004  ,Chief Complaint Knee pain  ,qc008,Initial vs Reval,q001a004q003
+q001 q001a003,qc001 qc001a003,Chief Complaint UTI,qc008,Initial vs Reval,q001a003q004
+q001 q001a014,qc001 qc001a014,Chief Complaint Ear discomfort,qc008,Initial vs Reval,q001a014q001
+q001 q001a004 q001a004q002 q001a004q002a004,qc001 qc001a004  ,Chief Complaint Knee pain  ,qc008,Initial vs Reval,q001a004q003
+q001 q001a015,qc001 qc001a015,Chief Complaint reflux,qc008,Initial vs Reval,q001a015q001
+q001 q001a008,qc001 qc001a008,Chief Complaint Double vision,qc008,Initial vs Reval,q001a008q001
+q001 q001a007,qc001 qc001a007,Chief Complaint skin fold rash,qc008,Initial vs Reval,q001a007q001
+q001 q001a002,qc001 qc001a002,Chief Complaint COVID,qc008,Initial vs Reval,q001a002q001
+q001 q001a011,qc001 qc001a011,Chief Complaint Urinary frequency,qc008,Initial vs Reval,q001a011q001
+q001 q001a012,qc001 qc001a012,Chief Complaint Constipation,qc008,Initial vs Reval,q001a012q001
+q001 q001a010,qc001 qc001a010,Chief Complaint hip pain,qc008,Initial vs Reval,q001a010q001
+q001 q001a006,qc001 qc001a006,Chief Complaint Hernia,qc008,Initial vs Reval,q001a006q001
+q001 q001a013,qc001 qc001a013,Chief Complaint Left inguinal hernia,qc008,Initial vs Reval,q001a013q001
+q001 q001a004 q001a004q001 q001a004q001a003,qc001 qc001a004  ,Chief Complaint Knee pain  ,qc008,Initial vs Reval,q001a004q003
+q001 q001a004 q001a004q002 q001a004q002a002,qc001 qc001a004  ,Chief Complaint Knee pain  ,qc008,Initial vs Reval,q001a004q003
+q001 q001a004 q001a004q002 q001a004q002a004,qc001 qc001a004  ,Chief Complaint Knee pain  ,qc008,Initial vs Reval,q001a004q003
+q001 q001a004 q001a004q001 q001a004q001a003,qc001 qc001a004  ,Chief Complaint Knee pain  ,qc008,Initial vs Reval,q001a004q003
+q001 q001a004 q001a004q002 q001a004q002a002,qc001 qc001a004  ,Chief Complaint Knee pain  ,qc008,Initial vs Reval,q001a004q003
+q001 q001a004,qc001 qc001a004,Chief Complaint Knee pain,qc008,Initial vs Reval,q001a004q003
+q001 q001a004 q001a004q002 q001a004q002a004,qc001 qc001a004  ,Chief Complaint Knee pain  ,qc008,Initial vs Reval,q001a004q003
+q001 q001a004 q001a004q002 q001a004q002a002,qc001 qc001a004  ,Chief Complaint Knee pain  ,qc008,Initial vs Reval,q001a004q003
+q001 q001a004 q001a004q002 q001a004q002a002,qc001 qc001a004  ,Chief Complaint Knee pain  ,qc008,Initial vs Reval,q001a004q003
+q001 q001a005,qc001 qc001a005,Chief Complaint Chest pain,qc008,Initial vs Reval,q001a005q001
+q001 q001a004 q001a004q002 q001a004q002a002,qc001 qc001a004  ,Chief Complaint Knee pain  ,qc008,Initial vs Reval,q001a004q003
+q001 q001a004 q001a004q001 q001a004q001a003,qc001 qc001a004  ,Chief Complaint Knee pain  ,qc008,Initial vs Reval,q001a004q003
+q001 q001a004 q001a004q002 q001a004q002a002,qc001 qc001a004  ,Chief Complaint Knee pain  ,qc008,Initial vs Reval,q001a004q003
+q001 q001a003,qc001 qc001a003,Chief Complaint UTI,qc008,Initial vs Reval,q001a003q004
+q001 q001a014,qc001 qc001a014,Chief Complaint Ear discomfort,qc008,Initial vs Reval,q001a014q001
+q001 q001a004 q001a004q002 q001a004q002a004,qc001 qc001a004  ,Chief Complaint Knee pain  ,qc008,Initial vs Reval,q001a004q003
+q001 q001a015,qc001 qc001a015,Chief Complaint reflux,qc008,Initial vs Reval,q001a015q001
+q001 q001a008,qc001 qc001a008,Chief Complaint Double vision,qc008,Initial vs Reval,q001a008q001
+q001 q001a007,qc001 qc001a007,Chief Complaint skin fold rash,qc008,Initial vs Reval,q001a007q001
+q001 q001a002,qc001 qc001a002,Chief Complaint COVID,qc008,Initial vs Reval,q001a002q001
+q001 q001a011,qc001 qc001a011,Chief Complaint Urinary frequency,qc008,Initial vs Reval,q001a011q001
+q001 q001a012,qc001 qc001a012,Chief Complaint Constipation,qc008,Initial vs Reval,q001a012q001
+q001 q001a010,qc001 qc001a010,Chief Complaint hip pain,qc008,Initial vs Reval,q001a010q001
+q001 q001a006,qc001 qc001a006,Chief Complaint Hernia,qc008,Initial vs Reval,q001a006q001
+q001 q001a013,qc001 qc001a013,Chief Complaint Left inguinal hernia,qc008,Initial vs Reval,q001a013q001
+q001 q001a004 q001a004q001 q001a004q001a003,qc001 qc001a004  ,Chief Complaint Knee pain  ,qc008,Initial vs Reval,q001a004q003
+q001 q001a004 q001a004q002 q001a004q002a002,qc001 qc001a004  ,Chief Complaint Knee pain  ,qc008,Initial vs Reval,q001a004q003
+q001 q001a004 q001a004q002 q001a004q002a004,qc001 qc001a004  ,Chief Complaint Knee pain  ,qc008,Initial vs Reval,q001a004q003
+q001 q001a004 q001a004q001 q001a004q001a003,qc001 qc001a004  ,Chief Complaint Knee pain  ,qc008,Initial vs Reval,q001a004q003
+q001 q001a004 q001a004q002 q001a004q002a002,qc001 qc001a004  ,Chief Complaint Knee pain  ,qc008,Initial vs Reval,q001a004q003
+q001 q001a004,qc001 qc001a004,Chief Complaint Knee pain,qc008,Initial vs Reval,q001a004q003
+q001 q001a004 q001a004q002 q001a004q002a004,qc001 qc001a004  ,Chief Complaint Knee pain  ,qc008,Initial vs Reval,q001a004q003
+q001 q001a004 q001a004q002 q001a004q002a002,qc001 qc001a004  ,Chief Complaint Knee pain  ,qc008,Initial vs Reval,q001a004q003
+q001 q001a004 q001a004q002 q001a004q002a002,qc001 qc001a004  ,Chief Complaint Knee pain  ,qc008,Initial vs Reval,q001a004q003
+q001 q001a005,qc001 qc001a005,Chief Complaint Chest pain,qc008,Initial vs Reval,q001a005q001
+q001 q001a004 q001a004q002 q001a004q002a002,qc001 qc001a004  ,Chief Complaint Knee pain  ,qc008,Initial vs Reval,q001a004q003
+q001 q001a004 q001a004q001 q001a004q001a003,qc001 qc001a004  ,Chief Complaint Knee pain  ,qc008,Initial vs Reval,q001a004q003
+q001 q001a004 q001a004q002 q001a004q002a002,qc001 qc001a004  ,Chief Complaint Knee pain  ,qc008,Initial vs Reval,q001a004q003
+q001 q001a003,qc001 qc001a003,Chief Complaint UTI,qc008,Initial vs Reval,q001a003q004
+q001 q001a014,qc001 qc001a014,Chief Complaint Ear discomfort,qc008,Initial vs Reval,q001a014q001
+q001 q001a004 q001a004q002 q001a004q002a004,qc001 qc001a004  ,Chief Complaint Knee pain  ,qc008,Initial vs Reval,q001a004q003
+q001 q001a015,qc001 qc001a015,Chief Complaint reflux,qc008,Initial vs Reval,q001a015q001
+q001 q001a008,qc001 qc001a008,Chief Complaint Double vision,qc008,Initial vs Reval,q001a008q001
+q001 q001a007,qc001 qc001a007,Chief Complaint skin fold rash,qc008,Initial vs Reval,q001a007q001
+q001 q001a002,qc001 qc001a002,Chief Complaint COVID,qc008,Initial vs Reval,q001a002q001
+q001 q001a011,qc001 qc001a011,Chief Complaint Urinary frequency,qc008,Initial vs Reval,q001a011q001
+q001 q001a012,qc001 qc001a012,Chief Complaint Constipation,qc008,Initial vs Reval,q001a012q001
+q001 q001a010,qc001 qc001a010,Chief Complaint hip pain,qc008,Initial vs Reval,q001a010q001
+q001 q001a006,qc001 qc001a006,Chief Complaint Hernia,qc008,Initial vs Reval,q001a006q001
+q001 q001a013,qc001 qc001a013,Chief Complaint Left inguinal hernia,qc008,Initial vs Reval,q001a013q001
+q001 q001a004 q001a004q001 q001a004q001a003,qc001 qc001a004  ,Chief Complaint Knee pain  ,qc008,Initial vs Reval,q001a004q003
+q001 q001a004 q001a004q002 q001a004q002a002,qc001 qc001a004  ,Chief Complaint Knee pain  ,qc008,Initial vs Reval,q001a004q003
+q001 q001a004 q001a004q002 q001a004q002a004,qc001 qc001a004  ,Chief Complaint Knee pain  ,qc008,Initial vs Reval,q001a004q003
+q001 q001a004 q001a004q001 q001a004q001a003,qc001 qc001a004  ,Chief Complaint Knee pain  ,qc008,Initial vs Reval,q001a004q003
+q001 q001a004 q001a004q002 q001a004q002a002,qc001 qc001a004  ,Chief Complaint Knee pain  ,qc008,Initial vs Reval,q001a004q003
+q001 q001a004,qc001 qc001a004,Chief Complaint Knee pain,qc008,Initial vs Reval,q001a004q003
+q001 q001a004 q001a004q002 q001a004q002a004,qc001 qc001a004  ,Chief Complaint Knee pain  ,qc008,Initial vs Reval,q001a004q003
+q001 q001a004 q001a004q002 q001a004q002a002,qc001 qc001a004  ,Chief Complaint Knee pain  ,qc008,Initial vs Reval,q001a004q003
+q001 q001a004 q001a004q002 q001a004q002a002,qc001 qc001a004  ,Chief Complaint Knee pain  ,qc008,Initial vs Reval,q001a004q003
+q001 q001a005,qc001 qc001a005,Chief Complaint Chest pain,qc008,Initial vs Reval,q001a005q001
+q001 q001a004 q001a004q002 q001a004q002a002,qc001 qc001a004  ,Chief Complaint Knee pain  ,qc008,Initial vs Reval,q001a004q003
+q001 q001a004 q001a004q001 q001a004q001a003,qc001 qc001a004  ,Chief Complaint Knee pain  ,qc008,Initial vs Reval,q001a004q003
+q001 q001a004 q001a004q002 q001a004q002a002,qc001 qc001a004  ,Chief Complaint Knee pain  ,qc008,Initial vs Reval,q001a004q003
+q001 q001a003,qc001 qc001a003,Chief Complaint UTI,qc008,Initial vs Reval,q001a003q004
+q001 q001a014,qc001 qc001a014,Chief Complaint Ear discomfort,qc008,Initial vs Reval,q001a014q001
+q001 q001a004 q001a004q002 q001a004q002a004,qc001 qc001a004  ,Chief Complaint Knee pain  ,qc008,Initial vs Reval,q001a004q003
+q001 q001a015,qc001 qc001a015,Chief Complaint reflux,qc008,Initial vs Reval,q001a015q001
+q001 q001a008,qc001 qc001a008,Chief Complaint Double vision,qc008,Initial vs Reval,q001a008q001
+q001 q001a007,qc001 qc001a007,Chief Complaint skin fold rash,qc008,Initial vs Reval,q001a007q001
+q001 q001a002,qc001 qc001a002,Chief Complaint COVID,qc008,Initial vs Reval,q001a002q001
+q001 q001a011,qc001 qc001a011,Chief Complaint Urinary frequency,qc008,Initial vs Reval,q001a011q001
+q001 q001a012,qc001 qc001a012,Chief Complaint Constipation,qc008,Initial vs Reval,q001a012q001
+q001 q001a010,qc001 qc001a010,Chief Complaint hip pain,qc008,Initial vs Reval,q001a010q001
+q001 q001a006,qc001 qc001a006,Chief Complaint Hernia,qc008,Initial vs Reval,q001a006q001
+q001 q001a013,qc001 qc001a013,Chief Complaint Left inguinal hernia,qc008,Initial vs Reval,q001a013q001
+q001 q001a004 q001a004q001 q001a004q001a003,qc001 qc001a004  ,Chief Complaint Knee pain  ,qc008,Initial vs Reval,q001a004q003
+q001 q001a004 q001a004q002 q001a004q002a002,qc001 qc001a004  ,Chief Complaint Knee pain  ,qc008,Initial vs Reval,q001a004q003
+q001 q001a004 q001a004q002 q001a004q002a004,qc001 qc001a004  ,Chief Complaint Knee pain  ,qc008,Initial vs Reval,q001a004q003
+q001 q001a004 q001a004q001 q001a004q001a003,qc001 qc001a004  ,Chief Complaint Knee pain  ,qc008,Initial vs Reval,q001a004q003
+q001 q001a004 q001a004q002 q001a004q002a002,qc001 qc001a004  ,Chief Complaint Knee pain  ,qc008,Initial vs Reval,q001a004q003
+q001 q001a004,qc001 qc001a004,Chief Complaint Knee pain,qc008,Initial vs Reval,q001a004q003
+q001 q001a004 q001a004q002 q001a004q002a004,qc001 qc001a004  ,Chief Complaint Knee pain  ,qc008,Initial vs Reval,q001a004q003
+q001 q001a004 q001a004q002 q001a004q002a002,qc001 qc001a004  ,Chief Complaint Knee pain  ,qc008,Initial vs Reval,q001a004q003

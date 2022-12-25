@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+    <meta charset='utf-8'name="viewport" content="width=device-width, initial-scale=1"/>
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+    <script src="https://kit.fontawesome.com/257d2aa939.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+</head>
+<body>
+    {%block body%}
+    <div class="form" id="form">{%csrf_token%}</div>
+    <div class="top_menu">
+        <button type="button" value="a_class" onclick="a_class_load()">a_class</button>
+        <button type="button" value="a_class" onclick="q_class_load()">q_class</button>
+        <button type="button" value="a_class" onclick="a_bank_load()">a_bank</button>
+        <button type="button" value="a_class" onclick="q_bank_load()">q_bank</button>
+        <button type="button" value="a_class" onclick="q_square_list()">q_list</button>
+        <button type="button" value="a_class" onclick="new_qac_set()">new_qac_set</button>
+        <button type="button" value="a_class" onclick="q_sequence()">q_sequence</button>
+        <button type="button" value="a_class" onclick="new_q_id()">new_q_id</button>
+    </div>
+    
+    <div class="data_table" id="data_table"></div>
+    <div class="bottom_menu">
+        <button type="button" value="a_class" onclick="a_class_load()">a_class</button>
+        <button type="button" value="a_class" onclick="q_class_load()">q_class</button>
+        <button type="button" value="a_class" onclick="a_bank_load()">a_bank</button>
+        <button type="button" value="a_class" onclick="q_bank_load()">q_bank</button>
+        <button type="button" value="a_class" onclick="q_square_list()">q_list</button>
+        <button type="button" value="a_class" onclick="new_qac_set()">new_qac_set</button>
+        <button type="button" value="a_class" onclick="q_sequence()">q_sequence</button>
+        <button type="button" value="a_class" onclick="new_q_id()">new_q_id</button>
+        
+    </div>
+  
+    {%endblock%}
+</body>
+</html>
+  
+
+
+
