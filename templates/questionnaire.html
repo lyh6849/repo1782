@@ -16,65 +16,18 @@
 </head>
 
 <body>
-    <div id="id1 id2 id3">wewef</div><button type="button" onclick="some_function()">dd</button>
     {%block body%}
     <form action="" method="POST">
         <div class="form" id="form">{%csrf_token%}</div>
    </form>
-<div id="note_7593" class="note">
+<div id="note_7593" class="note w90vw">
+    <button type="button" onclick="collapse_parent()">collapse</button>
 </div>
 <datalist id="cc_list"></datalist>
     {%endblock%}
 </body>
 <script>
-    $(document).ready(function(){
-        cc_list=[]
-        $.ajax({
-            type:'post',
-            url:'cc_list_maker',
-            data:{
-                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
-            },
-            success:function(response){
-                for (i=0;i<response.cc_list.length;i++){
-                    cc_list.push(response.cc_list[i])
-                }
-            }
-        })
-        cc_id_pair=[]
-        $.ajax({
-            type:"post",
-            url:"letstart",
-            data:{
-                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
-            },
-            success:function(response){
-                for (i=0;i<response.q_details.length;i++){
-                    q_generate_2("body",response.q_details[i][0],response.q_details[i][1],response.q_details[i][2])
-                    $("#"+response.q_details[i][0]).addClass("focus next_question_shine")
-                    $(".next_question_shine").append("<div class=\"vertical_bar\" onclick=\"collapse_expand()\"></div>")
 
-                    //$("body").append("<div class=\"question\" id=\""+response.q_details[i][0]+"\" value=\""+response.q_details[i][1]+"\">"+response.q_details[i][1]+"</div>")
-                }
-                for (i=0;i<response.a_details.length;i++){
-                    a_generate_2("#"+response.a_details[i][0],response.a_details[i][1],response.a_details[i][2])
-                    //$("#"+response.a_details[i][0]).append("<div class=\"answer\" id=\""+response.a_details[i][1]+"\" onclick=\"select();\" value=\""+response.a_details[i][2]+"\">"+response.a_details[i][2]+"</div>")
-                }
-                $("#q000").append("<button class=\'close_button\'type\'button\' onclick=\'close_above_a();\'>Next Question</button>")
-                sub_func_846()
-                for (i=0;i<response.cc_id_pair.length;i++){
-                    cc_id_pair.push(response.cc_id_pair[i])
-                }
-            }
-            
-        })
-        
-
-
-    })
-
-
-
-
+    question_start()
 </script>
 </html>

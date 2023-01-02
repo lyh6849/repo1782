@@ -988,6 +988,22 @@ function select_multiple_qc(){
     })
 }
 
+function q_generate_2(a,b,c,q_type){
+    sub_func_183="<div class=\"question \" id=\""+b+"\" onclick=\"\" value=\""+c+"\"><div class=\'q_title\' onclick=\'remove_hide();\'>"+first_letter_upper(c)+"?"
+        if(q_type=="on"){
+            if(b=="q001"){
+                $(a).append(sub_func_183+"</span></div>")
+            } else {
+                $(a).append(sub_func_183+" (Select all)</div></div>")
+            }
+        } else {
+            $(a).append(sub_func_183+"</div></div>")
+        }
+        $("#"+b).children("span").fadeIn(2000)
+        $("#"+b).children("span").removeClass("hide")
+        $("#"+b).children("span").css("display","")
+
+}
 function select_multiple_qc_2(){
     $("#qc_select_window").remove()
     $("<div id=\'qc_select_window\'></div>").insertBefore($("#w09we0gh3"))
@@ -1025,12 +1041,31 @@ function q_generate(parent_id,q_id,q_value,on_off){
     $("#"+q_id).append("<input type=\"text\" class=\'f09h2304h\' id=\'"+q_id+"_type\' placeholder=\'TYPE\' ondblclick=\'change_q_type()\'value=\'"+on_off+"\'></input>")
 */
 }
+
+
+function edit_a_note(){
+    $.ajax({
+        type:'post',
+        url:'edit_a_note',
+        data:{
+            csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+            new_a_note_152:$("#edit_panel_2816").val(),
+            target_id_8915:$("#edit_panel_6846").val()
+        },success:function(response){
+            $("#edit_panel_2816").val(response.new_note)
+            $("<span>Updated a_note to "+response.new_note+".</span>").insertBefore($("#w09we0gh4"))
+        }
+    })
+}
+
 function a_edit_panel_open(){
     $("#edit_panel_id").remove()
     id_inowien=$(event.target).parent().attr("id")
     $("#"+id_inowien).append("<div class=\'edit_panel_class\' id=\'edit_panel_id\'></div>")
     $("#edit_panel_id").append("<textarea id=\'edit_panel_2815\'class=\'woiefjwoefasf\' value=\'"+$(event.target).attr("value")+"\'>"+$(event.target).attr("value")+"</textarea>")
     $("#edit_panel_id").append("<textarea id=\'edit_panel_2816\'class=\'woiefjwoefasf\' placeholder=\'a_note\'></textarea>")
+    $("#edit_panel_id").append("<button type=\'button\' class=\'wgewgewgw328\'onclick=\'edit_a_note()\' id=\'w09we0gh4\'>Save Note</button>")
+
     $("#edit_panel_id").append("<input type=\'text\' id=\'edit_panel_1529\'class=\'woiefjwoef\' placeholder=\'a_class\'></input>")
     $("#edit_panel_id").append("<input type=\'text\' id=\'edit_panel_6846\'class=\'woiefjwoef\' placeholder=\'a_id\' value=\'"+id_inowien+"\'></input>")
     $("#edit_panel_id").append("<input type=\'text\' id=\'edit_panel_8136\'class=\'woiefjwoef\' placeholder=\'a_lvl\'></input>")
@@ -1066,6 +1101,15 @@ function branch_input_open(){
     $("<input id=\'wegwwge2y\' class=\'woiefjwoef\' placeholder=\'q_value\'></input>").insertBefore($(event.target))
     $("<button type=\'button\' class=\'wgewgewgw328\'onclick=\'branch_copy_3()\' id=\'swga32\'>Bring Branch</button>").insertBefore($(event.target))
 }
+function delete_unused_id(){
+    $.ajax({
+        type:'post',
+        url:'delete_unused_id',
+        data:{
+            csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+        }
+    })
+}
 function add_q_20592(){
     $("#owiejgw0e9").remove()
     $("#owiejgw0e92").remove()
@@ -1099,11 +1143,13 @@ function edit_panel_open(){
     id_inowien=$(event.target).parent().attr("id")
     $("#"+id_inowien).append("<div class=\'edit_panel_class\' id=\'edit_panel_id\'></div>")
     $("#edit_panel_id").append("<textarea id=\'edit_panel_2816\'class=\'woiefjwoefasf\' value=\'"+$(event.target).attr("value")+"\'>"+$(event.target).attr("value")+"</textarea>")
+    $("#edit_panel_id").append("<button type=\'button\' class=\'wgewgewgw328whw\'onclick=\'new_class_value()\' id=\'owijgw12g3\'>New QC</button>")
+    $("#edit_panel_id").append("<button type=\'button\' class=\'wgewgewgw328whw\'onclick=\'update_class_value()\' id=\'iosh98h24\'>Update QC</button><br>")
     $("#edit_panel_id").append("<input type=\'text\' id=\'edit_panel_1529\'class=\'woiefjwoef\' placeholder=\'q_class\'></input>")
     $("#edit_panel_id").append("<input type=\'text\' id=\'edit_panel_6846\'class=\'woiefjwoef\' placeholder=\'q_id\' value=\'"+id_inowien+"\'></input>")
     $("#edit_panel_id").append("<input type=\'text\' id=\'edit_panel_8136\'class=\'woiefjwoef\' placeholder=\'q_type\'></input>")
     $("#edit_panel_id").append("<button type=\'button\' class=\'wgewgewgw328whw\'onclick=\'new_class()\' id=\'owijgw12g\'>Q</button>")
-    $("#edit_panel_id").append("<button type=\'button\' class=\'wgewgewgw328whw\'onclick=\'save_q_0295()\' id=\'iosh98h2\'>QQ</button>")
+    $("#edit_panel_id").append("<button type=\'button\' class=\'wgewgewgw328whw\'onclick=\'save_q_0295()\' id=\'iosh98h2\'>QQ</button><br>")
     $("#edit_panel_id").append("<button type=\'button\' class=\'wgewgewgw328\'onclick=\'add_a_20592()\' id=\'w09we0gh\'>Add [A]</button>")
     $("#edit_panel_id").append("<button type=\'button\' class=\'wgewgewgw328\'onclick=\'delete_q_02962()\'>Delete</button>")
     $("#edit_panel_id").append("<button type=\'button\' class=\'wgewgewgw328 he08rh2\'onclick=\'close_edit_panel()\'>Exit</button>")
@@ -1157,6 +1203,37 @@ function delete_q_02962(){
         }
     })
 }
+
+function new_class_value(){
+    $.ajax({
+        type:'post', 
+        url:'new_class_value',
+        data:{
+            csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+            new_value_9815:$("#edit_panel_2816").val(),
+            new_type_9815:$("#edit_panel_8136").val(),
+            q_id_91852:$("#edit_panel_6846").val(),
+            q_class_91852:$("#edit_panel_1529").val()
+        }, success:function(response){
+            $("#edit_panel_2816").val(response.q_value)
+            $("#edit_panel_1529").val(response.q_class)
+        }
+    })
+}
+function update_class_value(){
+    $.ajax({
+        type:'post',
+        url:'update_class_value',
+        data:{
+            csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+            q_class_91852:$("#edit_panel_1529").val(),
+            new_value_9815:$("#edit_panel_2816").val()
+        }, success:function(response){
+            $("<span>Updated value to "+response.q_value+"<br></span>").insertAfter($("#edit_panel_2816"))
+        }
+    })
+
+}
 function new_class(){
     $.ajax({
         type:'post', 
@@ -1194,6 +1271,44 @@ function new_class_add_a(){
         }
     })
 }
+/*
+function old_class_add_a(){
+    value_split_8915=$("#oiwjg0290h").val().split(";")
+    note_split_81501=$("#oiwjg0290h3").val().split(";")
+    a_lvl_982531=$("#oiwjg0290h2").val()
+    q_class_981521=$("#edit_panel_1529").val()
+    q_id_08oi1025=$("#edit_panel_6846").val()
+    for (i_81501295=0;i_81501295<value_split_8915.length;i_81501295++){
+        $.ajax({
+            type:'post', 
+            url:'old_class_add_a',
+            data:{
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+                q_class_87925:q_class_981521,
+                q_id_87925:q_id_08oi1025,
+                a_value_87925:value_split_8915[i_81501295],
+                a_lvl_87925:a_lvl_982531,
+                a_note_87925:note_split_81501[i_81501295]
+            }, success:function(response){
+                pair_13090=response.pair_92358
+                for (i_982953=0;i_982953<response.pair_92358.length;i_982953++){
+                    //$("#edit_panel_id").append(pair_13090[i_982953])
+                    a_generate(pair_13090[i_982953][0],pair_13090[i_982953][1],pair_13090[i_982953][2],pair_13090[i_982953][3],pair_13090[i_982953][4])
+                    a_valeu_892852=pair_13090[i_982953][2]
+                }
+                $("<span>"+a_valeu_892852+"<br></span>").insertBefore("#oiwjg0290h")
+                $("<button type=\'button\' class=\'wgewgewgw328\'onclick=\'add_a_20592()\' id=\'w09we0gh\'>Add [A]</button>").insertBefore("#oiwjg0290h")
+                $("#owijgw12g").remove()
+                $("#iosh98h2").remove()
+                $("#oiwjg0290h").remove()
+                $("#oiwjg0290h2").remove()
+                $("#oiwjg0290h3").remove()
+            }
+        })    
+    }
+
+}
+*/
 function old_class_add_a(){
     $.ajax({
         type:'post', 
@@ -1207,12 +1322,15 @@ function old_class_add_a(){
             a_note_87925:$("#oiwjg0290h3").val()
         }, success:function(response){
             pair_13090=response.pair_92358
-            for (i_982953=0;i_982953<response.pair_92358.length;i_982953++){
+            a_value_added_0815=[]
+            for (i_982953=0;i_982953<pair_13090.length;i_982953++){
                 //$("#edit_panel_id").append(pair_13090[i_982953])
                 a_generate(pair_13090[i_982953][0],pair_13090[i_982953][1],pair_13090[i_982953][2],pair_13090[i_982953][3],pair_13090[i_982953][4])
-                a_valeu_892852=pair_13090[i_982953][2]
+                if (if_exst(a_value_added_0815,pair_13090[i_982953][2])==0){
+                    a_value_added_0815.push(pair_13090[i_982953][2])
+                    $("<span>"+pair_13090[i_982953][2]+"<br></span>").insertBefore("#oiwjg0290h")
+                }
             }
-            $("<span>"+a_valeu_892852+"<br></span>").insertBefore("#oiwjg0290h")
             $("<button type=\'button\' class=\'wgewgewgw328\'onclick=\'add_a_20592()\' id=\'w09we0gh\'>Add [A]</button>").insertBefore("#oiwjg0290h")
             $("#owijgw12g").remove()
             $("#iosh98h2").remove()
@@ -1222,6 +1340,7 @@ function old_class_add_a(){
         }
     })
 }
+
 function save_new_class(){
     $.ajax({
         type:'post',
@@ -1823,8 +1942,6 @@ function a_generate_2(q_id_1521,a_id_1521,a_value_1521){
     } else {
         $(q_id_1521).append("<div class=\"answer \" id=\""+a_id_1521+"\" onclick=\"select_copy(\'"+a_id_1521+"\');next_question_is();\" value=\""+a_value_1521+"\"><i class=\"fa-regular fa-square\"></i> "+first_letter_upper(a_value_1521)+"</div>")
     }
-
-    
 }
 function cc_id_to_value_converter(id_2153){
     for (i_2153=0;i_2153<cc_id_pair.length;i_2153++){
@@ -1835,22 +1952,6 @@ function cc_id_to_value_converter(id_2153){
     return value_2153
 }
 
-function q_generate_2(a,b,c,q_type){
-    sub_func_183="<div class=\"question \" id=\""+b+"\" onclick=\"\" value=\""+c+"\"><div class=\'q_title\' onclick=\'remove_hide();\'>"+first_letter_upper(c)+"?"
-        if(q_type=="on"){
-            if(b=="q001"){
-                $(a).append(sub_func_183+"</span></div>")
-            } else {
-                $(a).append(sub_func_183+" (Select all)</div></div>")
-            }
-        } else {
-            $(a).append(sub_func_183+"</div></div>")
-        }
-        $("#"+b).children("span").fadeIn(2000)
-        $("#"+b).children("span").removeClass("hide")
-        $("#"+b).children("span").css("display","")
-
-}
 
 function a_replace_to_unselected(a_id_6115,a_value_6115){
     $("#"+a_id_6115).replaceWith("<div class=\"answer\" id=\""+a_id_6115+"\" onclick=\"select_copy(\'"+a_id_6115+"\');\" value=\""+a_value_6115+"\"><i class=\"fa-regular fa-square\"></i> "+first_letter_upper(a_value_6115)+"</div>")
@@ -1881,25 +1982,6 @@ function select_copy(a_id_6192){
                 //$("#"+q_id).children(".answer").slideUp(1000)
                 $("#"+q_id).children(".answer").addClass("hide")
             } 
-            /*
-            if(q_type_909h=="on"){
-                if(q_id!="q001"){
-                    count_1521=$("#"+a_id_7619).siblings(".selected").length+1
-                    if(count_1521==1){
-                        $("<span class=\"answer_to_q\" id=\""+a_id_7619+"_span\"> "+a_value+";</span>").insertBefore($("#"+q_id).children(".answer").first())
-                    } else{
-                        $("<span class=\"answer_to_q\" id=\""+a_id_7619+"_span\"> "+a_value+";</span>").insertAfter($("#"+q_id).children(".answer_to_q").last())
-                    }
-                } else {
-                    count_1521=$("#"+a_id_7619).siblings(".selected").length+1
-                } 
-            } else if(q_type_909h=="off"){
-                for(i_175=0;i_175<selected_siblings_id.length;i_175++){
-                    unselect_2(selected_siblings_id[i_175])
-                }
-                $("<span class=\"answer_to_q\" id=\'"+a_id_7619+"_span\'> "+a_value+"</span>").insertBefore($("#"+a_id_7619).parent().children(".answer").first())
-            } 
-            */
             for (i_7124=0;i_7124<response.q_details.length;i_7124++){
                 q_id_618=response.q_details[i_7124][0]
                 q_value_618=response.q_details[i_7124][1]
@@ -1931,6 +2013,24 @@ function select_copy(a_id_6192){
                             }
                         }                            
                         next_question_button(q_id_618)
+                    } else if(q_type_618=="ass"){
+                        id_value_pair=[]
+                        ass_q_set(q_id_618)
+                        for (j=0;j<response.a_details.length;j++){
+                            if (response.a_details[j][0]==q_id_618){
+                                id_value_pair.push([response.a_details[j][1],response.a_details[j][2]])
+                                //a_generate_2("#"+q_id_618,response.a_details[j][1],response.a_details[j][2])
+                            }
+                        }                            
+                        next_question_button(q_id_618)
+                    }  else if(q_type_618=="temp"){
+                        temp_q_set(q_id_618)
+                        for (j=0;j<response.a_details.length;j++){
+                            if (response.a_details[j][0]==q_id_618){
+                                a_generate_2("#"+q_id_618,response.a_details[j][1],response.a_details[j][2])
+                            }
+                        }                            
+                        next_question_button(q_id_618)
                     } else {
                         for (j=0;j<response.a_details.length;j++){
                             if (response.a_details[j][0]==q_id_618){
@@ -1953,6 +2053,7 @@ function select_copy(a_id_6192){
         }
     })
 }   
+
 function note_write_type_specific(type,a_id,note,lvl){
     if (type=="general"){
     } else if(type=="onset"){
@@ -1965,22 +2066,152 @@ function note_write_type_specific(type,a_id,note,lvl){
 
 function onset_q_set(location){
     button_09hieroi=["unclear"]
+    select_first_n(location,8)
+    $("#"+location).children(".q_title").replaceWith("<div class=\'q_title\' onclick=\'remove_hide();\'>When did "+$("#"+select_first_n(location,8)).attr("value")+" start?</div>")
+
     $("#"+location).append("<input type=\'text\' class=\'oihwpoegwe\' id=\'"+location+"_onset_number\' placeholder=\'2-3\' onkeyup=\'onset_to_input()\'></input>")
-    $("#"+location).append("<input type=\'text\'class=\'oihwpoegwe\' id=\'"+location+"_onset_scale\' placeholder=\'days\'onkeyup=\'onset_to_input()\'></input> ago")
+    $("#"+location).append("<input list=\'onset_scale\'class=\'oihwpoegwe\' id=\'"+location+"_onset_scale\' placeholder=\'days\'onkeyup=\'onset_to_input()\' onChange=\'onset_to_input()\'></input> ago")
+    $("#"+location).append("<datalist id=\"onset_scale\"></datalist>")
+    onset_scale_array=[
+        "minute(s)",
+        "hour(s)",
+        "day(s)",
+        "week(s)",
+        "month(s)",
+        "year(s)",
+        "decade(s)"
+    ]
+    for (i_152116=0;i_152116<onset_scale_array.length;i_152116++){
+        $("#onset_scale").append("<option value=\""+onset_scale_array[i_152116]+"\">")
+    }
     $("#"+location).append("<div class=\'onset_set_container\'></div>")
     for (i_800=0;i_800<button_09hieroi.length;i_800++){
-        $("#"+location).children(".onset_set_container").append("<button type=\'button\'onclick=\'button_to_onset()\' value=\'"+button_09hieroi[i_800]+"\'>"+button_09hieroi[i_800]+"</button>")
+        $("#"+location).children(".onset_set_container").append("<button type=\'button\'onclick=\'button_to_combine()\' value=\'"+button_09hieroi[i_800]+"\'>"+button_09hieroi[i_800]+"</button>")
+    }
+    $("#"+location).append("<input type=\'text\'class=\'hide\' id=\'"+location+"_combine_answer\'></input>")
+
+}
+function ass_q_set(location){
+    button_09hieroi=["Fever","pain","cough"]
+    $("#"+location).append("<input type=\"text\" id=\"cc_input\"class=\"input_bar\" placeholder=\'+\' autocomplete=\"off\"   onkeyup=\"ass_search()\" name=\"cc_search\" ></input>")
+    $("#"+location).append("<input type=\'text\' class=\'oihwpoegwe\' id=\'"+location+"_onset_number\' placeholder=\'2-3\' onkeyup=\'\'></input>")
+    $("#"+location).append("<button type=\'button\'onclick=\'search_by_system()\' value=\'\'>Search by System</button>")
+    $("#"+location).append("<div class=\'onset_set_container\'></div>")
+
+    
+    for (i_800=0;i_800<button_09hieroi.length;i_800++){
+        $("#"+location).children(".onset_set_container").append("<button type=\'button\'onclick=\'\' value=\'"+button_09hieroi[i_800]+"\'>"+button_09hieroi[i_800]+"</button>")
     }
 }
-function button_to_onset(){
+function search_by_system(){
+    alert(id_value_pair)
+    $(event.target).parent().append("<div class=\'system_select\' id=\'system_select\'><div>")
+    /*
+    id_value_pair=[]
+    for (i_89150=0;i_89150<$(event.target).parent().children(".answer").length;i_89150++){
+        value_98y15=$(event.target).parent().children(".answer").eq(i_89150).attr("value")
+        id_98y15=$(event.target).parent().children(".answer").eq(i_89150).attr("id")
+        id_value_pair.push([value_98y15,id_98y15])
+    }
+    */
+    system_981512=["Respiratory","Respiratory2","Respiratory3","Respiratory4","Respiratory5","Respiratory6"]
+    system_details_98152=[
+        ["a","dyspnea","dyspnea"],
+        ["b","dyspepsia","dyspepsia","dyspepsia","dyspepsia","dyspepsia"],
+        ["c","dyspepsia","dyspepsia","dyspepsia","dyspepsia","dyspepsia"],
+        ["dyspqweepsia","dyspepsia","dyspepsia","dyspepsia","dyspepsia","dyspepsia"],
+        ["dyspepsiqw15a","dyspepsia","dyspepsia","dyspepsia","dyspepsia","dyspepsia"],
+        ["dyspe1231psia","dyspepsia","dyspepsia","dyspepsia","dyspepsia","dyspepsia"]
+    ]
+    for (i_983515=0;i_983515<system_981512.length;i_983515++){
+        $("#system_select").append("<div id=\'sub_"+system_981512[i_983515]+"\' onclick=\'show_sub()\'>"+system_981512[i_983515]+"</div>")
+        $("#sub_"+system_981512[i_983515]).append('<div class=\'sdf0s90w hide\' id=\'s09qgq\'></div>')
+        for (j_8115=0;j_8115<system_details_98152[i_983515].length;j_8115++){
+            for (q_89=0;q_89<id_value_pair.length;q_89++){
+                //$("#system_select").append(system_details_98152[i_983515][j_8115].toLowerCase()+"vs"+id_value_pair[q_89][1]+';')
+                if (system_details_98152[i_983515][j_8115].toLowerCase()==id_value_pair[q_89][1].toLowerCase()){
+                    id_125=id_value_pair[q_89][0]
+                }
+            }
+            $("#sub_"+system_981512[i_983515]).children("#s09qgq").append("<div class=\"answer \" id=\""+id_125+"\" onclick=\"select_copy(\'"+id_125+"\');next_question_is();\" value=\""+system_details_98152[i_983515][j_8115]+"\"><i class=\"fa-regular fa-square\"></i> "+first_letter_upper(system_details_98152[i_983515][j_8115])+"</div>")
+        }
+        $("#sub_"+system_981512[i_983515]).children("#s09qgq").append("<button type=\'button\' onclick=\'hide_parent()\'>close</button>")
+    }
+    $("#system_select").append("<button type=\'button\' onclick=\'close_parent()\'>close</button>")
+}
+function ass_to_input(){
+    input_id_812051=$(event.target).parent().parent().parent().parent().attr("id")+"a001_input"
+    current_ass=$("#"+input_id_812051).val()
+    $("#"+input_id_812051).val(current_ass+$(event.target).attr("value")+";")
+}
+function show_sub(){
+    $(event.target).children(".sdf0s90w").removeClass("hide")
+}
+function hide_parent(){
+    $(event.target).parent().addClass("hide")
+}
+function close_parent(){
+    $(event.target).parent().remove()
+}
+function temp_q_set(location){
+    button_09hieroi=["Temp was not measured"]
+    $("#"+location).append("<input list=\'temp_1\'class=\'oihwpoegwe\' id=\'"+location+"_temp_1\' onkeyup=\'temp_to_input()\' onChange=\'temp_to_input()\'> </input>")
+    $("#"+location).append("<input list=\'temp_2\'class=\'oihwpoegwe\' id=\'"+location+"_temp_2\' onkeyup=\'temp_to_input()\' onChange=\'temp_to_input()\'> </input>Fº")
+    $("#"+location).append("<datalist id=\"temp_1\"></datalist>")
+    
+    temp_front=[
+        "97", 
+        "98",
+        "99",
+        "100",
+        "101",
+        "102",
+        "103",
+        "104",
+        "105",
+        "106",
+        "107",
+        "108"
+    ]
+    $("#"+location).append("<datalist id=\"temp_2\"></datalist>")
+    temp_back=[
+        "0","1","2","3","4","5","6","7","8","9"
+    ]
+    for (i_152116=0;i_152116<temp_front.length;i_152116++){
+        $("#temp_1").append("<option value=\""+temp_front[i_152116]+"\">")
+    }
+    for (i_152116=0;i_152116<temp_back.length;i_152116++){
+        $("#temp_2").append("<option value=\""+temp_back[i_152116]+"\">")
+    }
+    $("#"+location).append("<div class=\'onset_set_container\'></div>")
+    for (i_800=0;i_800<button_09hieroi.length;i_800++){
+        $("#"+location).children(".onset_set_container").append("<button type=\'button\'onclick=\'\' value=\'"+button_09hieroi[i_800]+"\'>"+button_09hieroi[i_800]+"</button>")
+    }
+    $("#"+location).append("<input type=\'text\' class=\'hide\'id=\'"+location+"_combine_answer \'></input>")
+}
+function button_to_combine(){
     button_input=$(event.target).val()
-    $(event.target).parent().parent().children(".answer").children("input").val(button_input)
+    q_id_1209u26= $(event.target).parent().parent().attr("id")
+    $("#"+q_id_1209u26+"_combine_answer").val(button_input)
 }
 
 function onset_to_input(){
+    
     q_id_98howg=$(event.target).parent().attr("id")
     combined_onset=$("#"+q_id_98howg+"_onset_number").val()+" "+$("#"+q_id_98howg+"_onset_scale").val()+" ago"
-    $(event.target).parent().children(".answer").children("input").val(combined_onset)
+    $("#"+q_id_98howg+"_combine_answer").val(combined_onset)
+}
+
+function temp_to_input(){
+    q_id_98howg=$(event.target).parent().attr("id")
+    combined_onset=$("#"+q_id_98howg+"_temp_1").val()+"."+$("#"+q_id_98howg+"_temp_2").val()+" Fº"
+    $("#"+q_id_98howg+"_combine_answer").val(combined_onset)
+}
+function to_combined_input(){
+    q_id_1212=$(event.target).parent().attr("id")
+    
+    $(event.target).parent().children(".answer").children("input").val($(event.target).val()+"'F")
+
 }
 function select(){select_copy($(event.target).attr("id"))}
 
@@ -2004,6 +2235,8 @@ function next(){
 }
 
 function search_bar(q_id){
+    $("<input type=\"text\" id=\"cc_input\"class=\"input_bar\" placeholder=\'+\' autocomplete=\"off\"   onkeyup=\"cc_search()\" name=\"cc_search\" ></input><div id=\"matching_cc\"></div>").insertAfter($("#"+q_id).children(".q_title"))
+/*
     $.ajax({
         type:'post',
         url:'cc_list_maker',
@@ -2011,57 +2244,68 @@ function search_bar(q_id){
             csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
         },
         success:function(response){
-            $("<input type=\"text\" id=\"cc_input\"class=\"input_bar\" placeholder=\'+\' autocomplete=\"off\"   onkeyup=\"cc_search()\" name=\"cc_search\" ></input><div id=\"matching_cc\"></div>").insertAfter($("#"+q_id).children(".q_title"))
             //$("<button type=\"button\" onclick=\"cc_select();\"class=\"btn\"> + </button>").insertAfter($("#cc_input"))
         }
     })
+*/
 }
 function next_question_button(location){
-    $("#"+location).append("<button class=\'close_button\'type\'button\' onclick=\'close_above_a();next_question_is();\'>Next Question</button>")
+    $("#"+location).append("<button class=\'close_button\'type=\'button\' onclick=\'close_above_a();next_question_is();\'>Next Question</button>")
 }
 function close_above_a(){
     $(event.target).siblings(".answer").addClass("hide")
     $(event.target).addClass("hide")
+    
     selected=[]
     i_1521=0
     while (i_1521<$(event.target).siblings(".selected").length){
         selected.push($(event.target).siblings(".selected").eq(i_1521).attr("id"))
         i_1521=i_1521+1
     }
+    selected_values=[]
+    i_1521=0
+    while (i_1521<$(event.target).siblings(".selected").length){
+        selected_values.push($(event.target).siblings(".selected").eq(i_1521).attr("value")+"")
+        i_1521=i_1521+1
+    }
     next_question_is()
     a_type=$(event.target).siblings(".answer").eq(0).attr("value")
-    if (a_type=="input"){
-        a_id_3261=$(event.target).siblings(".answer").attr("id")
-        $.ajax({
-            type:'post',
-            url:'close_above_a_input',
-            data:{
-                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
-                a_id_3261:a_id_3261,
-                a_value_3261:$("#"+a_id_3261+"_input").val(),
-            },success:function(response){
-                note_write(response.a_id,response.note, response.lvl)
-            }
-        })
+    q_id_798=$(event.target).parent().attr("id")
+    q_type_798=q_type_by_id(q_id_798)
+    if (q_type_798=="onset"){
+        //note_write_type_specific(q_id_798+"a001",$("#"+q_id_798+"_combine_answer").val(), 3)
+        note_write_3(q_id_798+"a001","It started "+$("#"+q_id_798+"_combine_answer").val())
+    } else if (q_type_798=="temp"){
+        note_write_3(q_id_798+"a001",$("#"+q_id_798+"_combine_answer").val())
+    } else if (q_type_798=="ass"){
+        note_write_3(q_id_798+"a000","Associated symptoms:"+array_to_string(selected_values))
+        close_above_a_sub_ajax(selected)
+
     } else {
-        $.ajax({
-            type:'post',
-            url:'close_above_a',
-            data:{
-                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
-                selected:array_to_string(selected),
-            },
-            success:function(response){
-                if(response.lvl==1){
-                    note_write(response.a_id,array_to_string(response.note), response.lvl)
-                } else {
-                    for (i_151124=0;i_151124<response.note.length;i_151124++){
-                        note_write(response.a_id[i_151124],response.note[i_151124],response.lvl)
-                    }
+        close_above_a_sub_ajax(selected)
+    }
+}
+
+
+
+function close_above_a_sub_ajax(ddd){
+    $.ajax({
+        type:'post',
+        url:'close_above_a',
+        data:{
+            csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+            selected:array_to_string(ddd),
+        },
+        success:function(response){
+            if(response.lvl==1){
+                note_write(response.a_id,array_to_string(response.note), response.lvl)
+            } else {
+                for (i_151124=0;i_151124<response.note.length;i_151124++){
+                    note_write(response.a_id[i_151124],response.note[i_151124],response.lvl)
                 }
             }
-        })        
-    }
+        }
+    })      
 }
 function note_write(a_id,note,lvl){
     note_write_type_specific("general",a_id,note,lvl)
@@ -2074,13 +2318,17 @@ function note_write_1(a_id,note){
 }
 
 function note_write_2(a_id,note){
-    $(".note").append("<div class=\'lvl_2\' onclick=\"copy_text()\" id=\'"+a_id+"\'>"+note+"\n</div>")
+    $(".note").append("<div class=\'lvl_2\' onclick=\"copy_text()\" id=\'"+a_id+"\'>"+first_letter_upper(note)+"\n</div>")
 
 }
 
 function note_write_3(a_id,note){
-
-    $("#"+remove_last_n(a_id,4)).append("<div class=\'lvl_3\' id=\'"+a_id+"\'>"+note+"</div>")
+    $("div.lvl_3#"+a_id).remove()
+    $("#"+remove_last_n(a_id,8)).append("<div class=\'lvl_3\' id=\'"+a_id+"\'>"+note+"</div>")
+}
+function collapse_parent(){
+    $(event.target).parent().toggleClass("w10vw")
+    $(event.target).parent().toggleClass("w90vw")
 }
 function copy_text() {
     note_id=$(event.target).attr("id")
@@ -2133,6 +2381,21 @@ function cc_search(){
         if(search_value.length>0 &&RegExp(search_value.toLowerCase()).test(cc_list[i_9174][1].toLowerCase())){
             //$("#matching_cc").append("<div class=\"answer\" id=\""+cc_list[i_9174][0]+"\" onclick=\"select();\" value=\""+cc_list[i_9174][1]+"\">"+cc_list[i_9174][1]+"</div>")
             $("<div class=\"answer interim_answer\" id=\""+cc_list[i_9174][0]+"\" onclick=\"to_the_input(\'"+cc_list[i_9174][1]+"\');cc_select_from_list();\" value=\""+cc_list[i_9174][1]+"\">"+cc_list[i_9174][1]+"</div>").insertAfter($("#cc_input"))
+        }
+    }
+}
+function ass_search(){
+    $(".interim_answer").remove()
+    $(event.target).siblings(".selected").removeClass("answer")
+    $(event.target).siblings(".answer").remove()
+    $(event.target).siblings(".selected").addClass("answer")
+
+    search_value=$(event.target).val()
+    for (i_9174=0;i_9174<id_value_pair.length;i_9174++){
+
+        if(search_value.length>0 &&RegExp(search_value.toLowerCase()).test(id_value_pair[i_9174][1].toLowerCase())){
+            //$("#matching_cc").append("<div class=\"answer\" id=\""+cc_list[i_9174][0]+"\" onclick=\"select();\" value=\""+cc_list[i_9174][1]+"\">"+cc_list[i_9174][1]+"</div>")
+            $(event.target).parent().append("<div class=\"answer interim_answer\" id=\""+id_value_pair[i_9174][0]+"\" onclick=\"to_the_input(\'"+id_value_pair[i_9174][1]+"\');cc_select_from_list();\" value=\""+id_value_pair[i_9174][1]+"\">"+id_value_pair[i_9174][1]+"</div>")
         }
     }
 }
@@ -2622,7 +2885,63 @@ function train_data_generator_ajax(){
 function train_janice_ajax(){
     $.ajax({url:'train_janice_ajax'})
 }  
+function q_type_by_id(id_251){
+    type_251="undefined"
+    for (i_7980=0;i_7980<q_id_type_pair.length;i_7980++){
+        if (q_id_type_pair[i_7980][0]==id_251){
+            type_251=q_id_type_pair[i_7980][1]
+        }
+    }
+    return type_251
+}
+function question_start(){
+    cc_list=[]
+    ass_list=[]
+    q_id_type_pair=[]
+    $.ajax({
+        type:'post',
+        url:'cc_list_maker',
+        data:{
+            csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+        },
+        success:function(response){
+            for (i=0;i<response.cc_list.length;i++){
+                cc_list.push(response.cc_list[i])
+            }
+            for (i=0;i<response.q_id_type_pair.length;i++){
+                q_id_type_pair.push([response.q_id_type_pair[i][0],response.q_id_type_pair[i][1]])
+            }
+        }
+    })
+    cc_id_pair=[]
+    $.ajax({
+        type:"post",
+        url:"letstart",
+        data:{
+            csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+        },
+        success:function(response){
+            for (i=0;i<response.q_details.length;i++){
+                q_generate_2("body",response.q_details[i][0],response.q_details[i][1],response.q_details[i][2])
+                $("#"+response.q_details[i][0]).addClass("focus next_question_shine")
+                $(".next_question_shine").append("<div class=\"vertical_bar\" onclick=\"collapse_expand()\"></div>")
 
+                //$("body").append("<div class=\"question\" id=\""+response.q_details[i][0]+"\" value=\""+response.q_details[i][1]+"\">"+response.q_details[i][1]+"</div>")
+            }
+            for (i=0;i<response.a_details.length;i++){
+                a_generate_2("#"+response.a_details[i][0],response.a_details[i][1],response.a_details[i][2])
+                //$("#"+response.a_details[i][0]).append("<div class=\"answer\" id=\""+response.a_details[i][1]+"\" onclick=\"select();\" value=\""+response.a_details[i][2]+"\">"+response.a_details[i][2]+"</div>")
+            }
+            $("#q000").append("<button class=\'close_button\'type\'button\' onclick=\'close_above_a();\'>Next Question</button>")
+            sub_func_846()
+            for (i=0;i<response.cc_id_pair.length;i++){
+                cc_id_pair.push(response.cc_id_pair[i])
+            }
+        }
+        
+    })
+
+}
 function agenda(){
     $.ajax({
         type:'POST',
@@ -2672,14 +2991,19 @@ function add_new_q_bank(){
         url:'add_new_q_bank', 
         data:{
             new_q_id_oiotwet:$("#q_id_oiwsdf").val(),
-            new_q_id_oiotwet:$("#q_c_q_id_oiwsdf").val(),
+            new_class_8125021:$("#q_c_q_id_oiwsdf").val(),
             csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
         }, success:function(response){
             $("#q_id_oiwsdf").val("")
             $("#q_c_q_id_oiwsdf").val("")
-            alert("Successfully added "+response.q_id_boier+" to the q_bank")
         }
     })
+}
+function multiple_a_add(){
+    $("#data_table").empty()
+    $("#data_table").append("<input type=\'text\' class=\'soskdjdi\'id=\'parent_a\'></input>")
+    $("#data_table").append("<textarea class=\'sojdsdfi2\'id=\'children_q_before\'></textarea>")
+    $("#data_table").append("<button type=\'button\' class=\'oqwiegogej\' onclick=\"load_ext_seq()\">Load Q</button>")
 }
 function q_sequence(){
     $("#data_table").empty()

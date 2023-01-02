@@ -100,12 +100,12 @@ def getQuestions(request):
   return JsonResponse({"questions":result, "q_list":output_qualify})
 
 def close_above_a_input(request):
-  a_id_97623=request.POST['a_id_3261']
-  a_value_92623=request.POST['a_value_3261']
+  a_id_97623=request.POST['a_id_125']
   for i in a_bank.objects.all():
     if i.a_id==a_id_97623:
       lvl=i.a_lvl
   return JsonResponse({"a_id":a_id_97623,"note":a_value_92623,"lvl":lvl})
+
 
 def close_above_a(request):
   selected=request.POST['selected'].split(',')
@@ -123,11 +123,15 @@ def initial_open(request):
   cc_id_pair=[]
   q_type_array=[]
   for i in q_bank.objects.all().order_by('q_id'):
-    target_array_q.append([i.q_id,i.q_value,i.q_type,remove_last_n(i.q_id,4)])
-    if if_exist(q_type_array,i.q_type)==0:
-      q_type_array.append(i.q_type)
+    for j in q_class.objects.all():
+      if j.q_class==i.q_class:
+        target_array_q.append([i.q_id,j.q_value,j.q_type,remove_last_n(i.q_id,4)])
+      if if_exist(q_type_array,j.q_type)==0:
+        q_type_array.append(j.q_type)
   for i in a_bank.objects.all().order_by('a_id'):
-    target_array_a.append([i.q_id,i.a_id,i.a_value,i.a_note,i.a_lvl])
+    for j in a_class.objects.all():
+      if i.a_class==j.a_class:
+        target_array_a.append([remove_last_n(i.a_id,4),i.a_id,j.a_value,i.a_note,i.a_lvl])
   return JsonResponse({"target_array_q":target_array_q,"target_array_a":target_array_a,"cc_id_pair":cc_id_pair,"q_type_array":q_type_array})
 
 def change_q_type(request):
@@ -508,13 +512,65 @@ def new_class(request):
     new_qc=next_number_id_class(last_qc_79210)
   print("new class is "+new_qc)
   return JsonResponse({"new_qc":new_qc})
-  
+
+def new_class_value(request):
+  new_class_98y631=new_qc_2()
+  q_class(q_class=new_class_98y631,q_value=request.POST['new_value_9815'],q_type=request.POST['new_type_9815']).save()
+  target=get_object_or_404(q_bank, q_id=request.POST['q_id_91852'])
+  target.q_class=new_class_98y631
+  target.save()
+  count_9726=1
+  for i in a_bank.objects.all().order_by("a_id"):
+    if remove_last_n(i.a_id,4)==request.POST['q_id_91852']:
+      new_a_class_15151=new_class_98y631+"a"+number_to_3_digits(count_9726)
+      target=get_object_or_404(a_bank,id=i.id)
+      target.a_class=new_a_class_15151
+      target.save()
+      a_class(a_class=new_a_class_15151,q_class=new_class_98y631,a_value=i.a_value).save()
+      count_9726=count_9726+1
+  return JsonResponse({"q_id":request.POST['q_id_91852'],"q_value":request.POST['new_value_9815'],"q_class":new_class_98y631})
+
 def old_class_add_a(request):
+  value_98y2351=request.POST['a_value_87925'].split(';')
+  note_89y12051=request.POST['a_note_87925'].split(';')
+  qc_981521=request.POST['q_class_87925']
   same_qc_ids=[]
+  same_qc_aq_pair=[]
   for i in q_bank.objects.all():
-    if i.q_class==request.POST['q_class_87925']:
+    if i.q_class==qc_981521:
       same_qc_ids.append(i.q_id)
   print(str(same_qc_ids)+"shares q_class"+str(request.POST['q_class_87925'])+"<BR>")
+  v=0
+  while v<len(value_98y2351):
+    last_a_class_10851=""
+    for i in a_class.objects.all().order_by("a_class"):
+      if i.q_class==request.POST['q_class_87925']:
+        last_a_class_10851=i.a_class
+    if last_a_class_10851=="":
+      last_a_class_10851=request.POST['q_class_87925']+"a000"
+    new_a_class_3512=next_number_id_class(last_a_class_10851)
+    print("new a_class is "+str(new_a_class_3512)+"<BR>")
+    a_class(a_class=new_a_class_3512,q_class=request.POST['q_class_87925'],a_value=value_98y2351[v]).save()
+    for i in same_qc_ids:
+      print("starting loop for "+str(i)+"<BR>")
+      last_a_id_79823=""
+      for j in a_bank.objects.all().order_by('a_id'):
+        if j.q_id==i:
+          last_a_id_79823=j.a_id
+      if last_a_id_79823=="":
+        last_a_id_79823=i+"a000"
+      new_a_id_982052=next_number_id_class(last_a_id_79823)
+      print("new_a_id for "+str(i)+" is "+str(new_a_id_982052)+"<BR>")
+      a_bank(q_id=i,a_note=note_89y12051[v],a_lvl=request.POST['a_lvl_87925'],a_id=new_a_id_982052, a_value=value_98y2351[v],a_class=new_a_class_3512).save()
+      print("saved"+str(new_a_id_982052)+"<BR>")
+      same_qc_aq_pair.append([i,new_a_id_982052,value_98y2351[v],request.POST['a_lvl_87925'],note_89y12051[v]])
+    v=v+1
+  for i in same_qc_aq_pair:
+    print(i)
+  return JsonResponse({"pair_92358":same_qc_aq_pair})
+
+
+'''
   last_a_class_10851=""
   for i in a_class.objects.all().order_by("a_class"):
     if i.q_class==request.POST['q_class_87925']:
@@ -535,12 +591,12 @@ def old_class_add_a(request):
     if last_a_id_79823=="":
       last_a_id_79823=i+"a000"
     new_a_id_982052=next_number_id_class(last_a_id_79823)
-    print("new_a_id for"+str(i)+" is "+str(new_a_id_982052)+"<BR>")
+    print("new_a_id for "+str(i)+" is "+str(new_a_id_982052)+"<BR>")
     a_bank(q_id=i,a_note=request.POST['a_note_87925'],a_lvl=request.POST['a_lvl_87925'],a_id=new_a_id_982052, a_value=request.POST['a_value_87925'],a_class=new_a_class_3512).save()
     print("saved"+str(new_a_id_982052)+"<BR>")
     same_qc_aq_pair.append([i,new_a_id_982052,request.POST['a_value_87925'],request.POST['a_lvl_87925'],request.POST['a_note_87925']])
   return JsonResponse({"pair_92358":same_qc_aq_pair})
-
+'''
 def new_class_add_a(request):
   new_qc=""
   for i in q_class.objects.all().order_by("q_class"):
@@ -603,34 +659,48 @@ def delete_this_id(request):
         get_object_or_404(q_class,id=i.id).delete()
         print("deleted"+str(i.id))
   return JsonResponse({"target":request.POST['target_id']})
+def delete_unused_id(request):
+  gap_owoeigw=0
+  while gap_owoeigw==0:
+    print("running another round")
+    delete_count=0
+    for i in a_bank.objects.all():
+      oeoijwgpj=0
+      for j in q_bank.objects.all():
+        if j.q_id==i.q_id:
+          oeoijwgpj=1
+      if oeoijwgpj==0:
+        get_object_or_404(a_bank,id=i.id).delete()
+        delete_count=delete_count+1
+        print(i.a_id)
+    for i in q_bank.objects.all():
+      oeoijwgsdfsdpj=0
+      for j in a_bank.objects.all():
+        if remove_last_n(i.q_id,4)==j.a_id:
+          oeoijwgsdfsdpj=1
+      if oeoijwgsdfsdpj==0 and len(i.q_id)>4:
+        get_object_or_404(q_bank,id=i.id).delete()
+        delete_count=delete_count+1
+        print(i.q_id)
+    if delete_count==0:
+      gap_owoeigw=1
+  return JsonResponse({})
 
-gap_owoeigw=0
-while gap_owoeigw==0:
-  print("running another round")
-  delete_count=0
-  for i in a_bank.objects.all():
-    oeoijwgpj=0
-    for j in q_bank.objects.all():
-      if j.q_id==i.q_id:
-        oeoijwgpj=1
-    if oeoijwgpj==0:
-      get_object_or_404(a_bank,id=i.id).delete()
-      delete_count=delete_count+1
-      print(i.a_id)
-  for i in q_bank.objects.all():
-    oeoijwgsdfsdpj=0
-    for j in a_bank.objects.all():
-      if remove_last_n(i.q_id,4)==j.a_id:
-        oeoijwgsdfsdpj=1
-    if oeoijwgsdfsdpj==0 and len(i.q_id)>4:
-      get_object_or_404(q_bank,id=i.id).delete()
-      delete_count=delete_count+1
-      print(i.q_id)
-  if delete_count==0:
-    gap_owoeigw=1
-
-
-
+def add_new_q_bank(request):
+  q_id_9782y362=request.POST['new_q_id_oiotwet']
+  q_class_80235=request.POST['new_class_8125021']
+  for i in q_class.objects.all():
+    if i.q_class==q_class_80235:
+      q_bank(q_id=q_id_9782y362, q_value=i.q_value,q_type=i.q_type, q_class=i.q_class).save()
+      print("saved "+q_id_9782y362)
+  a_number_8015y1=1
+  for i in a_class.objects.all().order_by("a_class"):
+    if i.q_class==q_class_80235:
+      a_id_020392=q_id_9782y362+"a"+number_to_3_digits(a_number_8015y1)
+      a_bank(a_id=a_id_020392,a_value=i.a_value,a_class=i.a_class,q_id=q_id_9782y362,a_note=i.a_value,a_lvl=3).save()
+      print("saved "+a_id_020392)
+      a_number_8015y1=a_number_8015y1+1
+  return JsonResponse({})
 def q_value_update(request):
   q_value=request.POST['q_value']
   cf = pd.read_csv(AGENDA_Q_DATA)
@@ -914,7 +984,10 @@ def cc_list_maker(request):
   for j in a_bank.objects.all().order_by('a_id'):
     if j.q_id=="q001":
       cc_list.append([j.a_id,j.a_value])
-  return JsonResponse({"cc_list":cc_list})
+  q_id_type_pair=[]
+  for j in q_bank.objects.all():
+    q_id_type_pair.append([j.q_id,j.q_type])
+  return JsonResponse({"cc_list":cc_list,"q_id_type_pair":q_id_type_pair})
 
 def branch_copy(request):
   input_id_7516=request.POST['a_id']
@@ -1477,6 +1550,13 @@ def id_to_string(x):
     j=j+1
   return array_to_string(reverse_array)
 '''
+def edit_a_note(request):
+  for i in a_bank.objects.all():
+    if i.a_id==request.POST['target_id_8915']:
+      target=get_object_or_404(a_bank, id=i.id)
+      target.a_note=request.POST['new_a_note_152']
+      target.save()
+  return JsonResponse({"new_note":request.POST['new_a_note_152']})
 
 def id_to_value_string(x):
   input_array=[]
@@ -2518,7 +2598,13 @@ def lvl_editor(request):
       target.a_lvl=new_lvl_6215
       target.save()
   return JsonResponse({"a_id":a_id,"new_lvl":new_lvl_6215})
-
+def update_class_value(request):
+  q_class_195831=request.POST['q_class_91852']
+  q_value_195831=request.POST['new_value_9815']
+  target=get_object_or_404(q_class,q_class=q_class_195831)
+  target.q_value=q_value_195831
+  target.save()
+  return JsonResponse({"q_value":q_value_195831})
 def type_editor(request):
   q_id=request.POST['q_id']
   new_type_6215=request.POST['new_type_754']
@@ -2575,7 +2661,6 @@ def ai_question_generator(request):
         ai_generated_a.append([i.a_class,i.q_class,i.a_value])
   print(ai_generated_q)
   print(ai_generated_a)
-
   return JsonResponse({"ai_generated_q":ai_generated_q, "ai_generated_a": ai_generated_a})
 def delete_class(request):
   target_class=request.POST['target_class']
@@ -2821,24 +2906,31 @@ def upload_new_seq(request):
       new_seq_pair_2151.append([i,n_9851])
       n_9851=n_9851+1
   old_seq_2151=request.POST['old_seq'].split("\n")
-  
+  q_to_be_saved=[]
   for i in q_bank.objects.all():
     for j in new_seq_pair_2151:
       if len(i.q_id)>=len(j[0]):
         if first_n(i.q_id,len(j[0]))==j[0]:
-          target=get_object_or_404(q_bank,id=i.id)
+          id_class_type_value=[i.q_value,i.q_type,i.q_class]
           new_id_2153=parent_a_2151+"q"+number_to_3_digits(j[1])+remove_first_n(i.q_id,len(j[0]))
-          target.q_id=new_id_2153
-          target.save()
+          q_to_be_saved.append([new_id_2153,i.q_value,i.q_type,i.q_class])
+          get_object_or_404(q_bank,id=i.id).delete()
+  n_to_be_saved=[]
   for i in a_bank.objects.all():
     for j in new_seq_pair_2151:
       if len(i.a_id)>=len(j[0]):
         if first_n(i.a_id,len(j[0]))==j[0]:
-          target=get_object_or_404(a_bank,id=i.id)
+          #target=get_object_or_404(a_bank,id=i.id)
           new_id_2153=parent_a_2151+"q"+number_to_3_digits(j[1])+remove_first_n(i.a_id,len(j[0]))
-          target.a_id=new_id_2153
-          target.q_id=remove_last_n(new_id_2153,4)
-          target.save()
+          #target.a_id=new_id_2153
+          #target.q_id=remove_last_n(new_id_2153,4)
+          n_to_be_saved.append([new_id_2153,i.a_value,remove_last_n(new_id_2153,4),i.a_class,i.a_note,i.a_lvl])
+          get_object_or_404(a_bank, id=i.id).delete()
+          #target.save()
+  for i in q_to_be_saved:
+    q_bank(q_id=i[0],q_value=i[1],q_type=i[2],q_class=i[3]).save()
+  for i in n_to_be_saved:
+    a_bank(a_id=i[0],a_value=i[1],q_id=i[2],a_class=i[3],a_note=i[4],a_lvl=i[5]).save()
   return JsonResponse({})
   
 def delete_a_create_new_qc(request):

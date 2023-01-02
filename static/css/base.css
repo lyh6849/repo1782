@@ -51,18 +51,34 @@ textarea#smq_textarea {
     width:80vw;
     text-align: center;
 }
+div#s09qgq {
+    position: fixed;
+    background-color: yellow;
+    width: 70vw;
+    left: 15vw;
+    height: 70vh;
+    top: 15vh;
+    z-index: 3;
+}
+.collapse_9715{
+    width:10vw;
+}
 .a3a32y {
     left: 76vw;
     position: absolute;
     width: 2vw;
 }
+.system_select{position:fixed;width:80vw;height:80vh;left:10vw;top:10vh;background-color: #1C6EA4;z-index:1;}
 .a3t131{
     position: absolute;
     left: 78vw;
     width: 20vw;
 }
 .primary {
-    border-top: 1px solid #dddddd;
+}
+.question_w0890{
+    border-left: 1px solid #dddddd;
+
 }
 .close_container{
     position:absolute;
@@ -197,9 +213,6 @@ button:hover{
 
 }
 
-.hide {
-    display:none;
-}
 
 span {
     margin-right: 20px;
@@ -270,12 +283,18 @@ body{color:#000000;width:100vw;padding-left:0vw;}
     top: 5vh;
     left: 3vw;
     height: 90vh;
-    width: 90vw;
     background-color: rgb(229 229 229);
     color: white;
     overflow-y: scroll;
     padding: 10px;
-    z-index: 1;
+    z-index: 2;
+}
+.w90vw{
+    width:90vw;
+}
+
+.w10vw{
+    width:10vw;
 }
 .inline{margin-left:0px;display:inline-block;}
 .input_bar{    border: none;
@@ -379,12 +398,12 @@ body{color:#000000;width:100vw;padding-left:0vw;}
     
 }
 .lvl_2{
-    font-size:1.5vw;
+    font-size:2.5vw;
     color: black;
     font-weight: bold;
 }
 .lvl_3{
-    font-size:1vw;
+    font-size:2vw;
     color: black;
     font-weight: 400;
 }

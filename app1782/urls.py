@@ -96,6 +96,11 @@ urlpatterns = [
     path('old_class_add_a',views.old_class_add_a),
     path('a_edit_panel_open',views.a_edit_panel_open),
     path('add_new_q_91721',views.add_new_q_91721),
+    path('delete_unused_id',views.delete_unused_id),
+    path('add_new_q_bank',views.add_new_q_bank),
+    path('edit_a_note',views.edit_a_note),
+    path('new_class_value',views.new_class_value),
+    path('update_class_value',views.update_class_value),
  
     path('dup_q_delete', views.dup_q_delete, name='dup_q_delete'),
     path('dup_q_delete', views.dup_a_delete, name='dup_a_delete'),
